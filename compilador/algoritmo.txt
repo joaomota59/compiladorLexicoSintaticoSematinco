@@ -1,6 +1,1 @@
-j = 4 + 42 <> | (i - t) ^ sm
-retorne "|" <
-inteiro 32
-34.555
-"joaozera" //qualquer palavra entre aspas
-//aqui é uma linha de comentário que será desconsiderada
+(1 + 2.2)
