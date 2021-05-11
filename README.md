@@ -1,7 +1,8 @@
 # Execução do script
 
 ``` shell
-cd Compilador
+* No terminal entre com os seguintes comandos:
+cd compilador
 Scripts\activate
 py index.py
 ```
