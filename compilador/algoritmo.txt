@@ -1,1 +1,9 @@
-(1 + 2.2)
+Inicio
+ok<-5
+escreva((5*4)+3)
+sp<-4
+escreva((5*4)+3)
+sp<-4
+escreva((5*4)+3)
+sp<-9
+Fimalgoritmo

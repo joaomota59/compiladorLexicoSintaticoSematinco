@@ -29,7 +29,7 @@ class VisualgLexer(Lexer):
 
     # Regular expression rules for tokens -- Aqui será definido as expressoes regulares que caracterizam os tokens definidos antes
     REAL = r'(real|[0-9]+[.][0-9]*)'#se for a palavra reservada ou (um conjunto de digitos . conjunto de digitos) é do tipo real
-    INTEIRO = r'(inteiro|[0-9]+)' #se for a palavra reservada ou um conjunto de digitos é do tipo inteiro
+    INTEIRO = r'(inteiro|[-]?[0-9]+)' #se for a palavra reservada ou um conjunto de digitos é do tipo inteiro
     CARACTERE = r'(caractere|"[^\n]+"|"")'#se for a palavra reservada ou qualquer coisa que n seja \n no texto entao é caracter
     ID      = r'[a-zA-Z_][a-zA-Z0-9_]*' #variavel que começa com alguma letra maiuscula ou minuscula
     NE      = r'<>' #diferença - not equal
@@ -96,47 +96,88 @@ class VisualgLexer(Lexer):
         t.value = float(t.value)   # Converte para um valor real
         return t
 
-    @_(r'[0-9]+')
+    @_(r'[-]?[0-9]+')
     def INTEIRO(self, t):
         t.value = int(t.value)   # Converte para um valor inteiro
         return t
 
 
 class VisualgParser(Parser):
+    debugfile = 'parser.out' #arquivo de debugação do Parser
     tokens = VisualgLexer.tokens
+    precedence = (#precedencia, os que ficam mais abaixo tem a maior precedencia
+       #('nonassoc', LT, GT),  # Nonassociative operators
+       ('left', '+', '-'),#LEVEL 0
+       ('left', '*','/'),#LEVEL 1
+       ('right', 'UMINUS'), 
+    )
+    
 
  #Regras gramaticais para numeros inteiros
-    @_('expr "+" term')
-    def expr(self, p):
-        #return
-        return p.expr + p.term
 
-    @_('expr "-" term')
-    def expr(self, p):
-        #return
-        return p.expr - p.term
+    @_("INICIO bloco FIMALGORITMO")
+    def prog(self,p):#função inicial da gramatica
+        return  p.bloco
 
-    @_('term')
-    def expr(self, p):
-        #return
-        return p.term
+    @_('cmd')
+    def bloco(self,p):
+        return p.cmd
+    
+    
+    @_('cmd bloco')
+    def bloco(self,p):
+        return p.bloco
 
-    @_('factor')
-    def term(self, p):
-        #return
-        return p.factor
+    @_('cmdattrib')
+    def cmd(self,p):
+        return p.cmdattrib
+    
+    @_('cmdescrita')
+    def cmd(self,p):
+        return p.cmdescrita
+
+    @_('ID ASSIGN expr')#comando atribuição
+    def cmdattrib(self,p):
+        return p.expr
+
+    @_('ESCREVA "(" expr ")" ')#comando escrita
+    def cmdescrita(self, p):
+        return p.expr
+    
+    @_('"(" expr ")"')
+    def expr(self, p):
+        return p.expr
+
+    @_('expr "+" expr')
+    def expr(self, p):
+        return p.expr0 + p.expr1
+
+    @_('expr "-" expr')
+    def expr(self, p):
+        return
+        return p.expr0 - p.expr1
+
+    @_('expr "*" expr')
+    def expr(self, p):
+        return p.expr0 * p.expr1
+
+    @_('expr "/" expr')
+    def expr(self, p):
+        return p.expr0 / p.expr1
+
+    @_('"-" expr %prec UMINUS')
+    def expr(self, p):
+        return -p.expr
+
+    @_('INTEIRO')
+    def expr(self, p):
+        return p.INTEIRO
 
     @_('REAL')
-    def factor(self, p):
-        #return
+    def expr(self, p):
         return p.REAL
-    @_('INTEIRO')
-    def factor(self, p):
-        #return
-        return p.INTEIRO
-    @_('"(" expr ")"')
-    def factor(self, p):
-        return p.expr
+
+    
 ###OBS FALTA DIVISAO ENTRE REAL!!
 
 
@@ -149,7 +190,8 @@ if __name__ == '__main__':
     lexer = VisualgLexer()
     parser = VisualgParser()
     resultado = parser.parse(lexer.tokenize(data))
-    pprint.pprint(resultado)
+    if resultado != None: 
+        pprint.pprint(resultado)
     #for tok in lexer.tokenize(data):
     #    print('type=%r, value=%r' % (tok.type, tok.value))
     
