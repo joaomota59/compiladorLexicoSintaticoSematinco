@@ -1,5 +1,4 @@
-#pip install sly
-from sly import Lexer, Parser
+from sly import Lexer, Parser #pip install sly
 import pprint
 
 
@@ -93,12 +92,18 @@ class VisualgLexer(Lexer):
 
     @_(r'[0-9]+[.][0-9]*')
     def REAL(self,t):
-        t.value = float(t.value)   # Converte para um valor real
+        try:
+            t.value = float(t.value)   # Converte para um valor real
+        except ValueError:
+            pass
         return t
 
     @_(r'[-]?[0-9]+')
     def INTEIRO(self, t):
-        t.value = int(t.value)   # Converte para um valor inteiro
+        try:
+            t.value = int(t.value)   # Converte para um valor inteiro
+        except ValueError:
+            pass
         return t
 
 
@@ -115,9 +120,33 @@ class VisualgParser(Parser):
 
  #Regras gramaticais para numeros inteiros
 
-    @_("INICIO bloco FIMALGORITMO")
-    def prog(self,p):#função inicial da gramatica
-        return  p.bloco
+    @_("ALGORITMO CARACTERE VAR declaracao INICIO bloco FIMALGORITMO")
+    def initial(self,p):
+        return
+    
+    @_("vartype ':' INTEIRO")
+    def declaracao(self,p):
+        return
+    
+    @_("vartype ':' REAL")
+    def declaracao(self,p):
+        return
+    
+    @_("vartype ':' CARACTERE")
+    def declaracao(self,p):
+        return
+    
+    @_("vartype ':' LOGICO")
+    def declaracao(self,p):
+        return
+
+    @_("ID")
+    def vartype(self,p):
+        return
+
+    @_("ID ',' vartype")
+    def vartype(self,p):
+        return
 
     @_('cmd')
     def bloco(self,p):
@@ -143,6 +172,14 @@ class VisualgParser(Parser):
     @_('ESCREVA "(" expr ")" ')#comando escrita
     def cmdescrita(self, p):
         return p.expr
+
+    @_('ESCREVA "(" CARACTERE ")" ')#comando escrita
+    def cmdescrita(self, p):
+        return p.CARACTERE
+
+    @_('ESCREVA "(" ")" ')#comando escrita
+    def cmdescrita(self, p):
+        return
     
     @_('"(" expr ")"')
     def expr(self, p):
@@ -192,6 +229,10 @@ if __name__ == '__main__':
     resultado = parser.parse(lexer.tokenize(data))
     if resultado != None: 
         pprint.pprint(resultado)
-    #for tok in lexer.tokenize(data):
-    #    print('type=%r, value=%r' % (tok.type, tok.value))
+
+    arquivo2 = open("tokens.txt","w")
     
+    for tok in lexer.tokenize(data):
+        #print()
+        arquivo2.write('type=%r, value=%r\n' % (tok.type, tok.value))
+    arquivo2.close()

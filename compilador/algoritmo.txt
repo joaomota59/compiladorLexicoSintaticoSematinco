@@ -1,9 +1,13 @@
+Algoritmo "semnome"
+
+Var
+x,y : real
+// Seção de Declarações das variáveis 
+
+
 Inicio
-ok<-5
-escreva((5*4)+3)
-sp<-4
-escreva((5*4)+3)
-sp<-4
-escreva((5*4)+3)
-sp<-9
+// Seção de Comandos, procedimento, funções, operadores, etc...
+escreva("ola mundo")
+escreva(2*5)
+
 Fimalgoritmo

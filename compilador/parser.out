@@ -1,81 +1,87 @@
 Grammar:
 
-Rule 0     S' -> prog
-Rule 1     prog -> INICIO bloco FIMALGORITMO
-Rule 2     bloco -> cmd bloco
-Rule 3     bloco -> cmd
-Rule 4     cmd -> cmdescrita
-Rule 5     cmd -> cmdattrib
-Rule 6     cmdattrib -> ID ASSIGN expr
-Rule 7     cmdescrita -> ESCREVA ( expr )
-Rule 8     expr -> REAL
-Rule 9     expr -> INTEIRO
-Rule 10    expr -> - expr  [precedence=right, level=3]
-Rule 11    expr -> expr / expr  [precedence=left, level=2]
-Rule 12    expr -> expr * expr  [precedence=left, level=2]
-Rule 13    expr -> expr - expr  [precedence=left, level=1]
-Rule 14    expr -> expr + expr  [precedence=left, level=1]
-Rule 15    expr -> ( expr )
+Rule 0     S' -> initial
+Rule 1     initial -> ALGORITMO CARACTERE VAR declaracao INICIO bloco FIMALGORITMO
+Rule 2     declaracao -> vartype : LOGICO
+Rule 3     declaracao -> vartype : CARACTERE
+Rule 4     declaracao -> vartype : REAL
+Rule 5     declaracao -> vartype : INTEIRO
+Rule 6     vartype -> ID , vartype
+Rule 7     vartype -> ID
+Rule 8     bloco -> cmd bloco
+Rule 9     bloco -> cmd
+Rule 10    cmd -> cmdescrita
+Rule 11    cmd -> cmdattrib
+Rule 12    cmdattrib -> ID ASSIGN expr
+Rule 13    cmdescrita -> ESCREVA ( )
+Rule 14    cmdescrita -> ESCREVA ( CARACTERE )
+Rule 15    cmdescrita -> ESCREVA ( expr )
+Rule 16    expr -> REAL
+Rule 17    expr -> INTEIRO
+Rule 18    expr -> - expr  [precedence=right, level=3]
+Rule 19    expr -> expr / expr  [precedence=left, level=2]
+Rule 20    expr -> expr * expr  [precedence=left, level=2]
+Rule 21    expr -> expr - expr  [precedence=left, level=1]
+Rule 22    expr -> expr + expr  [precedence=left, level=1]
+Rule 23    expr -> ( expr )
 
 Unused terminals:
 
-    VAR
+    FUNCAO
+    POS
     ENTAO
-    NAO
     GT
+    REPITA
+    FALSO
+    NE
+    CRONOMETRO
     SE
     FIMREPITA
-    ASC
-    FIMFUNCAO
-    CARACTERE
-    ALGORITMO
-    GE
-    CRONOMETRO
-    FALSO
-    FACA
-    CARAC
+    FIMSE
     OU
     E
-    LEIA
-    FIMENQUANTO
-    FIMESCOLHA
-    PROCEDIMENTO
+    XOU
+    NAO
+    FIMPROCEDIMENTO
+    MOD
+    RETORNE
+    LT
+    ECO
+    ESCREVAL
+    SENAO
+    TIMER
+    FACA
+    ESCOLHA
+    ASC
+    GE
+    VERDADEIRO
     VETOR
     ENQUANTO
-    TIMER
-    LT
-    NE
-    SENAO
-    REPITA
-    LOGICO
-    FIMPROCEDIMENTO
-    POS
-    EQ
-    XOU
-    LIMPATELA
-    VERDADEIRO
-    RETORNE
-    ESCREVAL
-    ESCOLHA
-    ECO
-    FIMSE
-    MOD
-    FUNCAO
     LE
+    FIMESCOLHA
+    EQ
+    PROCEDIMENTO
+    LIMPATELA
+    FIMENQUANTO
+    LEIA
+    FIMFUNCAO
+    CARAC
 
 Terminals, with rules where they appear:
 
-(                    : 7 15
-)                    : 7 15
-*                    : 12
-+                    : 14
--                    : 10 13
-/                    : 11
-ALGORITMO            : 
+(                    : 13 14 15 23
+)                    : 13 14 15 23
+*                    : 20
++                    : 22
+,                    : 6
+-                    : 18 21
+/                    : 19
+:                    : 2 3 4 5
+ALGORITMO            : 1
 ASC                  : 
-ASSIGN               : 6
+ASSIGN               : 12
 CARAC                : 
-CARACTERE            : 
+CARACTERE            : 1 3 14
 CRONOMETRO           : 
 E                    : 
 ECO                  : 
@@ -83,7 +89,7 @@ ENQUANTO             :
 ENTAO                : 
 EQ                   : 
 ESCOLHA              : 
-ESCREVA              : 7
+ESCREVA              : 13 14 15
 ESCREVAL             : 
 FACA                 : 
 FALSO                : 
@@ -97,13 +103,13 @@ FIMSE                :
 FUNCAO               : 
 GE                   : 
 GT                   : 
-ID                   : 6
+ID                   : 6 7 12
 INICIO               : 1
-INTEIRO              : 9
+INTEIRO              : 5 17
 LE                   : 
 LEIA                 : 
 LIMPATELA            : 
-LOGICO               : 
+LOGICO               : 2
 LT                   : 
 MOD                  : 
 NAO                  : 
@@ -111,13 +117,13 @@ NE                   :
 OU                   : 
 POS                  : 
 PROCEDIMENTO         : 
-REAL                 : 8
+REAL                 : 4 16
 REPITA               : 
 RETORNE              : 
 SE                   : 
 SENAO                : 
 TIMER                : 
-VAR                  : 
+VAR                  : 1
 VERDADEIRO           : 
 VETOR                : 
 XOU                  : 
@@ -125,424 +131,558 @@ error                :
 
 Nonterminals, with rules where they appear:
 
-bloco                : 1 2
-cmd                  : 2 3
-cmdattrib            : 5
-cmdescrita           : 4
-expr                 : 6 7 10 11 11 12 12 13 13 14 14 15
-prog                 : 0
+bloco                : 1 8
+cmd                  : 8 9
+cmdattrib            : 11
+cmdescrita           : 10
+declaracao           : 1
+expr                 : 12 15 18 19 19 20 20 21 21 22 22 23
+initial              : 0
+vartype              : 2 3 4 5 6
 
 
 state 0
 
-    (0) S' -> . prog
-    (1) prog -> . INICIO bloco FIMALGORITMO
-    INICIO          shift and go to state 2
+    (0) S' -> . initial
+    (1) initial -> . ALGORITMO CARACTERE VAR declaracao INICIO bloco FIMALGORITMO
+    ALGORITMO       shift and go to state 2
 
-    prog                           shift and go to state 1
+    initial                        shift and go to state 1
 
 state 1
 
-    (0) S' -> prog .
+    (0) S' -> initial .
 
 
 state 2
 
-    (1) prog -> INICIO . bloco FIMALGORITMO
-    (2) bloco -> . cmd bloco
-    (3) bloco -> . cmd
-    (4) cmd -> . cmdescrita
-    (5) cmd -> . cmdattrib
-    (7) cmdescrita -> . ESCREVA ( expr )
-    (6) cmdattrib -> . ID ASSIGN expr
-    ESCREVA         shift and go to state 7
-    ID              shift and go to state 8
+    (1) initial -> ALGORITMO . CARACTERE VAR declaracao INICIO bloco FIMALGORITMO
+    CARACTERE       shift and go to state 3
 
-    bloco                          shift and go to state 3
-    cmd                            shift and go to state 4
-    cmdescrita                     shift and go to state 5
-    cmdattrib                      shift and go to state 6
 
 state 3
 
-    (1) prog -> INICIO bloco . FIMALGORITMO
-    FIMALGORITMO    shift and go to state 9
+    (1) initial -> ALGORITMO CARACTERE . VAR declaracao INICIO bloco FIMALGORITMO
+    VAR             shift and go to state 4
 
 
 state 4
 
-    (2) bloco -> cmd . bloco
-    (3) bloco -> cmd .
-    (2) bloco -> . cmd bloco
-    (3) bloco -> . cmd
-    (4) cmd -> . cmdescrita
-    (5) cmd -> . cmdattrib
-    (7) cmdescrita -> . ESCREVA ( expr )
-    (6) cmdattrib -> . ID ASSIGN expr
-    FIMALGORITMO    reduce using rule 3 (bloco -> cmd .)
-    ESCREVA         shift and go to state 7
-    ID              shift and go to state 8
+    (1) initial -> ALGORITMO CARACTERE VAR . declaracao INICIO bloco FIMALGORITMO
+    (2) declaracao -> . vartype : LOGICO
+    (3) declaracao -> . vartype : CARACTERE
+    (4) declaracao -> . vartype : REAL
+    (5) declaracao -> . vartype : INTEIRO
+    (6) vartype -> . ID , vartype
+    (7) vartype -> . ID
+    ID              shift and go to state 7
 
-    cmd                            shift and go to state 4
-    bloco                          shift and go to state 10
-    cmdescrita                     shift and go to state 5
-    cmdattrib                      shift and go to state 6
+    declaracao                     shift and go to state 5
+    vartype                        shift and go to state 6
 
 state 5
 
-    (4) cmd -> cmdescrita .
-    ESCREVA         reduce using rule 4 (cmd -> cmdescrita .)
-    ID              reduce using rule 4 (cmd -> cmdescrita .)
-    FIMALGORITMO    reduce using rule 4 (cmd -> cmdescrita .)
+    (1) initial -> ALGORITMO CARACTERE VAR declaracao . INICIO bloco FIMALGORITMO
+    INICIO          shift and go to state 8
 
 
 state 6
 
-    (5) cmd -> cmdattrib .
-    ESCREVA         reduce using rule 5 (cmd -> cmdattrib .)
-    ID              reduce using rule 5 (cmd -> cmdattrib .)
-    FIMALGORITMO    reduce using rule 5 (cmd -> cmdattrib .)
+    (2) declaracao -> vartype . : LOGICO
+    (3) declaracao -> vartype . : CARACTERE
+    (4) declaracao -> vartype . : REAL
+    (5) declaracao -> vartype . : INTEIRO
+    :               shift and go to state 9
 
 
 state 7
 
-    (7) cmdescrita -> ESCREVA . ( expr )
-    (               shift and go to state 11
+    (6) vartype -> ID . , vartype
+    (7) vartype -> ID .
+    ,               shift and go to state 10
+    :               reduce using rule 7 (vartype -> ID .)
 
 
 state 8
 
-    (6) cmdattrib -> ID . ASSIGN expr
-    ASSIGN          shift and go to state 12
+    (1) initial -> ALGORITMO CARACTERE VAR declaracao INICIO . bloco FIMALGORITMO
+    (8) bloco -> . cmd bloco
+    (9) bloco -> . cmd
+    (10) cmd -> . cmdescrita
+    (11) cmd -> . cmdattrib
+    (13) cmdescrita -> . ESCREVA ( )
+    (14) cmdescrita -> . ESCREVA ( CARACTERE )
+    (15) cmdescrita -> . ESCREVA ( expr )
+    (12) cmdattrib -> . ID ASSIGN expr
+    ESCREVA         shift and go to state 15
+    ID              shift and go to state 16
 
+    bloco                          shift and go to state 11
+    cmd                            shift and go to state 12
+    cmdescrita                     shift and go to state 13
+    cmdattrib                      shift and go to state 14
 
 state 9
 
-    (1) prog -> INICIO bloco FIMALGORITMO .
-    $end            reduce using rule 1 (prog -> INICIO bloco FIMALGORITMO .)
+    (2) declaracao -> vartype : . LOGICO
+    (3) declaracao -> vartype : . CARACTERE
+    (4) declaracao -> vartype : . REAL
+    (5) declaracao -> vartype : . INTEIRO
+    LOGICO          shift and go to state 17
+    CARACTERE       shift and go to state 18
+    REAL            shift and go to state 19
+    INTEIRO         shift and go to state 20
 
 
 state 10
 
-    (2) bloco -> cmd bloco .
-    FIMALGORITMO    reduce using rule 2 (bloco -> cmd bloco .)
+    (6) vartype -> ID , . vartype
+    (6) vartype -> . ID , vartype
+    (7) vartype -> . ID
+    ID              shift and go to state 7
 
+    vartype                        shift and go to state 21
 
 state 11
 
-    (7) cmdescrita -> ESCREVA ( . expr )
-    (8) expr -> . REAL
-    (9) expr -> . INTEIRO
-    (10) expr -> . - expr
-    (11) expr -> . expr / expr
-    (12) expr -> . expr * expr
-    (13) expr -> . expr - expr
-    (14) expr -> . expr + expr
-    (15) expr -> . ( expr )
-    REAL            shift and go to state 15
-    INTEIRO         shift and go to state 16
-    -               shift and go to state 17
-    (               shift and go to state 13
+    (1) initial -> ALGORITMO CARACTERE VAR declaracao INICIO bloco . FIMALGORITMO
+    FIMALGORITMO    shift and go to state 22
 
-    expr                           shift and go to state 14
 
 state 12
 
-    (6) cmdattrib -> ID ASSIGN . expr
-    (8) expr -> . REAL
-    (9) expr -> . INTEIRO
-    (10) expr -> . - expr
-    (11) expr -> . expr / expr
-    (12) expr -> . expr * expr
-    (13) expr -> . expr - expr
-    (14) expr -> . expr + expr
-    (15) expr -> . ( expr )
-    REAL            shift and go to state 15
-    INTEIRO         shift and go to state 16
-    -               shift and go to state 17
-    (               shift and go to state 13
+    (8) bloco -> cmd . bloco
+    (9) bloco -> cmd .
+    (8) bloco -> . cmd bloco
+    (9) bloco -> . cmd
+    (10) cmd -> . cmdescrita
+    (11) cmd -> . cmdattrib
+    (13) cmdescrita -> . ESCREVA ( )
+    (14) cmdescrita -> . ESCREVA ( CARACTERE )
+    (15) cmdescrita -> . ESCREVA ( expr )
+    (12) cmdattrib -> . ID ASSIGN expr
+    FIMALGORITMO    reduce using rule 9 (bloco -> cmd .)
+    ESCREVA         shift and go to state 15
+    ID              shift and go to state 16
 
-    expr                           shift and go to state 18
+    cmd                            shift and go to state 12
+    bloco                          shift and go to state 23
+    cmdescrita                     shift and go to state 13
+    cmdattrib                      shift and go to state 14
 
 state 13
 
-    (15) expr -> ( . expr )
-    (8) expr -> . REAL
-    (9) expr -> . INTEIRO
-    (10) expr -> . - expr
-    (11) expr -> . expr / expr
-    (12) expr -> . expr * expr
-    (13) expr -> . expr - expr
-    (14) expr -> . expr + expr
-    (15) expr -> . ( expr )
-    REAL            shift and go to state 15
-    INTEIRO         shift and go to state 16
-    -               shift and go to state 17
-    (               shift and go to state 13
+    (10) cmd -> cmdescrita .
+    ESCREVA         reduce using rule 10 (cmd -> cmdescrita .)
+    ID              reduce using rule 10 (cmd -> cmdescrita .)
+    FIMALGORITMO    reduce using rule 10 (cmd -> cmdescrita .)
 
-    expr                           shift and go to state 19
 
 state 14
 
-    (7) cmdescrita -> ESCREVA ( expr . )
-    (11) expr -> expr . / expr
-    (12) expr -> expr . * expr
-    (13) expr -> expr . - expr
-    (14) expr -> expr . + expr
-    )               shift and go to state 20
-    /               shift and go to state 21
-    *               shift and go to state 22
-    -               shift and go to state 23
-    +               shift and go to state 24
+    (11) cmd -> cmdattrib .
+    ESCREVA         reduce using rule 11 (cmd -> cmdattrib .)
+    ID              reduce using rule 11 (cmd -> cmdattrib .)
+    FIMALGORITMO    reduce using rule 11 (cmd -> cmdattrib .)
 
 
 state 15
 
-    (8) expr -> REAL .
-    )               reduce using rule 8 (expr -> REAL .)
-    /               reduce using rule 8 (expr -> REAL .)
-    *               reduce using rule 8 (expr -> REAL .)
-    -               reduce using rule 8 (expr -> REAL .)
-    +               reduce using rule 8 (expr -> REAL .)
-    ESCREVA         reduce using rule 8 (expr -> REAL .)
-    ID              reduce using rule 8 (expr -> REAL .)
-    FIMALGORITMO    reduce using rule 8 (expr -> REAL .)
+    (13) cmdescrita -> ESCREVA . ( )
+    (14) cmdescrita -> ESCREVA . ( CARACTERE )
+    (15) cmdescrita -> ESCREVA . ( expr )
+    (               shift and go to state 24
 
 
 state 16
 
-    (9) expr -> INTEIRO .
-    )               reduce using rule 9 (expr -> INTEIRO .)
-    /               reduce using rule 9 (expr -> INTEIRO .)
-    *               reduce using rule 9 (expr -> INTEIRO .)
-    -               reduce using rule 9 (expr -> INTEIRO .)
-    +               reduce using rule 9 (expr -> INTEIRO .)
-    ESCREVA         reduce using rule 9 (expr -> INTEIRO .)
-    ID              reduce using rule 9 (expr -> INTEIRO .)
-    FIMALGORITMO    reduce using rule 9 (expr -> INTEIRO .)
+    (12) cmdattrib -> ID . ASSIGN expr
+    ASSIGN          shift and go to state 25
 
 
 state 17
 
-    (10) expr -> - . expr
-    (8) expr -> . REAL
-    (9) expr -> . INTEIRO
-    (10) expr -> . - expr
-    (11) expr -> . expr / expr
-    (12) expr -> . expr * expr
-    (13) expr -> . expr - expr
-    (14) expr -> . expr + expr
-    (15) expr -> . ( expr )
-    REAL            shift and go to state 15
-    INTEIRO         shift and go to state 16
-    -               shift and go to state 17
-    (               shift and go to state 13
+    (2) declaracao -> vartype : LOGICO .
+    INICIO          reduce using rule 2 (declaracao -> vartype : LOGICO .)
 
-    expr                           shift and go to state 25
 
 state 18
 
-    (6) cmdattrib -> ID ASSIGN expr .
-    (11) expr -> expr . / expr
-    (12) expr -> expr . * expr
-    (13) expr -> expr . - expr
-    (14) expr -> expr . + expr
-    ESCREVA         reduce using rule 6 (cmdattrib -> ID ASSIGN expr .)
-    ID              reduce using rule 6 (cmdattrib -> ID ASSIGN expr .)
-    FIMALGORITMO    reduce using rule 6 (cmdattrib -> ID ASSIGN expr .)
-    /               shift and go to state 21
-    *               shift and go to state 22
-    -               shift and go to state 23
-    +               shift and go to state 24
+    (3) declaracao -> vartype : CARACTERE .
+    INICIO          reduce using rule 3 (declaracao -> vartype : CARACTERE .)
 
 
 state 19
 
-    (15) expr -> ( expr . )
-    (11) expr -> expr . / expr
-    (12) expr -> expr . * expr
-    (13) expr -> expr . - expr
-    (14) expr -> expr . + expr
-    )               shift and go to state 26
-    /               shift and go to state 21
-    *               shift and go to state 22
-    -               shift and go to state 23
-    +               shift and go to state 24
+    (4) declaracao -> vartype : REAL .
+    INICIO          reduce using rule 4 (declaracao -> vartype : REAL .)
 
 
 state 20
 
-    (7) cmdescrita -> ESCREVA ( expr ) .
-    ESCREVA         reduce using rule 7 (cmdescrita -> ESCREVA ( expr ) .)
-    ID              reduce using rule 7 (cmdescrita -> ESCREVA ( expr ) .)
-    FIMALGORITMO    reduce using rule 7 (cmdescrita -> ESCREVA ( expr ) .)
+    (5) declaracao -> vartype : INTEIRO .
+    INICIO          reduce using rule 5 (declaracao -> vartype : INTEIRO .)
 
 
 state 21
 
-    (11) expr -> expr / . expr
-    (8) expr -> . REAL
-    (9) expr -> . INTEIRO
-    (10) expr -> . - expr
-    (11) expr -> . expr / expr
-    (12) expr -> . expr * expr
-    (13) expr -> . expr - expr
-    (14) expr -> . expr + expr
-    (15) expr -> . ( expr )
-    REAL            shift and go to state 15
-    INTEIRO         shift and go to state 16
-    -               shift and go to state 17
-    (               shift and go to state 13
+    (6) vartype -> ID , vartype .
+    :               reduce using rule 6 (vartype -> ID , vartype .)
 
-    expr                           shift and go to state 27
 
 state 22
 
-    (12) expr -> expr * . expr
-    (8) expr -> . REAL
-    (9) expr -> . INTEIRO
-    (10) expr -> . - expr
-    (11) expr -> . expr / expr
-    (12) expr -> . expr * expr
-    (13) expr -> . expr - expr
-    (14) expr -> . expr + expr
-    (15) expr -> . ( expr )
-    REAL            shift and go to state 15
-    INTEIRO         shift and go to state 16
-    -               shift and go to state 17
-    (               shift and go to state 13
+    (1) initial -> ALGORITMO CARACTERE VAR declaracao INICIO bloco FIMALGORITMO .
+    $end            reduce using rule 1 (initial -> ALGORITMO CARACTERE VAR declaracao INICIO bloco FIMALGORITMO .)
 
-    expr                           shift and go to state 28
 
 state 23
 
-    (13) expr -> expr - . expr
-    (8) expr -> . REAL
-    (9) expr -> . INTEIRO
-    (10) expr -> . - expr
-    (11) expr -> . expr / expr
-    (12) expr -> . expr * expr
-    (13) expr -> . expr - expr
-    (14) expr -> . expr + expr
-    (15) expr -> . ( expr )
-    REAL            shift and go to state 15
-    INTEIRO         shift and go to state 16
-    -               shift and go to state 17
-    (               shift and go to state 13
+    (8) bloco -> cmd bloco .
+    FIMALGORITMO    reduce using rule 8 (bloco -> cmd bloco .)
 
-    expr                           shift and go to state 29
 
 state 24
 
-    (14) expr -> expr + . expr
-    (8) expr -> . REAL
-    (9) expr -> . INTEIRO
-    (10) expr -> . - expr
-    (11) expr -> . expr / expr
-    (12) expr -> . expr * expr
-    (13) expr -> . expr - expr
-    (14) expr -> . expr + expr
-    (15) expr -> . ( expr )
-    REAL            shift and go to state 15
-    INTEIRO         shift and go to state 16
-    -               shift and go to state 17
-    (               shift and go to state 13
+    (13) cmdescrita -> ESCREVA ( . )
+    (14) cmdescrita -> ESCREVA ( . CARACTERE )
+    (15) cmdescrita -> ESCREVA ( . expr )
+    (16) expr -> . REAL
+    (17) expr -> . INTEIRO
+    (18) expr -> . - expr
+    (19) expr -> . expr / expr
+    (20) expr -> . expr * expr
+    (21) expr -> . expr - expr
+    (22) expr -> . expr + expr
+    (23) expr -> . ( expr )
+    )               shift and go to state 27
+    CARACTERE       shift and go to state 28
+    REAL            shift and go to state 30
+    INTEIRO         shift and go to state 31
+    -               shift and go to state 32
+    (               shift and go to state 26
 
-    expr                           shift and go to state 30
+    expr                           shift and go to state 29
 
 state 25
 
-    (10) expr -> - expr .
-    (11) expr -> expr . / expr
-    (12) expr -> expr . * expr
-    (13) expr -> expr . - expr
-    (14) expr -> expr . + expr
-    )               reduce using rule 10 (expr -> - expr .)
-    /               reduce using rule 10 (expr -> - expr .)
-    *               reduce using rule 10 (expr -> - expr .)
-    -               reduce using rule 10 (expr -> - expr .)
-    +               reduce using rule 10 (expr -> - expr .)
-    ESCREVA         reduce using rule 10 (expr -> - expr .)
-    ID              reduce using rule 10 (expr -> - expr .)
-    FIMALGORITMO    reduce using rule 10 (expr -> - expr .)
+    (12) cmdattrib -> ID ASSIGN . expr
+    (16) expr -> . REAL
+    (17) expr -> . INTEIRO
+    (18) expr -> . - expr
+    (19) expr -> . expr / expr
+    (20) expr -> . expr * expr
+    (21) expr -> . expr - expr
+    (22) expr -> . expr + expr
+    (23) expr -> . ( expr )
+    REAL            shift and go to state 30
+    INTEIRO         shift and go to state 31
+    -               shift and go to state 32
+    (               shift and go to state 26
 
+    expr                           shift and go to state 33
 
 state 26
 
-    (15) expr -> ( expr ) .
-    )               reduce using rule 15 (expr -> ( expr ) .)
-    /               reduce using rule 15 (expr -> ( expr ) .)
-    *               reduce using rule 15 (expr -> ( expr ) .)
-    -               reduce using rule 15 (expr -> ( expr ) .)
-    +               reduce using rule 15 (expr -> ( expr ) .)
-    ESCREVA         reduce using rule 15 (expr -> ( expr ) .)
-    ID              reduce using rule 15 (expr -> ( expr ) .)
-    FIMALGORITMO    reduce using rule 15 (expr -> ( expr ) .)
+    (23) expr -> ( . expr )
+    (16) expr -> . REAL
+    (17) expr -> . INTEIRO
+    (18) expr -> . - expr
+    (19) expr -> . expr / expr
+    (20) expr -> . expr * expr
+    (21) expr -> . expr - expr
+    (22) expr -> . expr + expr
+    (23) expr -> . ( expr )
+    REAL            shift and go to state 30
+    INTEIRO         shift and go to state 31
+    -               shift and go to state 32
+    (               shift and go to state 26
 
+    expr                           shift and go to state 34
 
 state 27
 
-    (11) expr -> expr / expr .
-    (11) expr -> expr . / expr
-    (12) expr -> expr . * expr
-    (13) expr -> expr . - expr
-    (14) expr -> expr . + expr
-    )               reduce using rule 11 (expr -> expr / expr .)
-    /               reduce using rule 11 (expr -> expr / expr .)
-    *               reduce using rule 11 (expr -> expr / expr .)
-    -               reduce using rule 11 (expr -> expr / expr .)
-    +               reduce using rule 11 (expr -> expr / expr .)
-    ESCREVA         reduce using rule 11 (expr -> expr / expr .)
-    ID              reduce using rule 11 (expr -> expr / expr .)
-    FIMALGORITMO    reduce using rule 11 (expr -> expr / expr .)
+    (13) cmdescrita -> ESCREVA ( ) .
+    ESCREVA         reduce using rule 13 (cmdescrita -> ESCREVA ( ) .)
+    ID              reduce using rule 13 (cmdescrita -> ESCREVA ( ) .)
+    FIMALGORITMO    reduce using rule 13 (cmdescrita -> ESCREVA ( ) .)
 
 
 state 28
 
-    (12) expr -> expr * expr .
-    (11) expr -> expr . / expr
-    (12) expr -> expr . * expr
-    (13) expr -> expr . - expr
-    (14) expr -> expr . + expr
-    )               reduce using rule 12 (expr -> expr * expr .)
-    /               reduce using rule 12 (expr -> expr * expr .)
-    *               reduce using rule 12 (expr -> expr * expr .)
-    -               reduce using rule 12 (expr -> expr * expr .)
-    +               reduce using rule 12 (expr -> expr * expr .)
-    ESCREVA         reduce using rule 12 (expr -> expr * expr .)
-    ID              reduce using rule 12 (expr -> expr * expr .)
-    FIMALGORITMO    reduce using rule 12 (expr -> expr * expr .)
+    (14) cmdescrita -> ESCREVA ( CARACTERE . )
+    )               shift and go to state 35
 
 
 state 29
 
-    (13) expr -> expr - expr .
-    (11) expr -> expr . / expr
-    (12) expr -> expr . * expr
-    (13) expr -> expr . - expr
-    (14) expr -> expr . + expr
-    )               reduce using rule 13 (expr -> expr - expr .)
-    -               reduce using rule 13 (expr -> expr - expr .)
-    +               reduce using rule 13 (expr -> expr - expr .)
-    ESCREVA         reduce using rule 13 (expr -> expr - expr .)
-    ID              reduce using rule 13 (expr -> expr - expr .)
-    FIMALGORITMO    reduce using rule 13 (expr -> expr - expr .)
-    /               shift and go to state 21
-    *               shift and go to state 22
+    (15) cmdescrita -> ESCREVA ( expr . )
+    (19) expr -> expr . / expr
+    (20) expr -> expr . * expr
+    (21) expr -> expr . - expr
+    (22) expr -> expr . + expr
+    )               shift and go to state 36
+    /               shift and go to state 37
+    *               shift and go to state 38
+    -               shift and go to state 39
+    +               shift and go to state 40
 
 
 state 30
 
-    (14) expr -> expr + expr .
-    (11) expr -> expr . / expr
-    (12) expr -> expr . * expr
-    (13) expr -> expr . - expr
-    (14) expr -> expr . + expr
-    )               reduce using rule 14 (expr -> expr + expr .)
-    -               reduce using rule 14 (expr -> expr + expr .)
-    +               reduce using rule 14 (expr -> expr + expr .)
-    ESCREVA         reduce using rule 14 (expr -> expr + expr .)
-    ID              reduce using rule 14 (expr -> expr + expr .)
-    FIMALGORITMO    reduce using rule 14 (expr -> expr + expr .)
-    /               shift and go to state 21
-    *               shift and go to state 22
+    (16) expr -> REAL .
+    )               reduce using rule 16 (expr -> REAL .)
+    /               reduce using rule 16 (expr -> REAL .)
+    *               reduce using rule 16 (expr -> REAL .)
+    -               reduce using rule 16 (expr -> REAL .)
+    +               reduce using rule 16 (expr -> REAL .)
+    ESCREVA         reduce using rule 16 (expr -> REAL .)
+    ID              reduce using rule 16 (expr -> REAL .)
+    FIMALGORITMO    reduce using rule 16 (expr -> REAL .)
+
+
+state 31
+
+    (17) expr -> INTEIRO .
+    )               reduce using rule 17 (expr -> INTEIRO .)
+    /               reduce using rule 17 (expr -> INTEIRO .)
+    *               reduce using rule 17 (expr -> INTEIRO .)
+    -               reduce using rule 17 (expr -> INTEIRO .)
+    +               reduce using rule 17 (expr -> INTEIRO .)
+    ESCREVA         reduce using rule 17 (expr -> INTEIRO .)
+    ID              reduce using rule 17 (expr -> INTEIRO .)
+    FIMALGORITMO    reduce using rule 17 (expr -> INTEIRO .)
+
+
+state 32
+
+    (18) expr -> - . expr
+    (16) expr -> . REAL
+    (17) expr -> . INTEIRO
+    (18) expr -> . - expr
+    (19) expr -> . expr / expr
+    (20) expr -> . expr * expr
+    (21) expr -> . expr - expr
+    (22) expr -> . expr + expr
+    (23) expr -> . ( expr )
+    REAL            shift and go to state 30
+    INTEIRO         shift and go to state 31
+    -               shift and go to state 32
+    (               shift and go to state 26
+
+    expr                           shift and go to state 41
+
+state 33
+
+    (12) cmdattrib -> ID ASSIGN expr .
+    (19) expr -> expr . / expr
+    (20) expr -> expr . * expr
+    (21) expr -> expr . - expr
+    (22) expr -> expr . + expr
+    ESCREVA         reduce using rule 12 (cmdattrib -> ID ASSIGN expr .)
+    ID              reduce using rule 12 (cmdattrib -> ID ASSIGN expr .)
+    FIMALGORITMO    reduce using rule 12 (cmdattrib -> ID ASSIGN expr .)
+    /               shift and go to state 37
+    *               shift and go to state 38
+    -               shift and go to state 39
+    +               shift and go to state 40
+
+
+state 34
+
+    (23) expr -> ( expr . )
+    (19) expr -> expr . / expr
+    (20) expr -> expr . * expr
+    (21) expr -> expr . - expr
+    (22) expr -> expr . + expr
+    )               shift and go to state 42
+    /               shift and go to state 37
+    *               shift and go to state 38
+    -               shift and go to state 39
+    +               shift and go to state 40
+
+
+state 35
+
+    (14) cmdescrita -> ESCREVA ( CARACTERE ) .
+    ESCREVA         reduce using rule 14 (cmdescrita -> ESCREVA ( CARACTERE ) .)
+    ID              reduce using rule 14 (cmdescrita -> ESCREVA ( CARACTERE ) .)
+    FIMALGORITMO    reduce using rule 14 (cmdescrita -> ESCREVA ( CARACTERE ) .)
+
+
+state 36
+
+    (15) cmdescrita -> ESCREVA ( expr ) .
+    ESCREVA         reduce using rule 15 (cmdescrita -> ESCREVA ( expr ) .)
+    ID              reduce using rule 15 (cmdescrita -> ESCREVA ( expr ) .)
+    FIMALGORITMO    reduce using rule 15 (cmdescrita -> ESCREVA ( expr ) .)
+
+
+state 37
+
+    (19) expr -> expr / . expr
+    (16) expr -> . REAL
+    (17) expr -> . INTEIRO
+    (18) expr -> . - expr
+    (19) expr -> . expr / expr
+    (20) expr -> . expr * expr
+    (21) expr -> . expr - expr
+    (22) expr -> . expr + expr
+    (23) expr -> . ( expr )
+    REAL            shift and go to state 30
+    INTEIRO         shift and go to state 31
+    -               shift and go to state 32
+    (               shift and go to state 26
+
+    expr                           shift and go to state 43
+
+state 38
+
+    (20) expr -> expr * . expr
+    (16) expr -> . REAL
+    (17) expr -> . INTEIRO
+    (18) expr -> . - expr
+    (19) expr -> . expr / expr
+    (20) expr -> . expr * expr
+    (21) expr -> . expr - expr
+    (22) expr -> . expr + expr
+    (23) expr -> . ( expr )
+    REAL            shift and go to state 30
+    INTEIRO         shift and go to state 31
+    -               shift and go to state 32
+    (               shift and go to state 26
+
+    expr                           shift and go to state 44
+
+state 39
+
+    (21) expr -> expr - . expr
+    (16) expr -> . REAL
+    (17) expr -> . INTEIRO
+    (18) expr -> . - expr
+    (19) expr -> . expr / expr
+    (20) expr -> . expr * expr
+    (21) expr -> . expr - expr
+    (22) expr -> . expr + expr
+    (23) expr -> . ( expr )
+    REAL            shift and go to state 30
+    INTEIRO         shift and go to state 31
+    -               shift and go to state 32
+    (               shift and go to state 26
+
+    expr                           shift and go to state 45
+
+state 40
+
+    (22) expr -> expr + . expr
+    (16) expr -> . REAL
+    (17) expr -> . INTEIRO
+    (18) expr -> . - expr
+    (19) expr -> . expr / expr
+    (20) expr -> . expr * expr
+    (21) expr -> . expr - expr
+    (22) expr -> . expr + expr
+    (23) expr -> . ( expr )
+    REAL            shift and go to state 30
+    INTEIRO         shift and go to state 31
+    -               shift and go to state 32
+    (               shift and go to state 26
+
+    expr                           shift and go to state 46
+
+state 41
+
+    (18) expr -> - expr .
+    (19) expr -> expr . / expr
+    (20) expr -> expr . * expr
+    (21) expr -> expr . - expr
+    (22) expr -> expr . + expr
+    )               reduce using rule 18 (expr -> - expr .)
+    /               reduce using rule 18 (expr -> - expr .)
+    *               reduce using rule 18 (expr -> - expr .)
+    -               reduce using rule 18 (expr -> - expr .)
+    +               reduce using rule 18 (expr -> - expr .)
+    ESCREVA         reduce using rule 18 (expr -> - expr .)
+    ID              reduce using rule 18 (expr -> - expr .)
+    FIMALGORITMO    reduce using rule 18 (expr -> - expr .)
+
+
+state 42
+
+    (23) expr -> ( expr ) .
+    )               reduce using rule 23 (expr -> ( expr ) .)
+    /               reduce using rule 23 (expr -> ( expr ) .)
+    *               reduce using rule 23 (expr -> ( expr ) .)
+    -               reduce using rule 23 (expr -> ( expr ) .)
+    +               reduce using rule 23 (expr -> ( expr ) .)
+    ESCREVA         reduce using rule 23 (expr -> ( expr ) .)
+    ID              reduce using rule 23 (expr -> ( expr ) .)
+    FIMALGORITMO    reduce using rule 23 (expr -> ( expr ) .)
+
+
+state 43
+
+    (19) expr -> expr / expr .
+    (19) expr -> expr . / expr
+    (20) expr -> expr . * expr
+    (21) expr -> expr . - expr
+    (22) expr -> expr . + expr
+    )               reduce using rule 19 (expr -> expr / expr .)
+    /               reduce using rule 19 (expr -> expr / expr .)
+    *               reduce using rule 19 (expr -> expr / expr .)
+    -               reduce using rule 19 (expr -> expr / expr .)
+    +               reduce using rule 19 (expr -> expr / expr .)
+    ESCREVA         reduce using rule 19 (expr -> expr / expr .)
+    ID              reduce using rule 19 (expr -> expr / expr .)
+    FIMALGORITMO    reduce using rule 19 (expr -> expr / expr .)
+
+
+state 44
+
+    (20) expr -> expr * expr .
+    (19) expr -> expr . / expr
+    (20) expr -> expr . * expr
+    (21) expr -> expr . - expr
+    (22) expr -> expr . + expr
+    )               reduce using rule 20 (expr -> expr * expr .)
+    /               reduce using rule 20 (expr -> expr * expr .)
+    *               reduce using rule 20 (expr -> expr * expr .)
+    -               reduce using rule 20 (expr -> expr * expr .)
+    +               reduce using rule 20 (expr -> expr * expr .)
+    ESCREVA         reduce using rule 20 (expr -> expr * expr .)
+    ID              reduce using rule 20 (expr -> expr * expr .)
+    FIMALGORITMO    reduce using rule 20 (expr -> expr * expr .)
+
+
+state 45
+
+    (21) expr -> expr - expr .
+    (19) expr -> expr . / expr
+    (20) expr -> expr . * expr
+    (21) expr -> expr . - expr
+    (22) expr -> expr . + expr
+    )               reduce using rule 21 (expr -> expr - expr .)
+    -               reduce using rule 21 (expr -> expr - expr .)
+    +               reduce using rule 21 (expr -> expr - expr .)
+    ESCREVA         reduce using rule 21 (expr -> expr - expr .)
+    ID              reduce using rule 21 (expr -> expr - expr .)
+    FIMALGORITMO    reduce using rule 21 (expr -> expr - expr .)
+    /               shift and go to state 37
+    *               shift and go to state 38
+
+
+state 46
+
+    (22) expr -> expr + expr .
+    (19) expr -> expr . / expr
+    (20) expr -> expr . * expr
+    (21) expr -> expr . - expr
+    (22) expr -> expr . + expr
+    )               reduce using rule 22 (expr -> expr + expr .)
+    -               reduce using rule 22 (expr -> expr + expr .)
+    +               reduce using rule 22 (expr -> expr + expr .)
+    ESCREVA         reduce using rule 22 (expr -> expr + expr .)
+    ID              reduce using rule 22 (expr -> expr + expr .)
+    FIMALGORITMO    reduce using rule 22 (expr -> expr + expr .)
+    /               shift and go to state 37
+    *               shift and go to state 38
