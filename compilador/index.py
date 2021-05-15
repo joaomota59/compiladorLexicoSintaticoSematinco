@@ -22,13 +22,13 @@ class VisualgLexer(Lexer):
     ###As variáveis que começam com o nome ignore, serão ignoradas pelo analisador léxico
     # String containing ignored characters between tokens
     ignore = ' \t'#ignora espaços entre os tokens
-    ignore_comment = r'([//].+)' #ignora as linhas que são comentáriosc
+    ignore_comment = r'(//.*)' #ignora as linhas que são comentáriosc
     ignore_newline = r'\n+'  #ignora varias linhas vazias
     ####################################################
 
     # Regular expression rules for tokens -- Aqui será definido as expressoes regulares que caracterizam os tokens definidos antes
     REAL = r'(real|[0-9]+[.][0-9]*)'#se for a palavra reservada ou (um conjunto de digitos . conjunto de digitos) é do tipo real
-    INTEIRO = r'(inteiro|[-]?[0-9]+)' #se for a palavra reservada ou um conjunto de digitos é do tipo inteiro
+    INTEIRO = r'(inteiro|[0-9]+)' #se for a palavra reservada ou um conjunto de digitos é do tipo inteiro
     CARACTERE = r'(caractere|"[^\n]+"|"")'#se for a palavra reservada ou qualquer coisa que n seja \n no texto entao é caracter
     ID      = r'[a-zA-Z_][a-zA-Z0-9_]*' #variavel que começa com alguma letra maiuscula ou minuscula
     NE      = r'<>' #diferença - not equal
@@ -98,7 +98,7 @@ class VisualgLexer(Lexer):
             pass
         return t
 
-    @_(r'[-]?[0-9]+')
+    @_(r'[0-9]+')
     def INTEIRO(self, t):
         try:
             t.value = int(t.value)   # Converte para um valor inteiro
@@ -113,15 +113,24 @@ class VisualgParser(Parser):
     precedence = (#precedencia, os que ficam mais abaixo tem a maior precedencia
        #('nonassoc', LT, GT),  # Nonassociative operators
        ('left', '+', '-'),#LEVEL 0
-       ('left', '*','/'),#LEVEL 1
+       ('left', '*','/','\\'),#LEVEL 1
+       ('right','^'),#LEVEL 2
        ('right', 'UMINUS'), 
     )
     
 
  #Regras gramaticais para numeros inteiros
 
-    @_("ALGORITMO CARACTERE VAR declaracao INICIO bloco FIMALGORITMO")
+    @_("ALGORITMO CARACTERE VAR declaracao INICIO blocoType FIMALGORITMO")
     def initial(self,p):
+        return p.blocoType
+
+    @_("bloco")
+    def blocoType(self,p):
+        return p.bloco
+    
+    @_("")
+    def blocoType(self,p):
         return
     
     @_("vartype ':' INTEIRO")
@@ -139,6 +148,11 @@ class VisualgParser(Parser):
     @_("vartype ':' LOGICO")
     def declaracao(self,p):
         return
+    
+    @_("")
+    def declaracao(self,p):
+        return
+    
 
     @_("ID")
     def vartype(self,p):
@@ -150,8 +164,7 @@ class VisualgParser(Parser):
 
     @_('cmd')
     def bloco(self,p):
-        return p.cmd
-    
+        return p.cmd 
     
     @_('cmd bloco')
     def bloco(self,p):
@@ -168,11 +181,28 @@ class VisualgParser(Parser):
     @_('ID ASSIGN expr')#comando atribuição
     def cmdattrib(self,p):
         return p.expr
+    
+    @_('ID ASSIGN CARACTERE')#comando atribuição
+    def cmdattrib(self,p):
+        return p.CARACTERE
+    
+    @_('ID ASSIGN "(" CARACTERE ")"')#comando atribuição
+    def cmdattrib(self,p):
+        return p.CARACTERE
+    
+    @_('ID ASSIGN ID')#comando atribuição
+    def cmdattrib(self,p):
+        return p.ID
+    
+    @_('ID ASSIGN "(" ID ")"')#comando atribuição
+    def cmdattrib(self,p):
+        return p.ID
+    
 
     @_('ESCREVA "(" expr ")" ')#comando escrita
     def cmdescrita(self, p):
         return p.expr
-
+    
     @_('ESCREVA "(" CARACTERE ")" ')#comando escrita
     def cmdescrita(self, p):
         return p.CARACTERE
@@ -180,6 +210,11 @@ class VisualgParser(Parser):
     @_('ESCREVA "(" ")" ')#comando escrita
     def cmdescrita(self, p):
         return
+
+    @_('ESCREVA "(" ID ")" ')#comando escrita
+    def cmdescrita(self, p):
+        return
+        
     
     @_('"(" expr ")"')
     def expr(self, p):
@@ -201,6 +236,14 @@ class VisualgParser(Parser):
     @_('expr "/" expr')
     def expr(self, p):
         return p.expr0 / p.expr1
+    
+    @_('expr "\\" expr')
+    def expr(self, p):
+        return p.expr0//p.expr1
+    
+    @_('expr "^" expr')
+    def expr(self, p):
+        return p.expr0**p.expr1
 
     @_('"-" expr %prec UMINUS')
     def expr(self, p):
@@ -233,6 +276,6 @@ if __name__ == '__main__':
     arquivo2 = open("tokens.txt","w")
     
     for tok in lexer.tokenize(data):
-        #print()
         arquivo2.write('type=%r, value=%r\n' % (tok.type, tok.value))
+    #print(lexer.tokenize(data))
     arquivo2.close()

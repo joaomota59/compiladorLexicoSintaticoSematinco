@@ -1,13 +1,16 @@
 Algoritmo "semnome"
 
 Var
-x,y : real
-// Seção de Declarações das variáveis 
-
+//j, l, m : inteiro
+//
+//asda
+//sd
+//adas
 
 Inicio
-// Seção de Comandos, procedimento, funções, operadores, etc...
+
+escreva(5/2)
+k<-5+3
 escreva("ola mundo")
-escreva(2*5)
 
 Fimalgoritmo

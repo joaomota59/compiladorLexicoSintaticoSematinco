@@ -1,20 +1,20 @@
 type='ALGORITMO', value='Algoritmo'
 type='CARACTERE', value='"semnome"'
 type='VAR', value='Var'
-type='ID', value='x'
-type=',', value=','
-type='ID', value='y'
-type=':', value=':'
-type='REAL', value='real'
 type='INICIO', value='Inicio'
 type='ESCREVA', value='escreva'
 type='(', value='('
-type='CARACTERE', value='"ola mundo"'
+type='INTEIRO', value=5
+type='/', value='/'
+type='INTEIRO', value=2
 type=')', value=')'
+type='ID', value='k'
+type='ASSIGN', value='<-'
+type='INTEIRO', value=5
+type='+', value='+'
+type='INTEIRO', value=3
 type='ESCREVA', value='escreva'
 type='(', value='('
-type='INTEIRO', value=2
-type='*', value='*'
-type='INTEIRO', value=5
+type='CARACTERE', value='"ola mundo"'
 type=')', value=')'
 type='FIMALGORITMO', value='Fimalgoritmo'
