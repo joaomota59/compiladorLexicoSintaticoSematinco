@@ -39,7 +39,7 @@ class VisualgLexer(Lexer):
     LT      = r'<'  #menor
     GE      = r'>=' #maior que
     GT      = r'>'  #maior
-    EQ     = r'==' #comparação
+    EQ      = r'=' #comparação
     
 
     # Caracteres especiais / palavras reservadas / Definir todas aqui na parte de remapeamento de token
@@ -233,10 +233,6 @@ class VisualgParser(Parser):
         return
 
     @_("NE")
-    def OP_REL(self,p):
-        return
-    
-    @_("ASSIGN")
     def OP_REL(self,p):
         return
     

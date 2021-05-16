@@ -10,7 +10,7 @@ type='ASSIGN', value='<-'
 type='INTEIRO', value=1
 type='ENQUANTO', value='enquanto'
 type='ID', value='j'
-type='LE', value='<='
+type='ASSIGN', value='<-'
 type='INTEIRO', value=10
 type='FACA', value='faca'
 type='ESCREVA', value='escreva'
