@@ -113,7 +113,7 @@ class VisualgParser(Parser):
     precedence = (#precedencia, os que ficam mais abaixo tem a maior precedencia
        #('nonassoc', LT, GT),  # Nonassociative operators
        ('left', '+', '-'),#LEVEL 0
-       ('left', '*','/','\\'),#LEVEL 1
+       ('left', '*','/','\\','%',MOD),#LEVEL 1
        ('right','^'),#LEVEL 2
        ('right', 'UMINUS'), 
     )
@@ -177,6 +177,78 @@ class VisualgParser(Parser):
     @_('cmdescrita')
     def cmd(self,p):
         return p.cmdescrita
+    
+    @_('cmdleitura')
+    def cmd(self,p):
+        return p.cmdleitura
+
+    @_('cmdCondicao')
+    def cmd(self,p):
+        return
+    
+    @_('LEIA "(" ID ")" ')
+    def cmdleitura(self,p):
+        return
+    
+    @_('SE expressaoRelacional ENTAO bloco FIMSE')
+    def cmdCondicao(self,p):
+        return
+
+    @_("SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE")
+    def cmdCondicao(self,p):
+        return
+
+    @_("expressaoRelacional OP_BOOL termoRelacional")
+    def expressaoRelacional(self,p):
+        return
+    
+    @_("termoRelacional")
+    def expressaoRelacional(self,p):
+        return
+
+    @_("expr OP_REL expr")
+    def termoRelacional(self,p):
+        return
+
+    @_(" '(' expressaoRelacional ')' ")
+    def termoRelacional(self,p):
+        return
+
+    @_("E")
+    def OP_BOOL(self,p):
+        return
+    
+    @_("OU")
+    def OP_BOOL(self,p):
+        return
+
+    @_("NE")
+    def OP_REL(self,p):
+        return
+    
+    @_("ASSIGN")
+    def OP_REL(self,p):
+        return
+    
+    @_("LE")
+    def OP_REL(self,p):
+        return
+
+    @_("LT")
+    def OP_REL(self,p):
+        return
+
+    @_("GE")
+    def OP_REL(self,p):
+        return
+
+    @_("GT")
+    def OP_REL(self,p):
+        return
+
+    @_("EQ")
+    def OP_REL(self,p):
+        return
 
     @_('ID ASSIGN expr')#comando atribuição
     def cmdattrib(self,p):
@@ -190,15 +262,6 @@ class VisualgParser(Parser):
     def cmdattrib(self,p):
         return p.CARACTERE
     
-    @_('ID ASSIGN ID')#comando atribuição
-    def cmdattrib(self,p):
-        return p.ID
-    
-    @_('ID ASSIGN "(" ID ")"')#comando atribuição
-    def cmdattrib(self,p):
-        return p.ID
-    
-
     @_('ESCREVA "(" expr ")" ')#comando escrita
     def cmdescrita(self, p):
         return p.expr
@@ -210,11 +273,6 @@ class VisualgParser(Parser):
     @_('ESCREVA "(" ")" ')#comando escrita
     def cmdescrita(self, p):
         return
-
-    @_('ESCREVA "(" ID ")" ')#comando escrita
-    def cmdescrita(self, p):
-        return
-        
     
     @_('"(" expr ")"')
     def expr(self, p):
@@ -222,40 +280,63 @@ class VisualgParser(Parser):
 
     @_('expr "+" expr')
     def expr(self, p):
-        return p.expr0 + p.expr1
+        return
+        #return p.expr0 + p.expr1
 
     @_('expr "-" expr')
     def expr(self, p):
         return
-        return p.expr0 - p.expr1
+        #return p.expr0 - p.expr1
 
     @_('expr "*" expr')
     def expr(self, p):
-        return p.expr0 * p.expr1
+        return
+        #return p.expr0 * p.expr1
 
     @_('expr "/" expr')
     def expr(self, p):
-        return p.expr0 / p.expr1
+        return
+        #return p.expr0 / p.expr1
     
     @_('expr "\\" expr')
     def expr(self, p):
-        return p.expr0//p.expr1
+        return
+        #return p.expr0//p.expr1
+    
+    @_('expr "%" expr')
+    def expr(self, p):
+        return
+        #return p.expr0%p.expr1
+    
+    @_('expr MOD expr')
+    def expr(self, p):
+        return
+        #return p.expr0%p.expr1
     
     @_('expr "^" expr')
     def expr(self, p):
-        return p.expr0**p.expr1
+        return
+        #return p.expr0**p.expr1
 
     @_('"-" expr %prec UMINUS')
     def expr(self, p):
-        return -p.expr
+        return
+        #return -p.expr
 
     @_('INTEIRO')
     def expr(self, p):
-        return p.INTEIRO
+        return
+        #return p.INTEIRO
 
     @_('REAL')
     def expr(self, p):
-        return p.REAL
+        return
+        #return p.REAL
+    
+    @_('ID')
+    def expr(self, p):
+        return
+        #return p.ID
 
     
 ###OBS FALTA DIVISAO ENTRE REAL!!

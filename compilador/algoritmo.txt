@@ -1,16 +1,21 @@
 Algoritmo "semnome"
-
+// Disciplina   : [Linguagem e Lógica de Programação]
+// Professor   : Antonio Carlos Nicolodi 
+// Descrição   : Aqui você descreve o que o programa faz! (função)
+// Autor(a)    : Nome do(a) aluno(a)
+// Data atual  : 16/05/2021
 Var
-//j, l, m : inteiro
-//
-//asda
-//sd
-//adas
+// Seção de Declarações das variáveis 
+x:inteiro
 
 Inicio
-
-escreva(5/2)
-k<-5+3
-escreva("ola mundo")
+// Seção de Comandos, procedimento, funções, operadores, etc... 
+se 5>3 entao
+leia(o)
+escreva(x+2-w)
+senao
+leia(o)
+escreva("sx")
+fimse
 
 Fimalgoritmo
