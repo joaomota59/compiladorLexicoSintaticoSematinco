@@ -1,12 +1,14 @@
-Algoritmo "numeros"
+Algoritmo "Compiladores"
 var 
 j: inteiro
 inicio
 j <- x + 2
 limpatela
 escreva(falso, j+1,"oi",k+1)
-se j<4 entao
+escreva("oi")
+se nao verdadeiro e nao falso entao
 escreva("oi")
 fimse
 escreval(1+2^2)
 fimalgoritmo
+//

@@ -22,7 +22,7 @@ class VisualgLexer(Lexer):
     ###As variáveis que começam com o nome ignore, serão ignoradas pelo analisador léxico
     # String containing ignored characters between tokens
     ignore = ' \t'#ignora espaços entre os tokens
-    ignore_comment = r'(//.*)' #ignora as linhas que são comentáriosc
+    ignore_comment = r'(//.*)' #ignora as linhas que são comentários
     ignore_newline = r'\n+'  #ignora varias linhas vazias
     ####################################################
 
@@ -31,7 +31,7 @@ class VisualgLexer(Lexer):
     
     REAL = r'(real|[0-9]+[.][0-9]*)'#se for a palavra reservada ou (um conjunto de digitos . conjunto de digitos) é do tipo real
     INTEIRO = r'(inteiro|[0-9]+)' #se for a palavra reservada ou um conjunto de digitos é do tipo inteiro
-    CARACTERE = r'(caractere|"[^\n]+"|"")'#se for a palavra reservada ou qualquer coisa que n seja \n no texto entao é caracter
+    CARACTERE = r'(caractere|"[^\n]*")'#se for a palavra reservada ou qualquer coisa que n seja \n no texto entao é caracter
     ID      =   r'[a-zA-Z_][a-zA-Z0-9_]*' #variavel que começa com alguma letra maiuscula ou minuscula
     NE      = r'<>' #diferença - not equal
     ASSIGN  = r'<-' #atribuição
@@ -231,6 +231,18 @@ class VisualgParser(Parser):
     def termoRelacional(self,p):
         return
 
+    @_("NAO termoRelacional")
+    def termoRelacional(self,p):
+        return
+    
+    @_("VERDADEIRO")
+    def termoRelacional(self,p):
+        return
+    
+    @_("FALSO")
+    def termoRelacional(self,p):
+        return
+
     @_(" '(' expressaoRelacional ')' ")
     def termoRelacional(self,p):
         return
@@ -240,6 +252,10 @@ class VisualgParser(Parser):
         return
     
     @_("OU")
+    def OP_BOOL(self,p):
+        return
+
+    @_("XOU")
     def OP_BOOL(self,p):
         return
 
