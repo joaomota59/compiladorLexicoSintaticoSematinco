@@ -113,7 +113,7 @@ class VisualgParser(Parser):
     debugfile = 'parser.out' #arquivo de debugação do Parser
     tokens = VisualgLexer.tokens
     precedence = (#precedencia, os que ficam mais abaixo tem a maior precedencia
-       #('nonassoc', LT, GT),  # Nonassociative operators
+       ('nonassoc',NE,LE,LT,GE,GT,EQ,','),  # Nonassociative operators
        ('left', '+', '-'),#LEVEL 0
        ('left', '*','/','\\','%',MOD),#LEVEL 1
        ('right','^'),#LEVEL 2
@@ -188,6 +188,10 @@ class VisualgParser(Parser):
     def cmd(self,p):
         return
 
+    @_('LIMPATELA')
+    def cmd(self,p):
+        return
+
     @_('cmdRepeticao')
     def cmd(self,p):
         return
@@ -258,25 +262,54 @@ class VisualgParser(Parser):
 
     @_('ID ASSIGN expr')#comando atribuição
     def cmdattrib(self,p):
-        return p.expr
+        return
     
-    @_('ID ASSIGN CARACTERE')#comando atribuição
+    @_('ID ASSIGN typeArgs')#comando atribuição
     def cmdattrib(self,p):
-        return p.CARACTERE
-    
-    @_('ID ASSIGN "(" CARACTERE ")"')#comando atribuição
+        return
+
+    @_('ID ASSIGN "(" typeArgs ")"')#comando atribuição
     def cmdattrib(self,p):
-        return p.CARACTERE
+        return
+
+    @_('VERDADEIRO')
+    def typeArgs(self,p):
+        return
+
+    @_('FALSO')
+    def typeArgs(self,p):
+        return
     
-    @_('ESCREVA "(" expr ")" ')#comando escrita
+    @_('CARACTERE')
+    def typeArgs(self,p):
+        return
+    
+    @_('ESCREVA "(" typeArgsEscrita ")" ')#comando escrita
     def cmdescrita(self, p):
         return p.expr
-    
-    @_('ESCREVA "(" CARACTERE ")" ')#comando escrita
-    def cmdescrita(self, p):
-        return p.CARACTERE
 
     @_('ESCREVA "(" ")" ')#comando escrita
+    def cmdescrita(self, p):
+        return
+
+    @_('expr')
+    def typeArgsEscrita(self,p):
+        return
+    
+    @_('typeArgs')
+    def typeArgsEscrita(self,p):
+        return
+    
+    @_('typeArgsEscrita "," typeArgsEscrita')
+    def typeArgsEscrita(self,p):
+        return
+
+    
+    @_('ESCREVAL "(" typeArgsEscrita ")" ')#comando escrita
+    def cmdescrita(self, p):
+        return 
+
+    @_('ESCREVAL "(" ")" ')#comando escrita
     def cmdescrita(self, p):
         return
     

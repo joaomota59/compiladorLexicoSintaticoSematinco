@@ -2,9 +2,10 @@ Algoritmo "numeros"
 var 
 j: inteiro
 inicio
-j <- 1
-enquanto j = 10 faca
-escreva (j)
-j <- j + 1
-fimenquanto
+j <- x + 2
+limpatela
+//se j e k e l ENTAO
+//escreva(falso,x+1,"oi",2+4)
+//fimse
+escreval(1+2^2)
 fimalgoritmo
