@@ -113,7 +113,7 @@ class VisualgParser(Parser):
     debugfile = 'parser.out' #arquivo de debugação do Parser
     tokens = VisualgLexer.tokens
     precedence = (#precedencia, os que ficam mais abaixo tem a maior precedencia
-       ('nonassoc',NE,LE,LT,GE,GT,EQ,','),  # Nonassociative operators
+       ('nonassoc',NE,LE,LT,GE,GT,EQ),  # Nonassociative operators
        ('left', '+', '-'),#LEVEL 0
        ('left', '*','/','\\','%',MOD),#LEVEL 1
        ('right','^'),#LEVEL 2
@@ -125,11 +125,13 @@ class VisualgParser(Parser):
 
     @_("ALGORITMO CARACTERE VAR declaracao INICIO blocoType FIMALGORITMO")
     def initial(self,p):
-        return p.blocoType
+        return
+        #return p.blocoType
 
     @_("bloco")
     def blocoType(self,p):
-        return p.bloco
+        return
+        #return p.bloco
     
     @_("")
     def blocoType(self,p):
@@ -166,23 +168,28 @@ class VisualgParser(Parser):
 
     @_('cmd')
     def bloco(self,p):
-        return p.cmd 
+        return
+        #return p.cmd 
     
     @_('cmd bloco')
     def bloco(self,p):
-        return p.bloco
+        return
+        #return p.bloco
 
     @_('cmdattrib')
     def cmd(self,p):
-        return p.cmdattrib
+        return
+        #return p.cmdattrib
     
     @_('cmdescrita')
     def cmd(self,p):
-        return p.cmdescrita
+        return
+        #return p.cmdescrita
     
     @_('cmdleitura')
     def cmd(self,p):
-        return p.cmdleitura
+        return
+        # return p.cmdleitura
 
     @_('cmdCondicao')
     def cmd(self,p):
@@ -286,21 +293,25 @@ class VisualgParser(Parser):
     
     @_('ESCREVA "(" typeArgsEscrita ")" ')#comando escrita
     def cmdescrita(self, p):
-        return p.expr
+        return
 
     @_('ESCREVA "(" ")" ')#comando escrita
     def cmdescrita(self, p):
         return
 
     @_('expr')
-    def typeArgsEscrita(self,p):
+    def typeArgsEscritaAux(self,p):
         return
     
     @_('typeArgs')
+    def typeArgsEscritaAux(self,p):
+        return
+
+    @_('typeArgsEscrita "," typeArgsEscritaAux')
     def typeArgsEscrita(self,p):
         return
-    
-    @_('typeArgsEscrita "," typeArgsEscrita')
+
+    @_('typeArgsEscritaAux')
     def typeArgsEscrita(self,p):
         return
 
@@ -315,7 +326,7 @@ class VisualgParser(Parser):
     
     @_('"(" expr ")"')
     def expr(self, p):
-        return p.expr
+        return
 
     @_('expr "+" expr')
     def expr(self, p):

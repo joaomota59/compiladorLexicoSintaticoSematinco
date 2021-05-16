@@ -4,8 +4,9 @@ j: inteiro
 inicio
 j <- x + 2
 limpatela
-//se j e k e l ENTAO
-//escreva(falso,x+1,"oi",2+4)
-//fimse
+escreva(falso, j+1,"oi",k+1)
+se j<4 entao
+escreva("oi")
+fimse
 escreval(1+2^2)
 fimalgoritmo
