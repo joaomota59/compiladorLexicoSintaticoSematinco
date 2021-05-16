@@ -27,10 +27,12 @@ class VisualgLexer(Lexer):
     ####################################################
 
     # Regular expression rules for tokens -- Aqui será definido as expressoes regulares que caracterizam os tokens definidos antes
+
+    
     REAL = r'(real|[0-9]+[.][0-9]*)'#se for a palavra reservada ou (um conjunto de digitos . conjunto de digitos) é do tipo real
     INTEIRO = r'(inteiro|[0-9]+)' #se for a palavra reservada ou um conjunto de digitos é do tipo inteiro
     CARACTERE = r'(caractere|"[^\n]+"|"")'#se for a palavra reservada ou qualquer coisa que n seja \n no texto entao é caracter
-    ID      = r'[a-zA-Z_][a-zA-Z0-9_]*' #variavel que começa com alguma letra maiuscula ou minuscula
+    ID      =   r'[a-zA-Z_][a-zA-Z0-9_]*' #variavel que começa com alguma letra maiuscula ou minuscula
     NE      = r'<>' #diferença - not equal
     ASSIGN  = r'<-' #atribuição
     LE      = r'<=' #menor que
@@ -41,11 +43,11 @@ class VisualgLexer(Lexer):
     
 
     # Caracteres especiais / palavras reservadas / Definir todas aqui na parte de remapeamento de token
-    ID['Var'] = VAR
-    ID['Inicio'] = INICIO
-    ID['Fimalgoritmo'] = FIMALGORITMO
-    ID['MOD'] = MOD
-    ID['Algoritmo'] = ALGORITMO
+    ID['var'] = VAR
+    ID['inicio'] = INICIO
+    ID['fimalgoritmo'] = FIMALGORITMO
+    ID['mod'] = MOD
+    ID['algoritmo'] = ALGORITMO
     ID['verdadeiro'] = VERDADEIRO
     ID['falso'] = FALSO
     ID['funcao'] = FUNCAO
@@ -184,6 +186,14 @@ class VisualgParser(Parser):
 
     @_('cmdCondicao')
     def cmd(self,p):
+        return
+
+    @_('cmdRepeticao')
+    def cmd(self,p):
+        return
+    
+    @_("ENQUANTO expressaoRelacional FACA bloco FIMENQUANTO")
+    def cmdRepeticao(self,p):
         return
     
     @_('LEIA "(" ID ")" ')
@@ -346,7 +356,7 @@ class VisualgParser(Parser):
 
 if __name__ == '__main__':
     arquivo = open('algoritmo.txt', 'r')
-    data = arquivo.read()
+    data = arquivo.read().lower() #converte o algoritmo.txt todo para minusuculo pois o Visual n diferencia maiuscula de minuscula
     arquivo.close()
     lexer = VisualgLexer()
     parser = VisualgParser()

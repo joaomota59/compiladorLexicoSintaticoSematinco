@@ -13,155 +13,155 @@ Rule 9     vartype -> ID , vartype
 Rule 10    vartype -> ID
 Rule 11    bloco -> cmd bloco
 Rule 12    bloco -> cmd
-Rule 13    cmd -> cmdCondicao
-Rule 14    cmd -> cmdleitura
-Rule 15    cmd -> cmdescrita
-Rule 16    cmd -> cmdattrib
-Rule 17    cmdleitura -> LEIA ( ID )
-Rule 18    cmdCondicao -> SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE
-Rule 19    cmdCondicao -> SE expressaoRelacional ENTAO bloco FIMSE
-Rule 20    expressaoRelacional -> termoRelacional
-Rule 21    expressaoRelacional -> expressaoRelacional OP_BOOL termoRelacional
-Rule 22    termoRelacional -> ( expressaoRelacional )
-Rule 23    termoRelacional -> expr OP_REL expr
-Rule 24    OP_BOOL -> OU
-Rule 25    OP_BOOL -> E
-Rule 26    OP_REL -> EQ
-Rule 27    OP_REL -> GT
-Rule 28    OP_REL -> GE
-Rule 29    OP_REL -> LT
-Rule 30    OP_REL -> LE
-Rule 31    OP_REL -> ASSIGN
-Rule 32    OP_REL -> NE
-Rule 33    cmdattrib -> ID ASSIGN ( CARACTERE )
-Rule 34    cmdattrib -> ID ASSIGN CARACTERE
-Rule 35    cmdattrib -> ID ASSIGN expr
-Rule 36    cmdescrita -> ESCREVA ( )
-Rule 37    cmdescrita -> ESCREVA ( CARACTERE )
-Rule 38    cmdescrita -> ESCREVA ( expr )
-Rule 39    expr -> ID
-Rule 40    expr -> REAL
-Rule 41    expr -> INTEIRO
-Rule 42    expr -> - expr  [precedence=right, level=4]
-Rule 43    expr -> expr ^ expr  [precedence=right, level=3]
-Rule 44    expr -> expr MOD expr  [precedence=left, level=2]
-Rule 45    expr -> expr % expr  [precedence=left, level=2]
-Rule 46    expr -> expr \ expr  [precedence=left, level=2]
-Rule 47    expr -> expr / expr  [precedence=left, level=2]
-Rule 48    expr -> expr * expr  [precedence=left, level=2]
-Rule 49    expr -> expr - expr  [precedence=left, level=1]
-Rule 50    expr -> expr + expr  [precedence=left, level=1]
-Rule 51    expr -> ( expr )
+Rule 13    cmd -> cmdRepeticao
+Rule 14    cmd -> cmdCondicao
+Rule 15    cmd -> cmdleitura
+Rule 16    cmd -> cmdescrita
+Rule 17    cmd -> cmdattrib
+Rule 18    cmdRepeticao -> ENQUANTO expressaoRelacional FACA bloco FIMENQUANTO
+Rule 19    cmdleitura -> LEIA ( ID )
+Rule 20    cmdCondicao -> SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE
+Rule 21    cmdCondicao -> SE expressaoRelacional ENTAO bloco FIMSE
+Rule 22    expressaoRelacional -> termoRelacional
+Rule 23    expressaoRelacional -> expressaoRelacional OP_BOOL termoRelacional
+Rule 24    termoRelacional -> ( expressaoRelacional )
+Rule 25    termoRelacional -> expr OP_REL expr
+Rule 26    OP_BOOL -> OU
+Rule 27    OP_BOOL -> E
+Rule 28    OP_REL -> EQ
+Rule 29    OP_REL -> GT
+Rule 30    OP_REL -> GE
+Rule 31    OP_REL -> LT
+Rule 32    OP_REL -> LE
+Rule 33    OP_REL -> ASSIGN
+Rule 34    OP_REL -> NE
+Rule 35    cmdattrib -> ID ASSIGN ( CARACTERE )
+Rule 36    cmdattrib -> ID ASSIGN CARACTERE
+Rule 37    cmdattrib -> ID ASSIGN expr
+Rule 38    cmdescrita -> ESCREVA ( )
+Rule 39    cmdescrita -> ESCREVA ( CARACTERE )
+Rule 40    cmdescrita -> ESCREVA ( expr )
+Rule 41    expr -> ID
+Rule 42    expr -> REAL
+Rule 43    expr -> INTEIRO
+Rule 44    expr -> - expr  [precedence=right, level=4]
+Rule 45    expr -> expr ^ expr  [precedence=right, level=3]
+Rule 46    expr -> expr MOD expr  [precedence=left, level=2]
+Rule 47    expr -> expr % expr  [precedence=left, level=2]
+Rule 48    expr -> expr \ expr  [precedence=left, level=2]
+Rule 49    expr -> expr / expr  [precedence=left, level=2]
+Rule 50    expr -> expr * expr  [precedence=left, level=2]
+Rule 51    expr -> expr - expr  [precedence=left, level=1]
+Rule 52    expr -> expr + expr  [precedence=left, level=1]
+Rule 53    expr -> ( expr )
 
 Unused terminals:
 
-    LIMPATELA
-    PROCEDIMENTO
-    ESCOLHA
-    ENQUANTO
-    FALSO
-    FACA
-    FIMREPITA
-    VETOR
-    CRONOMETRO
-    XOU
-    RETORNE
     NAO
-    FIMESCOLHA
-    ASC
-    ESCREVAL
-    POS
-    REPITA
     VERDADEIRO
     FIMFUNCAO
-    FIMENQUANTO
-    CARAC
-    TIMER
-    ECO
-    FIMPROCEDIMENTO
+    XOU
     FUNCAO
+    REPITA
+    ESCOLHA
+    FALSO
+    CRONOMETRO
+    LIMPATELA
+    TIMER
+    ESCREVAL
+    RETORNE
+    PROCEDIMENTO
+    FIMESCOLHA
+    VETOR
+    FIMREPITA
+    FIMPROCEDIMENTO
+    ASC
+    ECO
+    POS
+    CARAC
 
 Terminals, with rules where they appear:
 
-%                    : 45
-(                    : 17 22 33 36 37 38 51
-)                    : 17 22 33 36 37 38 51
-*                    : 48
-+                    : 50
+%                    : 47
+(                    : 19 24 35 38 39 40 53
+)                    : 19 24 35 38 39 40 53
+*                    : 50
++                    : 52
 ,                    : 9
--                    : 42 49
-/                    : 47
+-                    : 44 51
+/                    : 49
 :                    : 5 6 7 8
 ALGORITMO            : 1
 ASC                  : 
-ASSIGN               : 31 33 34 35
+ASSIGN               : 33 35 36 37
 CARAC                : 
-CARACTERE            : 1 6 33 34 37
+CARACTERE            : 1 6 35 36 39
 CRONOMETRO           : 
-E                    : 25
+E                    : 27
 ECO                  : 
-ENQUANTO             : 
-ENTAO                : 18 19
-EQ                   : 26
+ENQUANTO             : 18
+ENTAO                : 20 21
+EQ                   : 28
 ESCOLHA              : 
-ESCREVA              : 36 37 38
+ESCREVA              : 38 39 40
 ESCREVAL             : 
-FACA                 : 
+FACA                 : 18
 FALSO                : 
 FIMALGORITMO         : 1
-FIMENQUANTO          : 
+FIMENQUANTO          : 18
 FIMESCOLHA           : 
 FIMFUNCAO            : 
 FIMPROCEDIMENTO      : 
 FIMREPITA            : 
-FIMSE                : 18 19
+FIMSE                : 20 21
 FUNCAO               : 
-GE                   : 28
-GT                   : 27
-ID                   : 9 10 17 33 34 35 39
+GE                   : 30
+GT                   : 29
+ID                   : 9 10 19 35 36 37 41
 INICIO               : 1
-INTEIRO              : 8 41
-LE                   : 30
-LEIA                 : 17
+INTEIRO              : 8 43
+LE                   : 32
+LEIA                 : 19
 LIMPATELA            : 
 LOGICO               : 5
-LT                   : 29
-MOD                  : 44
+LT                   : 31
+MOD                  : 46
 NAO                  : 
-NE                   : 32
-OU                   : 24
+NE                   : 34
+OU                   : 26
 POS                  : 
 PROCEDIMENTO         : 
-REAL                 : 7 40
+REAL                 : 7 42
 REPITA               : 
 RETORNE              : 
-SE                   : 18 19
-SENAO                : 18
+SE                   : 20 21
+SENAO                : 20
 TIMER                : 
 VAR                  : 1
 VERDADEIRO           : 
 VETOR                : 
 XOU                  : 
-\                    : 46
-^                    : 43
+\                    : 48
+^                    : 45
 error                : 
 
 Nonterminals, with rules where they appear:
 
-OP_BOOL              : 21
-OP_REL               : 23
-bloco                : 3 11 18 18 19
+OP_BOOL              : 23
+OP_REL               : 25
+bloco                : 3 11 18 20 20 21
 blocoType            : 1
 cmd                  : 11 12
-cmdCondicao          : 13
-cmdattrib            : 16
-cmdescrita           : 15
-cmdleitura           : 14
+cmdCondicao          : 14
+cmdRepeticao         : 13
+cmdattrib            : 17
+cmdescrita           : 16
+cmdleitura           : 15
 declaracao           : 1
-expr                 : 23 23 35 38 42 43 43 44 44 45 45 46 46 47 47 48 48 49 49 50 50 51
-expressaoRelacional  : 18 19 21 22
+expr                 : 25 25 37 40 44 45 45 46 46 47 47 48 48 49 49 50 50 51 51 52 52 53
+expressaoRelacional  : 18 20 21 23 24
 initial              : 0
-termoRelacional      : 20 21
+termoRelacional      : 22 23
 vartype              : 5 6 7 8 9
 
 
@@ -236,32 +236,36 @@ state 8
     (3) blocoType -> . bloco
     (11) bloco -> . cmd bloco
     (12) bloco -> . cmd
-    (13) cmd -> . cmdCondicao
-    (14) cmd -> . cmdleitura
-    (15) cmd -> . cmdescrita
-    (16) cmd -> . cmdattrib
-    (18) cmdCondicao -> . SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE
-    (19) cmdCondicao -> . SE expressaoRelacional ENTAO bloco FIMSE
-    (17) cmdleitura -> . LEIA ( ID )
-    (36) cmdescrita -> . ESCREVA ( )
-    (37) cmdescrita -> . ESCREVA ( CARACTERE )
-    (38) cmdescrita -> . ESCREVA ( expr )
-    (33) cmdattrib -> . ID ASSIGN ( CARACTERE )
-    (34) cmdattrib -> . ID ASSIGN CARACTERE
-    (35) cmdattrib -> . ID ASSIGN expr
+    (13) cmd -> . cmdRepeticao
+    (14) cmd -> . cmdCondicao
+    (15) cmd -> . cmdleitura
+    (16) cmd -> . cmdescrita
+    (17) cmd -> . cmdattrib
+    (18) cmdRepeticao -> . ENQUANTO expressaoRelacional FACA bloco FIMENQUANTO
+    (20) cmdCondicao -> . SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE
+    (21) cmdCondicao -> . SE expressaoRelacional ENTAO bloco FIMSE
+    (19) cmdleitura -> . LEIA ( ID )
+    (38) cmdescrita -> . ESCREVA ( )
+    (39) cmdescrita -> . ESCREVA ( CARACTERE )
+    (40) cmdescrita -> . ESCREVA ( expr )
+    (35) cmdattrib -> . ID ASSIGN ( CARACTERE )
+    (36) cmdattrib -> . ID ASSIGN CARACTERE
+    (37) cmdattrib -> . ID ASSIGN expr
     FIMALGORITMO    reduce using rule 2 (blocoType -> .)
-    SE              shift and go to state 18
-    LEIA            shift and go to state 19
-    ESCREVA         shift and go to state 21
-    ID              shift and go to state 20
+    ENQUANTO        shift and go to state 19
+    SE              shift and go to state 20
+    LEIA            shift and go to state 21
+    ESCREVA         shift and go to state 23
+    ID              shift and go to state 22
 
     blocoType                      shift and go to state 11
     bloco                          shift and go to state 12
     cmd                            shift and go to state 13
-    cmdCondicao                    shift and go to state 14
-    cmdleitura                     shift and go to state 15
-    cmdescrita                     shift and go to state 16
-    cmdattrib                      shift and go to state 17
+    cmdRepeticao                   shift and go to state 14
+    cmdCondicao                    shift and go to state 15
+    cmdleitura                     shift and go to state 16
+    cmdescrita                     shift and go to state 17
+    cmdattrib                      shift and go to state 18
 
 state 9
 
@@ -269,10 +273,10 @@ state 9
     (6) declaracao -> vartype : . CARACTERE
     (7) declaracao -> vartype : . REAL
     (8) declaracao -> vartype : . INTEIRO
-    LOGICO          shift and go to state 22
-    CARACTERE       shift and go to state 23
-    REAL            shift and go to state 24
-    INTEIRO         shift and go to state 25
+    LOGICO          shift and go to state 24
+    CARACTERE       shift and go to state 25
+    REAL            shift and go to state 26
+    INTEIRO         shift and go to state 27
 
 
 state 10
@@ -282,12 +286,12 @@ state 10
     (10) vartype -> . ID
     ID              shift and go to state 7
 
-    vartype                        shift and go to state 26
+    vartype                        shift and go to state 28
 
 state 11
 
     (1) initial -> ALGORITMO CARACTERE VAR declaracao INICIO blocoType . FIMALGORITMO
-    FIMALGORITMO    shift and go to state 27
+    FIMALGORITMO    shift and go to state 29
 
 
 state 12
@@ -302,1591 +306,1784 @@ state 13
     (12) bloco -> cmd .
     (11) bloco -> . cmd bloco
     (12) bloco -> . cmd
-    (13) cmd -> . cmdCondicao
-    (14) cmd -> . cmdleitura
-    (15) cmd -> . cmdescrita
-    (16) cmd -> . cmdattrib
-    (18) cmdCondicao -> . SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE
-    (19) cmdCondicao -> . SE expressaoRelacional ENTAO bloco FIMSE
-    (17) cmdleitura -> . LEIA ( ID )
-    (36) cmdescrita -> . ESCREVA ( )
-    (37) cmdescrita -> . ESCREVA ( CARACTERE )
-    (38) cmdescrita -> . ESCREVA ( expr )
-    (33) cmdattrib -> . ID ASSIGN ( CARACTERE )
-    (34) cmdattrib -> . ID ASSIGN CARACTERE
-    (35) cmdattrib -> . ID ASSIGN expr
+    (13) cmd -> . cmdRepeticao
+    (14) cmd -> . cmdCondicao
+    (15) cmd -> . cmdleitura
+    (16) cmd -> . cmdescrita
+    (17) cmd -> . cmdattrib
+    (18) cmdRepeticao -> . ENQUANTO expressaoRelacional FACA bloco FIMENQUANTO
+    (20) cmdCondicao -> . SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE
+    (21) cmdCondicao -> . SE expressaoRelacional ENTAO bloco FIMSE
+    (19) cmdleitura -> . LEIA ( ID )
+    (38) cmdescrita -> . ESCREVA ( )
+    (39) cmdescrita -> . ESCREVA ( CARACTERE )
+    (40) cmdescrita -> . ESCREVA ( expr )
+    (35) cmdattrib -> . ID ASSIGN ( CARACTERE )
+    (36) cmdattrib -> . ID ASSIGN CARACTERE
+    (37) cmdattrib -> . ID ASSIGN expr
     FIMALGORITMO    reduce using rule 12 (bloco -> cmd .)
+    FIMENQUANTO     reduce using rule 12 (bloco -> cmd .)
     SENAO           reduce using rule 12 (bloco -> cmd .)
     FIMSE           reduce using rule 12 (bloco -> cmd .)
-    SE              shift and go to state 18
-    LEIA            shift and go to state 19
-    ESCREVA         shift and go to state 21
-    ID              shift and go to state 20
+    ENQUANTO        shift and go to state 19
+    SE              shift and go to state 20
+    LEIA            shift and go to state 21
+    ESCREVA         shift and go to state 23
+    ID              shift and go to state 22
 
     cmd                            shift and go to state 13
-    bloco                          shift and go to state 28
-    cmdCondicao                    shift and go to state 14
-    cmdleitura                     shift and go to state 15
-    cmdescrita                     shift and go to state 16
-    cmdattrib                      shift and go to state 17
+    bloco                          shift and go to state 30
+    cmdRepeticao                   shift and go to state 14
+    cmdCondicao                    shift and go to state 15
+    cmdleitura                     shift and go to state 16
+    cmdescrita                     shift and go to state 17
+    cmdattrib                      shift and go to state 18
 
 state 14
 
-    (13) cmd -> cmdCondicao .
-    SE              reduce using rule 13 (cmd -> cmdCondicao .)
-    LEIA            reduce using rule 13 (cmd -> cmdCondicao .)
-    ESCREVA         reduce using rule 13 (cmd -> cmdCondicao .)
-    ID              reduce using rule 13 (cmd -> cmdCondicao .)
-    FIMALGORITMO    reduce using rule 13 (cmd -> cmdCondicao .)
-    SENAO           reduce using rule 13 (cmd -> cmdCondicao .)
-    FIMSE           reduce using rule 13 (cmd -> cmdCondicao .)
+    (13) cmd -> cmdRepeticao .
+    ENQUANTO        reduce using rule 13 (cmd -> cmdRepeticao .)
+    SE              reduce using rule 13 (cmd -> cmdRepeticao .)
+    LEIA            reduce using rule 13 (cmd -> cmdRepeticao .)
+    ESCREVA         reduce using rule 13 (cmd -> cmdRepeticao .)
+    ID              reduce using rule 13 (cmd -> cmdRepeticao .)
+    FIMALGORITMO    reduce using rule 13 (cmd -> cmdRepeticao .)
+    FIMENQUANTO     reduce using rule 13 (cmd -> cmdRepeticao .)
+    SENAO           reduce using rule 13 (cmd -> cmdRepeticao .)
+    FIMSE           reduce using rule 13 (cmd -> cmdRepeticao .)
 
 
 state 15
 
-    (14) cmd -> cmdleitura .
-    SE              reduce using rule 14 (cmd -> cmdleitura .)
-    LEIA            reduce using rule 14 (cmd -> cmdleitura .)
-    ESCREVA         reduce using rule 14 (cmd -> cmdleitura .)
-    ID              reduce using rule 14 (cmd -> cmdleitura .)
-    FIMALGORITMO    reduce using rule 14 (cmd -> cmdleitura .)
-    SENAO           reduce using rule 14 (cmd -> cmdleitura .)
-    FIMSE           reduce using rule 14 (cmd -> cmdleitura .)
+    (14) cmd -> cmdCondicao .
+    ENQUANTO        reduce using rule 14 (cmd -> cmdCondicao .)
+    SE              reduce using rule 14 (cmd -> cmdCondicao .)
+    LEIA            reduce using rule 14 (cmd -> cmdCondicao .)
+    ESCREVA         reduce using rule 14 (cmd -> cmdCondicao .)
+    ID              reduce using rule 14 (cmd -> cmdCondicao .)
+    FIMALGORITMO    reduce using rule 14 (cmd -> cmdCondicao .)
+    FIMENQUANTO     reduce using rule 14 (cmd -> cmdCondicao .)
+    SENAO           reduce using rule 14 (cmd -> cmdCondicao .)
+    FIMSE           reduce using rule 14 (cmd -> cmdCondicao .)
 
 
 state 16
 
-    (15) cmd -> cmdescrita .
-    SE              reduce using rule 15 (cmd -> cmdescrita .)
-    LEIA            reduce using rule 15 (cmd -> cmdescrita .)
-    ESCREVA         reduce using rule 15 (cmd -> cmdescrita .)
-    ID              reduce using rule 15 (cmd -> cmdescrita .)
-    FIMALGORITMO    reduce using rule 15 (cmd -> cmdescrita .)
-    SENAO           reduce using rule 15 (cmd -> cmdescrita .)
-    FIMSE           reduce using rule 15 (cmd -> cmdescrita .)
+    (15) cmd -> cmdleitura .
+    ENQUANTO        reduce using rule 15 (cmd -> cmdleitura .)
+    SE              reduce using rule 15 (cmd -> cmdleitura .)
+    LEIA            reduce using rule 15 (cmd -> cmdleitura .)
+    ESCREVA         reduce using rule 15 (cmd -> cmdleitura .)
+    ID              reduce using rule 15 (cmd -> cmdleitura .)
+    FIMALGORITMO    reduce using rule 15 (cmd -> cmdleitura .)
+    FIMENQUANTO     reduce using rule 15 (cmd -> cmdleitura .)
+    SENAO           reduce using rule 15 (cmd -> cmdleitura .)
+    FIMSE           reduce using rule 15 (cmd -> cmdleitura .)
 
 
 state 17
 
-    (16) cmd -> cmdattrib .
-    SE              reduce using rule 16 (cmd -> cmdattrib .)
-    LEIA            reduce using rule 16 (cmd -> cmdattrib .)
-    ESCREVA         reduce using rule 16 (cmd -> cmdattrib .)
-    ID              reduce using rule 16 (cmd -> cmdattrib .)
-    FIMALGORITMO    reduce using rule 16 (cmd -> cmdattrib .)
-    SENAO           reduce using rule 16 (cmd -> cmdattrib .)
-    FIMSE           reduce using rule 16 (cmd -> cmdattrib .)
+    (16) cmd -> cmdescrita .
+    ENQUANTO        reduce using rule 16 (cmd -> cmdescrita .)
+    SE              reduce using rule 16 (cmd -> cmdescrita .)
+    LEIA            reduce using rule 16 (cmd -> cmdescrita .)
+    ESCREVA         reduce using rule 16 (cmd -> cmdescrita .)
+    ID              reduce using rule 16 (cmd -> cmdescrita .)
+    FIMALGORITMO    reduce using rule 16 (cmd -> cmdescrita .)
+    FIMENQUANTO     reduce using rule 16 (cmd -> cmdescrita .)
+    SENAO           reduce using rule 16 (cmd -> cmdescrita .)
+    FIMSE           reduce using rule 16 (cmd -> cmdescrita .)
 
 
 state 18
 
-    (18) cmdCondicao -> SE . expressaoRelacional ENTAO bloco SENAO bloco FIMSE
-    (19) cmdCondicao -> SE . expressaoRelacional ENTAO bloco FIMSE
-    (20) expressaoRelacional -> . termoRelacional
-    (21) expressaoRelacional -> . expressaoRelacional OP_BOOL termoRelacional
-    (22) termoRelacional -> . ( expressaoRelacional )
-    (23) termoRelacional -> . expr OP_REL expr
-    (39) expr -> . ID
-    (40) expr -> . REAL
-    (41) expr -> . INTEIRO
-    (42) expr -> . - expr
-    (43) expr -> . expr ^ expr
-    (44) expr -> . expr MOD expr
-    (45) expr -> . expr % expr
-    (46) expr -> . expr \ expr
-    (47) expr -> . expr / expr
-    (48) expr -> . expr * expr
-    (49) expr -> . expr - expr
-    (50) expr -> . expr + expr
-    (51) expr -> . ( expr )
-    (               shift and go to state 31
-    ID              shift and go to state 33
-    REAL            shift and go to state 34
-    INTEIRO         shift and go to state 35
-    -               shift and go to state 36
+    (17) cmd -> cmdattrib .
+    ENQUANTO        reduce using rule 17 (cmd -> cmdattrib .)
+    SE              reduce using rule 17 (cmd -> cmdattrib .)
+    LEIA            reduce using rule 17 (cmd -> cmdattrib .)
+    ESCREVA         reduce using rule 17 (cmd -> cmdattrib .)
+    ID              reduce using rule 17 (cmd -> cmdattrib .)
+    FIMALGORITMO    reduce using rule 17 (cmd -> cmdattrib .)
+    FIMENQUANTO     reduce using rule 17 (cmd -> cmdattrib .)
+    SENAO           reduce using rule 17 (cmd -> cmdattrib .)
+    FIMSE           reduce using rule 17 (cmd -> cmdattrib .)
 
-    expressaoRelacional            shift and go to state 29
-    termoRelacional                shift and go to state 30
-    expr                           shift and go to state 32
 
 state 19
 
-    (17) cmdleitura -> LEIA . ( ID )
-    (               shift and go to state 37
+    (18) cmdRepeticao -> ENQUANTO . expressaoRelacional FACA bloco FIMENQUANTO
+    (22) expressaoRelacional -> . termoRelacional
+    (23) expressaoRelacional -> . expressaoRelacional OP_BOOL termoRelacional
+    (24) termoRelacional -> . ( expressaoRelacional )
+    (25) termoRelacional -> . expr OP_REL expr
+    (41) expr -> . ID
+    (42) expr -> . REAL
+    (43) expr -> . INTEIRO
+    (44) expr -> . - expr
+    (45) expr -> . expr ^ expr
+    (46) expr -> . expr MOD expr
+    (47) expr -> . expr % expr
+    (48) expr -> . expr \ expr
+    (49) expr -> . expr / expr
+    (50) expr -> . expr * expr
+    (51) expr -> . expr - expr
+    (52) expr -> . expr + expr
+    (53) expr -> . ( expr )
+    (               shift and go to state 33
+    ID              shift and go to state 35
+    REAL            shift and go to state 36
+    INTEIRO         shift and go to state 37
+    -               shift and go to state 38
 
+    expressaoRelacional            shift and go to state 31
+    termoRelacional                shift and go to state 32
+    expr                           shift and go to state 34
 
 state 20
 
-    (33) cmdattrib -> ID . ASSIGN ( CARACTERE )
-    (34) cmdattrib -> ID . ASSIGN CARACTERE
-    (35) cmdattrib -> ID . ASSIGN expr
-    ASSIGN          shift and go to state 38
+    (20) cmdCondicao -> SE . expressaoRelacional ENTAO bloco SENAO bloco FIMSE
+    (21) cmdCondicao -> SE . expressaoRelacional ENTAO bloco FIMSE
+    (22) expressaoRelacional -> . termoRelacional
+    (23) expressaoRelacional -> . expressaoRelacional OP_BOOL termoRelacional
+    (24) termoRelacional -> . ( expressaoRelacional )
+    (25) termoRelacional -> . expr OP_REL expr
+    (41) expr -> . ID
+    (42) expr -> . REAL
+    (43) expr -> . INTEIRO
+    (44) expr -> . - expr
+    (45) expr -> . expr ^ expr
+    (46) expr -> . expr MOD expr
+    (47) expr -> . expr % expr
+    (48) expr -> . expr \ expr
+    (49) expr -> . expr / expr
+    (50) expr -> . expr * expr
+    (51) expr -> . expr - expr
+    (52) expr -> . expr + expr
+    (53) expr -> . ( expr )
+    (               shift and go to state 33
+    ID              shift and go to state 35
+    REAL            shift and go to state 36
+    INTEIRO         shift and go to state 37
+    -               shift and go to state 38
 
+    expressaoRelacional            shift and go to state 39
+    termoRelacional                shift and go to state 32
+    expr                           shift and go to state 34
 
 state 21
 
-    (36) cmdescrita -> ESCREVA . ( )
-    (37) cmdescrita -> ESCREVA . ( CARACTERE )
-    (38) cmdescrita -> ESCREVA . ( expr )
-    (               shift and go to state 39
+    (19) cmdleitura -> LEIA . ( ID )
+    (               shift and go to state 40
 
 
 state 22
+
+    (35) cmdattrib -> ID . ASSIGN ( CARACTERE )
+    (36) cmdattrib -> ID . ASSIGN CARACTERE
+    (37) cmdattrib -> ID . ASSIGN expr
+    ASSIGN          shift and go to state 41
+
+
+state 23
+
+    (38) cmdescrita -> ESCREVA . ( )
+    (39) cmdescrita -> ESCREVA . ( CARACTERE )
+    (40) cmdescrita -> ESCREVA . ( expr )
+    (               shift and go to state 42
+
+
+state 24
 
     (5) declaracao -> vartype : LOGICO .
     INICIO          reduce using rule 5 (declaracao -> vartype : LOGICO .)
 
 
-state 23
+state 25
 
     (6) declaracao -> vartype : CARACTERE .
     INICIO          reduce using rule 6 (declaracao -> vartype : CARACTERE .)
 
 
-state 24
+state 26
 
     (7) declaracao -> vartype : REAL .
     INICIO          reduce using rule 7 (declaracao -> vartype : REAL .)
 
 
-state 25
+state 27
 
     (8) declaracao -> vartype : INTEIRO .
     INICIO          reduce using rule 8 (declaracao -> vartype : INTEIRO .)
 
 
-state 26
+state 28
 
     (9) vartype -> ID , vartype .
     :               reduce using rule 9 (vartype -> ID , vartype .)
 
 
-state 27
+state 29
 
     (1) initial -> ALGORITMO CARACTERE VAR declaracao INICIO blocoType FIMALGORITMO .
     $end            reduce using rule 1 (initial -> ALGORITMO CARACTERE VAR declaracao INICIO blocoType FIMALGORITMO .)
 
 
-state 28
+state 30
 
     (11) bloco -> cmd bloco .
     FIMALGORITMO    reduce using rule 11 (bloco -> cmd bloco .)
+    FIMENQUANTO     reduce using rule 11 (bloco -> cmd bloco .)
     SENAO           reduce using rule 11 (bloco -> cmd bloco .)
     FIMSE           reduce using rule 11 (bloco -> cmd bloco .)
 
 
-state 29
-
-    (18) cmdCondicao -> SE expressaoRelacional . ENTAO bloco SENAO bloco FIMSE
-    (19) cmdCondicao -> SE expressaoRelacional . ENTAO bloco FIMSE
-    (21) expressaoRelacional -> expressaoRelacional . OP_BOOL termoRelacional
-    (24) OP_BOOL -> . OU
-    (25) OP_BOOL -> . E
-    ENTAO           shift and go to state 40
-    OU              shift and go to state 42
-    E               shift and go to state 43
-
-    OP_BOOL                        shift and go to state 41
-
-state 30
-
-    (20) expressaoRelacional -> termoRelacional .
-    ENTAO           reduce using rule 20 (expressaoRelacional -> termoRelacional .)
-    OU              reduce using rule 20 (expressaoRelacional -> termoRelacional .)
-    E               reduce using rule 20 (expressaoRelacional -> termoRelacional .)
-    )               reduce using rule 20 (expressaoRelacional -> termoRelacional .)
-
-
 state 31
 
-    (22) termoRelacional -> ( . expressaoRelacional )
-    (51) expr -> ( . expr )
-    (20) expressaoRelacional -> . termoRelacional
-    (21) expressaoRelacional -> . expressaoRelacional OP_BOOL termoRelacional
-    (39) expr -> . ID
-    (40) expr -> . REAL
-    (41) expr -> . INTEIRO
-    (42) expr -> . - expr
-    (43) expr -> . expr ^ expr
-    (44) expr -> . expr MOD expr
-    (45) expr -> . expr % expr
-    (46) expr -> . expr \ expr
-    (47) expr -> . expr / expr
-    (48) expr -> . expr * expr
-    (49) expr -> . expr - expr
-    (50) expr -> . expr + expr
-    (51) expr -> . ( expr )
-    (22) termoRelacional -> . ( expressaoRelacional )
-    (23) termoRelacional -> . expr OP_REL expr
-    ID              shift and go to state 33
-    REAL            shift and go to state 34
-    INTEIRO         shift and go to state 35
-    -               shift and go to state 36
-    (               shift and go to state 44
+    (18) cmdRepeticao -> ENQUANTO expressaoRelacional . FACA bloco FIMENQUANTO
+    (23) expressaoRelacional -> expressaoRelacional . OP_BOOL termoRelacional
+    (26) OP_BOOL -> . OU
+    (27) OP_BOOL -> . E
+    FACA            shift and go to state 43
+    OU              shift and go to state 45
+    E               shift and go to state 46
 
-    expressaoRelacional            shift and go to state 45
-    expr                           shift and go to state 46
-    termoRelacional                shift and go to state 30
+    OP_BOOL                        shift and go to state 44
 
 state 32
 
-    (23) termoRelacional -> expr . OP_REL expr
-    (43) expr -> expr . ^ expr
-    (44) expr -> expr . MOD expr
-    (45) expr -> expr . % expr
-    (46) expr -> expr . \ expr
-    (47) expr -> expr . / expr
-    (48) expr -> expr . * expr
-    (49) expr -> expr . - expr
-    (50) expr -> expr . + expr
-    (26) OP_REL -> . EQ
-    (27) OP_REL -> . GT
-    (28) OP_REL -> . GE
-    (29) OP_REL -> . LT
-    (30) OP_REL -> . LE
-    (31) OP_REL -> . ASSIGN
-    (32) OP_REL -> . NE
-    ^               shift and go to state 48
-    MOD             shift and go to state 49
-    %               shift and go to state 50
-    \               shift and go to state 51
-    /               shift and go to state 52
-    *               shift and go to state 53
-    -               shift and go to state 54
-    +               shift and go to state 55
-    EQ              shift and go to state 56
-    GT              shift and go to state 57
-    GE              shift and go to state 58
-    LT              shift and go to state 59
-    LE              shift and go to state 60
-    ASSIGN          shift and go to state 61
-    NE              shift and go to state 62
+    (22) expressaoRelacional -> termoRelacional .
+    FACA            reduce using rule 22 (expressaoRelacional -> termoRelacional .)
+    OU              reduce using rule 22 (expressaoRelacional -> termoRelacional .)
+    E               reduce using rule 22 (expressaoRelacional -> termoRelacional .)
+    ENTAO           reduce using rule 22 (expressaoRelacional -> termoRelacional .)
+    )               reduce using rule 22 (expressaoRelacional -> termoRelacional .)
 
-    OP_REL                         shift and go to state 47
 
 state 33
 
-    (39) expr -> ID .
-    ^               reduce using rule 39 (expr -> ID .)
-    MOD             reduce using rule 39 (expr -> ID .)
-    %               reduce using rule 39 (expr -> ID .)
-    \               reduce using rule 39 (expr -> ID .)
-    /               reduce using rule 39 (expr -> ID .)
-    *               reduce using rule 39 (expr -> ID .)
-    -               reduce using rule 39 (expr -> ID .)
-    +               reduce using rule 39 (expr -> ID .)
-    EQ              reduce using rule 39 (expr -> ID .)
-    GT              reduce using rule 39 (expr -> ID .)
-    GE              reduce using rule 39 (expr -> ID .)
-    LT              reduce using rule 39 (expr -> ID .)
-    LE              reduce using rule 39 (expr -> ID .)
-    ASSIGN          reduce using rule 39 (expr -> ID .)
-    NE              reduce using rule 39 (expr -> ID .)
-    )               reduce using rule 39 (expr -> ID .)
-    SE              reduce using rule 39 (expr -> ID .)
-    LEIA            reduce using rule 39 (expr -> ID .)
-    ESCREVA         reduce using rule 39 (expr -> ID .)
-    ID              reduce using rule 39 (expr -> ID .)
-    FIMALGORITMO    reduce using rule 39 (expr -> ID .)
-    SENAO           reduce using rule 39 (expr -> ID .)
-    FIMSE           reduce using rule 39 (expr -> ID .)
-    ENTAO           reduce using rule 39 (expr -> ID .)
-    OU              reduce using rule 39 (expr -> ID .)
-    E               reduce using rule 39 (expr -> ID .)
+    (24) termoRelacional -> ( . expressaoRelacional )
+    (53) expr -> ( . expr )
+    (22) expressaoRelacional -> . termoRelacional
+    (23) expressaoRelacional -> . expressaoRelacional OP_BOOL termoRelacional
+    (41) expr -> . ID
+    (42) expr -> . REAL
+    (43) expr -> . INTEIRO
+    (44) expr -> . - expr
+    (45) expr -> . expr ^ expr
+    (46) expr -> . expr MOD expr
+    (47) expr -> . expr % expr
+    (48) expr -> . expr \ expr
+    (49) expr -> . expr / expr
+    (50) expr -> . expr * expr
+    (51) expr -> . expr - expr
+    (52) expr -> . expr + expr
+    (53) expr -> . ( expr )
+    (24) termoRelacional -> . ( expressaoRelacional )
+    (25) termoRelacional -> . expr OP_REL expr
+    ID              shift and go to state 35
+    REAL            shift and go to state 36
+    INTEIRO         shift and go to state 37
+    -               shift and go to state 38
+    (               shift and go to state 47
 
+    expressaoRelacional            shift and go to state 48
+    expr                           shift and go to state 49
+    termoRelacional                shift and go to state 32
 
 state 34
 
-    (40) expr -> REAL .
-    ^               reduce using rule 40 (expr -> REAL .)
-    MOD             reduce using rule 40 (expr -> REAL .)
-    %               reduce using rule 40 (expr -> REAL .)
-    \               reduce using rule 40 (expr -> REAL .)
-    /               reduce using rule 40 (expr -> REAL .)
-    *               reduce using rule 40 (expr -> REAL .)
-    -               reduce using rule 40 (expr -> REAL .)
-    +               reduce using rule 40 (expr -> REAL .)
-    EQ              reduce using rule 40 (expr -> REAL .)
-    GT              reduce using rule 40 (expr -> REAL .)
-    GE              reduce using rule 40 (expr -> REAL .)
-    LT              reduce using rule 40 (expr -> REAL .)
-    LE              reduce using rule 40 (expr -> REAL .)
-    ASSIGN          reduce using rule 40 (expr -> REAL .)
-    NE              reduce using rule 40 (expr -> REAL .)
-    )               reduce using rule 40 (expr -> REAL .)
-    SE              reduce using rule 40 (expr -> REAL .)
-    LEIA            reduce using rule 40 (expr -> REAL .)
-    ESCREVA         reduce using rule 40 (expr -> REAL .)
-    ID              reduce using rule 40 (expr -> REAL .)
-    FIMALGORITMO    reduce using rule 40 (expr -> REAL .)
-    SENAO           reduce using rule 40 (expr -> REAL .)
-    FIMSE           reduce using rule 40 (expr -> REAL .)
-    ENTAO           reduce using rule 40 (expr -> REAL .)
-    OU              reduce using rule 40 (expr -> REAL .)
-    E               reduce using rule 40 (expr -> REAL .)
+    (25) termoRelacional -> expr . OP_REL expr
+    (45) expr -> expr . ^ expr
+    (46) expr -> expr . MOD expr
+    (47) expr -> expr . % expr
+    (48) expr -> expr . \ expr
+    (49) expr -> expr . / expr
+    (50) expr -> expr . * expr
+    (51) expr -> expr . - expr
+    (52) expr -> expr . + expr
+    (28) OP_REL -> . EQ
+    (29) OP_REL -> . GT
+    (30) OP_REL -> . GE
+    (31) OP_REL -> . LT
+    (32) OP_REL -> . LE
+    (33) OP_REL -> . ASSIGN
+    (34) OP_REL -> . NE
+    ^               shift and go to state 51
+    MOD             shift and go to state 52
+    %               shift and go to state 53
+    \               shift and go to state 54
+    /               shift and go to state 55
+    *               shift and go to state 56
+    -               shift and go to state 57
+    +               shift and go to state 58
+    EQ              shift and go to state 59
+    GT              shift and go to state 60
+    GE              shift and go to state 61
+    LT              shift and go to state 62
+    LE              shift and go to state 63
+    ASSIGN          shift and go to state 64
+    NE              shift and go to state 65
 
+    OP_REL                         shift and go to state 50
 
 state 35
 
-    (41) expr -> INTEIRO .
-    ^               reduce using rule 41 (expr -> INTEIRO .)
-    MOD             reduce using rule 41 (expr -> INTEIRO .)
-    %               reduce using rule 41 (expr -> INTEIRO .)
-    \               reduce using rule 41 (expr -> INTEIRO .)
-    /               reduce using rule 41 (expr -> INTEIRO .)
-    *               reduce using rule 41 (expr -> INTEIRO .)
-    -               reduce using rule 41 (expr -> INTEIRO .)
-    +               reduce using rule 41 (expr -> INTEIRO .)
-    EQ              reduce using rule 41 (expr -> INTEIRO .)
-    GT              reduce using rule 41 (expr -> INTEIRO .)
-    GE              reduce using rule 41 (expr -> INTEIRO .)
-    LT              reduce using rule 41 (expr -> INTEIRO .)
-    LE              reduce using rule 41 (expr -> INTEIRO .)
-    ASSIGN          reduce using rule 41 (expr -> INTEIRO .)
-    NE              reduce using rule 41 (expr -> INTEIRO .)
-    )               reduce using rule 41 (expr -> INTEIRO .)
-    SE              reduce using rule 41 (expr -> INTEIRO .)
-    LEIA            reduce using rule 41 (expr -> INTEIRO .)
-    ESCREVA         reduce using rule 41 (expr -> INTEIRO .)
-    ID              reduce using rule 41 (expr -> INTEIRO .)
-    FIMALGORITMO    reduce using rule 41 (expr -> INTEIRO .)
-    SENAO           reduce using rule 41 (expr -> INTEIRO .)
-    FIMSE           reduce using rule 41 (expr -> INTEIRO .)
-    ENTAO           reduce using rule 41 (expr -> INTEIRO .)
-    OU              reduce using rule 41 (expr -> INTEIRO .)
-    E               reduce using rule 41 (expr -> INTEIRO .)
+    (41) expr -> ID .
+    ^               reduce using rule 41 (expr -> ID .)
+    MOD             reduce using rule 41 (expr -> ID .)
+    %               reduce using rule 41 (expr -> ID .)
+    \               reduce using rule 41 (expr -> ID .)
+    /               reduce using rule 41 (expr -> ID .)
+    *               reduce using rule 41 (expr -> ID .)
+    -               reduce using rule 41 (expr -> ID .)
+    +               reduce using rule 41 (expr -> ID .)
+    EQ              reduce using rule 41 (expr -> ID .)
+    GT              reduce using rule 41 (expr -> ID .)
+    GE              reduce using rule 41 (expr -> ID .)
+    LT              reduce using rule 41 (expr -> ID .)
+    LE              reduce using rule 41 (expr -> ID .)
+    ASSIGN          reduce using rule 41 (expr -> ID .)
+    NE              reduce using rule 41 (expr -> ID .)
+    )               reduce using rule 41 (expr -> ID .)
+    ENQUANTO        reduce using rule 41 (expr -> ID .)
+    SE              reduce using rule 41 (expr -> ID .)
+    LEIA            reduce using rule 41 (expr -> ID .)
+    ESCREVA         reduce using rule 41 (expr -> ID .)
+    ID              reduce using rule 41 (expr -> ID .)
+    FIMALGORITMO    reduce using rule 41 (expr -> ID .)
+    FIMENQUANTO     reduce using rule 41 (expr -> ID .)
+    SENAO           reduce using rule 41 (expr -> ID .)
+    FIMSE           reduce using rule 41 (expr -> ID .)
+    FACA            reduce using rule 41 (expr -> ID .)
+    OU              reduce using rule 41 (expr -> ID .)
+    E               reduce using rule 41 (expr -> ID .)
+    ENTAO           reduce using rule 41 (expr -> ID .)
 
 
 state 36
 
-    (42) expr -> - . expr
-    (39) expr -> . ID
-    (40) expr -> . REAL
-    (41) expr -> . INTEIRO
-    (42) expr -> . - expr
-    (43) expr -> . expr ^ expr
-    (44) expr -> . expr MOD expr
-    (45) expr -> . expr % expr
-    (46) expr -> . expr \ expr
-    (47) expr -> . expr / expr
-    (48) expr -> . expr * expr
-    (49) expr -> . expr - expr
-    (50) expr -> . expr + expr
-    (51) expr -> . ( expr )
-    ID              shift and go to state 33
-    REAL            shift and go to state 34
-    INTEIRO         shift and go to state 35
-    -               shift and go to state 36
-    (               shift and go to state 64
+    (42) expr -> REAL .
+    ^               reduce using rule 42 (expr -> REAL .)
+    MOD             reduce using rule 42 (expr -> REAL .)
+    %               reduce using rule 42 (expr -> REAL .)
+    \               reduce using rule 42 (expr -> REAL .)
+    /               reduce using rule 42 (expr -> REAL .)
+    *               reduce using rule 42 (expr -> REAL .)
+    -               reduce using rule 42 (expr -> REAL .)
+    +               reduce using rule 42 (expr -> REAL .)
+    EQ              reduce using rule 42 (expr -> REAL .)
+    GT              reduce using rule 42 (expr -> REAL .)
+    GE              reduce using rule 42 (expr -> REAL .)
+    LT              reduce using rule 42 (expr -> REAL .)
+    LE              reduce using rule 42 (expr -> REAL .)
+    ASSIGN          reduce using rule 42 (expr -> REAL .)
+    NE              reduce using rule 42 (expr -> REAL .)
+    )               reduce using rule 42 (expr -> REAL .)
+    ENQUANTO        reduce using rule 42 (expr -> REAL .)
+    SE              reduce using rule 42 (expr -> REAL .)
+    LEIA            reduce using rule 42 (expr -> REAL .)
+    ESCREVA         reduce using rule 42 (expr -> REAL .)
+    ID              reduce using rule 42 (expr -> REAL .)
+    FIMALGORITMO    reduce using rule 42 (expr -> REAL .)
+    FIMENQUANTO     reduce using rule 42 (expr -> REAL .)
+    SENAO           reduce using rule 42 (expr -> REAL .)
+    FIMSE           reduce using rule 42 (expr -> REAL .)
+    FACA            reduce using rule 42 (expr -> REAL .)
+    OU              reduce using rule 42 (expr -> REAL .)
+    E               reduce using rule 42 (expr -> REAL .)
+    ENTAO           reduce using rule 42 (expr -> REAL .)
 
-    expr                           shift and go to state 63
 
 state 37
 
-    (17) cmdleitura -> LEIA ( . ID )
-    ID              shift and go to state 65
+    (43) expr -> INTEIRO .
+    ^               reduce using rule 43 (expr -> INTEIRO .)
+    MOD             reduce using rule 43 (expr -> INTEIRO .)
+    %               reduce using rule 43 (expr -> INTEIRO .)
+    \               reduce using rule 43 (expr -> INTEIRO .)
+    /               reduce using rule 43 (expr -> INTEIRO .)
+    *               reduce using rule 43 (expr -> INTEIRO .)
+    -               reduce using rule 43 (expr -> INTEIRO .)
+    +               reduce using rule 43 (expr -> INTEIRO .)
+    EQ              reduce using rule 43 (expr -> INTEIRO .)
+    GT              reduce using rule 43 (expr -> INTEIRO .)
+    GE              reduce using rule 43 (expr -> INTEIRO .)
+    LT              reduce using rule 43 (expr -> INTEIRO .)
+    LE              reduce using rule 43 (expr -> INTEIRO .)
+    ASSIGN          reduce using rule 43 (expr -> INTEIRO .)
+    NE              reduce using rule 43 (expr -> INTEIRO .)
+    )               reduce using rule 43 (expr -> INTEIRO .)
+    ENQUANTO        reduce using rule 43 (expr -> INTEIRO .)
+    SE              reduce using rule 43 (expr -> INTEIRO .)
+    LEIA            reduce using rule 43 (expr -> INTEIRO .)
+    ESCREVA         reduce using rule 43 (expr -> INTEIRO .)
+    ID              reduce using rule 43 (expr -> INTEIRO .)
+    FIMALGORITMO    reduce using rule 43 (expr -> INTEIRO .)
+    FIMENQUANTO     reduce using rule 43 (expr -> INTEIRO .)
+    SENAO           reduce using rule 43 (expr -> INTEIRO .)
+    FIMSE           reduce using rule 43 (expr -> INTEIRO .)
+    FACA            reduce using rule 43 (expr -> INTEIRO .)
+    OU              reduce using rule 43 (expr -> INTEIRO .)
+    E               reduce using rule 43 (expr -> INTEIRO .)
+    ENTAO           reduce using rule 43 (expr -> INTEIRO .)
 
 
 state 38
 
-    (33) cmdattrib -> ID ASSIGN . ( CARACTERE )
-    (34) cmdattrib -> ID ASSIGN . CARACTERE
-    (35) cmdattrib -> ID ASSIGN . expr
-    (39) expr -> . ID
-    (40) expr -> . REAL
-    (41) expr -> . INTEIRO
-    (42) expr -> . - expr
-    (43) expr -> . expr ^ expr
-    (44) expr -> . expr MOD expr
-    (45) expr -> . expr % expr
-    (46) expr -> . expr \ expr
-    (47) expr -> . expr / expr
-    (48) expr -> . expr * expr
-    (49) expr -> . expr - expr
-    (50) expr -> . expr + expr
-    (51) expr -> . ( expr )
-    (               shift and go to state 66
-    CARACTERE       shift and go to state 67
-    ID              shift and go to state 33
-    REAL            shift and go to state 34
-    INTEIRO         shift and go to state 35
-    -               shift and go to state 36
+    (44) expr -> - . expr
+    (41) expr -> . ID
+    (42) expr -> . REAL
+    (43) expr -> . INTEIRO
+    (44) expr -> . - expr
+    (45) expr -> . expr ^ expr
+    (46) expr -> . expr MOD expr
+    (47) expr -> . expr % expr
+    (48) expr -> . expr \ expr
+    (49) expr -> . expr / expr
+    (50) expr -> . expr * expr
+    (51) expr -> . expr - expr
+    (52) expr -> . expr + expr
+    (53) expr -> . ( expr )
+    ID              shift and go to state 35
+    REAL            shift and go to state 36
+    INTEIRO         shift and go to state 37
+    -               shift and go to state 38
+    (               shift and go to state 67
 
-    expr                           shift and go to state 68
+    expr                           shift and go to state 66
 
 state 39
 
-    (36) cmdescrita -> ESCREVA ( . )
-    (37) cmdescrita -> ESCREVA ( . CARACTERE )
-    (38) cmdescrita -> ESCREVA ( . expr )
-    (39) expr -> . ID
-    (40) expr -> . REAL
-    (41) expr -> . INTEIRO
-    (42) expr -> . - expr
-    (43) expr -> . expr ^ expr
-    (44) expr -> . expr MOD expr
-    (45) expr -> . expr % expr
-    (46) expr -> . expr \ expr
-    (47) expr -> . expr / expr
-    (48) expr -> . expr * expr
-    (49) expr -> . expr - expr
-    (50) expr -> . expr + expr
-    (51) expr -> . ( expr )
-    )               shift and go to state 69
-    CARACTERE       shift and go to state 70
-    ID              shift and go to state 33
-    REAL            shift and go to state 34
-    INTEIRO         shift and go to state 35
-    -               shift and go to state 36
-    (               shift and go to state 64
+    (20) cmdCondicao -> SE expressaoRelacional . ENTAO bloco SENAO bloco FIMSE
+    (21) cmdCondicao -> SE expressaoRelacional . ENTAO bloco FIMSE
+    (23) expressaoRelacional -> expressaoRelacional . OP_BOOL termoRelacional
+    (26) OP_BOOL -> . OU
+    (27) OP_BOOL -> . E
+    ENTAO           shift and go to state 68
+    OU              shift and go to state 45
+    E               shift and go to state 46
 
-    expr                           shift and go to state 71
+    OP_BOOL                        shift and go to state 44
 
 state 40
 
-    (18) cmdCondicao -> SE expressaoRelacional ENTAO . bloco SENAO bloco FIMSE
-    (19) cmdCondicao -> SE expressaoRelacional ENTAO . bloco FIMSE
-    (11) bloco -> . cmd bloco
-    (12) bloco -> . cmd
-    (13) cmd -> . cmdCondicao
-    (14) cmd -> . cmdleitura
-    (15) cmd -> . cmdescrita
-    (16) cmd -> . cmdattrib
-    (18) cmdCondicao -> . SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE
-    (19) cmdCondicao -> . SE expressaoRelacional ENTAO bloco FIMSE
-    (17) cmdleitura -> . LEIA ( ID )
-    (36) cmdescrita -> . ESCREVA ( )
-    (37) cmdescrita -> . ESCREVA ( CARACTERE )
-    (38) cmdescrita -> . ESCREVA ( expr )
-    (33) cmdattrib -> . ID ASSIGN ( CARACTERE )
-    (34) cmdattrib -> . ID ASSIGN CARACTERE
-    (35) cmdattrib -> . ID ASSIGN expr
-    SE              shift and go to state 18
-    LEIA            shift and go to state 19
-    ESCREVA         shift and go to state 21
-    ID              shift and go to state 20
+    (19) cmdleitura -> LEIA ( . ID )
+    ID              shift and go to state 69
 
-    bloco                          shift and go to state 72
-    cmd                            shift and go to state 13
-    cmdCondicao                    shift and go to state 14
-    cmdleitura                     shift and go to state 15
-    cmdescrita                     shift and go to state 16
-    cmdattrib                      shift and go to state 17
 
 state 41
 
-    (21) expressaoRelacional -> expressaoRelacional OP_BOOL . termoRelacional
-    (22) termoRelacional -> . ( expressaoRelacional )
-    (23) termoRelacional -> . expr OP_REL expr
-    (39) expr -> . ID
-    (40) expr -> . REAL
-    (41) expr -> . INTEIRO
-    (42) expr -> . - expr
-    (43) expr -> . expr ^ expr
-    (44) expr -> . expr MOD expr
-    (45) expr -> . expr % expr
-    (46) expr -> . expr \ expr
-    (47) expr -> . expr / expr
-    (48) expr -> . expr * expr
-    (49) expr -> . expr - expr
-    (50) expr -> . expr + expr
-    (51) expr -> . ( expr )
-    (               shift and go to state 31
-    ID              shift and go to state 33
-    REAL            shift and go to state 34
-    INTEIRO         shift and go to state 35
-    -               shift and go to state 36
+    (35) cmdattrib -> ID ASSIGN . ( CARACTERE )
+    (36) cmdattrib -> ID ASSIGN . CARACTERE
+    (37) cmdattrib -> ID ASSIGN . expr
+    (41) expr -> . ID
+    (42) expr -> . REAL
+    (43) expr -> . INTEIRO
+    (44) expr -> . - expr
+    (45) expr -> . expr ^ expr
+    (46) expr -> . expr MOD expr
+    (47) expr -> . expr % expr
+    (48) expr -> . expr \ expr
+    (49) expr -> . expr / expr
+    (50) expr -> . expr * expr
+    (51) expr -> . expr - expr
+    (52) expr -> . expr + expr
+    (53) expr -> . ( expr )
+    (               shift and go to state 70
+    CARACTERE       shift and go to state 71
+    ID              shift and go to state 35
+    REAL            shift and go to state 36
+    INTEIRO         shift and go to state 37
+    -               shift and go to state 38
 
-    termoRelacional                shift and go to state 73
-    expr                           shift and go to state 32
+    expr                           shift and go to state 72
 
 state 42
 
-    (24) OP_BOOL -> OU .
-    (               reduce using rule 24 (OP_BOOL -> OU .)
-    ID              reduce using rule 24 (OP_BOOL -> OU .)
-    REAL            reduce using rule 24 (OP_BOOL -> OU .)
-    INTEIRO         reduce using rule 24 (OP_BOOL -> OU .)
-    -               reduce using rule 24 (OP_BOOL -> OU .)
+    (38) cmdescrita -> ESCREVA ( . )
+    (39) cmdescrita -> ESCREVA ( . CARACTERE )
+    (40) cmdescrita -> ESCREVA ( . expr )
+    (41) expr -> . ID
+    (42) expr -> . REAL
+    (43) expr -> . INTEIRO
+    (44) expr -> . - expr
+    (45) expr -> . expr ^ expr
+    (46) expr -> . expr MOD expr
+    (47) expr -> . expr % expr
+    (48) expr -> . expr \ expr
+    (49) expr -> . expr / expr
+    (50) expr -> . expr * expr
+    (51) expr -> . expr - expr
+    (52) expr -> . expr + expr
+    (53) expr -> . ( expr )
+    )               shift and go to state 73
+    CARACTERE       shift and go to state 74
+    ID              shift and go to state 35
+    REAL            shift and go to state 36
+    INTEIRO         shift and go to state 37
+    -               shift and go to state 38
+    (               shift and go to state 67
 
+    expr                           shift and go to state 75
 
 state 43
 
-    (25) OP_BOOL -> E .
-    (               reduce using rule 25 (OP_BOOL -> E .)
-    ID              reduce using rule 25 (OP_BOOL -> E .)
-    REAL            reduce using rule 25 (OP_BOOL -> E .)
-    INTEIRO         reduce using rule 25 (OP_BOOL -> E .)
-    -               reduce using rule 25 (OP_BOOL -> E .)
+    (18) cmdRepeticao -> ENQUANTO expressaoRelacional FACA . bloco FIMENQUANTO
+    (11) bloco -> . cmd bloco
+    (12) bloco -> . cmd
+    (13) cmd -> . cmdRepeticao
+    (14) cmd -> . cmdCondicao
+    (15) cmd -> . cmdleitura
+    (16) cmd -> . cmdescrita
+    (17) cmd -> . cmdattrib
+    (18) cmdRepeticao -> . ENQUANTO expressaoRelacional FACA bloco FIMENQUANTO
+    (20) cmdCondicao -> . SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE
+    (21) cmdCondicao -> . SE expressaoRelacional ENTAO bloco FIMSE
+    (19) cmdleitura -> . LEIA ( ID )
+    (38) cmdescrita -> . ESCREVA ( )
+    (39) cmdescrita -> . ESCREVA ( CARACTERE )
+    (40) cmdescrita -> . ESCREVA ( expr )
+    (35) cmdattrib -> . ID ASSIGN ( CARACTERE )
+    (36) cmdattrib -> . ID ASSIGN CARACTERE
+    (37) cmdattrib -> . ID ASSIGN expr
+    ENQUANTO        shift and go to state 19
+    SE              shift and go to state 20
+    LEIA            shift and go to state 21
+    ESCREVA         shift and go to state 23
+    ID              shift and go to state 22
 
+    bloco                          shift and go to state 76
+    cmd                            shift and go to state 13
+    cmdRepeticao                   shift and go to state 14
+    cmdCondicao                    shift and go to state 15
+    cmdleitura                     shift and go to state 16
+    cmdescrita                     shift and go to state 17
+    cmdattrib                      shift and go to state 18
 
 state 44
 
-    (51) expr -> ( . expr )
-    (22) termoRelacional -> ( . expressaoRelacional )
-    (39) expr -> . ID
-    (40) expr -> . REAL
-    (41) expr -> . INTEIRO
-    (42) expr -> . - expr
-    (43) expr -> . expr ^ expr
-    (44) expr -> . expr MOD expr
-    (45) expr -> . expr % expr
-    (46) expr -> . expr \ expr
-    (47) expr -> . expr / expr
-    (48) expr -> . expr * expr
-    (49) expr -> . expr - expr
-    (50) expr -> . expr + expr
-    (51) expr -> . ( expr )
-    (20) expressaoRelacional -> . termoRelacional
-    (21) expressaoRelacional -> . expressaoRelacional OP_BOOL termoRelacional
-    (22) termoRelacional -> . ( expressaoRelacional )
-    (23) termoRelacional -> . expr OP_REL expr
-    ID              shift and go to state 33
-    REAL            shift and go to state 34
-    INTEIRO         shift and go to state 35
-    -               shift and go to state 36
-    (               shift and go to state 44
+    (23) expressaoRelacional -> expressaoRelacional OP_BOOL . termoRelacional
+    (24) termoRelacional -> . ( expressaoRelacional )
+    (25) termoRelacional -> . expr OP_REL expr
+    (41) expr -> . ID
+    (42) expr -> . REAL
+    (43) expr -> . INTEIRO
+    (44) expr -> . - expr
+    (45) expr -> . expr ^ expr
+    (46) expr -> . expr MOD expr
+    (47) expr -> . expr % expr
+    (48) expr -> . expr \ expr
+    (49) expr -> . expr / expr
+    (50) expr -> . expr * expr
+    (51) expr -> . expr - expr
+    (52) expr -> . expr + expr
+    (53) expr -> . ( expr )
+    (               shift and go to state 33
+    ID              shift and go to state 35
+    REAL            shift and go to state 36
+    INTEIRO         shift and go to state 37
+    -               shift and go to state 38
 
-    expr                           shift and go to state 46
-    expressaoRelacional            shift and go to state 45
-    termoRelacional                shift and go to state 30
+    termoRelacional                shift and go to state 77
+    expr                           shift and go to state 34
 
 state 45
 
-    (22) termoRelacional -> ( expressaoRelacional . )
-    (21) expressaoRelacional -> expressaoRelacional . OP_BOOL termoRelacional
-    (24) OP_BOOL -> . OU
-    (25) OP_BOOL -> . E
-    )               shift and go to state 74
-    OU              shift and go to state 42
-    E               shift and go to state 43
+    (26) OP_BOOL -> OU .
+    (               reduce using rule 26 (OP_BOOL -> OU .)
+    ID              reduce using rule 26 (OP_BOOL -> OU .)
+    REAL            reduce using rule 26 (OP_BOOL -> OU .)
+    INTEIRO         reduce using rule 26 (OP_BOOL -> OU .)
+    -               reduce using rule 26 (OP_BOOL -> OU .)
 
-    OP_BOOL                        shift and go to state 41
 
 state 46
 
-    (51) expr -> ( expr . )
-    (43) expr -> expr . ^ expr
-    (44) expr -> expr . MOD expr
-    (45) expr -> expr . % expr
-    (46) expr -> expr . \ expr
-    (47) expr -> expr . / expr
-    (48) expr -> expr . * expr
-    (49) expr -> expr . - expr
-    (50) expr -> expr . + expr
-    (23) termoRelacional -> expr . OP_REL expr
-    (26) OP_REL -> . EQ
-    (27) OP_REL -> . GT
-    (28) OP_REL -> . GE
-    (29) OP_REL -> . LT
-    (30) OP_REL -> . LE
-    (31) OP_REL -> . ASSIGN
-    (32) OP_REL -> . NE
-    )               shift and go to state 75
-    ^               shift and go to state 48
-    MOD             shift and go to state 49
-    %               shift and go to state 50
-    \               shift and go to state 51
-    /               shift and go to state 52
-    *               shift and go to state 53
-    -               shift and go to state 54
-    +               shift and go to state 55
-    EQ              shift and go to state 56
-    GT              shift and go to state 57
-    GE              shift and go to state 58
-    LT              shift and go to state 59
-    LE              shift and go to state 60
-    ASSIGN          shift and go to state 61
-    NE              shift and go to state 62
+    (27) OP_BOOL -> E .
+    (               reduce using rule 27 (OP_BOOL -> E .)
+    ID              reduce using rule 27 (OP_BOOL -> E .)
+    REAL            reduce using rule 27 (OP_BOOL -> E .)
+    INTEIRO         reduce using rule 27 (OP_BOOL -> E .)
+    -               reduce using rule 27 (OP_BOOL -> E .)
 
-    OP_REL                         shift and go to state 47
 
 state 47
 
-    (23) termoRelacional -> expr OP_REL . expr
-    (39) expr -> . ID
-    (40) expr -> . REAL
-    (41) expr -> . INTEIRO
-    (42) expr -> . - expr
-    (43) expr -> . expr ^ expr
-    (44) expr -> . expr MOD expr
-    (45) expr -> . expr % expr
-    (46) expr -> . expr \ expr
-    (47) expr -> . expr / expr
-    (48) expr -> . expr * expr
-    (49) expr -> . expr - expr
-    (50) expr -> . expr + expr
-    (51) expr -> . ( expr )
-    ID              shift and go to state 33
-    REAL            shift and go to state 34
-    INTEIRO         shift and go to state 35
-    -               shift and go to state 36
-    (               shift and go to state 64
+    (53) expr -> ( . expr )
+    (24) termoRelacional -> ( . expressaoRelacional )
+    (41) expr -> . ID
+    (42) expr -> . REAL
+    (43) expr -> . INTEIRO
+    (44) expr -> . - expr
+    (45) expr -> . expr ^ expr
+    (46) expr -> . expr MOD expr
+    (47) expr -> . expr % expr
+    (48) expr -> . expr \ expr
+    (49) expr -> . expr / expr
+    (50) expr -> . expr * expr
+    (51) expr -> . expr - expr
+    (52) expr -> . expr + expr
+    (53) expr -> . ( expr )
+    (22) expressaoRelacional -> . termoRelacional
+    (23) expressaoRelacional -> . expressaoRelacional OP_BOOL termoRelacional
+    (24) termoRelacional -> . ( expressaoRelacional )
+    (25) termoRelacional -> . expr OP_REL expr
+    ID              shift and go to state 35
+    REAL            shift and go to state 36
+    INTEIRO         shift and go to state 37
+    -               shift and go to state 38
+    (               shift and go to state 47
 
-    expr                           shift and go to state 76
+    expr                           shift and go to state 49
+    expressaoRelacional            shift and go to state 48
+    termoRelacional                shift and go to state 32
 
 state 48
 
-    (43) expr -> expr ^ . expr
-    (39) expr -> . ID
-    (40) expr -> . REAL
-    (41) expr -> . INTEIRO
-    (42) expr -> . - expr
-    (43) expr -> . expr ^ expr
-    (44) expr -> . expr MOD expr
-    (45) expr -> . expr % expr
-    (46) expr -> . expr \ expr
-    (47) expr -> . expr / expr
-    (48) expr -> . expr * expr
-    (49) expr -> . expr - expr
-    (50) expr -> . expr + expr
-    (51) expr -> . ( expr )
-    ID              shift and go to state 33
-    REAL            shift and go to state 34
-    INTEIRO         shift and go to state 35
-    -               shift and go to state 36
-    (               shift and go to state 64
+    (24) termoRelacional -> ( expressaoRelacional . )
+    (23) expressaoRelacional -> expressaoRelacional . OP_BOOL termoRelacional
+    (26) OP_BOOL -> . OU
+    (27) OP_BOOL -> . E
+    )               shift and go to state 78
+    OU              shift and go to state 45
+    E               shift and go to state 46
 
-    expr                           shift and go to state 77
+    OP_BOOL                        shift and go to state 44
 
 state 49
 
-    (44) expr -> expr MOD . expr
-    (39) expr -> . ID
-    (40) expr -> . REAL
-    (41) expr -> . INTEIRO
-    (42) expr -> . - expr
-    (43) expr -> . expr ^ expr
-    (44) expr -> . expr MOD expr
-    (45) expr -> . expr % expr
-    (46) expr -> . expr \ expr
-    (47) expr -> . expr / expr
-    (48) expr -> . expr * expr
-    (49) expr -> . expr - expr
-    (50) expr -> . expr + expr
-    (51) expr -> . ( expr )
-    ID              shift and go to state 33
-    REAL            shift and go to state 34
-    INTEIRO         shift and go to state 35
-    -               shift and go to state 36
-    (               shift and go to state 64
+    (53) expr -> ( expr . )
+    (45) expr -> expr . ^ expr
+    (46) expr -> expr . MOD expr
+    (47) expr -> expr . % expr
+    (48) expr -> expr . \ expr
+    (49) expr -> expr . / expr
+    (50) expr -> expr . * expr
+    (51) expr -> expr . - expr
+    (52) expr -> expr . + expr
+    (25) termoRelacional -> expr . OP_REL expr
+    (28) OP_REL -> . EQ
+    (29) OP_REL -> . GT
+    (30) OP_REL -> . GE
+    (31) OP_REL -> . LT
+    (32) OP_REL -> . LE
+    (33) OP_REL -> . ASSIGN
+    (34) OP_REL -> . NE
+    )               shift and go to state 79
+    ^               shift and go to state 51
+    MOD             shift and go to state 52
+    %               shift and go to state 53
+    \               shift and go to state 54
+    /               shift and go to state 55
+    *               shift and go to state 56
+    -               shift and go to state 57
+    +               shift and go to state 58
+    EQ              shift and go to state 59
+    GT              shift and go to state 60
+    GE              shift and go to state 61
+    LT              shift and go to state 62
+    LE              shift and go to state 63
+    ASSIGN          shift and go to state 64
+    NE              shift and go to state 65
 
-    expr                           shift and go to state 78
+    OP_REL                         shift and go to state 50
 
 state 50
 
-    (45) expr -> expr % . expr
-    (39) expr -> . ID
-    (40) expr -> . REAL
-    (41) expr -> . INTEIRO
-    (42) expr -> . - expr
-    (43) expr -> . expr ^ expr
-    (44) expr -> . expr MOD expr
-    (45) expr -> . expr % expr
-    (46) expr -> . expr \ expr
-    (47) expr -> . expr / expr
-    (48) expr -> . expr * expr
-    (49) expr -> . expr - expr
-    (50) expr -> . expr + expr
-    (51) expr -> . ( expr )
-    ID              shift and go to state 33
-    REAL            shift and go to state 34
-    INTEIRO         shift and go to state 35
-    -               shift and go to state 36
-    (               shift and go to state 64
-
-    expr                           shift and go to state 79
-
-state 51
-
-    (46) expr -> expr \ . expr
-    (39) expr -> . ID
-    (40) expr -> . REAL
-    (41) expr -> . INTEIRO
-    (42) expr -> . - expr
-    (43) expr -> . expr ^ expr
-    (44) expr -> . expr MOD expr
-    (45) expr -> . expr % expr
-    (46) expr -> . expr \ expr
-    (47) expr -> . expr / expr
-    (48) expr -> . expr * expr
-    (49) expr -> . expr - expr
-    (50) expr -> . expr + expr
-    (51) expr -> . ( expr )
-    ID              shift and go to state 33
-    REAL            shift and go to state 34
-    INTEIRO         shift and go to state 35
-    -               shift and go to state 36
-    (               shift and go to state 64
+    (25) termoRelacional -> expr OP_REL . expr
+    (41) expr -> . ID
+    (42) expr -> . REAL
+    (43) expr -> . INTEIRO
+    (44) expr -> . - expr
+    (45) expr -> . expr ^ expr
+    (46) expr -> . expr MOD expr
+    (47) expr -> . expr % expr
+    (48) expr -> . expr \ expr
+    (49) expr -> . expr / expr
+    (50) expr -> . expr * expr
+    (51) expr -> . expr - expr
+    (52) expr -> . expr + expr
+    (53) expr -> . ( expr )
+    ID              shift and go to state 35
+    REAL            shift and go to state 36
+    INTEIRO         shift and go to state 37
+    -               shift and go to state 38
+    (               shift and go to state 67
 
     expr                           shift and go to state 80
 
-state 52
+state 51
 
-    (47) expr -> expr / . expr
-    (39) expr -> . ID
-    (40) expr -> . REAL
-    (41) expr -> . INTEIRO
-    (42) expr -> . - expr
-    (43) expr -> . expr ^ expr
-    (44) expr -> . expr MOD expr
-    (45) expr -> . expr % expr
-    (46) expr -> . expr \ expr
-    (47) expr -> . expr / expr
-    (48) expr -> . expr * expr
-    (49) expr -> . expr - expr
-    (50) expr -> . expr + expr
-    (51) expr -> . ( expr )
-    ID              shift and go to state 33
-    REAL            shift and go to state 34
-    INTEIRO         shift and go to state 35
-    -               shift and go to state 36
-    (               shift and go to state 64
+    (45) expr -> expr ^ . expr
+    (41) expr -> . ID
+    (42) expr -> . REAL
+    (43) expr -> . INTEIRO
+    (44) expr -> . - expr
+    (45) expr -> . expr ^ expr
+    (46) expr -> . expr MOD expr
+    (47) expr -> . expr % expr
+    (48) expr -> . expr \ expr
+    (49) expr -> . expr / expr
+    (50) expr -> . expr * expr
+    (51) expr -> . expr - expr
+    (52) expr -> . expr + expr
+    (53) expr -> . ( expr )
+    ID              shift and go to state 35
+    REAL            shift and go to state 36
+    INTEIRO         shift and go to state 37
+    -               shift and go to state 38
+    (               shift and go to state 67
 
     expr                           shift and go to state 81
 
-state 53
+state 52
 
-    (48) expr -> expr * . expr
-    (39) expr -> . ID
-    (40) expr -> . REAL
-    (41) expr -> . INTEIRO
-    (42) expr -> . - expr
-    (43) expr -> . expr ^ expr
-    (44) expr -> . expr MOD expr
-    (45) expr -> . expr % expr
-    (46) expr -> . expr \ expr
-    (47) expr -> . expr / expr
-    (48) expr -> . expr * expr
-    (49) expr -> . expr - expr
-    (50) expr -> . expr + expr
-    (51) expr -> . ( expr )
-    ID              shift and go to state 33
-    REAL            shift and go to state 34
-    INTEIRO         shift and go to state 35
-    -               shift and go to state 36
-    (               shift and go to state 64
+    (46) expr -> expr MOD . expr
+    (41) expr -> . ID
+    (42) expr -> . REAL
+    (43) expr -> . INTEIRO
+    (44) expr -> . - expr
+    (45) expr -> . expr ^ expr
+    (46) expr -> . expr MOD expr
+    (47) expr -> . expr % expr
+    (48) expr -> . expr \ expr
+    (49) expr -> . expr / expr
+    (50) expr -> . expr * expr
+    (51) expr -> . expr - expr
+    (52) expr -> . expr + expr
+    (53) expr -> . ( expr )
+    ID              shift and go to state 35
+    REAL            shift and go to state 36
+    INTEIRO         shift and go to state 37
+    -               shift and go to state 38
+    (               shift and go to state 67
 
     expr                           shift and go to state 82
 
-state 54
+state 53
 
-    (49) expr -> expr - . expr
-    (39) expr -> . ID
-    (40) expr -> . REAL
-    (41) expr -> . INTEIRO
-    (42) expr -> . - expr
-    (43) expr -> . expr ^ expr
-    (44) expr -> . expr MOD expr
-    (45) expr -> . expr % expr
-    (46) expr -> . expr \ expr
-    (47) expr -> . expr / expr
-    (48) expr -> . expr * expr
-    (49) expr -> . expr - expr
-    (50) expr -> . expr + expr
-    (51) expr -> . ( expr )
-    ID              shift and go to state 33
-    REAL            shift and go to state 34
-    INTEIRO         shift and go to state 35
-    -               shift and go to state 36
-    (               shift and go to state 64
+    (47) expr -> expr % . expr
+    (41) expr -> . ID
+    (42) expr -> . REAL
+    (43) expr -> . INTEIRO
+    (44) expr -> . - expr
+    (45) expr -> . expr ^ expr
+    (46) expr -> . expr MOD expr
+    (47) expr -> . expr % expr
+    (48) expr -> . expr \ expr
+    (49) expr -> . expr / expr
+    (50) expr -> . expr * expr
+    (51) expr -> . expr - expr
+    (52) expr -> . expr + expr
+    (53) expr -> . ( expr )
+    ID              shift and go to state 35
+    REAL            shift and go to state 36
+    INTEIRO         shift and go to state 37
+    -               shift and go to state 38
+    (               shift and go to state 67
 
     expr                           shift and go to state 83
 
-state 55
+state 54
 
-    (50) expr -> expr + . expr
-    (39) expr -> . ID
-    (40) expr -> . REAL
-    (41) expr -> . INTEIRO
-    (42) expr -> . - expr
-    (43) expr -> . expr ^ expr
-    (44) expr -> . expr MOD expr
-    (45) expr -> . expr % expr
-    (46) expr -> . expr \ expr
-    (47) expr -> . expr / expr
-    (48) expr -> . expr * expr
-    (49) expr -> . expr - expr
-    (50) expr -> . expr + expr
-    (51) expr -> . ( expr )
-    ID              shift and go to state 33
-    REAL            shift and go to state 34
-    INTEIRO         shift and go to state 35
-    -               shift and go to state 36
-    (               shift and go to state 64
+    (48) expr -> expr \ . expr
+    (41) expr -> . ID
+    (42) expr -> . REAL
+    (43) expr -> . INTEIRO
+    (44) expr -> . - expr
+    (45) expr -> . expr ^ expr
+    (46) expr -> . expr MOD expr
+    (47) expr -> . expr % expr
+    (48) expr -> . expr \ expr
+    (49) expr -> . expr / expr
+    (50) expr -> . expr * expr
+    (51) expr -> . expr - expr
+    (52) expr -> . expr + expr
+    (53) expr -> . ( expr )
+    ID              shift and go to state 35
+    REAL            shift and go to state 36
+    INTEIRO         shift and go to state 37
+    -               shift and go to state 38
+    (               shift and go to state 67
 
     expr                           shift and go to state 84
 
+state 55
+
+    (49) expr -> expr / . expr
+    (41) expr -> . ID
+    (42) expr -> . REAL
+    (43) expr -> . INTEIRO
+    (44) expr -> . - expr
+    (45) expr -> . expr ^ expr
+    (46) expr -> . expr MOD expr
+    (47) expr -> . expr % expr
+    (48) expr -> . expr \ expr
+    (49) expr -> . expr / expr
+    (50) expr -> . expr * expr
+    (51) expr -> . expr - expr
+    (52) expr -> . expr + expr
+    (53) expr -> . ( expr )
+    ID              shift and go to state 35
+    REAL            shift and go to state 36
+    INTEIRO         shift and go to state 37
+    -               shift and go to state 38
+    (               shift and go to state 67
+
+    expr                           shift and go to state 85
+
 state 56
 
-    (26) OP_REL -> EQ .
-    ID              reduce using rule 26 (OP_REL -> EQ .)
-    REAL            reduce using rule 26 (OP_REL -> EQ .)
-    INTEIRO         reduce using rule 26 (OP_REL -> EQ .)
-    -               reduce using rule 26 (OP_REL -> EQ .)
-    (               reduce using rule 26 (OP_REL -> EQ .)
+    (50) expr -> expr * . expr
+    (41) expr -> . ID
+    (42) expr -> . REAL
+    (43) expr -> . INTEIRO
+    (44) expr -> . - expr
+    (45) expr -> . expr ^ expr
+    (46) expr -> . expr MOD expr
+    (47) expr -> . expr % expr
+    (48) expr -> . expr \ expr
+    (49) expr -> . expr / expr
+    (50) expr -> . expr * expr
+    (51) expr -> . expr - expr
+    (52) expr -> . expr + expr
+    (53) expr -> . ( expr )
+    ID              shift and go to state 35
+    REAL            shift and go to state 36
+    INTEIRO         shift and go to state 37
+    -               shift and go to state 38
+    (               shift and go to state 67
 
+    expr                           shift and go to state 86
 
 state 57
 
-    (27) OP_REL -> GT .
-    ID              reduce using rule 27 (OP_REL -> GT .)
-    REAL            reduce using rule 27 (OP_REL -> GT .)
-    INTEIRO         reduce using rule 27 (OP_REL -> GT .)
-    -               reduce using rule 27 (OP_REL -> GT .)
-    (               reduce using rule 27 (OP_REL -> GT .)
+    (51) expr -> expr - . expr
+    (41) expr -> . ID
+    (42) expr -> . REAL
+    (43) expr -> . INTEIRO
+    (44) expr -> . - expr
+    (45) expr -> . expr ^ expr
+    (46) expr -> . expr MOD expr
+    (47) expr -> . expr % expr
+    (48) expr -> . expr \ expr
+    (49) expr -> . expr / expr
+    (50) expr -> . expr * expr
+    (51) expr -> . expr - expr
+    (52) expr -> . expr + expr
+    (53) expr -> . ( expr )
+    ID              shift and go to state 35
+    REAL            shift and go to state 36
+    INTEIRO         shift and go to state 37
+    -               shift and go to state 38
+    (               shift and go to state 67
 
+    expr                           shift and go to state 87
 
 state 58
 
-    (28) OP_REL -> GE .
-    ID              reduce using rule 28 (OP_REL -> GE .)
-    REAL            reduce using rule 28 (OP_REL -> GE .)
-    INTEIRO         reduce using rule 28 (OP_REL -> GE .)
-    -               reduce using rule 28 (OP_REL -> GE .)
-    (               reduce using rule 28 (OP_REL -> GE .)
+    (52) expr -> expr + . expr
+    (41) expr -> . ID
+    (42) expr -> . REAL
+    (43) expr -> . INTEIRO
+    (44) expr -> . - expr
+    (45) expr -> . expr ^ expr
+    (46) expr -> . expr MOD expr
+    (47) expr -> . expr % expr
+    (48) expr -> . expr \ expr
+    (49) expr -> . expr / expr
+    (50) expr -> . expr * expr
+    (51) expr -> . expr - expr
+    (52) expr -> . expr + expr
+    (53) expr -> . ( expr )
+    ID              shift and go to state 35
+    REAL            shift and go to state 36
+    INTEIRO         shift and go to state 37
+    -               shift and go to state 38
+    (               shift and go to state 67
 
+    expr                           shift and go to state 88
 
 state 59
 
-    (29) OP_REL -> LT .
-    ID              reduce using rule 29 (OP_REL -> LT .)
-    REAL            reduce using rule 29 (OP_REL -> LT .)
-    INTEIRO         reduce using rule 29 (OP_REL -> LT .)
-    -               reduce using rule 29 (OP_REL -> LT .)
-    (               reduce using rule 29 (OP_REL -> LT .)
+    (28) OP_REL -> EQ .
+    ID              reduce using rule 28 (OP_REL -> EQ .)
+    REAL            reduce using rule 28 (OP_REL -> EQ .)
+    INTEIRO         reduce using rule 28 (OP_REL -> EQ .)
+    -               reduce using rule 28 (OP_REL -> EQ .)
+    (               reduce using rule 28 (OP_REL -> EQ .)
 
 
 state 60
 
-    (30) OP_REL -> LE .
-    ID              reduce using rule 30 (OP_REL -> LE .)
-    REAL            reduce using rule 30 (OP_REL -> LE .)
-    INTEIRO         reduce using rule 30 (OP_REL -> LE .)
-    -               reduce using rule 30 (OP_REL -> LE .)
-    (               reduce using rule 30 (OP_REL -> LE .)
+    (29) OP_REL -> GT .
+    ID              reduce using rule 29 (OP_REL -> GT .)
+    REAL            reduce using rule 29 (OP_REL -> GT .)
+    INTEIRO         reduce using rule 29 (OP_REL -> GT .)
+    -               reduce using rule 29 (OP_REL -> GT .)
+    (               reduce using rule 29 (OP_REL -> GT .)
 
 
 state 61
 
-    (31) OP_REL -> ASSIGN .
-    ID              reduce using rule 31 (OP_REL -> ASSIGN .)
-    REAL            reduce using rule 31 (OP_REL -> ASSIGN .)
-    INTEIRO         reduce using rule 31 (OP_REL -> ASSIGN .)
-    -               reduce using rule 31 (OP_REL -> ASSIGN .)
-    (               reduce using rule 31 (OP_REL -> ASSIGN .)
+    (30) OP_REL -> GE .
+    ID              reduce using rule 30 (OP_REL -> GE .)
+    REAL            reduce using rule 30 (OP_REL -> GE .)
+    INTEIRO         reduce using rule 30 (OP_REL -> GE .)
+    -               reduce using rule 30 (OP_REL -> GE .)
+    (               reduce using rule 30 (OP_REL -> GE .)
 
 
 state 62
 
-    (32) OP_REL -> NE .
-    ID              reduce using rule 32 (OP_REL -> NE .)
-    REAL            reduce using rule 32 (OP_REL -> NE .)
-    INTEIRO         reduce using rule 32 (OP_REL -> NE .)
-    -               reduce using rule 32 (OP_REL -> NE .)
-    (               reduce using rule 32 (OP_REL -> NE .)
+    (31) OP_REL -> LT .
+    ID              reduce using rule 31 (OP_REL -> LT .)
+    REAL            reduce using rule 31 (OP_REL -> LT .)
+    INTEIRO         reduce using rule 31 (OP_REL -> LT .)
+    -               reduce using rule 31 (OP_REL -> LT .)
+    (               reduce using rule 31 (OP_REL -> LT .)
 
 
 state 63
 
-    (42) expr -> - expr .
-    (43) expr -> expr . ^ expr
-    (44) expr -> expr . MOD expr
-    (45) expr -> expr . % expr
-    (46) expr -> expr . \ expr
-    (47) expr -> expr . / expr
-    (48) expr -> expr . * expr
-    (49) expr -> expr . - expr
-    (50) expr -> expr . + expr
-    ^               reduce using rule 42 (expr -> - expr .)
-    MOD             reduce using rule 42 (expr -> - expr .)
-    %               reduce using rule 42 (expr -> - expr .)
-    \               reduce using rule 42 (expr -> - expr .)
-    /               reduce using rule 42 (expr -> - expr .)
-    *               reduce using rule 42 (expr -> - expr .)
-    -               reduce using rule 42 (expr -> - expr .)
-    +               reduce using rule 42 (expr -> - expr .)
-    EQ              reduce using rule 42 (expr -> - expr .)
-    GT              reduce using rule 42 (expr -> - expr .)
-    GE              reduce using rule 42 (expr -> - expr .)
-    LT              reduce using rule 42 (expr -> - expr .)
-    LE              reduce using rule 42 (expr -> - expr .)
-    ASSIGN          reduce using rule 42 (expr -> - expr .)
-    NE              reduce using rule 42 (expr -> - expr .)
-    )               reduce using rule 42 (expr -> - expr .)
-    SE              reduce using rule 42 (expr -> - expr .)
-    LEIA            reduce using rule 42 (expr -> - expr .)
-    ESCREVA         reduce using rule 42 (expr -> - expr .)
-    ID              reduce using rule 42 (expr -> - expr .)
-    FIMALGORITMO    reduce using rule 42 (expr -> - expr .)
-    SENAO           reduce using rule 42 (expr -> - expr .)
-    FIMSE           reduce using rule 42 (expr -> - expr .)
-    ENTAO           reduce using rule 42 (expr -> - expr .)
-    OU              reduce using rule 42 (expr -> - expr .)
-    E               reduce using rule 42 (expr -> - expr .)
+    (32) OP_REL -> LE .
+    ID              reduce using rule 32 (OP_REL -> LE .)
+    REAL            reduce using rule 32 (OP_REL -> LE .)
+    INTEIRO         reduce using rule 32 (OP_REL -> LE .)
+    -               reduce using rule 32 (OP_REL -> LE .)
+    (               reduce using rule 32 (OP_REL -> LE .)
 
 
 state 64
 
-    (51) expr -> ( . expr )
-    (39) expr -> . ID
-    (40) expr -> . REAL
-    (41) expr -> . INTEIRO
-    (42) expr -> . - expr
-    (43) expr -> . expr ^ expr
-    (44) expr -> . expr MOD expr
-    (45) expr -> . expr % expr
-    (46) expr -> . expr \ expr
-    (47) expr -> . expr / expr
-    (48) expr -> . expr * expr
-    (49) expr -> . expr - expr
-    (50) expr -> . expr + expr
-    (51) expr -> . ( expr )
-    ID              shift and go to state 33
-    REAL            shift and go to state 34
-    INTEIRO         shift and go to state 35
-    -               shift and go to state 36
-    (               shift and go to state 64
+    (33) OP_REL -> ASSIGN .
+    ID              reduce using rule 33 (OP_REL -> ASSIGN .)
+    REAL            reduce using rule 33 (OP_REL -> ASSIGN .)
+    INTEIRO         reduce using rule 33 (OP_REL -> ASSIGN .)
+    -               reduce using rule 33 (OP_REL -> ASSIGN .)
+    (               reduce using rule 33 (OP_REL -> ASSIGN .)
 
-    expr                           shift and go to state 85
 
 state 65
 
-    (17) cmdleitura -> LEIA ( ID . )
-    )               shift and go to state 86
+    (34) OP_REL -> NE .
+    ID              reduce using rule 34 (OP_REL -> NE .)
+    REAL            reduce using rule 34 (OP_REL -> NE .)
+    INTEIRO         reduce using rule 34 (OP_REL -> NE .)
+    -               reduce using rule 34 (OP_REL -> NE .)
+    (               reduce using rule 34 (OP_REL -> NE .)
 
 
 state 66
 
-    (33) cmdattrib -> ID ASSIGN ( . CARACTERE )
-    (51) expr -> ( . expr )
-    (39) expr -> . ID
-    (40) expr -> . REAL
-    (41) expr -> . INTEIRO
-    (42) expr -> . - expr
-    (43) expr -> . expr ^ expr
-    (44) expr -> . expr MOD expr
-    (45) expr -> . expr % expr
-    (46) expr -> . expr \ expr
-    (47) expr -> . expr / expr
-    (48) expr -> . expr * expr
-    (49) expr -> . expr - expr
-    (50) expr -> . expr + expr
-    (51) expr -> . ( expr )
-    CARACTERE       shift and go to state 87
-    ID              shift and go to state 33
-    REAL            shift and go to state 34
-    INTEIRO         shift and go to state 35
-    -               shift and go to state 36
-    (               shift and go to state 64
+    (44) expr -> - expr .
+    (45) expr -> expr . ^ expr
+    (46) expr -> expr . MOD expr
+    (47) expr -> expr . % expr
+    (48) expr -> expr . \ expr
+    (49) expr -> expr . / expr
+    (50) expr -> expr . * expr
+    (51) expr -> expr . - expr
+    (52) expr -> expr . + expr
+    ^               reduce using rule 44 (expr -> - expr .)
+    MOD             reduce using rule 44 (expr -> - expr .)
+    %               reduce using rule 44 (expr -> - expr .)
+    \               reduce using rule 44 (expr -> - expr .)
+    /               reduce using rule 44 (expr -> - expr .)
+    *               reduce using rule 44 (expr -> - expr .)
+    -               reduce using rule 44 (expr -> - expr .)
+    +               reduce using rule 44 (expr -> - expr .)
+    EQ              reduce using rule 44 (expr -> - expr .)
+    GT              reduce using rule 44 (expr -> - expr .)
+    GE              reduce using rule 44 (expr -> - expr .)
+    LT              reduce using rule 44 (expr -> - expr .)
+    LE              reduce using rule 44 (expr -> - expr .)
+    ASSIGN          reduce using rule 44 (expr -> - expr .)
+    NE              reduce using rule 44 (expr -> - expr .)
+    )               reduce using rule 44 (expr -> - expr .)
+    ENQUANTO        reduce using rule 44 (expr -> - expr .)
+    SE              reduce using rule 44 (expr -> - expr .)
+    LEIA            reduce using rule 44 (expr -> - expr .)
+    ESCREVA         reduce using rule 44 (expr -> - expr .)
+    ID              reduce using rule 44 (expr -> - expr .)
+    FIMALGORITMO    reduce using rule 44 (expr -> - expr .)
+    FIMENQUANTO     reduce using rule 44 (expr -> - expr .)
+    SENAO           reduce using rule 44 (expr -> - expr .)
+    FIMSE           reduce using rule 44 (expr -> - expr .)
+    FACA            reduce using rule 44 (expr -> - expr .)
+    OU              reduce using rule 44 (expr -> - expr .)
+    E               reduce using rule 44 (expr -> - expr .)
+    ENTAO           reduce using rule 44 (expr -> - expr .)
 
-    expr                           shift and go to state 85
 
 state 67
 
-    (34) cmdattrib -> ID ASSIGN CARACTERE .
-    SE              reduce using rule 34 (cmdattrib -> ID ASSIGN CARACTERE .)
-    LEIA            reduce using rule 34 (cmdattrib -> ID ASSIGN CARACTERE .)
-    ESCREVA         reduce using rule 34 (cmdattrib -> ID ASSIGN CARACTERE .)
-    ID              reduce using rule 34 (cmdattrib -> ID ASSIGN CARACTERE .)
-    FIMALGORITMO    reduce using rule 34 (cmdattrib -> ID ASSIGN CARACTERE .)
-    SENAO           reduce using rule 34 (cmdattrib -> ID ASSIGN CARACTERE .)
-    FIMSE           reduce using rule 34 (cmdattrib -> ID ASSIGN CARACTERE .)
+    (53) expr -> ( . expr )
+    (41) expr -> . ID
+    (42) expr -> . REAL
+    (43) expr -> . INTEIRO
+    (44) expr -> . - expr
+    (45) expr -> . expr ^ expr
+    (46) expr -> . expr MOD expr
+    (47) expr -> . expr % expr
+    (48) expr -> . expr \ expr
+    (49) expr -> . expr / expr
+    (50) expr -> . expr * expr
+    (51) expr -> . expr - expr
+    (52) expr -> . expr + expr
+    (53) expr -> . ( expr )
+    ID              shift and go to state 35
+    REAL            shift and go to state 36
+    INTEIRO         shift and go to state 37
+    -               shift and go to state 38
+    (               shift and go to state 67
 
+    expr                           shift and go to state 89
 
 state 68
 
-    (35) cmdattrib -> ID ASSIGN expr .
-    (43) expr -> expr . ^ expr
-    (44) expr -> expr . MOD expr
-    (45) expr -> expr . % expr
-    (46) expr -> expr . \ expr
-    (47) expr -> expr . / expr
-    (48) expr -> expr . * expr
-    (49) expr -> expr . - expr
-    (50) expr -> expr . + expr
-    SE              reduce using rule 35 (cmdattrib -> ID ASSIGN expr .)
-    LEIA            reduce using rule 35 (cmdattrib -> ID ASSIGN expr .)
-    ESCREVA         reduce using rule 35 (cmdattrib -> ID ASSIGN expr .)
-    ID              reduce using rule 35 (cmdattrib -> ID ASSIGN expr .)
-    FIMALGORITMO    reduce using rule 35 (cmdattrib -> ID ASSIGN expr .)
-    SENAO           reduce using rule 35 (cmdattrib -> ID ASSIGN expr .)
-    FIMSE           reduce using rule 35 (cmdattrib -> ID ASSIGN expr .)
-    ^               shift and go to state 48
-    MOD             shift and go to state 49
-    %               shift and go to state 50
-    \               shift and go to state 51
-    /               shift and go to state 52
-    *               shift and go to state 53
-    -               shift and go to state 54
-    +               shift and go to state 55
+    (20) cmdCondicao -> SE expressaoRelacional ENTAO . bloco SENAO bloco FIMSE
+    (21) cmdCondicao -> SE expressaoRelacional ENTAO . bloco FIMSE
+    (11) bloco -> . cmd bloco
+    (12) bloco -> . cmd
+    (13) cmd -> . cmdRepeticao
+    (14) cmd -> . cmdCondicao
+    (15) cmd -> . cmdleitura
+    (16) cmd -> . cmdescrita
+    (17) cmd -> . cmdattrib
+    (18) cmdRepeticao -> . ENQUANTO expressaoRelacional FACA bloco FIMENQUANTO
+    (20) cmdCondicao -> . SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE
+    (21) cmdCondicao -> . SE expressaoRelacional ENTAO bloco FIMSE
+    (19) cmdleitura -> . LEIA ( ID )
+    (38) cmdescrita -> . ESCREVA ( )
+    (39) cmdescrita -> . ESCREVA ( CARACTERE )
+    (40) cmdescrita -> . ESCREVA ( expr )
+    (35) cmdattrib -> . ID ASSIGN ( CARACTERE )
+    (36) cmdattrib -> . ID ASSIGN CARACTERE
+    (37) cmdattrib -> . ID ASSIGN expr
+    ENQUANTO        shift and go to state 19
+    SE              shift and go to state 20
+    LEIA            shift and go to state 21
+    ESCREVA         shift and go to state 23
+    ID              shift and go to state 22
 
+    bloco                          shift and go to state 90
+    cmd                            shift and go to state 13
+    cmdRepeticao                   shift and go to state 14
+    cmdCondicao                    shift and go to state 15
+    cmdleitura                     shift and go to state 16
+    cmdescrita                     shift and go to state 17
+    cmdattrib                      shift and go to state 18
 
 state 69
 
-    (36) cmdescrita -> ESCREVA ( ) .
-    SE              reduce using rule 36 (cmdescrita -> ESCREVA ( ) .)
-    LEIA            reduce using rule 36 (cmdescrita -> ESCREVA ( ) .)
-    ESCREVA         reduce using rule 36 (cmdescrita -> ESCREVA ( ) .)
-    ID              reduce using rule 36 (cmdescrita -> ESCREVA ( ) .)
-    FIMALGORITMO    reduce using rule 36 (cmdescrita -> ESCREVA ( ) .)
-    SENAO           reduce using rule 36 (cmdescrita -> ESCREVA ( ) .)
-    FIMSE           reduce using rule 36 (cmdescrita -> ESCREVA ( ) .)
+    (19) cmdleitura -> LEIA ( ID . )
+    )               shift and go to state 91
 
 
 state 70
 
-    (37) cmdescrita -> ESCREVA ( CARACTERE . )
-    )               shift and go to state 88
+    (35) cmdattrib -> ID ASSIGN ( . CARACTERE )
+    (53) expr -> ( . expr )
+    (41) expr -> . ID
+    (42) expr -> . REAL
+    (43) expr -> . INTEIRO
+    (44) expr -> . - expr
+    (45) expr -> . expr ^ expr
+    (46) expr -> . expr MOD expr
+    (47) expr -> . expr % expr
+    (48) expr -> . expr \ expr
+    (49) expr -> . expr / expr
+    (50) expr -> . expr * expr
+    (51) expr -> . expr - expr
+    (52) expr -> . expr + expr
+    (53) expr -> . ( expr )
+    CARACTERE       shift and go to state 92
+    ID              shift and go to state 35
+    REAL            shift and go to state 36
+    INTEIRO         shift and go to state 37
+    -               shift and go to state 38
+    (               shift and go to state 67
 
+    expr                           shift and go to state 89
 
 state 71
 
-    (38) cmdescrita -> ESCREVA ( expr . )
-    (43) expr -> expr . ^ expr
-    (44) expr -> expr . MOD expr
-    (45) expr -> expr . % expr
-    (46) expr -> expr . \ expr
-    (47) expr -> expr . / expr
-    (48) expr -> expr . * expr
-    (49) expr -> expr . - expr
-    (50) expr -> expr . + expr
-    )               shift and go to state 89
-    ^               shift and go to state 48
-    MOD             shift and go to state 49
-    %               shift and go to state 50
-    \               shift and go to state 51
-    /               shift and go to state 52
-    *               shift and go to state 53
-    -               shift and go to state 54
-    +               shift and go to state 55
+    (36) cmdattrib -> ID ASSIGN CARACTERE .
+    ENQUANTO        reduce using rule 36 (cmdattrib -> ID ASSIGN CARACTERE .)
+    SE              reduce using rule 36 (cmdattrib -> ID ASSIGN CARACTERE .)
+    LEIA            reduce using rule 36 (cmdattrib -> ID ASSIGN CARACTERE .)
+    ESCREVA         reduce using rule 36 (cmdattrib -> ID ASSIGN CARACTERE .)
+    ID              reduce using rule 36 (cmdattrib -> ID ASSIGN CARACTERE .)
+    FIMALGORITMO    reduce using rule 36 (cmdattrib -> ID ASSIGN CARACTERE .)
+    FIMENQUANTO     reduce using rule 36 (cmdattrib -> ID ASSIGN CARACTERE .)
+    SENAO           reduce using rule 36 (cmdattrib -> ID ASSIGN CARACTERE .)
+    FIMSE           reduce using rule 36 (cmdattrib -> ID ASSIGN CARACTERE .)
 
 
 state 72
 
-    (18) cmdCondicao -> SE expressaoRelacional ENTAO bloco . SENAO bloco FIMSE
-    (19) cmdCondicao -> SE expressaoRelacional ENTAO bloco . FIMSE
-    SENAO           shift and go to state 90
-    FIMSE           shift and go to state 91
+    (37) cmdattrib -> ID ASSIGN expr .
+    (45) expr -> expr . ^ expr
+    (46) expr -> expr . MOD expr
+    (47) expr -> expr . % expr
+    (48) expr -> expr . \ expr
+    (49) expr -> expr . / expr
+    (50) expr -> expr . * expr
+    (51) expr -> expr . - expr
+    (52) expr -> expr . + expr
+    ENQUANTO        reduce using rule 37 (cmdattrib -> ID ASSIGN expr .)
+    SE              reduce using rule 37 (cmdattrib -> ID ASSIGN expr .)
+    LEIA            reduce using rule 37 (cmdattrib -> ID ASSIGN expr .)
+    ESCREVA         reduce using rule 37 (cmdattrib -> ID ASSIGN expr .)
+    ID              reduce using rule 37 (cmdattrib -> ID ASSIGN expr .)
+    FIMALGORITMO    reduce using rule 37 (cmdattrib -> ID ASSIGN expr .)
+    FIMENQUANTO     reduce using rule 37 (cmdattrib -> ID ASSIGN expr .)
+    SENAO           reduce using rule 37 (cmdattrib -> ID ASSIGN expr .)
+    FIMSE           reduce using rule 37 (cmdattrib -> ID ASSIGN expr .)
+    ^               shift and go to state 51
+    MOD             shift and go to state 52
+    %               shift and go to state 53
+    \               shift and go to state 54
+    /               shift and go to state 55
+    *               shift and go to state 56
+    -               shift and go to state 57
+    +               shift and go to state 58
 
 
 state 73
 
-    (21) expressaoRelacional -> expressaoRelacional OP_BOOL termoRelacional .
-    ENTAO           reduce using rule 21 (expressaoRelacional -> expressaoRelacional OP_BOOL termoRelacional .)
-    OU              reduce using rule 21 (expressaoRelacional -> expressaoRelacional OP_BOOL termoRelacional .)
-    E               reduce using rule 21 (expressaoRelacional -> expressaoRelacional OP_BOOL termoRelacional .)
-    )               reduce using rule 21 (expressaoRelacional -> expressaoRelacional OP_BOOL termoRelacional .)
+    (38) cmdescrita -> ESCREVA ( ) .
+    ENQUANTO        reduce using rule 38 (cmdescrita -> ESCREVA ( ) .)
+    SE              reduce using rule 38 (cmdescrita -> ESCREVA ( ) .)
+    LEIA            reduce using rule 38 (cmdescrita -> ESCREVA ( ) .)
+    ESCREVA         reduce using rule 38 (cmdescrita -> ESCREVA ( ) .)
+    ID              reduce using rule 38 (cmdescrita -> ESCREVA ( ) .)
+    FIMALGORITMO    reduce using rule 38 (cmdescrita -> ESCREVA ( ) .)
+    FIMENQUANTO     reduce using rule 38 (cmdescrita -> ESCREVA ( ) .)
+    SENAO           reduce using rule 38 (cmdescrita -> ESCREVA ( ) .)
+    FIMSE           reduce using rule 38 (cmdescrita -> ESCREVA ( ) .)
 
 
 state 74
 
-    (22) termoRelacional -> ( expressaoRelacional ) .
-    ENTAO           reduce using rule 22 (termoRelacional -> ( expressaoRelacional ) .)
-    OU              reduce using rule 22 (termoRelacional -> ( expressaoRelacional ) .)
-    E               reduce using rule 22 (termoRelacional -> ( expressaoRelacional ) .)
-    )               reduce using rule 22 (termoRelacional -> ( expressaoRelacional ) .)
+    (39) cmdescrita -> ESCREVA ( CARACTERE . )
+    )               shift and go to state 93
 
 
 state 75
 
-    (51) expr -> ( expr ) .
-    ^               reduce using rule 51 (expr -> ( expr ) .)
-    MOD             reduce using rule 51 (expr -> ( expr ) .)
-    %               reduce using rule 51 (expr -> ( expr ) .)
-    \               reduce using rule 51 (expr -> ( expr ) .)
-    /               reduce using rule 51 (expr -> ( expr ) .)
-    *               reduce using rule 51 (expr -> ( expr ) .)
-    -               reduce using rule 51 (expr -> ( expr ) .)
-    +               reduce using rule 51 (expr -> ( expr ) .)
-    EQ              reduce using rule 51 (expr -> ( expr ) .)
-    GT              reduce using rule 51 (expr -> ( expr ) .)
-    GE              reduce using rule 51 (expr -> ( expr ) .)
-    LT              reduce using rule 51 (expr -> ( expr ) .)
-    LE              reduce using rule 51 (expr -> ( expr ) .)
-    ASSIGN          reduce using rule 51 (expr -> ( expr ) .)
-    NE              reduce using rule 51 (expr -> ( expr ) .)
-    )               reduce using rule 51 (expr -> ( expr ) .)
-    SE              reduce using rule 51 (expr -> ( expr ) .)
-    LEIA            reduce using rule 51 (expr -> ( expr ) .)
-    ESCREVA         reduce using rule 51 (expr -> ( expr ) .)
-    ID              reduce using rule 51 (expr -> ( expr ) .)
-    FIMALGORITMO    reduce using rule 51 (expr -> ( expr ) .)
-    SENAO           reduce using rule 51 (expr -> ( expr ) .)
-    FIMSE           reduce using rule 51 (expr -> ( expr ) .)
-    ENTAO           reduce using rule 51 (expr -> ( expr ) .)
-    OU              reduce using rule 51 (expr -> ( expr ) .)
-    E               reduce using rule 51 (expr -> ( expr ) .)
+    (40) cmdescrita -> ESCREVA ( expr . )
+    (45) expr -> expr . ^ expr
+    (46) expr -> expr . MOD expr
+    (47) expr -> expr . % expr
+    (48) expr -> expr . \ expr
+    (49) expr -> expr . / expr
+    (50) expr -> expr . * expr
+    (51) expr -> expr . - expr
+    (52) expr -> expr . + expr
+    )               shift and go to state 94
+    ^               shift and go to state 51
+    MOD             shift and go to state 52
+    %               shift and go to state 53
+    \               shift and go to state 54
+    /               shift and go to state 55
+    *               shift and go to state 56
+    -               shift and go to state 57
+    +               shift and go to state 58
 
 
 state 76
 
-    (23) termoRelacional -> expr OP_REL expr .
-    (43) expr -> expr . ^ expr
-    (44) expr -> expr . MOD expr
-    (45) expr -> expr . % expr
-    (46) expr -> expr . \ expr
-    (47) expr -> expr . / expr
-    (48) expr -> expr . * expr
-    (49) expr -> expr . - expr
-    (50) expr -> expr . + expr
-    ENTAO           reduce using rule 23 (termoRelacional -> expr OP_REL expr .)
-    OU              reduce using rule 23 (termoRelacional -> expr OP_REL expr .)
-    E               reduce using rule 23 (termoRelacional -> expr OP_REL expr .)
-    )               reduce using rule 23 (termoRelacional -> expr OP_REL expr .)
-    ^               shift and go to state 48
-    MOD             shift and go to state 49
-    %               shift and go to state 50
-    \               shift and go to state 51
-    /               shift and go to state 52
-    *               shift and go to state 53
-    -               shift and go to state 54
-    +               shift and go to state 55
+    (18) cmdRepeticao -> ENQUANTO expressaoRelacional FACA bloco . FIMENQUANTO
+    FIMENQUANTO     shift and go to state 95
 
 
 state 77
 
-    (43) expr -> expr ^ expr .
-    (43) expr -> expr . ^ expr
-    (44) expr -> expr . MOD expr
-    (45) expr -> expr . % expr
-    (46) expr -> expr . \ expr
-    (47) expr -> expr . / expr
-    (48) expr -> expr . * expr
-    (49) expr -> expr . - expr
-    (50) expr -> expr . + expr
-    MOD             reduce using rule 43 (expr -> expr ^ expr .)
-    %               reduce using rule 43 (expr -> expr ^ expr .)
-    \               reduce using rule 43 (expr -> expr ^ expr .)
-    /               reduce using rule 43 (expr -> expr ^ expr .)
-    *               reduce using rule 43 (expr -> expr ^ expr .)
-    -               reduce using rule 43 (expr -> expr ^ expr .)
-    +               reduce using rule 43 (expr -> expr ^ expr .)
-    EQ              reduce using rule 43 (expr -> expr ^ expr .)
-    GT              reduce using rule 43 (expr -> expr ^ expr .)
-    GE              reduce using rule 43 (expr -> expr ^ expr .)
-    LT              reduce using rule 43 (expr -> expr ^ expr .)
-    LE              reduce using rule 43 (expr -> expr ^ expr .)
-    ASSIGN          reduce using rule 43 (expr -> expr ^ expr .)
-    NE              reduce using rule 43 (expr -> expr ^ expr .)
-    )               reduce using rule 43 (expr -> expr ^ expr .)
-    SE              reduce using rule 43 (expr -> expr ^ expr .)
-    LEIA            reduce using rule 43 (expr -> expr ^ expr .)
-    ESCREVA         reduce using rule 43 (expr -> expr ^ expr .)
-    ID              reduce using rule 43 (expr -> expr ^ expr .)
-    FIMALGORITMO    reduce using rule 43 (expr -> expr ^ expr .)
-    SENAO           reduce using rule 43 (expr -> expr ^ expr .)
-    FIMSE           reduce using rule 43 (expr -> expr ^ expr .)
-    ENTAO           reduce using rule 43 (expr -> expr ^ expr .)
-    OU              reduce using rule 43 (expr -> expr ^ expr .)
-    E               reduce using rule 43 (expr -> expr ^ expr .)
-    ^               shift and go to state 48
+    (23) expressaoRelacional -> expressaoRelacional OP_BOOL termoRelacional .
+    FACA            reduce using rule 23 (expressaoRelacional -> expressaoRelacional OP_BOOL termoRelacional .)
+    OU              reduce using rule 23 (expressaoRelacional -> expressaoRelacional OP_BOOL termoRelacional .)
+    E               reduce using rule 23 (expressaoRelacional -> expressaoRelacional OP_BOOL termoRelacional .)
+    ENTAO           reduce using rule 23 (expressaoRelacional -> expressaoRelacional OP_BOOL termoRelacional .)
+    )               reduce using rule 23 (expressaoRelacional -> expressaoRelacional OP_BOOL termoRelacional .)
 
 
 state 78
 
-    (44) expr -> expr MOD expr .
-    (43) expr -> expr . ^ expr
-    (44) expr -> expr . MOD expr
-    (45) expr -> expr . % expr
-    (46) expr -> expr . \ expr
-    (47) expr -> expr . / expr
-    (48) expr -> expr . * expr
-    (49) expr -> expr . - expr
-    (50) expr -> expr . + expr
-    MOD             reduce using rule 44 (expr -> expr MOD expr .)
-    %               reduce using rule 44 (expr -> expr MOD expr .)
-    \               reduce using rule 44 (expr -> expr MOD expr .)
-    /               reduce using rule 44 (expr -> expr MOD expr .)
-    *               reduce using rule 44 (expr -> expr MOD expr .)
-    -               reduce using rule 44 (expr -> expr MOD expr .)
-    +               reduce using rule 44 (expr -> expr MOD expr .)
-    EQ              reduce using rule 44 (expr -> expr MOD expr .)
-    GT              reduce using rule 44 (expr -> expr MOD expr .)
-    GE              reduce using rule 44 (expr -> expr MOD expr .)
-    LT              reduce using rule 44 (expr -> expr MOD expr .)
-    LE              reduce using rule 44 (expr -> expr MOD expr .)
-    ASSIGN          reduce using rule 44 (expr -> expr MOD expr .)
-    NE              reduce using rule 44 (expr -> expr MOD expr .)
-    )               reduce using rule 44 (expr -> expr MOD expr .)
-    SE              reduce using rule 44 (expr -> expr MOD expr .)
-    LEIA            reduce using rule 44 (expr -> expr MOD expr .)
-    ESCREVA         reduce using rule 44 (expr -> expr MOD expr .)
-    ID              reduce using rule 44 (expr -> expr MOD expr .)
-    FIMALGORITMO    reduce using rule 44 (expr -> expr MOD expr .)
-    SENAO           reduce using rule 44 (expr -> expr MOD expr .)
-    FIMSE           reduce using rule 44 (expr -> expr MOD expr .)
-    ENTAO           reduce using rule 44 (expr -> expr MOD expr .)
-    OU              reduce using rule 44 (expr -> expr MOD expr .)
-    E               reduce using rule 44 (expr -> expr MOD expr .)
-    ^               shift and go to state 48
+    (24) termoRelacional -> ( expressaoRelacional ) .
+    FACA            reduce using rule 24 (termoRelacional -> ( expressaoRelacional ) .)
+    OU              reduce using rule 24 (termoRelacional -> ( expressaoRelacional ) .)
+    E               reduce using rule 24 (termoRelacional -> ( expressaoRelacional ) .)
+    ENTAO           reduce using rule 24 (termoRelacional -> ( expressaoRelacional ) .)
+    )               reduce using rule 24 (termoRelacional -> ( expressaoRelacional ) .)
 
 
 state 79
 
-    (45) expr -> expr % expr .
-    (43) expr -> expr . ^ expr
-    (44) expr -> expr . MOD expr
-    (45) expr -> expr . % expr
-    (46) expr -> expr . \ expr
-    (47) expr -> expr . / expr
-    (48) expr -> expr . * expr
-    (49) expr -> expr . - expr
-    (50) expr -> expr . + expr
-    MOD             reduce using rule 45 (expr -> expr % expr .)
-    %               reduce using rule 45 (expr -> expr % expr .)
-    \               reduce using rule 45 (expr -> expr % expr .)
-    /               reduce using rule 45 (expr -> expr % expr .)
-    *               reduce using rule 45 (expr -> expr % expr .)
-    -               reduce using rule 45 (expr -> expr % expr .)
-    +               reduce using rule 45 (expr -> expr % expr .)
-    EQ              reduce using rule 45 (expr -> expr % expr .)
-    GT              reduce using rule 45 (expr -> expr % expr .)
-    GE              reduce using rule 45 (expr -> expr % expr .)
-    LT              reduce using rule 45 (expr -> expr % expr .)
-    LE              reduce using rule 45 (expr -> expr % expr .)
-    ASSIGN          reduce using rule 45 (expr -> expr % expr .)
-    NE              reduce using rule 45 (expr -> expr % expr .)
-    )               reduce using rule 45 (expr -> expr % expr .)
-    SE              reduce using rule 45 (expr -> expr % expr .)
-    LEIA            reduce using rule 45 (expr -> expr % expr .)
-    ESCREVA         reduce using rule 45 (expr -> expr % expr .)
-    ID              reduce using rule 45 (expr -> expr % expr .)
-    FIMALGORITMO    reduce using rule 45 (expr -> expr % expr .)
-    SENAO           reduce using rule 45 (expr -> expr % expr .)
-    FIMSE           reduce using rule 45 (expr -> expr % expr .)
-    ENTAO           reduce using rule 45 (expr -> expr % expr .)
-    OU              reduce using rule 45 (expr -> expr % expr .)
-    E               reduce using rule 45 (expr -> expr % expr .)
-    ^               shift and go to state 48
+    (53) expr -> ( expr ) .
+    ^               reduce using rule 53 (expr -> ( expr ) .)
+    MOD             reduce using rule 53 (expr -> ( expr ) .)
+    %               reduce using rule 53 (expr -> ( expr ) .)
+    \               reduce using rule 53 (expr -> ( expr ) .)
+    /               reduce using rule 53 (expr -> ( expr ) .)
+    *               reduce using rule 53 (expr -> ( expr ) .)
+    -               reduce using rule 53 (expr -> ( expr ) .)
+    +               reduce using rule 53 (expr -> ( expr ) .)
+    EQ              reduce using rule 53 (expr -> ( expr ) .)
+    GT              reduce using rule 53 (expr -> ( expr ) .)
+    GE              reduce using rule 53 (expr -> ( expr ) .)
+    LT              reduce using rule 53 (expr -> ( expr ) .)
+    LE              reduce using rule 53 (expr -> ( expr ) .)
+    ASSIGN          reduce using rule 53 (expr -> ( expr ) .)
+    NE              reduce using rule 53 (expr -> ( expr ) .)
+    )               reduce using rule 53 (expr -> ( expr ) .)
+    ENQUANTO        reduce using rule 53 (expr -> ( expr ) .)
+    SE              reduce using rule 53 (expr -> ( expr ) .)
+    LEIA            reduce using rule 53 (expr -> ( expr ) .)
+    ESCREVA         reduce using rule 53 (expr -> ( expr ) .)
+    ID              reduce using rule 53 (expr -> ( expr ) .)
+    FIMALGORITMO    reduce using rule 53 (expr -> ( expr ) .)
+    FIMENQUANTO     reduce using rule 53 (expr -> ( expr ) .)
+    SENAO           reduce using rule 53 (expr -> ( expr ) .)
+    FIMSE           reduce using rule 53 (expr -> ( expr ) .)
+    FACA            reduce using rule 53 (expr -> ( expr ) .)
+    OU              reduce using rule 53 (expr -> ( expr ) .)
+    E               reduce using rule 53 (expr -> ( expr ) .)
+    ENTAO           reduce using rule 53 (expr -> ( expr ) .)
 
 
 state 80
 
-    (46) expr -> expr \ expr .
-    (43) expr -> expr . ^ expr
-    (44) expr -> expr . MOD expr
-    (45) expr -> expr . % expr
-    (46) expr -> expr . \ expr
-    (47) expr -> expr . / expr
-    (48) expr -> expr . * expr
-    (49) expr -> expr . - expr
-    (50) expr -> expr . + expr
-    MOD             reduce using rule 46 (expr -> expr \ expr .)
-    %               reduce using rule 46 (expr -> expr \ expr .)
-    \               reduce using rule 46 (expr -> expr \ expr .)
-    /               reduce using rule 46 (expr -> expr \ expr .)
-    *               reduce using rule 46 (expr -> expr \ expr .)
-    -               reduce using rule 46 (expr -> expr \ expr .)
-    +               reduce using rule 46 (expr -> expr \ expr .)
-    EQ              reduce using rule 46 (expr -> expr \ expr .)
-    GT              reduce using rule 46 (expr -> expr \ expr .)
-    GE              reduce using rule 46 (expr -> expr \ expr .)
-    LT              reduce using rule 46 (expr -> expr \ expr .)
-    LE              reduce using rule 46 (expr -> expr \ expr .)
-    ASSIGN          reduce using rule 46 (expr -> expr \ expr .)
-    NE              reduce using rule 46 (expr -> expr \ expr .)
-    )               reduce using rule 46 (expr -> expr \ expr .)
-    SE              reduce using rule 46 (expr -> expr \ expr .)
-    LEIA            reduce using rule 46 (expr -> expr \ expr .)
-    ESCREVA         reduce using rule 46 (expr -> expr \ expr .)
-    ID              reduce using rule 46 (expr -> expr \ expr .)
-    FIMALGORITMO    reduce using rule 46 (expr -> expr \ expr .)
-    SENAO           reduce using rule 46 (expr -> expr \ expr .)
-    FIMSE           reduce using rule 46 (expr -> expr \ expr .)
-    ENTAO           reduce using rule 46 (expr -> expr \ expr .)
-    OU              reduce using rule 46 (expr -> expr \ expr .)
-    E               reduce using rule 46 (expr -> expr \ expr .)
-    ^               shift and go to state 48
+    (25) termoRelacional -> expr OP_REL expr .
+    (45) expr -> expr . ^ expr
+    (46) expr -> expr . MOD expr
+    (47) expr -> expr . % expr
+    (48) expr -> expr . \ expr
+    (49) expr -> expr . / expr
+    (50) expr -> expr . * expr
+    (51) expr -> expr . - expr
+    (52) expr -> expr . + expr
+    FACA            reduce using rule 25 (termoRelacional -> expr OP_REL expr .)
+    OU              reduce using rule 25 (termoRelacional -> expr OP_REL expr .)
+    E               reduce using rule 25 (termoRelacional -> expr OP_REL expr .)
+    ENTAO           reduce using rule 25 (termoRelacional -> expr OP_REL expr .)
+    )               reduce using rule 25 (termoRelacional -> expr OP_REL expr .)
+    ^               shift and go to state 51
+    MOD             shift and go to state 52
+    %               shift and go to state 53
+    \               shift and go to state 54
+    /               shift and go to state 55
+    *               shift and go to state 56
+    -               shift and go to state 57
+    +               shift and go to state 58
 
 
 state 81
 
-    (47) expr -> expr / expr .
-    (43) expr -> expr . ^ expr
-    (44) expr -> expr . MOD expr
-    (45) expr -> expr . % expr
-    (46) expr -> expr . \ expr
-    (47) expr -> expr . / expr
-    (48) expr -> expr . * expr
-    (49) expr -> expr . - expr
-    (50) expr -> expr . + expr
-    MOD             reduce using rule 47 (expr -> expr / expr .)
-    %               reduce using rule 47 (expr -> expr / expr .)
-    \               reduce using rule 47 (expr -> expr / expr .)
-    /               reduce using rule 47 (expr -> expr / expr .)
-    *               reduce using rule 47 (expr -> expr / expr .)
-    -               reduce using rule 47 (expr -> expr / expr .)
-    +               reduce using rule 47 (expr -> expr / expr .)
-    EQ              reduce using rule 47 (expr -> expr / expr .)
-    GT              reduce using rule 47 (expr -> expr / expr .)
-    GE              reduce using rule 47 (expr -> expr / expr .)
-    LT              reduce using rule 47 (expr -> expr / expr .)
-    LE              reduce using rule 47 (expr -> expr / expr .)
-    ASSIGN          reduce using rule 47 (expr -> expr / expr .)
-    NE              reduce using rule 47 (expr -> expr / expr .)
-    )               reduce using rule 47 (expr -> expr / expr .)
-    SE              reduce using rule 47 (expr -> expr / expr .)
-    LEIA            reduce using rule 47 (expr -> expr / expr .)
-    ESCREVA         reduce using rule 47 (expr -> expr / expr .)
-    ID              reduce using rule 47 (expr -> expr / expr .)
-    FIMALGORITMO    reduce using rule 47 (expr -> expr / expr .)
-    SENAO           reduce using rule 47 (expr -> expr / expr .)
-    FIMSE           reduce using rule 47 (expr -> expr / expr .)
-    ENTAO           reduce using rule 47 (expr -> expr / expr .)
-    OU              reduce using rule 47 (expr -> expr / expr .)
-    E               reduce using rule 47 (expr -> expr / expr .)
-    ^               shift and go to state 48
+    (45) expr -> expr ^ expr .
+    (45) expr -> expr . ^ expr
+    (46) expr -> expr . MOD expr
+    (47) expr -> expr . % expr
+    (48) expr -> expr . \ expr
+    (49) expr -> expr . / expr
+    (50) expr -> expr . * expr
+    (51) expr -> expr . - expr
+    (52) expr -> expr . + expr
+    MOD             reduce using rule 45 (expr -> expr ^ expr .)
+    %               reduce using rule 45 (expr -> expr ^ expr .)
+    \               reduce using rule 45 (expr -> expr ^ expr .)
+    /               reduce using rule 45 (expr -> expr ^ expr .)
+    *               reduce using rule 45 (expr -> expr ^ expr .)
+    -               reduce using rule 45 (expr -> expr ^ expr .)
+    +               reduce using rule 45 (expr -> expr ^ expr .)
+    EQ              reduce using rule 45 (expr -> expr ^ expr .)
+    GT              reduce using rule 45 (expr -> expr ^ expr .)
+    GE              reduce using rule 45 (expr -> expr ^ expr .)
+    LT              reduce using rule 45 (expr -> expr ^ expr .)
+    LE              reduce using rule 45 (expr -> expr ^ expr .)
+    ASSIGN          reduce using rule 45 (expr -> expr ^ expr .)
+    NE              reduce using rule 45 (expr -> expr ^ expr .)
+    )               reduce using rule 45 (expr -> expr ^ expr .)
+    ENQUANTO        reduce using rule 45 (expr -> expr ^ expr .)
+    SE              reduce using rule 45 (expr -> expr ^ expr .)
+    LEIA            reduce using rule 45 (expr -> expr ^ expr .)
+    ESCREVA         reduce using rule 45 (expr -> expr ^ expr .)
+    ID              reduce using rule 45 (expr -> expr ^ expr .)
+    FIMALGORITMO    reduce using rule 45 (expr -> expr ^ expr .)
+    FIMENQUANTO     reduce using rule 45 (expr -> expr ^ expr .)
+    SENAO           reduce using rule 45 (expr -> expr ^ expr .)
+    FIMSE           reduce using rule 45 (expr -> expr ^ expr .)
+    FACA            reduce using rule 45 (expr -> expr ^ expr .)
+    OU              reduce using rule 45 (expr -> expr ^ expr .)
+    E               reduce using rule 45 (expr -> expr ^ expr .)
+    ENTAO           reduce using rule 45 (expr -> expr ^ expr .)
+    ^               shift and go to state 51
 
 
 state 82
 
-    (48) expr -> expr * expr .
-    (43) expr -> expr . ^ expr
-    (44) expr -> expr . MOD expr
-    (45) expr -> expr . % expr
-    (46) expr -> expr . \ expr
-    (47) expr -> expr . / expr
-    (48) expr -> expr . * expr
-    (49) expr -> expr . - expr
-    (50) expr -> expr . + expr
-    MOD             reduce using rule 48 (expr -> expr * expr .)
-    %               reduce using rule 48 (expr -> expr * expr .)
-    \               reduce using rule 48 (expr -> expr * expr .)
-    /               reduce using rule 48 (expr -> expr * expr .)
-    *               reduce using rule 48 (expr -> expr * expr .)
-    -               reduce using rule 48 (expr -> expr * expr .)
-    +               reduce using rule 48 (expr -> expr * expr .)
-    EQ              reduce using rule 48 (expr -> expr * expr .)
-    GT              reduce using rule 48 (expr -> expr * expr .)
-    GE              reduce using rule 48 (expr -> expr * expr .)
-    LT              reduce using rule 48 (expr -> expr * expr .)
-    LE              reduce using rule 48 (expr -> expr * expr .)
-    ASSIGN          reduce using rule 48 (expr -> expr * expr .)
-    NE              reduce using rule 48 (expr -> expr * expr .)
-    )               reduce using rule 48 (expr -> expr * expr .)
-    SE              reduce using rule 48 (expr -> expr * expr .)
-    LEIA            reduce using rule 48 (expr -> expr * expr .)
-    ESCREVA         reduce using rule 48 (expr -> expr * expr .)
-    ID              reduce using rule 48 (expr -> expr * expr .)
-    FIMALGORITMO    reduce using rule 48 (expr -> expr * expr .)
-    SENAO           reduce using rule 48 (expr -> expr * expr .)
-    FIMSE           reduce using rule 48 (expr -> expr * expr .)
-    ENTAO           reduce using rule 48 (expr -> expr * expr .)
-    OU              reduce using rule 48 (expr -> expr * expr .)
-    E               reduce using rule 48 (expr -> expr * expr .)
-    ^               shift and go to state 48
+    (46) expr -> expr MOD expr .
+    (45) expr -> expr . ^ expr
+    (46) expr -> expr . MOD expr
+    (47) expr -> expr . % expr
+    (48) expr -> expr . \ expr
+    (49) expr -> expr . / expr
+    (50) expr -> expr . * expr
+    (51) expr -> expr . - expr
+    (52) expr -> expr . + expr
+    MOD             reduce using rule 46 (expr -> expr MOD expr .)
+    %               reduce using rule 46 (expr -> expr MOD expr .)
+    \               reduce using rule 46 (expr -> expr MOD expr .)
+    /               reduce using rule 46 (expr -> expr MOD expr .)
+    *               reduce using rule 46 (expr -> expr MOD expr .)
+    -               reduce using rule 46 (expr -> expr MOD expr .)
+    +               reduce using rule 46 (expr -> expr MOD expr .)
+    EQ              reduce using rule 46 (expr -> expr MOD expr .)
+    GT              reduce using rule 46 (expr -> expr MOD expr .)
+    GE              reduce using rule 46 (expr -> expr MOD expr .)
+    LT              reduce using rule 46 (expr -> expr MOD expr .)
+    LE              reduce using rule 46 (expr -> expr MOD expr .)
+    ASSIGN          reduce using rule 46 (expr -> expr MOD expr .)
+    NE              reduce using rule 46 (expr -> expr MOD expr .)
+    )               reduce using rule 46 (expr -> expr MOD expr .)
+    ENQUANTO        reduce using rule 46 (expr -> expr MOD expr .)
+    SE              reduce using rule 46 (expr -> expr MOD expr .)
+    LEIA            reduce using rule 46 (expr -> expr MOD expr .)
+    ESCREVA         reduce using rule 46 (expr -> expr MOD expr .)
+    ID              reduce using rule 46 (expr -> expr MOD expr .)
+    FIMALGORITMO    reduce using rule 46 (expr -> expr MOD expr .)
+    FIMENQUANTO     reduce using rule 46 (expr -> expr MOD expr .)
+    SENAO           reduce using rule 46 (expr -> expr MOD expr .)
+    FIMSE           reduce using rule 46 (expr -> expr MOD expr .)
+    FACA            reduce using rule 46 (expr -> expr MOD expr .)
+    OU              reduce using rule 46 (expr -> expr MOD expr .)
+    E               reduce using rule 46 (expr -> expr MOD expr .)
+    ENTAO           reduce using rule 46 (expr -> expr MOD expr .)
+    ^               shift and go to state 51
 
 
 state 83
 
-    (49) expr -> expr - expr .
-    (43) expr -> expr . ^ expr
-    (44) expr -> expr . MOD expr
-    (45) expr -> expr . % expr
-    (46) expr -> expr . \ expr
-    (47) expr -> expr . / expr
-    (48) expr -> expr . * expr
-    (49) expr -> expr . - expr
-    (50) expr -> expr . + expr
-    -               reduce using rule 49 (expr -> expr - expr .)
-    +               reduce using rule 49 (expr -> expr - expr .)
-    EQ              reduce using rule 49 (expr -> expr - expr .)
-    GT              reduce using rule 49 (expr -> expr - expr .)
-    GE              reduce using rule 49 (expr -> expr - expr .)
-    LT              reduce using rule 49 (expr -> expr - expr .)
-    LE              reduce using rule 49 (expr -> expr - expr .)
-    ASSIGN          reduce using rule 49 (expr -> expr - expr .)
-    NE              reduce using rule 49 (expr -> expr - expr .)
-    )               reduce using rule 49 (expr -> expr - expr .)
-    SE              reduce using rule 49 (expr -> expr - expr .)
-    LEIA            reduce using rule 49 (expr -> expr - expr .)
-    ESCREVA         reduce using rule 49 (expr -> expr - expr .)
-    ID              reduce using rule 49 (expr -> expr - expr .)
-    FIMALGORITMO    reduce using rule 49 (expr -> expr - expr .)
-    SENAO           reduce using rule 49 (expr -> expr - expr .)
-    FIMSE           reduce using rule 49 (expr -> expr - expr .)
-    ENTAO           reduce using rule 49 (expr -> expr - expr .)
-    OU              reduce using rule 49 (expr -> expr - expr .)
-    E               reduce using rule 49 (expr -> expr - expr .)
-    ^               shift and go to state 48
-    MOD             shift and go to state 49
-    %               shift and go to state 50
-    \               shift and go to state 51
-    /               shift and go to state 52
-    *               shift and go to state 53
+    (47) expr -> expr % expr .
+    (45) expr -> expr . ^ expr
+    (46) expr -> expr . MOD expr
+    (47) expr -> expr . % expr
+    (48) expr -> expr . \ expr
+    (49) expr -> expr . / expr
+    (50) expr -> expr . * expr
+    (51) expr -> expr . - expr
+    (52) expr -> expr . + expr
+    MOD             reduce using rule 47 (expr -> expr % expr .)
+    %               reduce using rule 47 (expr -> expr % expr .)
+    \               reduce using rule 47 (expr -> expr % expr .)
+    /               reduce using rule 47 (expr -> expr % expr .)
+    *               reduce using rule 47 (expr -> expr % expr .)
+    -               reduce using rule 47 (expr -> expr % expr .)
+    +               reduce using rule 47 (expr -> expr % expr .)
+    EQ              reduce using rule 47 (expr -> expr % expr .)
+    GT              reduce using rule 47 (expr -> expr % expr .)
+    GE              reduce using rule 47 (expr -> expr % expr .)
+    LT              reduce using rule 47 (expr -> expr % expr .)
+    LE              reduce using rule 47 (expr -> expr % expr .)
+    ASSIGN          reduce using rule 47 (expr -> expr % expr .)
+    NE              reduce using rule 47 (expr -> expr % expr .)
+    )               reduce using rule 47 (expr -> expr % expr .)
+    ENQUANTO        reduce using rule 47 (expr -> expr % expr .)
+    SE              reduce using rule 47 (expr -> expr % expr .)
+    LEIA            reduce using rule 47 (expr -> expr % expr .)
+    ESCREVA         reduce using rule 47 (expr -> expr % expr .)
+    ID              reduce using rule 47 (expr -> expr % expr .)
+    FIMALGORITMO    reduce using rule 47 (expr -> expr % expr .)
+    FIMENQUANTO     reduce using rule 47 (expr -> expr % expr .)
+    SENAO           reduce using rule 47 (expr -> expr % expr .)
+    FIMSE           reduce using rule 47 (expr -> expr % expr .)
+    FACA            reduce using rule 47 (expr -> expr % expr .)
+    OU              reduce using rule 47 (expr -> expr % expr .)
+    E               reduce using rule 47 (expr -> expr % expr .)
+    ENTAO           reduce using rule 47 (expr -> expr % expr .)
+    ^               shift and go to state 51
 
 
 state 84
 
-    (50) expr -> expr + expr .
-    (43) expr -> expr . ^ expr
-    (44) expr -> expr . MOD expr
-    (45) expr -> expr . % expr
-    (46) expr -> expr . \ expr
-    (47) expr -> expr . / expr
-    (48) expr -> expr . * expr
-    (49) expr -> expr . - expr
-    (50) expr -> expr . + expr
-    -               reduce using rule 50 (expr -> expr + expr .)
-    +               reduce using rule 50 (expr -> expr + expr .)
-    EQ              reduce using rule 50 (expr -> expr + expr .)
-    GT              reduce using rule 50 (expr -> expr + expr .)
-    GE              reduce using rule 50 (expr -> expr + expr .)
-    LT              reduce using rule 50 (expr -> expr + expr .)
-    LE              reduce using rule 50 (expr -> expr + expr .)
-    ASSIGN          reduce using rule 50 (expr -> expr + expr .)
-    NE              reduce using rule 50 (expr -> expr + expr .)
-    )               reduce using rule 50 (expr -> expr + expr .)
-    SE              reduce using rule 50 (expr -> expr + expr .)
-    LEIA            reduce using rule 50 (expr -> expr + expr .)
-    ESCREVA         reduce using rule 50 (expr -> expr + expr .)
-    ID              reduce using rule 50 (expr -> expr + expr .)
-    FIMALGORITMO    reduce using rule 50 (expr -> expr + expr .)
-    SENAO           reduce using rule 50 (expr -> expr + expr .)
-    FIMSE           reduce using rule 50 (expr -> expr + expr .)
-    ENTAO           reduce using rule 50 (expr -> expr + expr .)
-    OU              reduce using rule 50 (expr -> expr + expr .)
-    E               reduce using rule 50 (expr -> expr + expr .)
-    ^               shift and go to state 48
-    MOD             shift and go to state 49
-    %               shift and go to state 50
-    \               shift and go to state 51
-    /               shift and go to state 52
-    *               shift and go to state 53
+    (48) expr -> expr \ expr .
+    (45) expr -> expr . ^ expr
+    (46) expr -> expr . MOD expr
+    (47) expr -> expr . % expr
+    (48) expr -> expr . \ expr
+    (49) expr -> expr . / expr
+    (50) expr -> expr . * expr
+    (51) expr -> expr . - expr
+    (52) expr -> expr . + expr
+    MOD             reduce using rule 48 (expr -> expr \ expr .)
+    %               reduce using rule 48 (expr -> expr \ expr .)
+    \               reduce using rule 48 (expr -> expr \ expr .)
+    /               reduce using rule 48 (expr -> expr \ expr .)
+    *               reduce using rule 48 (expr -> expr \ expr .)
+    -               reduce using rule 48 (expr -> expr \ expr .)
+    +               reduce using rule 48 (expr -> expr \ expr .)
+    EQ              reduce using rule 48 (expr -> expr \ expr .)
+    GT              reduce using rule 48 (expr -> expr \ expr .)
+    GE              reduce using rule 48 (expr -> expr \ expr .)
+    LT              reduce using rule 48 (expr -> expr \ expr .)
+    LE              reduce using rule 48 (expr -> expr \ expr .)
+    ASSIGN          reduce using rule 48 (expr -> expr \ expr .)
+    NE              reduce using rule 48 (expr -> expr \ expr .)
+    )               reduce using rule 48 (expr -> expr \ expr .)
+    ENQUANTO        reduce using rule 48 (expr -> expr \ expr .)
+    SE              reduce using rule 48 (expr -> expr \ expr .)
+    LEIA            reduce using rule 48 (expr -> expr \ expr .)
+    ESCREVA         reduce using rule 48 (expr -> expr \ expr .)
+    ID              reduce using rule 48 (expr -> expr \ expr .)
+    FIMALGORITMO    reduce using rule 48 (expr -> expr \ expr .)
+    FIMENQUANTO     reduce using rule 48 (expr -> expr \ expr .)
+    SENAO           reduce using rule 48 (expr -> expr \ expr .)
+    FIMSE           reduce using rule 48 (expr -> expr \ expr .)
+    FACA            reduce using rule 48 (expr -> expr \ expr .)
+    OU              reduce using rule 48 (expr -> expr \ expr .)
+    E               reduce using rule 48 (expr -> expr \ expr .)
+    ENTAO           reduce using rule 48 (expr -> expr \ expr .)
+    ^               shift and go to state 51
 
 
 state 85
 
-    (51) expr -> ( expr . )
-    (43) expr -> expr . ^ expr
-    (44) expr -> expr . MOD expr
-    (45) expr -> expr . % expr
-    (46) expr -> expr . \ expr
-    (47) expr -> expr . / expr
-    (48) expr -> expr . * expr
-    (49) expr -> expr . - expr
-    (50) expr -> expr . + expr
-    )               shift and go to state 75
-    ^               shift and go to state 48
-    MOD             shift and go to state 49
-    %               shift and go to state 50
-    \               shift and go to state 51
-    /               shift and go to state 52
-    *               shift and go to state 53
-    -               shift and go to state 54
-    +               shift and go to state 55
+    (49) expr -> expr / expr .
+    (45) expr -> expr . ^ expr
+    (46) expr -> expr . MOD expr
+    (47) expr -> expr . % expr
+    (48) expr -> expr . \ expr
+    (49) expr -> expr . / expr
+    (50) expr -> expr . * expr
+    (51) expr -> expr . - expr
+    (52) expr -> expr . + expr
+    MOD             reduce using rule 49 (expr -> expr / expr .)
+    %               reduce using rule 49 (expr -> expr / expr .)
+    \               reduce using rule 49 (expr -> expr / expr .)
+    /               reduce using rule 49 (expr -> expr / expr .)
+    *               reduce using rule 49 (expr -> expr / expr .)
+    -               reduce using rule 49 (expr -> expr / expr .)
+    +               reduce using rule 49 (expr -> expr / expr .)
+    EQ              reduce using rule 49 (expr -> expr / expr .)
+    GT              reduce using rule 49 (expr -> expr / expr .)
+    GE              reduce using rule 49 (expr -> expr / expr .)
+    LT              reduce using rule 49 (expr -> expr / expr .)
+    LE              reduce using rule 49 (expr -> expr / expr .)
+    ASSIGN          reduce using rule 49 (expr -> expr / expr .)
+    NE              reduce using rule 49 (expr -> expr / expr .)
+    )               reduce using rule 49 (expr -> expr / expr .)
+    ENQUANTO        reduce using rule 49 (expr -> expr / expr .)
+    SE              reduce using rule 49 (expr -> expr / expr .)
+    LEIA            reduce using rule 49 (expr -> expr / expr .)
+    ESCREVA         reduce using rule 49 (expr -> expr / expr .)
+    ID              reduce using rule 49 (expr -> expr / expr .)
+    FIMALGORITMO    reduce using rule 49 (expr -> expr / expr .)
+    FIMENQUANTO     reduce using rule 49 (expr -> expr / expr .)
+    SENAO           reduce using rule 49 (expr -> expr / expr .)
+    FIMSE           reduce using rule 49 (expr -> expr / expr .)
+    FACA            reduce using rule 49 (expr -> expr / expr .)
+    OU              reduce using rule 49 (expr -> expr / expr .)
+    E               reduce using rule 49 (expr -> expr / expr .)
+    ENTAO           reduce using rule 49 (expr -> expr / expr .)
+    ^               shift and go to state 51
 
 
 state 86
 
-    (17) cmdleitura -> LEIA ( ID ) .
-    SE              reduce using rule 17 (cmdleitura -> LEIA ( ID ) .)
-    LEIA            reduce using rule 17 (cmdleitura -> LEIA ( ID ) .)
-    ESCREVA         reduce using rule 17 (cmdleitura -> LEIA ( ID ) .)
-    ID              reduce using rule 17 (cmdleitura -> LEIA ( ID ) .)
-    FIMALGORITMO    reduce using rule 17 (cmdleitura -> LEIA ( ID ) .)
-    SENAO           reduce using rule 17 (cmdleitura -> LEIA ( ID ) .)
-    FIMSE           reduce using rule 17 (cmdleitura -> LEIA ( ID ) .)
+    (50) expr -> expr * expr .
+    (45) expr -> expr . ^ expr
+    (46) expr -> expr . MOD expr
+    (47) expr -> expr . % expr
+    (48) expr -> expr . \ expr
+    (49) expr -> expr . / expr
+    (50) expr -> expr . * expr
+    (51) expr -> expr . - expr
+    (52) expr -> expr . + expr
+    MOD             reduce using rule 50 (expr -> expr * expr .)
+    %               reduce using rule 50 (expr -> expr * expr .)
+    \               reduce using rule 50 (expr -> expr * expr .)
+    /               reduce using rule 50 (expr -> expr * expr .)
+    *               reduce using rule 50 (expr -> expr * expr .)
+    -               reduce using rule 50 (expr -> expr * expr .)
+    +               reduce using rule 50 (expr -> expr * expr .)
+    EQ              reduce using rule 50 (expr -> expr * expr .)
+    GT              reduce using rule 50 (expr -> expr * expr .)
+    GE              reduce using rule 50 (expr -> expr * expr .)
+    LT              reduce using rule 50 (expr -> expr * expr .)
+    LE              reduce using rule 50 (expr -> expr * expr .)
+    ASSIGN          reduce using rule 50 (expr -> expr * expr .)
+    NE              reduce using rule 50 (expr -> expr * expr .)
+    )               reduce using rule 50 (expr -> expr * expr .)
+    ENQUANTO        reduce using rule 50 (expr -> expr * expr .)
+    SE              reduce using rule 50 (expr -> expr * expr .)
+    LEIA            reduce using rule 50 (expr -> expr * expr .)
+    ESCREVA         reduce using rule 50 (expr -> expr * expr .)
+    ID              reduce using rule 50 (expr -> expr * expr .)
+    FIMALGORITMO    reduce using rule 50 (expr -> expr * expr .)
+    FIMENQUANTO     reduce using rule 50 (expr -> expr * expr .)
+    SENAO           reduce using rule 50 (expr -> expr * expr .)
+    FIMSE           reduce using rule 50 (expr -> expr * expr .)
+    FACA            reduce using rule 50 (expr -> expr * expr .)
+    OU              reduce using rule 50 (expr -> expr * expr .)
+    E               reduce using rule 50 (expr -> expr * expr .)
+    ENTAO           reduce using rule 50 (expr -> expr * expr .)
+    ^               shift and go to state 51
 
 
 state 87
 
-    (33) cmdattrib -> ID ASSIGN ( CARACTERE . )
-    )               shift and go to state 92
+    (51) expr -> expr - expr .
+    (45) expr -> expr . ^ expr
+    (46) expr -> expr . MOD expr
+    (47) expr -> expr . % expr
+    (48) expr -> expr . \ expr
+    (49) expr -> expr . / expr
+    (50) expr -> expr . * expr
+    (51) expr -> expr . - expr
+    (52) expr -> expr . + expr
+    -               reduce using rule 51 (expr -> expr - expr .)
+    +               reduce using rule 51 (expr -> expr - expr .)
+    EQ              reduce using rule 51 (expr -> expr - expr .)
+    GT              reduce using rule 51 (expr -> expr - expr .)
+    GE              reduce using rule 51 (expr -> expr - expr .)
+    LT              reduce using rule 51 (expr -> expr - expr .)
+    LE              reduce using rule 51 (expr -> expr - expr .)
+    ASSIGN          reduce using rule 51 (expr -> expr - expr .)
+    NE              reduce using rule 51 (expr -> expr - expr .)
+    )               reduce using rule 51 (expr -> expr - expr .)
+    ENQUANTO        reduce using rule 51 (expr -> expr - expr .)
+    SE              reduce using rule 51 (expr -> expr - expr .)
+    LEIA            reduce using rule 51 (expr -> expr - expr .)
+    ESCREVA         reduce using rule 51 (expr -> expr - expr .)
+    ID              reduce using rule 51 (expr -> expr - expr .)
+    FIMALGORITMO    reduce using rule 51 (expr -> expr - expr .)
+    FIMENQUANTO     reduce using rule 51 (expr -> expr - expr .)
+    SENAO           reduce using rule 51 (expr -> expr - expr .)
+    FIMSE           reduce using rule 51 (expr -> expr - expr .)
+    FACA            reduce using rule 51 (expr -> expr - expr .)
+    OU              reduce using rule 51 (expr -> expr - expr .)
+    E               reduce using rule 51 (expr -> expr - expr .)
+    ENTAO           reduce using rule 51 (expr -> expr - expr .)
+    ^               shift and go to state 51
+    MOD             shift and go to state 52
+    %               shift and go to state 53
+    \               shift and go to state 54
+    /               shift and go to state 55
+    *               shift and go to state 56
 
 
 state 88
 
-    (37) cmdescrita -> ESCREVA ( CARACTERE ) .
-    SE              reduce using rule 37 (cmdescrita -> ESCREVA ( CARACTERE ) .)
-    LEIA            reduce using rule 37 (cmdescrita -> ESCREVA ( CARACTERE ) .)
-    ESCREVA         reduce using rule 37 (cmdescrita -> ESCREVA ( CARACTERE ) .)
-    ID              reduce using rule 37 (cmdescrita -> ESCREVA ( CARACTERE ) .)
-    FIMALGORITMO    reduce using rule 37 (cmdescrita -> ESCREVA ( CARACTERE ) .)
-    SENAO           reduce using rule 37 (cmdescrita -> ESCREVA ( CARACTERE ) .)
-    FIMSE           reduce using rule 37 (cmdescrita -> ESCREVA ( CARACTERE ) .)
+    (52) expr -> expr + expr .
+    (45) expr -> expr . ^ expr
+    (46) expr -> expr . MOD expr
+    (47) expr -> expr . % expr
+    (48) expr -> expr . \ expr
+    (49) expr -> expr . / expr
+    (50) expr -> expr . * expr
+    (51) expr -> expr . - expr
+    (52) expr -> expr . + expr
+    -               reduce using rule 52 (expr -> expr + expr .)
+    +               reduce using rule 52 (expr -> expr + expr .)
+    EQ              reduce using rule 52 (expr -> expr + expr .)
+    GT              reduce using rule 52 (expr -> expr + expr .)
+    GE              reduce using rule 52 (expr -> expr + expr .)
+    LT              reduce using rule 52 (expr -> expr + expr .)
+    LE              reduce using rule 52 (expr -> expr + expr .)
+    ASSIGN          reduce using rule 52 (expr -> expr + expr .)
+    NE              reduce using rule 52 (expr -> expr + expr .)
+    )               reduce using rule 52 (expr -> expr + expr .)
+    ENQUANTO        reduce using rule 52 (expr -> expr + expr .)
+    SE              reduce using rule 52 (expr -> expr + expr .)
+    LEIA            reduce using rule 52 (expr -> expr + expr .)
+    ESCREVA         reduce using rule 52 (expr -> expr + expr .)
+    ID              reduce using rule 52 (expr -> expr + expr .)
+    FIMALGORITMO    reduce using rule 52 (expr -> expr + expr .)
+    FIMENQUANTO     reduce using rule 52 (expr -> expr + expr .)
+    SENAO           reduce using rule 52 (expr -> expr + expr .)
+    FIMSE           reduce using rule 52 (expr -> expr + expr .)
+    FACA            reduce using rule 52 (expr -> expr + expr .)
+    OU              reduce using rule 52 (expr -> expr + expr .)
+    E               reduce using rule 52 (expr -> expr + expr .)
+    ENTAO           reduce using rule 52 (expr -> expr + expr .)
+    ^               shift and go to state 51
+    MOD             shift and go to state 52
+    %               shift and go to state 53
+    \               shift and go to state 54
+    /               shift and go to state 55
+    *               shift and go to state 56
 
 
 state 89
 
-    (38) cmdescrita -> ESCREVA ( expr ) .
-    SE              reduce using rule 38 (cmdescrita -> ESCREVA ( expr ) .)
-    LEIA            reduce using rule 38 (cmdescrita -> ESCREVA ( expr ) .)
-    ESCREVA         reduce using rule 38 (cmdescrita -> ESCREVA ( expr ) .)
-    ID              reduce using rule 38 (cmdescrita -> ESCREVA ( expr ) .)
-    FIMALGORITMO    reduce using rule 38 (cmdescrita -> ESCREVA ( expr ) .)
-    SENAO           reduce using rule 38 (cmdescrita -> ESCREVA ( expr ) .)
-    FIMSE           reduce using rule 38 (cmdescrita -> ESCREVA ( expr ) .)
+    (53) expr -> ( expr . )
+    (45) expr -> expr . ^ expr
+    (46) expr -> expr . MOD expr
+    (47) expr -> expr . % expr
+    (48) expr -> expr . \ expr
+    (49) expr -> expr . / expr
+    (50) expr -> expr . * expr
+    (51) expr -> expr . - expr
+    (52) expr -> expr . + expr
+    )               shift and go to state 79
+    ^               shift and go to state 51
+    MOD             shift and go to state 52
+    %               shift and go to state 53
+    \               shift and go to state 54
+    /               shift and go to state 55
+    *               shift and go to state 56
+    -               shift and go to state 57
+    +               shift and go to state 58
 
 
 state 90
 
-    (18) cmdCondicao -> SE expressaoRelacional ENTAO bloco SENAO . bloco FIMSE
-    (11) bloco -> . cmd bloco
-    (12) bloco -> . cmd
-    (13) cmd -> . cmdCondicao
-    (14) cmd -> . cmdleitura
-    (15) cmd -> . cmdescrita
-    (16) cmd -> . cmdattrib
-    (18) cmdCondicao -> . SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE
-    (19) cmdCondicao -> . SE expressaoRelacional ENTAO bloco FIMSE
-    (17) cmdleitura -> . LEIA ( ID )
-    (36) cmdescrita -> . ESCREVA ( )
-    (37) cmdescrita -> . ESCREVA ( CARACTERE )
-    (38) cmdescrita -> . ESCREVA ( expr )
-    (33) cmdattrib -> . ID ASSIGN ( CARACTERE )
-    (34) cmdattrib -> . ID ASSIGN CARACTERE
-    (35) cmdattrib -> . ID ASSIGN expr
-    SE              shift and go to state 18
-    LEIA            shift and go to state 19
-    ESCREVA         shift and go to state 21
-    ID              shift and go to state 20
+    (20) cmdCondicao -> SE expressaoRelacional ENTAO bloco . SENAO bloco FIMSE
+    (21) cmdCondicao -> SE expressaoRelacional ENTAO bloco . FIMSE
+    SENAO           shift and go to state 96
+    FIMSE           shift and go to state 97
 
-    bloco                          shift and go to state 93
-    cmd                            shift and go to state 13
-    cmdCondicao                    shift and go to state 14
-    cmdleitura                     shift and go to state 15
-    cmdescrita                     shift and go to state 16
-    cmdattrib                      shift and go to state 17
 
 state 91
 
-    (19) cmdCondicao -> SE expressaoRelacional ENTAO bloco FIMSE .
-    SE              reduce using rule 19 (cmdCondicao -> SE expressaoRelacional ENTAO bloco FIMSE .)
-    LEIA            reduce using rule 19 (cmdCondicao -> SE expressaoRelacional ENTAO bloco FIMSE .)
-    ESCREVA         reduce using rule 19 (cmdCondicao -> SE expressaoRelacional ENTAO bloco FIMSE .)
-    ID              reduce using rule 19 (cmdCondicao -> SE expressaoRelacional ENTAO bloco FIMSE .)
-    FIMALGORITMO    reduce using rule 19 (cmdCondicao -> SE expressaoRelacional ENTAO bloco FIMSE .)
-    SENAO           reduce using rule 19 (cmdCondicao -> SE expressaoRelacional ENTAO bloco FIMSE .)
-    FIMSE           reduce using rule 19 (cmdCondicao -> SE expressaoRelacional ENTAO bloco FIMSE .)
+    (19) cmdleitura -> LEIA ( ID ) .
+    ENQUANTO        reduce using rule 19 (cmdleitura -> LEIA ( ID ) .)
+    SE              reduce using rule 19 (cmdleitura -> LEIA ( ID ) .)
+    LEIA            reduce using rule 19 (cmdleitura -> LEIA ( ID ) .)
+    ESCREVA         reduce using rule 19 (cmdleitura -> LEIA ( ID ) .)
+    ID              reduce using rule 19 (cmdleitura -> LEIA ( ID ) .)
+    FIMALGORITMO    reduce using rule 19 (cmdleitura -> LEIA ( ID ) .)
+    FIMENQUANTO     reduce using rule 19 (cmdleitura -> LEIA ( ID ) .)
+    SENAO           reduce using rule 19 (cmdleitura -> LEIA ( ID ) .)
+    FIMSE           reduce using rule 19 (cmdleitura -> LEIA ( ID ) .)
 
 
 state 92
 
-    (33) cmdattrib -> ID ASSIGN ( CARACTERE ) .
-    SE              reduce using rule 33 (cmdattrib -> ID ASSIGN ( CARACTERE ) .)
-    LEIA            reduce using rule 33 (cmdattrib -> ID ASSIGN ( CARACTERE ) .)
-    ESCREVA         reduce using rule 33 (cmdattrib -> ID ASSIGN ( CARACTERE ) .)
-    ID              reduce using rule 33 (cmdattrib -> ID ASSIGN ( CARACTERE ) .)
-    FIMALGORITMO    reduce using rule 33 (cmdattrib -> ID ASSIGN ( CARACTERE ) .)
-    SENAO           reduce using rule 33 (cmdattrib -> ID ASSIGN ( CARACTERE ) .)
-    FIMSE           reduce using rule 33 (cmdattrib -> ID ASSIGN ( CARACTERE ) .)
+    (35) cmdattrib -> ID ASSIGN ( CARACTERE . )
+    )               shift and go to state 98
 
 
 state 93
 
-    (18) cmdCondicao -> SE expressaoRelacional ENTAO bloco SENAO bloco . FIMSE
-    FIMSE           shift and go to state 94
+    (39) cmdescrita -> ESCREVA ( CARACTERE ) .
+    ENQUANTO        reduce using rule 39 (cmdescrita -> ESCREVA ( CARACTERE ) .)
+    SE              reduce using rule 39 (cmdescrita -> ESCREVA ( CARACTERE ) .)
+    LEIA            reduce using rule 39 (cmdescrita -> ESCREVA ( CARACTERE ) .)
+    ESCREVA         reduce using rule 39 (cmdescrita -> ESCREVA ( CARACTERE ) .)
+    ID              reduce using rule 39 (cmdescrita -> ESCREVA ( CARACTERE ) .)
+    FIMALGORITMO    reduce using rule 39 (cmdescrita -> ESCREVA ( CARACTERE ) .)
+    FIMENQUANTO     reduce using rule 39 (cmdescrita -> ESCREVA ( CARACTERE ) .)
+    SENAO           reduce using rule 39 (cmdescrita -> ESCREVA ( CARACTERE ) .)
+    FIMSE           reduce using rule 39 (cmdescrita -> ESCREVA ( CARACTERE ) .)
 
 
 state 94
 
-    (18) cmdCondicao -> SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE .
-    SE              reduce using rule 18 (cmdCondicao -> SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE .)
-    LEIA            reduce using rule 18 (cmdCondicao -> SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE .)
-    ESCREVA         reduce using rule 18 (cmdCondicao -> SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE .)
-    ID              reduce using rule 18 (cmdCondicao -> SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE .)
-    FIMALGORITMO    reduce using rule 18 (cmdCondicao -> SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE .)
-    SENAO           reduce using rule 18 (cmdCondicao -> SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE .)
-    FIMSE           reduce using rule 18 (cmdCondicao -> SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE .)
+    (40) cmdescrita -> ESCREVA ( expr ) .
+    ENQUANTO        reduce using rule 40 (cmdescrita -> ESCREVA ( expr ) .)
+    SE              reduce using rule 40 (cmdescrita -> ESCREVA ( expr ) .)
+    LEIA            reduce using rule 40 (cmdescrita -> ESCREVA ( expr ) .)
+    ESCREVA         reduce using rule 40 (cmdescrita -> ESCREVA ( expr ) .)
+    ID              reduce using rule 40 (cmdescrita -> ESCREVA ( expr ) .)
+    FIMALGORITMO    reduce using rule 40 (cmdescrita -> ESCREVA ( expr ) .)
+    FIMENQUANTO     reduce using rule 40 (cmdescrita -> ESCREVA ( expr ) .)
+    SENAO           reduce using rule 40 (cmdescrita -> ESCREVA ( expr ) .)
+    FIMSE           reduce using rule 40 (cmdescrita -> ESCREVA ( expr ) .)
+
+
+state 95
+
+    (18) cmdRepeticao -> ENQUANTO expressaoRelacional FACA bloco FIMENQUANTO .
+    ENQUANTO        reduce using rule 18 (cmdRepeticao -> ENQUANTO expressaoRelacional FACA bloco FIMENQUANTO .)
+    SE              reduce using rule 18 (cmdRepeticao -> ENQUANTO expressaoRelacional FACA bloco FIMENQUANTO .)
+    LEIA            reduce using rule 18 (cmdRepeticao -> ENQUANTO expressaoRelacional FACA bloco FIMENQUANTO .)
+    ESCREVA         reduce using rule 18 (cmdRepeticao -> ENQUANTO expressaoRelacional FACA bloco FIMENQUANTO .)
+    ID              reduce using rule 18 (cmdRepeticao -> ENQUANTO expressaoRelacional FACA bloco FIMENQUANTO .)
+    FIMALGORITMO    reduce using rule 18 (cmdRepeticao -> ENQUANTO expressaoRelacional FACA bloco FIMENQUANTO .)
+    FIMENQUANTO     reduce using rule 18 (cmdRepeticao -> ENQUANTO expressaoRelacional FACA bloco FIMENQUANTO .)
+    SENAO           reduce using rule 18 (cmdRepeticao -> ENQUANTO expressaoRelacional FACA bloco FIMENQUANTO .)
+    FIMSE           reduce using rule 18 (cmdRepeticao -> ENQUANTO expressaoRelacional FACA bloco FIMENQUANTO .)
+
+
+state 96
+
+    (20) cmdCondicao -> SE expressaoRelacional ENTAO bloco SENAO . bloco FIMSE
+    (11) bloco -> . cmd bloco
+    (12) bloco -> . cmd
+    (13) cmd -> . cmdRepeticao
+    (14) cmd -> . cmdCondicao
+    (15) cmd -> . cmdleitura
+    (16) cmd -> . cmdescrita
+    (17) cmd -> . cmdattrib
+    (18) cmdRepeticao -> . ENQUANTO expressaoRelacional FACA bloco FIMENQUANTO
+    (20) cmdCondicao -> . SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE
+    (21) cmdCondicao -> . SE expressaoRelacional ENTAO bloco FIMSE
+    (19) cmdleitura -> . LEIA ( ID )
+    (38) cmdescrita -> . ESCREVA ( )
+    (39) cmdescrita -> . ESCREVA ( CARACTERE )
+    (40) cmdescrita -> . ESCREVA ( expr )
+    (35) cmdattrib -> . ID ASSIGN ( CARACTERE )
+    (36) cmdattrib -> . ID ASSIGN CARACTERE
+    (37) cmdattrib -> . ID ASSIGN expr
+    ENQUANTO        shift and go to state 19
+    SE              shift and go to state 20
+    LEIA            shift and go to state 21
+    ESCREVA         shift and go to state 23
+    ID              shift and go to state 22
+
+    bloco                          shift and go to state 99
+    cmd                            shift and go to state 13
+    cmdRepeticao                   shift and go to state 14
+    cmdCondicao                    shift and go to state 15
+    cmdleitura                     shift and go to state 16
+    cmdescrita                     shift and go to state 17
+    cmdattrib                      shift and go to state 18
+
+state 97
+
+    (21) cmdCondicao -> SE expressaoRelacional ENTAO bloco FIMSE .
+    ENQUANTO        reduce using rule 21 (cmdCondicao -> SE expressaoRelacional ENTAO bloco FIMSE .)
+    SE              reduce using rule 21 (cmdCondicao -> SE expressaoRelacional ENTAO bloco FIMSE .)
+    LEIA            reduce using rule 21 (cmdCondicao -> SE expressaoRelacional ENTAO bloco FIMSE .)
+    ESCREVA         reduce using rule 21 (cmdCondicao -> SE expressaoRelacional ENTAO bloco FIMSE .)
+    ID              reduce using rule 21 (cmdCondicao -> SE expressaoRelacional ENTAO bloco FIMSE .)
+    FIMALGORITMO    reduce using rule 21 (cmdCondicao -> SE expressaoRelacional ENTAO bloco FIMSE .)
+    FIMENQUANTO     reduce using rule 21 (cmdCondicao -> SE expressaoRelacional ENTAO bloco FIMSE .)
+    SENAO           reduce using rule 21 (cmdCondicao -> SE expressaoRelacional ENTAO bloco FIMSE .)
+    FIMSE           reduce using rule 21 (cmdCondicao -> SE expressaoRelacional ENTAO bloco FIMSE .)
+
+
+state 98
+
+    (35) cmdattrib -> ID ASSIGN ( CARACTERE ) .
+    ENQUANTO        reduce using rule 35 (cmdattrib -> ID ASSIGN ( CARACTERE ) .)
+    SE              reduce using rule 35 (cmdattrib -> ID ASSIGN ( CARACTERE ) .)
+    LEIA            reduce using rule 35 (cmdattrib -> ID ASSIGN ( CARACTERE ) .)
+    ESCREVA         reduce using rule 35 (cmdattrib -> ID ASSIGN ( CARACTERE ) .)
+    ID              reduce using rule 35 (cmdattrib -> ID ASSIGN ( CARACTERE ) .)
+    FIMALGORITMO    reduce using rule 35 (cmdattrib -> ID ASSIGN ( CARACTERE ) .)
+    FIMENQUANTO     reduce using rule 35 (cmdattrib -> ID ASSIGN ( CARACTERE ) .)
+    SENAO           reduce using rule 35 (cmdattrib -> ID ASSIGN ( CARACTERE ) .)
+    FIMSE           reduce using rule 35 (cmdattrib -> ID ASSIGN ( CARACTERE ) .)
+
+
+state 99
+
+    (20) cmdCondicao -> SE expressaoRelacional ENTAO bloco SENAO bloco . FIMSE
+    FIMSE           shift and go to state 100
+
+
+state 100
+
+    (20) cmdCondicao -> SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE .
+    ENQUANTO        reduce using rule 20 (cmdCondicao -> SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE .)
+    SE              reduce using rule 20 (cmdCondicao -> SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE .)
+    LEIA            reduce using rule 20 (cmdCondicao -> SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE .)
+    ESCREVA         reduce using rule 20 (cmdCondicao -> SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE .)
+    ID              reduce using rule 20 (cmdCondicao -> SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE .)
+    FIMALGORITMO    reduce using rule 20 (cmdCondicao -> SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE .)
+    FIMENQUANTO     reduce using rule 20 (cmdCondicao -> SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE .)
+    SENAO           reduce using rule 20 (cmdCondicao -> SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE .)
+    FIMSE           reduce using rule 20 (cmdCondicao -> SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE .)

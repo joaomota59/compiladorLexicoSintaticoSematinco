@@ -1,21 +1,10 @@
-Algoritmo "semnome"
-// Disciplina   : [Linguagem e Lógica de Programação]
-// Professor   : Antonio Carlos Nicolodi 
-// Descrição   : Aqui você descreve o que o programa faz! (função)
-// Autor(a)    : Nome do(a) aluno(a)
-// Data atual  : 16/05/2021
-Var
-// Seção de Declarações das variáveis 
-x:inteiro
-
-Inicio
-// Seção de Comandos, procedimento, funções, operadores, etc... 
-se 5>3 entao
-leia(o)
-escreva(x+2-w)
-senao
-leia(o)
-escreva("sx")
-fimse
-
-Fimalgoritmo
+Algoritmo "numeros"
+var 
+j: inteiro
+inicio
+j <- 1
+enquanto j <= 10 faca
+escreva (j)
+j <- j + 1
+fimenquanto
+fimalgoritmo
