@@ -23,7 +23,7 @@ class VisualgLexer(Lexer):
     # String containing ignored characters between tokens
     ignore = ' \t'#ignora espaços entre os tokens
     ignore_comment = r'(//.*)' #ignora as linhas que são comentários
-    ignore_newline = r'\n+'  #ignora varias linhas vazias
+    #ignore_newline = r'\n+'  #ignora varias linhas vazias
     ####################################################
 
     # Regular expression rules for tokens -- Aqui será definido as expressoes regulares que caracterizam os tokens definidos antes
@@ -121,9 +121,9 @@ class VisualgParser(Parser):
     )
     
 
- #Regras gramaticais para numeros inteiros
+    #Regras gramaticais:
 
-    @_("ALGORITMO CARACTERE VAR declaracao INICIO blocoType FIMALGORITMO")
+    @_("ALGORITMO CARACTERE VAR declaracaoType INICIO blocoType FIMALGORITMO")
     def initial(self,p):
         return
         #return p.blocoType
@@ -135,6 +135,22 @@ class VisualgParser(Parser):
     
     @_("")
     def blocoType(self,p):
+        return
+
+    @_("declaracaoTypeAux")
+    def declaracaoType(self,p):
+        return
+
+    @_("")
+    def declaracaoType(self,p):
+        return
+
+    @_("declaracao declaracaoTypeAux")
+    def declaracaoTypeAux(self,p):
+        return
+    
+    @_("declaracao")
+    def declaracaoTypeAux(self,p):
         return
     
     @_("vartype ':' INTEIRO")
@@ -150,10 +166,6 @@ class VisualgParser(Parser):
         return
     
     @_("vartype ':' LOGICO")
-    def declaracao(self,p):
-        return
-    
-    @_("")
     def declaracao(self,p):
         return
     
@@ -403,10 +415,6 @@ class VisualgParser(Parser):
     def expr(self, p):
         return
         #return p.ID
-
-    
-###OBS FALTA DIVISAO ENTRE REAL!!
-
 
 
 
