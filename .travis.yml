@@ -12,6 +12,5 @@ python:
 before_script: cd compilador
 
 script:
-  - pip install -U pip virtualenv
-  - Script\activate
+  - .\Script\activate
   - python index.py
