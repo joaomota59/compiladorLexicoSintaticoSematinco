@@ -12,5 +12,5 @@ python:
 before_script: cd compilador
 
 script:
-  - .\Script\activate
+  - source Scripts/activate
   - python index.py
