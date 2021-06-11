@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 from sly import Lexer, Parser #pip install sly
 import pprint
 

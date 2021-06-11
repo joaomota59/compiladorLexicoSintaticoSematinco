@@ -72,22 +72,22 @@ Rule 68    expr -> ( expr )
 
 Unused terminals:
 
-    CRONOMETRO
-    FUNCAO
-    FIMESCOLHA
-    TIMER
-    ECO
-    RETORNE
-    ESCOLHA
-    POS
-    ASC
     PROCEDIMENTO
-    VETOR
-    CARAC
-    FIMPROCEDIMENTO
-    FIMFUNCAO
+    FIMESCOLHA
     REPITA
+    ECO
+    FIMPROCEDIMENTO
+    POS
+    TIMER
+    ASC
+    FIMFUNCAO
+    VETOR
+    ESCOLHA
     FIMREPITA
+    CARAC
+    FUNCAO
+    CRONOMETRO
+    RETORNE
 
 Terminals, with rules where they appear:
 
