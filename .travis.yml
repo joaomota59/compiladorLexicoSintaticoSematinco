@@ -1,0 +1,18 @@
+language: python
+
+branches:
+  only:
+    - main
+    - dev
+
+python:
+  - "3.8"
+# command to install dependencies
+
+before_script: cd compilador
+
+script:
+  - sudo apt-get install -y dos2unix
+  - dos2unix algoritmo.txt
+  - source Scripts/activate
+  - python index.py
