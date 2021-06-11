@@ -1,0 +1,22 @@
+language: python
+
+branches:
+  only:
+    - main
+    - dev
+
+python:
+  - "2.7"
+  - "3.4"
+  - "3.5"
+  - "3.6"      # current default Python on Travis CI
+  - "3.7"
+  - "3.8"
+  - "3.9"
+# command to install dependencies
+
+before_script: cd compilador
+
+script:
+  - Scripts\activate
+  - python index.py
