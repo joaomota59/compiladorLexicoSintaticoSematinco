@@ -316,9 +316,10 @@ class VisualgParser(Parser):
     def typeArgs(self,p):
         return
     
-    @_('CARACTERE')
+    '''@_('CARACTERE')
     def typeArgs(self,p):
         return
+    '''
     
     @_('ESCREVA "(" typeArgsEscrita ")" ')#comando escrita
     def cmdescrita(self, p):
@@ -413,6 +414,10 @@ class VisualgParser(Parser):
         #return p.REAL
     
     @_('ID')
+    def expr(self, p):
+        return
+    
+    @_('CARACTERE')
     def expr(self, p):
         return
         #return p.ID

@@ -2,11 +2,19 @@ Algoritmo "Compiladores"
 
 var 
 j,kl , sdsd: inteiro
-k : real
-w: logico
+a:caractere
 
 inicio
 j <- x + 2
+l <- VERDADEIRO
+a <- "teste"
+
+a <- 3
+Valor1 <- 1.5
+Valor2 <- Valor1 + a
+nome_do_aluno <- "Jose da Silva"
+sinalizador <- FALSO
+
 limpatela
 escreva(falso, j+1,"oi",k+1) 
 escreva("oi\n") 
@@ -15,5 +23,24 @@ escreva("sds")
 se nao verdadeiro e nao falso entao
     escreva("oi")
 fimse
+
+se 2>3 E 5<6 entao
+    escreva("ok")
+fimse
+
+enquanto j <= 10 faca
+    escreva (j)
+    j <- j + 1
+fimenquanto
+
+escreva ("x ", x, " ", y+3) // Escreve: x 2.5 9
+escreva (a, " ok") // Escreve: teste ok
+escreva (a + " ok") // Igual ao anterior
+escreva (l) // Escreve: VERDADEIRO
 escreval(1+2^2)
+leia (x)
+escreva (x)
+
+
+
 fimalgoritmo
