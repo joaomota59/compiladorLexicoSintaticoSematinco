@@ -11,31 +11,31 @@ py index.py
 Grammar:
 
 Rule 0     S' -> initial
-Rule 1     initial -> ALGORITMO CARACTERE VAR declaracaoType INICIO blocoType FIMALGORITMO
+Rule 1     initial -> ALGORITMO CARACTERE ; VAR ; declaracaoType INICIO ; blocoType FIMALGORITMO ;
 Rule 2     blocoType -> <empty>
 Rule 3     blocoType -> bloco
 Rule 4     declaracaoType -> <empty>
 Rule 5     declaracaoType -> declaracaoTypeAux
-Rule 6     declaracaoTypeAux -> declaracao
-Rule 7     declaracaoTypeAux -> declaracao declaracaoTypeAux
+Rule 6     declaracaoTypeAux -> declaracao ;
+Rule 7     declaracaoTypeAux -> declaracao ; declaracaoTypeAux
 Rule 8     declaracao -> vartype : LOGICO
 Rule 9     declaracao -> vartype : CARACTERE
 Rule 10    declaracao -> vartype : REAL
 Rule 11    declaracao -> vartype : INTEIRO
 Rule 12    vartype -> ID , vartype
 Rule 13    vartype -> ID
-Rule 14    bloco -> cmd bloco
-Rule 15    bloco -> cmd
+Rule 14    bloco -> cmd ; bloco
+Rule 15    bloco -> cmd ;
 Rule 16    cmd -> cmdRepeticao
 Rule 17    cmd -> LIMPATELA
 Rule 18    cmd -> cmdCondicao
 Rule 19    cmd -> cmdleitura
 Rule 20    cmd -> cmdescrita
 Rule 21    cmd -> cmdattrib
-Rule 22    cmdRepeticao -> ENQUANTO expressaoRelacional FACA bloco FIMENQUANTO
+Rule 22    cmdRepeticao -> ENQUANTO expressaoRelacional FACA ; bloco FIMENQUANTO
 Rule 23    cmdleitura -> LEIA ( ID )
-Rule 24    cmdCondicao -> SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE
-Rule 25    cmdCondicao -> SE expressaoRelacional ENTAO bloco FIMSE
+Rule 24    cmdCondicao -> SE expressaoRelacional ENTAO ; bloco SENAO ; bloco FIMSE
+Rule 25    cmdCondicao -> SE expressaoRelacional ENTAO ; bloco FIMSE
 Rule 26    expressaoRelacional -> termoRelacional
 Rule 27    expressaoRelacional -> expressaoRelacional OP_BOOL termoRelacional
 Rule 28    termoRelacional -> ( expressaoRelacional )
