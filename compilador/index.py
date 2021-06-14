@@ -15,7 +15,7 @@ class VisualgLexer(Lexer):
     }#Nome dos tokens devem estar em maiusculo
     #O valor de cada chave desse dicionario sera definido durante a execução
 
-    literals = {'+','-','*','/','^','(', ')', ',',':', '\\', '%'} #caracteres literais, o token é representado pelo proprio simbolo
+    literals = {'+','-','*','/','^','(', ')', ',',':', '\\', '%',';'} #caracteres literais, o token é representado pelo proprio simbolo
 
 
     ###Caracteres Ignorados###
@@ -87,7 +87,7 @@ class VisualgLexer(Lexer):
     # Define a rule so we can track line numbers
     @_(r'\n+')
     def ignore_newline(self, t):#função que auxilia a funcao error(contando as linhas do algoritmo), no qual irá mostrar qual linha que dá erro lexico 
-        self.lineno += len(t.value)
+        self.lineno += t.value.count('\n')
     def error(self, t):#funçãoq que mostra erro lexico na linha do algoritmo dado como entrada
         print('Line %d: Bad character %r' % (self.lineno, t.value[0]))
         self.index += 1
@@ -124,7 +124,7 @@ class VisualgParser(Parser):
 
     #Regras gramaticais:
 
-    @_("ALGORITMO CARACTERE VAR declaracaoType INICIO blocoType FIMALGORITMO")
+    @_("ALGORITMO CARACTERE ';' VAR ';' declaracaoType INICIO ';'  blocoType FIMALGORITMO ';' ")
     def initial(self,p):
         return
         #return p.blocoType
@@ -146,11 +146,11 @@ class VisualgParser(Parser):
     def declaracaoType(self,p):
         return
 
-    @_("declaracao declaracaoTypeAux")
+    @_("declaracao ';' declaracaoTypeAux")
     def declaracaoTypeAux(self,p):
         return
     
-    @_("declaracao")
+    @_("declaracao ';' ")
     def declaracaoTypeAux(self,p):
         return
     
@@ -179,12 +179,12 @@ class VisualgParser(Parser):
     def vartype(self,p):
         return
 
-    @_('cmd')
+    @_('cmd ";" ')
     def bloco(self,p):
         return
         #return p.cmd 
     
-    @_('cmd bloco')
+    @_('cmd ";" bloco')
     def bloco(self,p):
         return
         #return p.bloco
@@ -216,7 +216,7 @@ class VisualgParser(Parser):
     def cmd(self,p):
         return
     
-    @_("ENQUANTO expressaoRelacional FACA bloco FIMENQUANTO")
+    @_("ENQUANTO expressaoRelacional FACA ';' bloco FIMENQUANTO")
     def cmdRepeticao(self,p):
         return
     
@@ -224,11 +224,11 @@ class VisualgParser(Parser):
     def cmdleitura(self,p):
         return
     
-    @_('SE expressaoRelacional ENTAO bloco FIMSE')
+    @_('SE expressaoRelacional ENTAO ";" bloco FIMSE')
     def cmdCondicao(self,p):
         return
 
-    @_("SE expressaoRelacional ENTAO bloco SENAO bloco FIMSE")
+    @_("SE expressaoRelacional ENTAO ';' bloco SENAO ';' bloco FIMSE")
     def cmdCondicao(self,p):
         return
 
@@ -315,11 +315,6 @@ class VisualgParser(Parser):
     @_('FALSO')
     def typeArgs(self,p):
         return
-    
-    '''@_('CARACTERE')
-    def typeArgs(self,p):
-        return
-    '''
     
     @_('ESCREVA "(" typeArgsEscrita ")" ')#comando escrita
     def cmdescrita(self, p):
@@ -422,12 +417,33 @@ class VisualgParser(Parser):
         return
         #return p.ID
 
+    def error(self, p):
+        if p:
+            print("Syntax error at token", p)
+            # Just discard the token and tell the parser it's okay.
+            self.restart() # descarta toda a pilha de análise e redefine o analisador para seu estado inicial.
+        else:
+            print("Syntax error at EOF")
+
 
 
 if __name__ == '__main__':
     arquivo = open('algoritmo.txt', 'r')
-    data = arquivo.read().lower() #converte o algoritmo.txt todo para minusuculo pois o Visual n diferencia maiuscula de minuscula
+    #data = arquivo.read().lower() #converte o algoritmo.txt todo para minusuculo pois o Visual n diferencia maiuscula de minuscula
+    data = ''
+    linhas = arquivo.readlines()
+    #print(linhas)
+    for i in linhas:
+        if i != '\n':#se nao for uma linha vazia
+            if (i.find('//') != -1):#se a linha tiver comentario coloca o ponto e virgula antes do comentario, pq o comentario será ignorado pelo regex
+                data += i[:i.find('//')].lower() + ";" + i[i.find('//'):].lower()
+            else:#é pq a linha nao tem comentário entao adiciona o ; antes do \n
+                data += i[:-1].lower() + ";" + "\n"
+        else:#entao é uma linha vazia
+            data += i
+    #print(data)
     arquivo.close()
+    #print(data)
     lexer = VisualgLexer()
     parser = VisualgParser()
     resultado = parser.parse(lexer.tokenize(data))
@@ -437,6 +453,5 @@ if __name__ == '__main__':
     arquivo2 = open("tokens.txt","w")
     
     for tok in lexer.tokenize(data):
-        arquivo2.write('type=%r, value=%r\n' % (tok.type, tok.value))
-    #print(lexer.tokenize(data))
+        arquivo2.write(str(tok)+"\n")
     arquivo2.close()

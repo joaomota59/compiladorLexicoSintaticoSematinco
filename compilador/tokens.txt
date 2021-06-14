@@ -1,147 +1,196 @@
-type='ALGORITMO', value='algoritmo'
-type='CARACTERE', value='"compiladores"'
-type='VAR', value='var'
-type='ID', value='j'
-type=',', value=','
-type='ID', value='kl'
-type=',', value=','
-type='ID', value='sdsd'
-type=':', value=':'
-type='INTEIRO', value='inteiro'
-type='ID', value='a'
-type=':', value=':'
-type='CARACTERE', value='caractere'
-type='INICIO', value='inicio'
-type='ID', value='j'
-type='ASSIGN', value='<-'
-type='ID', value='x'
-type='+', value='+'
-type='INTEIRO', value=2
-type='ID', value='l'
-type='ASSIGN', value='<-'
-type='VERDADEIRO', value='verdadeiro'
-type='ID', value='a'
-type='ASSIGN', value='<-'
-type='CARACTERE', value='"teste"'
-type='ID', value='a'
-type='ASSIGN', value='<-'
-type='INTEIRO', value=3
-type='ID', value='valor1'
-type='ASSIGN', value='<-'
-type='REAL', value=1.5
-type='ID', value='valor2'
-type='ASSIGN', value='<-'
-type='ID', value='valor1'
-type='+', value='+'
-type='ID', value='a'
-type='ID', value='nome_do_aluno'
-type='ASSIGN', value='<-'
-type='CARACTERE', value='"jose da silva"'
-type='ID', value='sinalizador'
-type='ASSIGN', value='<-'
-type='FALSO', value='falso'
-type='LIMPATELA', value='limpatela'
-type='ESCREVA', value='escreva'
-type='(', value='('
-type='FALSO', value='falso'
-type=',', value=','
-type='ID', value='j'
-type='+', value='+'
-type='INTEIRO', value=1
-type=',', value=','
-type='CARACTERE', value='"oi"'
-type=',', value=','
-type='ID', value='k'
-type='+', value='+'
-type='INTEIRO', value=1
-type=')', value=')'
-type='ESCREVA', value='escreva'
-type='(', value='('
-type='CARACTERE', value='"oi\\n"'
-type=')', value=')'
-type='ESCREVA', value='escreva'
-type='(', value='('
-type='CARACTERE', value='"sds"'
-type=')', value=')'
-type='SE', value='se'
-type='NAO', value='nao'
-type='VERDADEIRO', value='verdadeiro'
-type='E', value='e'
-type='NAO', value='nao'
-type='FALSO', value='falso'
-type='ENTAO', value='entao'
-type='ESCREVA', value='escreva'
-type='(', value='('
-type='CARACTERE', value='"oi"'
-type=')', value=')'
-type='FIMSE', value='fimse'
-type='SE', value='se'
-type='INTEIRO', value=2
-type='GT', value='>'
-type='INTEIRO', value=3
-type='E', value='e'
-type='INTEIRO', value=5
-type='LT', value='<'
-type='INTEIRO', value=6
-type='ENTAO', value='entao'
-type='ESCREVA', value='escreva'
-type='(', value='('
-type='CARACTERE', value='"ok"'
-type=')', value=')'
-type='FIMSE', value='fimse'
-type='ENQUANTO', value='enquanto'
-type='ID', value='j'
-type='LE', value='<='
-type='INTEIRO', value=10
-type='FACA', value='faca'
-type='ESCREVA', value='escreva'
-type='(', value='('
-type='ID', value='j'
-type=')', value=')'
-type='ID', value='j'
-type='ASSIGN', value='<-'
-type='ID', value='j'
-type='+', value='+'
-type='INTEIRO', value=1
-type='FIMENQUANTO', value='fimenquanto'
-type='ESCREVA', value='escreva'
-type='(', value='('
-type='CARACTERE', value='"x ", x, " "'
-type=',', value=','
-type='ID', value='y'
-type='+', value='+'
-type='INTEIRO', value=3
-type=')', value=')'
-type='ESCREVA', value='escreva'
-type='(', value='('
-type='ID', value='a'
-type=',', value=','
-type='CARACTERE', value='" ok"'
-type=')', value=')'
-type='ESCREVA', value='escreva'
-type='(', value='('
-type='ID', value='a'
-type='+', value='+'
-type='CARACTERE', value='" ok"'
-type=')', value=')'
-type='ESCREVA', value='escreva'
-type='(', value='('
-type='ID', value='l'
-type=')', value=')'
-type='ESCREVAL', value='escreval'
-type='(', value='('
-type='INTEIRO', value=1
-type='+', value='+'
-type='INTEIRO', value=2
-type='^', value='^'
-type='INTEIRO', value=2
-type=')', value=')'
-type='LEIA', value='leia'
-type='(', value='('
-type='ID', value='x'
-type=')', value=')'
-type='ESCREVA', value='escreva'
-type='(', value='('
-type='ID', value='x'
-type=')', value=')'
-type='FIMALGORITMO', value='fimalgoritmo'
+Token(type='ALGORITMO', value='algoritmo', lineno=1, index=0)
+Token(type='CARACTERE', value='"compiladores"', lineno=1, index=10)
+Token(type=';', value=';', lineno=1, index=24)
+Token(type='VAR', value='var', lineno=3, index=27)
+Token(type=';', value=';', lineno=3, index=37)
+Token(type='ID', value='a', lineno=4, index=39)
+Token(type=',', value=',', lineno=4, index=40)
+Token(type='ID', value='b', lineno=4, index=41)
+Token(type=',', value=',', lineno=4, index=42)
+Token(type='ID', value='c', lineno=4, index=43)
+Token(type=':', value=':', lineno=4, index=45)
+Token(type='INTEIRO', value='inteiro', lineno=4, index=47)
+Token(type=';', value=';', lineno=4, index=55)
+Token(type='ID', value='j', lineno=5, index=85)
+Token(type=',', value=',', lineno=5, index=86)
+Token(type='ID', value='lm', lineno=5, index=87)
+Token(type=':', value=':', lineno=5, index=89)
+Token(type='REAL', value='real', lineno=5, index=91)
+Token(type=';', value=';', lineno=5, index=96)
+Token(type='ID', value='z', lineno=6, index=123)
+Token(type=',', value=',', lineno=6, index=124)
+Token(type='ID', value='w', lineno=6, index=125)
+Token(type=':', value=':', lineno=6, index=127)
+Token(type='CARACTERE', value='caractere', lineno=6, index=129)
+Token(type=';', value=';', lineno=6, index=139)
+Token(type='ID', value='w', lineno=7, index=171)
+Token(type=',', value=',', lineno=7, index=172)
+Token(type='ID', value='p', lineno=7, index=173)
+Token(type=':', value=':', lineno=7, index=174)
+Token(type='LOGICO', value='logico', lineno=7, index=176)
+Token(type=';', value=';', lineno=7, index=183)
+Token(type='INICIO', value='inicio', lineno=9, index=213)
+Token(type=';', value=';', lineno=9, index=219)
+Token(type='ID', value='j', lineno=10, index=221)
+Token(type='ASSIGN', value='<-', lineno=10, index=223)
+Token(type='ID', value='x', lineno=10, index=226)
+Token(type='+', value='+', lineno=10, index=228)
+Token(type='INTEIRO', value=2, lineno=10, index=230)
+Token(type=';', value=';', lineno=10, index=231)
+Token(type='ID', value='l', lineno=11, index=233)
+Token(type='ASSIGN', value='<-', lineno=11, index=235)
+Token(type='VERDADEIRO', value='verdadeiro', lineno=11, index=238)
+Token(type=';', value=';', lineno=11, index=249)
+Token(type='ID', value='a', lineno=12, index=251)
+Token(type='ASSIGN', value='<-', lineno=12, index=253)
+Token(type='CARACTERE', value='"teste"', lineno=12, index=256)
+Token(type=';', value=';', lineno=12, index=263)
+Token(type='ID', value='a', lineno=14, index=266)
+Token(type='ASSIGN', value='<-', lineno=14, index=268)
+Token(type='INTEIRO', value=3, lineno=14, index=271)
+Token(type=';', value=';', lineno=14, index=273)
+Token(type='ID', value='valor1', lineno=15, index=275)
+Token(type='ASSIGN', value='<-', lineno=15, index=282)
+Token(type='REAL', value=1.5, lineno=15, index=285)
+Token(type=';', value=';', lineno=15, index=288)
+Token(type='ID', value='valor2', lineno=16, index=290)
+Token(type='ASSIGN', value='<-', lineno=16, index=297)
+Token(type='ID', value='valor1', lineno=16, index=300)
+Token(type='+', value='+', lineno=16, index=307)
+Token(type='ID', value='a', lineno=16, index=309)
+Token(type=';', value=';', lineno=16, index=310)
+Token(type='ID', value='nome_do_aluno', lineno=17, index=312)
+Token(type='ASSIGN', value='<-', lineno=17, index=326)
+Token(type='CARACTERE', value='"jose da silva"', lineno=17, index=329)
+Token(type=';', value=';', lineno=17, index=344)
+Token(type='ID', value='sinalizador', lineno=18, index=346)
+Token(type='ASSIGN', value='<-', lineno=18, index=358)
+Token(type='FALSO', value='falso', lineno=18, index=361)
+Token(type=';', value=';', lineno=18, index=366)
+Token(type='LIMPATELA', value='limpatela', lineno=20, index=369)
+Token(type=';', value=';', lineno=20, index=378)
+Token(type='ESCREVA', value='escreva', lineno=21, index=380)
+Token(type='(', value='(', lineno=21, index=387)
+Token(type='FALSO', value='falso', lineno=21, index=388)
+Token(type=',', value=',', lineno=21, index=393)
+Token(type='ID', value='j', lineno=21, index=395)
+Token(type='+', value='+', lineno=21, index=396)
+Token(type='INTEIRO', value=1, lineno=21, index=397)
+Token(type=',', value=',', lineno=21, index=398)
+Token(type='CARACTERE', value='"oi"', lineno=21, index=399)
+Token(type=',', value=',', lineno=21, index=403)
+Token(type='ID', value='k', lineno=21, index=404)
+Token(type='+', value='+', lineno=21, index=405)
+Token(type='INTEIRO', value=1, lineno=21, index=406)
+Token(type=')', value=')', lineno=21, index=407)
+Token(type=';', value=';', lineno=21, index=409)
+Token(type='ESCREVA', value='escreva', lineno=22, index=411)
+Token(type='(', value='(', lineno=22, index=418)
+Token(type='CARACTERE', value='"oi\\n"', lineno=22, index=419)
+Token(type=')', value=')', lineno=22, index=425)
+Token(type=';', value=';', lineno=22, index=427)
+Token(type='ESCREVA', value='escreva', lineno=24, index=430)
+Token(type='(', value='(', lineno=24, index=437)
+Token(type='CARACTERE', value='"sds"', lineno=24, index=438)
+Token(type=')', value=')', lineno=24, index=443)
+Token(type=';', value=';', lineno=24, index=444)
+Token(type='SE', value='se', lineno=25, index=446)
+Token(type='NAO', value='nao', lineno=25, index=449)
+Token(type='VERDADEIRO', value='verdadeiro', lineno=25, index=453)
+Token(type='E', value='e', lineno=25, index=464)
+Token(type='NAO', value='nao', lineno=25, index=466)
+Token(type='FALSO', value='falso', lineno=25, index=470)
+Token(type='ENTAO', value='entao', lineno=25, index=476)
+Token(type=';', value=';', lineno=25, index=481)
+Token(type='ESCREVA', value='escreva', lineno=26, index=487)
+Token(type='(', value='(', lineno=26, index=494)
+Token(type='CARACTERE', value='"oi"', lineno=26, index=495)
+Token(type=')', value=')', lineno=26, index=499)
+Token(type=';', value=';', lineno=26, index=500)
+Token(type='FIMSE', value='fimse', lineno=27, index=502)
+Token(type=';', value=';', lineno=27, index=507)
+Token(type='SE', value='se', lineno=31, index=512)
+Token(type='INTEIRO', value=2, lineno=31, index=515)
+Token(type='GT', value='>', lineno=31, index=516)
+Token(type='INTEIRO', value=3, lineno=31, index=517)
+Token(type='E', value='e', lineno=31, index=519)
+Token(type='INTEIRO', value=5, lineno=31, index=521)
+Token(type='LT', value='<', lineno=31, index=522)
+Token(type='INTEIRO', value=6, lineno=31, index=523)
+Token(type='ENTAO', value='entao', lineno=31, index=525)
+Token(type=';', value=';', lineno=31, index=530)
+Token(type='ESCREVA', value='escreva', lineno=32, index=536)
+Token(type='(', value='(', lineno=32, index=543)
+Token(type='CARACTERE', value='"ok"', lineno=32, index=544)
+Token(type=')', value=')', lineno=32, index=548)
+Token(type=';', value=';', lineno=32, index=549)
+Token(type='FIMSE', value='fimse', lineno=33, index=551)
+Token(type=';', value=';', lineno=33, index=556)
+Token(type='ENQUANTO', value='enquanto', lineno=35, index=559)
+Token(type='ID', value='j', lineno=35, index=568)
+Token(type='LE', value='<=', lineno=35, index=570)
+Token(type='INTEIRO', value=10, lineno=35, index=573)
+Token(type='FACA', value='faca', lineno=35, index=576)
+Token(type=';', value=';', lineno=35, index=580)
+Token(type='ESCREVA', value='escreva', lineno=36, index=586)
+Token(type='(', value='(', lineno=36, index=594)
+Token(type='ID', value='j', lineno=36, index=595)
+Token(type=')', value=')', lineno=36, index=596)
+Token(type=';', value=';', lineno=36, index=597)
+Token(type='ID', value='j', lineno=37, index=603)
+Token(type='ASSIGN', value='<-', lineno=37, index=605)
+Token(type='ID', value='j', lineno=37, index=608)
+Token(type='+', value='+', lineno=37, index=610)
+Token(type='INTEIRO', value=1, lineno=37, index=612)
+Token(type=';', value=';', lineno=37, index=613)
+Token(type='FIMENQUANTO', value='fimenquanto', lineno=38, index=615)
+Token(type=';', value=';', lineno=38, index=626)
+Token(type='ESCREVA', value='escreva', lineno=40, index=629)
+Token(type='(', value='(', lineno=40, index=637)
+Token(type='CARACTERE', value='"x ", x, " "', lineno=40, index=638)
+Token(type=',', value=',', lineno=40, index=650)
+Token(type='ID', value='y', lineno=40, index=652)
+Token(type='+', value='+', lineno=40, index=653)
+Token(type='INTEIRO', value=3, lineno=40, index=654)
+Token(type=')', value=')', lineno=40, index=655)
+Token(type=';', value=';', lineno=40, index=657)
+Token(type='ESCREVA', value='escreva', lineno=41, index=678)
+Token(type='(', value='(', lineno=41, index=686)
+Token(type='ID', value='a', lineno=41, index=687)
+Token(type=',', value=',', lineno=41, index=688)
+Token(type='CARACTERE', value='" ok"', lineno=41, index=690)
+Token(type=')', value=')', lineno=41, index=695)
+Token(type=';', value=';', lineno=41, index=697)
+Token(type='ESCREVA', value='escreva', lineno=42, index=719)
+Token(type='(', value='(', lineno=42, index=727)
+Token(type='ID', value='a', lineno=42, index=728)
+Token(type='+', value='+', lineno=42, index=730)
+Token(type='CARACTERE', value='" ok"', lineno=42, index=732)
+Token(type=')', value=')', lineno=42, index=737)
+Token(type=';', value=';', lineno=42, index=739)
+Token(type='ESCREVA', value='escreva', lineno=43, index=761)
+Token(type='(', value='(', lineno=43, index=769)
+Token(type='ID', value='l', lineno=43, index=770)
+Token(type=')', value=')', lineno=43, index=771)
+Token(type=';', value=';', lineno=43, index=773)
+Token(type='ESCREVAL', value='escreval', lineno=44, index=797)
+Token(type='(', value='(', lineno=44, index=805)
+Token(type='INTEIRO', value=1, lineno=44, index=806)
+Token(type='+', value='+', lineno=44, index=807)
+Token(type='INTEIRO', value=2, lineno=44, index=808)
+Token(type='^', value='^', lineno=44, index=809)
+Token(type='INTEIRO', value=2, lineno=44, index=810)
+Token(type=')', value=')', lineno=44, index=811)
+Token(type=';', value=';', lineno=44, index=812)
+Token(type='LEIA', value='leia', lineno=45, index=814)
+Token(type='(', value='(', lineno=45, index=819)
+Token(type='ID', value='x', lineno=45, index=820)
+Token(type=')', value=')', lineno=45, index=821)
+Token(type=';', value=';', lineno=45, index=822)
+Token(type='ESCREVA', value='escreva', lineno=46, index=824)
+Token(type='(', value='(', lineno=46, index=832)
+Token(type='ID', value='x', lineno=46, index=833)
+Token(type=')', value=')', lineno=46, index=834)
+Token(type=';', value=';', lineno=46, index=835)
+Token(type='FIMALGORITMO', value='fimalgoritmo', lineno=50, index=840)
+Token(type=';', value=';', lineno=50, index=852)

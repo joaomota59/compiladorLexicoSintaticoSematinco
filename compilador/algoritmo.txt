@@ -1,15 +1,17 @@
 Algoritmo "Compiladores"
 
-var 
-j,kl , sdsd: inteiro
-a:caractere
+var       
+a,b,c : inteiro //variáveis do tipo inteiro
+j,lm: real //variáveis do tipo real
+z,w : caractere //variáveis do tipo caractere
+w,p: logico //variáveis do tipo logico
 
 inicio
 j <- x + 2
-l <- VERDADEIRO
+l <- VERDADEIRO 
 a <- "teste"
 
-a <- 3
+a <- 3 
 Valor1 <- 1.5
 Valor2 <- Valor1 + a
 nome_do_aluno <- "Jose da Silva"
@@ -23,6 +25,8 @@ escreva("sds")
 se nao verdadeiro e nao falso entao
     escreva("oi")
 fimse
+
+
 
 se 2>3 E 5<6 entao
     escreva("ok")
