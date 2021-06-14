@@ -55,17 +55,17 @@ Rule 41    OP_REL -> NE  [precedence=nonassoc, level=1]
 Rule 42    cmdattrib -> ID ASSIGN ( typeArgs )
 Rule 43    cmdattrib -> ID ASSIGN typeArgs
 Rule 44    cmdattrib -> ID ASSIGN expr
-Rule 45    typeArgs -> CARACTERE
-Rule 46    typeArgs -> FALSO
-Rule 47    typeArgs -> VERDADEIRO
-Rule 48    cmdescrita -> ESCREVAL ( )
-Rule 49    cmdescrita -> ESCREVAL ( typeArgsEscrita )
-Rule 50    cmdescrita -> ESCREVA ( )
-Rule 51    cmdescrita -> ESCREVA ( typeArgsEscrita )
-Rule 52    typeArgsEscritaAux -> typeArgs
-Rule 53    typeArgsEscritaAux -> expr
-Rule 54    typeArgsEscrita -> typeArgsEscritaAux
-Rule 55    typeArgsEscrita -> typeArgsEscrita , typeArgsEscritaAux
+Rule 45    typeArgs -> FALSO
+Rule 46    typeArgs -> VERDADEIRO
+Rule 47    cmdescrita -> ESCREVAL ( )
+Rule 48    cmdescrita -> ESCREVAL ( typeArgsEscrita )
+Rule 49    cmdescrita -> ESCREVA ( )
+Rule 50    cmdescrita -> ESCREVA ( typeArgsEscrita )
+Rule 51    typeArgsEscritaAux -> typeArgs
+Rule 52    typeArgsEscritaAux -> expr
+Rule 53    typeArgsEscrita -> typeArgsEscritaAux
+Rule 54    typeArgsEscrita -> typeArgsEscrita , typeArgsEscritaAux
+Rule 55    expr -> CARACTERE
 Rule 56    expr -> ID
 Rule 57    expr -> REAL
 Rule 58    expr -> INTEIRO
