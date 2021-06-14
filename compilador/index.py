@@ -85,7 +85,7 @@ class VisualgLexer(Lexer):
     ID['eco'] = ECO
 
     # Define a rule so we can track line numbers
-    @_(r'\n+')
+    @_(r'\n+')#ignora linhas com \n
     def ignore_newline(self, t):#função que auxilia a funcao error(contando as linhas do algoritmo), no qual irá mostrar qual linha que dá erro lexico 
         self.lineno += t.value.count('\n')
     def error(self, t):#funçãoq que mostra erro lexico na linha do algoritmo dado como entrada
@@ -417,8 +417,8 @@ class VisualgParser(Parser):
         return
         #return p.ID
 
-    def error(self, p):
-        if p:
+    def error(self, p):#só entra aqui se der algum erro de sintaxe
+        if p:#se entrar aqui mostra o erro de sintaxe que deu, mostrando a linha do erro, dentre outras informações
             print("Syntax error at token", p)
             # Just discard the token and tell the parser it's okay.
             self.restart() # descarta toda a pilha de análise e redefine o analisador para seu estado inicial.
@@ -437,13 +437,14 @@ if __name__ == '__main__':
         if i != '\n':#se nao for uma linha vazia
             if (i.find('//') != -1):#se a linha tiver comentario coloca o ponto e virgula antes do comentario, pq o comentario será ignorado pelo regex
                 data += i[:i.find('//')].lower() + ";" + i[i.find('//'):].lower()
+            elif i.lower()=='fimalgoritmo': #ultima linha do arquivo
+                data += i.lower() + ";"
             else:#é pq a linha nao tem comentário entao adiciona o ; antes do \n
                 data += i[:-1].lower() + ";" + "\n"
         else:#entao é uma linha vazia
             data += i
     #print(data)
     arquivo.close()
-    #print(data)
     lexer = VisualgLexer()
     parser = VisualgParser()
     resultado = parser.parse(lexer.tokenize(data))
