@@ -81,5 +81,12 @@ Rule 67    expr -> expr + expr  [precedence=left, level=2]
 Rule 68    expr -> ( expr )
 ```
 
+
 Obs: Todas regras sintáticas e o passo a passo das operações de shift e reduce podem ser encontradas no arquivo: parser.out 
 > ./compilador/parser.out
+
+Obs2: O arquivo tokens.txt guarda todos tokens após a leitura do programa em Visualg.
+> ./compilador/tokens.txt
+
+Obs3: O arquivo algoritmo.txt é o programa de entrada, em Visualg, que será verificado as regras léxicas(Lexer) e sintáticas(Parser).
+> ./compilador/algoritmo.txt
