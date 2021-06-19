@@ -80,3 +80,6 @@ Rule 66    expr -> expr - expr  [precedence=left, level=2]
 Rule 67    expr -> expr + expr  [precedence=left, level=2]
 Rule 68    expr -> ( expr )
 ```
+
+Obs: Todas regras sintáticas e o passo a passo das operações de shift e reduce podem ser encontradas no arquivo: parser.out 
+> ./compilador/parser.out
