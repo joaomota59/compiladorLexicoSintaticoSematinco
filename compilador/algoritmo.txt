@@ -28,7 +28,7 @@ se nao verdadeiro e nao falso entao
     escreva("oi")
 fimse
 
-
+escreva(2*4+2)
 
 se 2>3 E 5<6 entao
     escreva("ok")

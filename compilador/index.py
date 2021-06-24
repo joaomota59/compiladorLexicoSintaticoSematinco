@@ -118,7 +118,7 @@ class VisualgParser(Parser):
        ('left', '+', '-'),#LEVEL 0
        ('left', '*','/','\\','%',MOD),#LEVEL 1
        ('right','^'),#LEVEL 2
-       ('right', 'UMINUS'), 
+       ('right', 'UMINUS','UPLUS'),#Operadores unários de maiores precedência
     )
     
 
@@ -393,9 +393,10 @@ class VisualgParser(Parser):
         return
         #return p.expr0**p.expr1
     
-    @_(' "+" expr')
+    @_('"+" expr %prec UPLUS')
     def expr(self, p):
         return
+        #return -p.expr
 
     @_('"-" expr %prec UMINUS')
     def expr(self, p):

@@ -60,7 +60,7 @@ Rule 56    expr -> ID
 Rule 57    expr -> REAL
 Rule 58    expr -> INTEIRO
 Rule 59    expr -> - expr  [precedence=right, level=5]
-Rule 60    expr -> + expr  [precedence=left, level=2]
+Rule 60    expr -> + expr  [precedence=right, level=5]
 Rule 61    expr -> expr ^ expr  [precedence=right, level=4]
 Rule 62    expr -> expr MOD expr  [precedence=left, level=3]
 Rule 63    expr -> expr % expr  [precedence=left, level=3]
@@ -73,22 +73,22 @@ Rule 69    expr -> ( expr )
 
 Unused terminals:
 
-    PROCEDIMENTO
     FIMESCOLHA
-    REPITA
-    TIMER
-    FIMFUNCAO
-    FUNCAO
-    ASC
-    ESCOLHA
-    RETORNE
-    ECO
-    FIMPROCEDIMENTO
-    CARAC
-    VETOR
-    FIMREPITA
-    POS
     CRONOMETRO
+    FIMPROCEDIMENTO
+    TIMER
+    FUNCAO
+    ESCOLHA
+    ASC
+    REPITA
+    FIMFUNCAO
+    ECO
+    CARAC
+    FIMREPITA
+    VETOR
+    POS
+    PROCEDIMENTO
+    RETORNE
 
 Terminals, with rules where they appear:
 
@@ -1676,6 +1676,12 @@ state 86
     (66) expr -> expr . * expr
     (67) expr -> expr . - expr
     (68) expr -> expr . + expr
+    ^               reduce using rule 60 (expr -> + expr .)
+    MOD             reduce using rule 60 (expr -> + expr .)
+    %               reduce using rule 60 (expr -> + expr .)
+    \               reduce using rule 60 (expr -> + expr .)
+    /               reduce using rule 60 (expr -> + expr .)
+    *               reduce using rule 60 (expr -> + expr .)
     -               reduce using rule 60 (expr -> + expr .)
     +               reduce using rule 60 (expr -> + expr .)
     EQ              reduce using rule 60 (expr -> + expr .)
@@ -1692,12 +1698,6 @@ state 86
     OU              reduce using rule 60 (expr -> + expr .)
     E               reduce using rule 60 (expr -> + expr .)
     ENTAO           reduce using rule 60 (expr -> + expr .)
-    ^               shift and go to state 70
-    MOD             shift and go to state 71
-    %               shift and go to state 72
-    \               shift and go to state 73
-    /               shift and go to state 74
-    *               shift and go to state 75
 
 
 state 87
