@@ -70,15 +70,16 @@ Rule 56    expr -> ID
 Rule 57    expr -> REAL
 Rule 58    expr -> INTEIRO
 Rule 59    expr -> - expr  [precedence=right, level=5]
-Rule 60    expr -> expr ^ expr  [precedence=right, level=4]
-Rule 61    expr -> expr MOD expr  [precedence=left, level=3]
-Rule 62    expr -> expr % expr  [precedence=left, level=3]
-Rule 63    expr -> expr \ expr  [precedence=left, level=3]
-Rule 64    expr -> expr / expr  [precedence=left, level=3]
-Rule 65    expr -> expr * expr  [precedence=left, level=3]
-Rule 66    expr -> expr - expr  [precedence=left, level=2]
-Rule 67    expr -> expr + expr  [precedence=left, level=2]
-Rule 68    expr -> ( expr )
+Rule 60    expr -> + expr  [precedence=left, level=2]
+Rule 61    expr -> expr ^ expr  [precedence=right, level=4]
+Rule 62    expr -> expr MOD expr  [precedence=left, level=3]
+Rule 63    expr -> expr % expr  [precedence=left, level=3]
+Rule 64    expr -> expr \ expr  [precedence=left, level=3]
+Rule 65    expr -> expr / expr  [precedence=left, level=3]
+Rule 66    expr -> expr * expr  [precedence=left, level=3]
+Rule 67    expr -> expr - expr  [precedence=left, level=2]
+Rule 68    expr -> expr + expr  [precedence=left, level=2]
+Rule 69    expr -> ( expr )
 ```
 
 
