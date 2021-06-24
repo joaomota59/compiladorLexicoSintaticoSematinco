@@ -1,10 +1,12 @@
-Algoritmo "Compiladores"
+Algoritmo "Compiladores" 
 
 var       
 a,b,c : inteiro //variáveis do tipo inteiro
 j,lm: real //variáveis do tipo real
 z,w : caractere //variáveis do tipo caractere
 w,p: logico //variáveis do tipo logico
+z,w: inteiro 
+m,i: logico
 
 inicio
 j <- x + 2
@@ -21,7 +23,7 @@ limpatela
 escreva(falso, j+1,"oi",k+1) 
 escreva("oi\n") 
 
-escreva("sds")
+escreva(+4)
 se nao verdadeiro e nao falso entao
     escreva("oi")
 fimse
@@ -44,7 +46,5 @@ escreva (l) // Escreve: VERDADEIRO
 escreval(1+2^2)
 leia (x)
 escreva (x)
-
-
 
 fimalgoritmo

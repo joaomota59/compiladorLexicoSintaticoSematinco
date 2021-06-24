@@ -392,6 +392,10 @@ class VisualgParser(Parser):
     def expr(self, p):
         return
         #return p.expr0**p.expr1
+    
+    @_(' "+" expr')
+    def expr(self, p):
+        return
 
     @_('"-" expr %prec UMINUS')
     def expr(self, p):
