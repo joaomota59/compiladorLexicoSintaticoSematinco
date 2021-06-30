@@ -1,7 +1,7 @@
 Algoritmo "Compiladores" 
 
 var       
-a,b,c : inteiro //variáveis do tipo inteiro
+_sdsd, a,b,c : inteiro //variáveis do tipo inteiro
 j,lm: real //variáveis do tipo real
 z,w : caractere //variáveis do tipo caractere
 w,p: logico //variáveis do tipo logico
@@ -23,7 +23,7 @@ limpatela
 escreva(falso, j+1,"oi",k+1) 
 escreva("oi\n") 
 
-escreva(+4)
+escreva(_sdsd)
 se nao verdadeiro e nao falso entao
     escreva("oi")
 fimse

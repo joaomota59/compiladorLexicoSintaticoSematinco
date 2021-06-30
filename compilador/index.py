@@ -124,10 +124,17 @@ class VisualgParser(Parser):
 
     #Regras gramaticais:
 
-    @_("ALGORITMO CARACTERE ';' VAR ';' declaracaoType INICIO ';'  blocoType FIMALGORITMO ';' ")
+    @_("ALGORITMO CARACTERE ; varAux INICIO ';'  blocoType FIMALGORITMO ';' ")
     def initial(self,p):
         return
-        #return p.blocoType
+    
+    @_("")
+    def varAux(self,p):
+        return
+
+    @_(" VAR ';' declaracaoType")
+    def varAux(self,p):
+        return
 
     @_("bloco")
     def blocoType(self,p):
