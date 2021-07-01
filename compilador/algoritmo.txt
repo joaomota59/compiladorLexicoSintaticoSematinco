@@ -1,3 +1,5 @@
+
+//arrumar soma de variavel com numero
 Algoritmo "Compiladores" 
 
 var       
@@ -8,19 +10,24 @@ w,p: logico //variáveis do tipo logico
 z,w: inteiro 
 m,i: logico
 
+
 inicio
-j <- x + 2
+
+//j <- x + 2
 l <- VERDADEIRO 
 a <- "teste"
 
 a <- 3 
 Valor1 <- 1.5
-Valor2 <- Valor1 + a
+//Valor2 <- Valor1 + a
 nome_do_aluno <- "Jose da Silva"
 sinalizador <- FALSO
 
+escreva(2+2)
+
+
 limpatela
-escreva(falso, j+1,"oi",k+1) 
+//escreva(falso, j+1,"oi",k+1) 
 escreva("oi\n") 
 
 escreva(_sdsd)
@@ -28,7 +35,7 @@ se nao verdadeiro e nao falso entao
     escreva("oi")
 fimse
 
-escreva(2*4+2)
+escreva(2*4+4)
 
 se 2>3 E 5<6 entao
     escreva("ok")
@@ -36,15 +43,14 @@ fimse
 
 enquanto j <= 10 faca
     escreva (j)
-    j <- j + 1
+    j <- 2 + 1
 fimenquanto
 
-escreva ("x ", x, " ", y+3) // Escreve: x 2.5 9
-escreva (a, " ok") // Escreve: teste ok
-escreva (a + " ok") // Igual ao anterior
+escreva ("x ", x, " ", 3+3) // Escreve: x 2.5 9
+escreva (a, "ok") // Escreve: teste ok
+//escreva (a + " ok") // Igual ao anterior
 escreva (l) // Escreve: VERDADEIRO
 escreval(1+2^2)
 leia (x)
 escreva (x)
-
 fimalgoritmo

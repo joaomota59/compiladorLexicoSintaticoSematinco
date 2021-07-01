@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+from typing import Type
 from sly import Lexer, Parser #pip install sly
 import pprint
 
@@ -32,7 +33,7 @@ class VisualgLexer(Lexer):
     
     REAL = r'(real|[0-9]+[.][0-9]*)'#se for a palavra reservada ou (um conjunto de digitos . conjunto de digitos) é do tipo real
     INTEIRO = r'(inteiro|[0-9]+)' #se for a palavra reservada ou um conjunto de digitos é do tipo inteiro
-    CARACTERE = r'(caractere|"[^\n]*")'#se for a palavra reservada ou qualquer coisa que n seja \n no texto entao é caracter
+    CARACTERE = r'(caractere|(\'.*?\'|".*?"))'#se for a palavra reservada ou qualquer coisa que n seja \n no texto entao é caracter
     ID      =   r'[a-zA-Z_][a-zA-Z0-9_]*' #variavel que começa com alguma letra maiuscula ou minuscula
     NE      = r'<>' #diferença - not equal
     ASSIGN  = r'<-' #atribuição
@@ -358,76 +359,65 @@ class VisualgParser(Parser):
     
     @_('"(" expr ")"')
     def expr(self, p):
-        return
+        return (p.expr)
 
     @_('expr "+" expr')
     def expr(self, p):
-        return
-        #return p.expr0 + p.expr1
+        #print(p.expr0,p.expr1)
+        return p.expr0 + p.expr1
+
 
     @_('expr "-" expr')
     def expr(self, p):
-        return
-        #return p.expr0 - p.expr1
+        return p.expr0 - p.expr1
 
     @_('expr "*" expr')
     def expr(self, p):
-        return
-        #return p.expr0 * p.expr1
+        return p.expr0 * p.expr1
 
     @_('expr "/" expr')
     def expr(self, p):
-        return
-        #return p.expr0 / p.expr1
+        return p.expr0 / p.expr1
     
     @_('expr "\\" expr')
     def expr(self, p):
-        return
-        #return p.expr0//p.expr1
+        return p.expr0//p.expr1
     
     @_('expr "%" expr')
     def expr(self, p):
-        return
-        #return p.expr0%p.expr1
+        return p.expr0%p.expr1
     
     @_('expr MOD expr')
     def expr(self, p):
-        return
-        #return p.expr0%p.expr1
+        return p.expr0%p.expr1
     
     @_('expr "^" expr')
     def expr(self, p):
-        return
-        #return p.expr0**p.expr1
+        return p.expr0**p.expr1
     
     @_('"+" expr %prec UPLUS')
     def expr(self, p):
-        return
-        #return -p.expr
+        return +p.expr
 
     @_('"-" expr %prec UMINUS')
     def expr(self, p):
-        return
-        #return -p.expr
+        return -p.expr
 
     @_('INTEIRO')
     def expr(self, p):
-        return
-        #return p.INTEIRO
+        return int(p.INTEIRO)
 
     @_('REAL')
     def expr(self, p):
-        return
-        #return p.REAL
+        return float(p.REAL)
     
     @_('ID')
     def expr(self, p):
-        return
+        return p.ID
     
     @_('CARACTERE')
     def expr(self, p):
-        return
-        #return p.ID
+        return str(p.CARACTERE)
 
     def error(self, p):#só entra aqui se der algum erro de sintaxe
         if p:#se entrar aqui mostra o erro de sintaxe que deu, mostrando a linha do erro, dentre outras informações
@@ -447,8 +437,8 @@ if __name__ == '__main__':
     #print(linhas)
     for i in linhas:
         if i != '\n':#se nao for uma linha vazia
-            if (i.find('//') != -1):#se a linha tiver comentario coloca o ponto e virgula antes do comentario, pq o comentario será ignorado pelo regex
-                data += i[:i.find('//')].lower() + ";" + i[i.find('//'):].lower()
+            if (i.rfind('//') != -1 and i.rfind('//')!=0):#se a linha tiver comentario coloca o ponto e virgula antes do comentario, pq o comentario será ignorado pelo regex
+                data += i[:i.rfind('//')].lower() + ";" + i[i.rfind('//'):].lower()
             elif i.lower()=='fimalgoritmo': #ultima linha do arquivo
                 data += i.lower() + ";"
             else:#é pq a linha nao tem comentário entao adiciona o ; antes do \n
