@@ -437,8 +437,8 @@ if __name__ == '__main__':
     #print(linhas)
     for i in linhas:
         if i != '\n':#se nao for uma linha vazia
-            if (i.rfind('//') != -1 and i.rfind('//')!=0):#se a linha tiver comentario coloca o ponto e virgula antes do comentario, pq o comentario será ignorado pelo regex
-                data += i[:i.rfind('//')].lower() + ";" + i[i.rfind('//'):].lower()
+            if (i.find('//') != -1 and i.find('//')!=0):#se a linha tiver comentario coloca o ponto e virgula antes do comentario, pq o comentario será ignorado pelo regex
+                data += i[:i.find('//')].lower() + ";" + i[i.find('//'):].lower()
             elif i.lower()=='fimalgoritmo': #ultima linha do arquivo
                 data += i.lower() + ";"
             else:#é pq a linha nao tem comentário entao adiciona o ; antes do \n
