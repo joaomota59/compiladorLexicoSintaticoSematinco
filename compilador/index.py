@@ -8,11 +8,10 @@ class VisualgLexer(Lexer):
 
     # Set of token names.   This is always required
     tokens = {
-    ALGORITMO,FIMALGORITMO,VAR,VERDADEIRO,FALSO,FUNCAO,FIMFUNCAO,ID,REAL,INTEIRO,
-    CARACTERE,LOGICO, SE, ENTAO,SENAO,FIMSE,ENQUANTO,FACA,REPITA,FIMREPITA,
-    FIMENQUANTO,ESCREVA,ESCREVAL,E,OU,NAO,LEIA, LIMPATELA, PROCEDIMENTO,
-    FIMPROCEDIMENTO, ESCOLHA, FIMESCOLHA, VETOR, ASC, TIMER, CARAC, ECO,
-    LE, LT ,GE, GT,EQ, NE, ASSIGN,MOD, RETORNE, POS, XOU, CRONOMETRO,INICIO
+    ALGORITMO,FIMALGORITMO,VAR,VERDADEIRO,FALSO,ID,REAL,INTEIRO,
+    CARACTERE,LOGICO, SE, ENTAO,SENAO,FIMSE,ENQUANTO,FACA,
+    FIMENQUANTO,ESCREVA,ESCREVAL,E,OU,NAO,LEIA, LIMPATELA,
+    LE, LT ,GE, GT,EQ, NE, ASSIGN,MOD,INICIO
     }#Nome dos tokens devem estar em maiusculo
     #O valor de cada chave desse dicionario sera definido durante a execução
 
@@ -52,14 +51,6 @@ class VisualgLexer(Lexer):
     ID['algoritmo'] = ALGORITMO
     ID['verdadeiro'] = VERDADEIRO
     ID['falso'] = FALSO
-    ID['funcao'] = FUNCAO
-    ID['fimfuncao'] = FIMFUNCAO
-    ID['procedimento'] = PROCEDIMENTO
-    ID['fimprocedimento'] = FIMPROCEDIMENTO
-    ID['escolha'] = ESCOLHA
-    ID['fimescolha'] = FIMESCOLHA
-    ID['repita'] = REPITA
-    ID['fimrepita'] = FIMREPITA
     ID['enquanto'] = ENQUANTO
     ID['faca'] = FACA
     ID['fimenquanto'] = FIMENQUANTO
@@ -75,15 +66,6 @@ class VisualgLexer(Lexer):
     ID['ou'] = OU
     ID['nao'] = NAO
     ID['leia'] = LEIA
-    ID['vetor'] = VETOR
-    ID['retorne'] = RETORNE
-    ID['pos'] = POS
-    ID['xou'] = XOU
-    ID['cronometro'] = CRONOMETRO
-    ID['asc'] = ASC
-    ID['timer'] = TIMER
-    ID['carac'] = CARAC
-    ID['eco'] = ECO
 
     # Define a rule so we can track line numbers
     @_(r'\n+')#ignora linhas com \n
@@ -115,7 +97,7 @@ class VisualgParser(Parser):
     debugfile = 'parser.out' #arquivo de debugação do Parser
     tokens = VisualgLexer.tokens
     precedence = (#precedencia, os que ficam mais abaixo tem a maior precedencia
-       ('nonassoc',NE,LE,LT,GE,GT,EQ),  # Nonassociative operators
+       ('nonassoc',NE,LE,LT,GE,GT,EQ,'E','OU'),  # Nonassociative operators
        ('left', '+', '-'),#LEVEL 0
        ('left', '*','/','\\','%',MOD),#LEVEL 1
        ('right','^'),#LEVEL 2
@@ -227,11 +209,21 @@ class VisualgParser(Parser):
     @_("ENQUANTO expressaoRelacional FACA ';' bloco FIMENQUANTO")
     def cmdRepeticao(self,p):
         return
-    
-    @_('LEIA "(" ID ")" ')
+
+
+    @_('LEIA "(" idAux ")" ')
     def cmdleitura(self,p):
         return
     
+    @_('ID')
+    def idAux(self,p):
+        return
+
+    @_('ID "," idAux')
+    def idAux(self,p):
+        return
+
+
     @_('SE expressaoRelacional ENTAO ";" bloco FIMSE')
     def cmdCondicao(self,p):
         return
@@ -273,10 +265,6 @@ class VisualgParser(Parser):
         return
     
     @_("OU")
-    def OP_BOOL(self,p):
-        return
-
-    @_("XOU")
     def OP_BOOL(self,p):
         return
 
@@ -323,6 +311,10 @@ class VisualgParser(Parser):
     @_('FALSO')
     def typeArgs(self,p):
         return
+
+    @_("expr OP_REL expr")
+    def typeArgs(self,p):
+        return
     
     @_('ESCREVA "(" typeArgsEscrita ")" ')#comando escrita
     def cmdescrita(self, p):
@@ -362,7 +354,7 @@ class VisualgParser(Parser):
         return (p.expr)
 
     @_('expr "+" expr')
-    def expr(self, p):
+    def expr(self, p):#tipo, valor, nome da variavel temp
         try:
             return p.expr0 + p.expr1
         except Exception as e:#operadores que não são permitidos para somar cai aqui
