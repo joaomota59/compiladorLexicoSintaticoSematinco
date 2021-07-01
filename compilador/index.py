@@ -363,45 +363,80 @@ class VisualgParser(Parser):
 
     @_('expr "+" expr')
     def expr(self, p):
-        #print(p.expr0,p.expr1)
-        return p.expr0 + p.expr1
+        try:
+            return p.expr0 + p.expr1
+        except Exception as e:#operadores que não são permitidos para somar cai aqui
+            print(e)
+            return
 
 
     @_('expr "-" expr')
     def expr(self, p):
-        return p.expr0 - p.expr1
+        try:
+            return p.expr0 - p.expr1
+        except Exception as e:
+            print(e)
+            return
 
     @_('expr "*" expr')
     def expr(self, p):
-        return p.expr0 * p.expr1
+        try:
+            return p.expr0 * p.expr1
+        except Exception as e:
+            print(e)
+            return
 
     @_('expr "/" expr')
     def expr(self, p):
-        return p.expr0 / p.expr1
+        try:
+            return p.expr0 / p.expr1
+        except Exception as e:
+            print(e)
+            return
     
     @_('expr "\\" expr')
     def expr(self, p):
-        return p.expr0//p.expr1
+        try:
+            return p.expr0//p.expr1
+        except Exception as e:
+            print(e)
+            return
     
     @_('expr "%" expr')
     def expr(self, p):
-        return p.expr0%p.expr1
+        try:
+            return p.expr0%p.expr1
+        except Exception as e:
+            print(e)
+            return
     
     @_('expr MOD expr')
     def expr(self, p):
-        return p.expr0%p.expr1
+        try:
+            return p.expr0%p.expr1
+        except Exception as e:
+            print(e)
     
     @_('expr "^" expr')
     def expr(self, p):
-        return p.expr0**p.expr1
+        try:
+            return p.expr0**p.expr1
+        except Exception as e:
+            print(e)
     
     @_('"+" expr %prec UPLUS')
     def expr(self, p):
-        return +p.expr
+        try:
+            return +p.expr
+        except Exception as e:
+            print(e)
 
     @_('"-" expr %prec UMINUS')
     def expr(self, p):
-        return -p.expr
+        try:
+            return -p.expr
+        except Exception as e:
+            print(e)
 
     @_('INTEIRO')
     def expr(self, p):

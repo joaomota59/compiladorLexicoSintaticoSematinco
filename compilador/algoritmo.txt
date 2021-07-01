@@ -23,7 +23,7 @@ Valor1 <- 1.5
 nome_do_aluno <- "Jose da Silva"
 sinalizador <- FALSO
 
-escreva(2+2)
+escreva(2/3)
 
 
 limpatela

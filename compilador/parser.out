@@ -75,22 +75,22 @@ Rule 71    expr -> ( expr )
 
 Unused terminals:
 
-    FIMFUNCAO
-    FIMESCOLHA
-    VETOR
-    FUNCAO
-    RETORNE
-    ESCOLHA
-    POS
-    ECO
-    CRONOMETRO
-    TIMER
-    FIMPROCEDIMENTO
-    ASC
     PROCEDIMENTO
+    POS
+    ASC
+    TIMER
+    VETOR
+    RETORNE
+    FIMPROCEDIMENTO
+    FIMFUNCAO
     REPITA
     FIMREPITA
     CARAC
+    ESCOLHA
+    FIMESCOLHA
+    CRONOMETRO
+    FUNCAO
+    ECO
 
 Terminals, with rules where they appear:
 
