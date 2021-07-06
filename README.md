@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/joaomota59/compiladorLexicoSintatico.svg?branch=main)](https://travis-ci.com/joaomota59/compiladorLexicoSintatico)
+[![Build Status](https://travis-ci.com/joaomota59/compiladorLexicoSintaticoSematinco.svg?branch=main)](https://travis-ci.com/joaomota59/compiladorLexicoSintaticoSematinco)
 # Execução do script
 * No terminal entre com os seguintes comandos:
 ``` shell
