@@ -2,12 +2,12 @@
 //arrumar soma de variavel com numero
 Algoritmo "Compiladores" 
 
-inicio
-escreva(4%3+55/2-55)
-escreva(4\3 MOD 3%4)
+inicio;
+escreva(4%3+55/2-55);
+escreva(4\3 MOD 3%4);
 escreva("oi")
-escreva(-2)
-escreva(+2)
+escreva(-2);
+escreva(+2);
 escreva(5^4+2,"oi")
 
 fimalgoritmo

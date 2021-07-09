@@ -127,8 +127,10 @@ class VisualgParser(Parser):
         code.insert(0,"@with_goto")
         code.insert(0,"from goto import with_goto")
         
+        codigoObjeto = open("codigoObjeto.py","w")
         for i in code:
-            print(i)
+            codigoObjeto.write(i+"\n")
+        codigoObjeto.close()
         return
     
     @_("")
