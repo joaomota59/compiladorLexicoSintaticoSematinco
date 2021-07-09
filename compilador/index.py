@@ -385,7 +385,10 @@ class VisualgParser(Parser):
     
     @_('ESCREVAL "(" typeArgsEscrita ")" ')#comando escrita
     def cmdescrita(self, p):
-        return 
+        aux = p.typeArgsEscrita
+        k = "\tprint("+aux+")"
+        code.append(k)
+        return k 
 
     @_('ESCREVAL "(" ")" ')#comando escrita
     def cmdescrita(self, p):
