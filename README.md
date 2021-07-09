@@ -4,7 +4,7 @@
 ``` shell
 cd compilador
 Scripts\activate
-py index.py
+py index.py algoritmo.txt
 ```
 # Regras Sintáticas
 ```

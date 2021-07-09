@@ -2,6 +2,7 @@
 from typing import Type
 from sly import Lexer, Parser #pip install sly
 import pprint
+import sys #leitura de arquivo
 
 
 class VisualgLexer(Lexer):    
@@ -92,6 +93,17 @@ class VisualgLexer(Lexer):
             pass
         return t
 
+def newTemp2():
+    info = {"count": 0}
+    def number():
+        info["count"] += 1
+        return info["count"]
+    return number
+
+newTemp = newTemp2()
+
+
+code = []#lista global
 
 class VisualgParser(Parser):
     debugfile = 'parser.out' #arquivo de debugação do Parser
@@ -104,11 +116,19 @@ class VisualgParser(Parser):
        ('right', 'UMINUS','UPLUS'),#Operadores unários de maiores precedência
     )
     
+    
 
     #Regras gramaticais:
 
     @_("ALGORITMO CARACTERE ; varAux INICIO ';'  blocoType FIMALGORITMO ';' ")
     def initial(self,p):
+        code.append("main()")
+        code.insert(0,"def main():")
+        code.insert(0,"@with_goto")
+        code.insert(0,"from goto import with_goto")
+        
+        for i in code:
+            print(i)
         return
     
     @_("")
@@ -351,100 +371,149 @@ class VisualgParser(Parser):
     
     @_('"(" expr ")"')
     def expr(self, p):
-        return (p.expr)
+        return
+        #return (p.expr)
 
     @_('expr "+" expr')
     def expr(self, p):#tipo, valor, nome da variavel temp
+        a = p.expr0
+        b= p.expr1
+        var = "_t"+str(newTemp())
+        code.append(var+"="+str(a)+"+"+str(b))
+        return var
+        '''
         try:
             return p.expr0 + p.expr1
         except Exception as e:#operadores que não são permitidos para somar cai aqui
             print(e)
             return
+        '''
 
 
     @_('expr "-" expr')
     def expr(self, p):
+        a = p.expr0
+        b= p.expr1
+        var = "_t"+str(newTemp())
+        code.append(var+"="+str(a)+"-"+str(b))
+        return var
+        '''
         try:
             return p.expr0 - p.expr1
         except Exception as e:
             print(e)
             return
+        '''
 
     @_('expr "*" expr')
     def expr(self, p):
+        a = p.expr0
+        b= p.expr1
+        var = "_t"+str(newTemp())
+        code.append(var+"="+str(a)+"*"+str(b))
+        return var
+        '''
         try:
             return p.expr0 * p.expr1
         except Exception as e:
             print(e)
             return
+        '''
 
     @_('expr "/" expr')
     def expr(self, p):
+        a = p.expr0
+        b= p.expr1
+        var = "_t"+str(newTemp())
+        code.append(var+"="+str(a)+"/"+str(b))
+        return var
+        '''
         try:
             return p.expr0 / p.expr1
         except Exception as e:
             print(e)
             return
+        '''
     
     @_('expr "\\" expr')
     def expr(self, p):
+        return
+        '''
         try:
             return p.expr0//p.expr1
         except Exception as e:
             print(e)
             return
+        '''
+
     
     @_('expr "%" expr')
     def expr(self, p):
+        return
+        '''
         try:
             return p.expr0%p.expr1
         except Exception as e:
             print(e)
             return
+        '''
     
     @_('expr MOD expr')
     def expr(self, p):
-        try:
+        return
+        '''try:
             return p.expr0%p.expr1
         except Exception as e:
             print(e)
+        '''
     
     @_('expr "^" expr')
     def expr(self, p):
-        try:
+        return
+        '''try:
             return p.expr0**p.expr1
         except Exception as e:
             print(e)
+        '''
     
     @_('"+" expr %prec UPLUS')
     def expr(self, p):
-        try:
+        return
+        '''try:
             return +p.expr
         except Exception as e:
             print(e)
+        '''
 
     @_('"-" expr %prec UMINUS')
     def expr(self, p):
-        try:
+        return
+        '''try:
             return -p.expr
         except Exception as e:
             print(e)
+        '''
 
     @_('INTEIRO')
     def expr(self, p):
-        return int(p.INTEIRO)
+        return p.INTEIRO
+        #return int(p.INTEIRO)
 
     @_('REAL')
     def expr(self, p):
-        return float(p.REAL)
+        return p.REAL
+        #return float(p.REAL)
     
     @_('ID')
     def expr(self, p):
         return p.ID
+        #return
+        #return p.ID
     
     @_('CARACTERE')
     def expr(self, p):
-        return str(p.CARACTERE)
+        return
+        #return str(p.CARACTERE)
 
     def error(self, p):#só entra aqui se der algum erro de sintaxe
         if p:#se entrar aqui mostra o erro de sintaxe que deu, mostrando a linha do erro, dentre outras informações
@@ -457,7 +526,8 @@ class VisualgParser(Parser):
 
 
 if __name__ == '__main__':
-    arquivo = open('algoritmo.txt', 'r')
+    entrada = sys.argv[1]
+    arquivo = open(entrada, 'r')
     #data = arquivo.read().lower() #converte o algoritmo.txt todo para minusuculo pois o Visual n diferencia maiuscula de minuscula
     data = ''
     linhas = arquivo.readlines()
@@ -475,6 +545,7 @@ if __name__ == '__main__':
     #print(data)
     arquivo.close()
     lexer = VisualgLexer()
+    
     parser = VisualgParser()
     resultado = parser.parse(lexer.tokenize(data))
     if resultado != None: 
@@ -485,3 +556,4 @@ if __name__ == '__main__':
     for tok in lexer.tokenize(data):
         arquivo2.write(str(tok)+"\n")
     arquivo2.close()
+

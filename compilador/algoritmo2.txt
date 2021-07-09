@@ -1,0 +1,8 @@
+
+//arrumar soma de variavel com numero
+Algoritmo "Compiladores" 
+
+inicio
+escreva(3+2)
+
+fimalgoritmo
