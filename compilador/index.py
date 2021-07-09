@@ -263,6 +263,10 @@ class VisualgParser(Parser):
     @_("expr OP_REL expr")
     def termoRelacional(self,p):
         return
+    
+    @_("exprC OP_REL exprC")
+    def termoRelacional(self,p):
+        return
 
     @_("NAO termoRelacional")
     def termoRelacional(self,p):
@@ -316,6 +320,10 @@ class VisualgParser(Parser):
     def cmdattrib(self,p):
         return
     
+    @_('ID ASSIGN exprC')#comando atribuição
+    def cmdattrib(self,p):
+        return
+    
     @_('ID ASSIGN typeArgs')#comando atribuição
     def cmdattrib(self,p):
         return
@@ -336,17 +344,29 @@ class VisualgParser(Parser):
     def typeArgs(self,p):
         return
     
+    @_("exprC OP_REL exprC")
+    def typeArgs(self,p):
+        return
+    
     @_('ESCREVA "(" typeArgsEscrita ")" ')#comando escrita
     def cmdescrita(self, p):
-        return
+        aux = p.typeArgsEscrita
+        k = "\tprint("+aux+",end='')"
+        code.append(k)
+        return k 
 
     @_('ESCREVA "(" ")" ')#comando escrita
     def cmdescrita(self, p):
+        code.append("\tprint(end='')")#print sem quebra de linha
         return
 
     @_('expr')
     def typeArgsEscritaAux(self,p):
-        return
+        return p.expr
+    
+    @_('exprC')
+    def typeArgsEscritaAux(self,p):
+        return p.exprC
     
     @_('typeArgs')
     def typeArgsEscritaAux(self,p):
@@ -354,11 +374,11 @@ class VisualgParser(Parser):
 
     @_('typeArgsEscrita "," typeArgsEscritaAux')
     def typeArgsEscrita(self,p):
-        return
+        return p.typeArgsEscrita + "," + p.typeArgsEscritaAux
 
     @_('typeArgsEscritaAux')
     def typeArgsEscrita(self,p):
-        return
+        return p.typeArgsEscritaAux
 
     
     @_('ESCREVAL "(" typeArgsEscrita ")" ')#comando escrita
@@ -367,12 +387,12 @@ class VisualgParser(Parser):
 
     @_('ESCREVAL "(" ")" ')#comando escrita
     def cmdescrita(self, p):
+        code.append("\tprint()")#print com \n
         return
     
     @_('"(" expr ")"')
     def expr(self, p):
         return p.expr
-        #return (p.expr)
 
     @_('expr "+" expr')
     def expr(self, p):#tipo, valor, nome da variavel temp
@@ -437,7 +457,11 @@ class VisualgParser(Parser):
     
     @_('expr "\\" expr')
     def expr(self, p):
-        return
+        a = p.expr0
+        b= p.expr1
+        var = "_t"+str(newTemp())
+        code.append('\t'+var+"="+str(a)+"//"+str(b))#divisao inteira em python
+        return var
         '''
         try:
             return p.expr0//p.expr1
@@ -449,7 +473,11 @@ class VisualgParser(Parser):
     
     @_('expr "%" expr')
     def expr(self, p):
-        return
+        a = p.expr0
+        b= p.expr1
+        var = "_t"+str(newTemp())
+        code.append('\t'+var+"="+str(a)+"%"+str(b))#resto da divisao inteira em python
+        return var
         '''
         try:
             return p.expr0%p.expr1
@@ -460,7 +488,11 @@ class VisualgParser(Parser):
     
     @_('expr MOD expr')
     def expr(self, p):
-        return
+        a = p.expr0
+        b= p.expr1
+        var = "_t"+str(newTemp())
+        code.append('\t'+var+"="+str(a)+"%"+str(b))#resto da divisao inteira em python
+        return var
         '''try:
             return p.expr0%p.expr1
         except Exception as e:
@@ -469,7 +501,11 @@ class VisualgParser(Parser):
     
     @_('expr "^" expr')
     def expr(self, p):
-        return
+        a = p.expr0
+        b= p.expr1
+        var = "_t"+str(newTemp())
+        code.append('\t'+var+"="+str(a)+"**"+str(b))#exponenciação no python
+        return var
         '''try:
             return p.expr0**p.expr1
         except Exception as e:
@@ -478,7 +514,10 @@ class VisualgParser(Parser):
     
     @_('"+" expr %prec UPLUS')
     def expr(self, p):
-        return
+        a = p.expr
+        var = "_t"+str(newTemp())
+        code.append('\t'+var+"=""+"+str(a))#operação unária no python com +
+        return var
         '''try:
             return +p.expr
         except Exception as e:
@@ -487,7 +526,10 @@ class VisualgParser(Parser):
 
     @_('"-" expr %prec UMINUS')
     def expr(self, p):
-        return
+        a = p.expr
+        var = "_t"+str(newTemp())
+        code.append('\t'+var+"=""-"+str(a))#operação unária no python com -
+        return var
         '''try:
             return -p.expr
         except Exception as e:
@@ -496,12 +538,12 @@ class VisualgParser(Parser):
 
     @_('INTEIRO')
     def expr(self, p):
-        return p.INTEIRO
+        return int(p.INTEIRO)
         #return int(p.INTEIRO)
 
     @_('REAL')
     def expr(self, p):
-        return p.REAL
+        return float(p.REAL)
         #return float(p.REAL)
     
     @_('ID')
@@ -509,11 +551,29 @@ class VisualgParser(Parser):
         return p.ID
         #return
         #return p.ID
-    
+    '''
     @_('CARACTERE')
     def expr(self, p):
-        return
+        return p.CARACTERE
         #return str(p.CARACTERE)
+    '''
+
+    @_('"(" exprC ")"')
+    def expr(self, p):
+        return p.exprC
+
+    @_("exprC '+' exprC ")
+    def exprC(self,p):
+        a = p.expr0
+        b= p.expr1
+        var = "_t"+str(newTemp())
+        code.append('\t'+var+"="+str(a)+"+"+str(b))
+        return var
+    
+    @_('CARACTERE')
+    def exprC(self,p):
+        return p.CARACTERE
+    
 
     def error(self, p):#só entra aqui se der algum erro de sintaxe
         if p:#se entrar aqui mostra o erro de sintaxe que deu, mostrando a linha do erro, dentre outras informações
