@@ -371,7 +371,7 @@ class VisualgParser(Parser):
     
     @_('"(" expr ")"')
     def expr(self, p):
-        return
+        return p.expr
         #return (p.expr)
 
     @_('expr "+" expr')
@@ -379,7 +379,7 @@ class VisualgParser(Parser):
         a = p.expr0
         b= p.expr1
         var = "_t"+str(newTemp())
-        code.append(var+"="+str(a)+"+"+str(b))
+        code.append('\t'+var+"="+str(a)+"+"+str(b))
         return var
         '''
         try:
@@ -395,7 +395,7 @@ class VisualgParser(Parser):
         a = p.expr0
         b= p.expr1
         var = "_t"+str(newTemp())
-        code.append(var+"="+str(a)+"-"+str(b))
+        code.append('\t'+var+"="+str(a)+"-"+str(b))
         return var
         '''
         try:
@@ -410,7 +410,7 @@ class VisualgParser(Parser):
         a = p.expr0
         b= p.expr1
         var = "_t"+str(newTemp())
-        code.append(var+"="+str(a)+"*"+str(b))
+        code.append('\t'+var+"="+str(a)+"*"+str(b))
         return var
         '''
         try:
@@ -425,7 +425,7 @@ class VisualgParser(Parser):
         a = p.expr0
         b= p.expr1
         var = "_t"+str(newTemp())
-        code.append(var+"="+str(a)+"/"+str(b))
+        code.append('\t'+var+"="+str(a)+"/"+str(b))
         return var
         '''
         try:
