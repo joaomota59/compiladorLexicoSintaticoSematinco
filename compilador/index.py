@@ -106,6 +106,7 @@ newTemp = newTemp2()
 code = []#lista global
 symbol_table = {}
 list_aux_decl = []
+semantic_panic = False
 
 class VisualgParser(Parser):
     debugfile = 'parser.out' #arquivo de debugação do Parser
@@ -129,11 +130,12 @@ class VisualgParser(Parser):
         code.insert(0,"def main():")
         code.insert(0,"@with_goto")
         code.insert(0,"from goto import with_goto")
-        
-        codigoObjeto = open("codigoObjeto.py","w")
-        for i in code:
-            codigoObjeto.write(i+"\n")
-        codigoObjeto.close()
+    
+        if not semantic_panic:
+            codigoObjeto = open("codigoObjeto.py","w")
+            for i in code:
+                codigoObjeto.write(i+"\n")
+            codigoObjeto.close()
         return
     
     @_("")
@@ -171,32 +173,33 @@ class VisualgParser(Parser):
     
     @_("vartype ':' INTEIRO")
     def declaracao(self,p):
-        self.single_decl_semantic_final(p.vartype, p.INTEIRO)
+        self.single_decl_semantic_final(p.INTEIRO)
         return
     
     @_("vartype ':' REAL")
     def declaracao(self,p):
-        self.single_decl_semantic_final(p.vartype, p.REAL)
+        self.single_decl_semantic_final(p.REAL)
         return
     
     @_("vartype ':' CARACTERE")
     def declaracao(self,p):
-        self.single_decl_semantic_final(p.vartype, p.CARACTERE)
+        self.single_decl_semantic_final(p.CARACTERE)
         return
     
     @_("vartype ':' LOGICO")
     def declaracao(self,p):
-        self.single_decl_semantic_final(p.vartype, p.LOGICO)
+        self.single_decl_semantic_final(p.LOGICO)
         return
     
     @_("ID")
     def vartype(self,p):
-        return p.ID
+        self.single_decl_semantic(p.ID)
+        return
 
     @_("ID ',' vartype")
     def vartype(self,p):
-        self.single_decl_semantic(p.vartype)
-        return p.vartype
+        self.single_decl_semantic(p.ID)
+        return
 
     @_('cmd ";" ')
     def bloco(self,p):
@@ -597,11 +600,14 @@ class VisualgParser(Parser):
     def single_decl_semantic(self, value):
         list_aux_decl.append(value)
 
-    def single_decl_semantic_final(self, value, type):
+    def single_decl_semantic_final(self, type):
+        global semantic_panic
+        
         for var in list_aux_decl:
             try:
                 symbol_table[var]
-                print("Erro Semantico: Variavel " + value + " ja declarada")
+                print("Erro Semantico: Variavel " + var + " ja declarada")
+                semantic_panic = True
             except KeyError:
                 symbol_table[var] = type
 

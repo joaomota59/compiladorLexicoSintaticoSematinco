@@ -3,7 +3,7 @@
 Algoritmo "Compiladores" 
 
 var
-y,x,x,x:inteiro
+u,x:inteiro
 
 inicio
 escreva(4%3+55/2-55)
