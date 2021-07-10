@@ -4,11 +4,15 @@ Algoritmo "Compiladores"
 
 var
 x,w:inteiro
-y:CARACTERE
+y,a,b:CARACTERE
 n:real
 msm:logico
 
 inicio
+//x<-"sd"
+x<-3
+msm<- 43>3
+escreval(msm)
 escreva(4%3+55/2-55)
 escreval(4\3 MOD 3%4)
 //escreval(u,z,u,o)
@@ -19,7 +23,7 @@ escreval(5+4^2,"oi"+"s"+"joao")
 escreval(VERDADEIRO, FALSO)
 escreval(4>3, '34'>'2')
 //leia(x,y,w,z)
-leia(n,y,k)
+leia(x,a,n)
 //escreval(n)
 //escreval(y)
 //leia(u,p)

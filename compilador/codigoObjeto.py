@@ -1,6 +1,9 @@
 from goto import with_goto
 @with_goto
 def main():
+	x=3
+	msm=43>3
+	print(msm)
 	_t1=4%3
 	_t2=55/2
 	_t3=_t1+_t2
@@ -22,6 +25,10 @@ def main():
 	print(_t11,_t13)
 	print(True,False)
 	print(4>3,'34'>'2')
+	x=input()
+	x=int(x)
+	a=input()
+	a=str(a)
 	n=input()
 	n=float(n)
 main()

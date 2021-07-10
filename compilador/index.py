@@ -368,26 +368,62 @@ class VisualgParser(Parser):
     def OP_REL(self,p):
         return p.EQ
 
-    @_('ID ASSIGN expr')#comando atribuição
+    @_('ID ASSIGN expr')#comando atribuição para inteiro e real
     def cmdattrib(self,p):
         global semantic_panic
-        
-        if p.ID not in symbol_table:
+        if p.ID not in symbol_table:#variavel nao foi declada
             print("Erro Semantico: Variavel " + p.ID + " nao declarada!")
             semantic_panic = True
-        
+        else:#variavel declarada
+            if p.expr == "verdadeiro" or p.expr == "falso":#verifica se o tipo declarado é um lógico
+                print("Erro Semantico: Variavel " + p.ID + " tem o tipo incompativel na operação!")
+                semantic_panic = True
+            else:
+                code.append("\t"+p.ID+"="+str(p.expr))
+
         return
     
-    @_('ID ASSIGN exprC')#comando atribuição
+    @_('ID ASSIGN exprC')#comando atribuição para caractere
     def cmdattrib(self,p):
+        global semantic_panic
+        if p.ID not in symbol_table:#variavel nao foi declarada
+            print("Erro Semantico: Variavel " + p.ID + " não declarada!")
+            semantic_panic = True
+        else:#variavel declarada
+            if(symbol_table[p.ID]=="caractere"):#verifica se a variavel foi declarada como caractere
+                code.append("\t"+p.ID+"="+p.exprC)
+            else:#se foi declarada como outro tipo então é um erro
+                print("Erro Semantico: Variavel "+p.ID+" recebe tipo incompativel.")
+                semantic_panic = True
         return
     
-    @_('ID ASSIGN typeArgs')#comando atribuição
+    @_('ID ASSIGN typeArgs')#comando atribuição para logico
     def cmdattrib(self,p):
+        global semantic_panic
+        if p.ID not in symbol_table:#variavel nao foi declarada
+            print("Erro Semantico: Variavel " + p.ID + " não declarada!")
+            semantic_panic = True
+        else:#variavel declarada
+            if(symbol_table[p.ID]=="logico"):#verifica se a variavel foi declarada como logico
+                code.append("\t"+p.ID+"="+p.typeArgs)
+            else:#se foi declarada como outro tipo então é um erro
+                semantic_panic = True
+                print("Erro Semantico: Variavel "+p.ID+" recebe tipo incompativel.")
+
         return
 
     @_('ID ASSIGN "(" typeArgs ")"')#comando atribuição
     def cmdattrib(self,p):
+        global semantic_panic
+        if p.ID not in symbol_table:#variavel nao foi declarada
+            print("Erro Semantico: Variavel " + p.ID + " não declarada!")
+            semantic_panic = True
+        else:#variavel declarada
+            if(symbol_table[p.ID]=="logico"):#verifica se a variavel foi declarada como logico
+                code.append("\t"+p.ID+"="+p.typeArgs)
+            else:#se foi declarada como outro tipo então é um erro
+                semantic_panic = True
+                print("Erro Semantico: Variavel "+p.ID+" recebe tipo incompativel.")
         return
 
     @_('VERDADEIRO')
@@ -610,11 +646,9 @@ class VisualgParser(Parser):
     @_('ID')
     def expr(self, p):
         global semantic_panic
-        
         if p.ID not in symbol_table:
             print("Erro Semantico: Variavel " + p.ID + " nao declarada!")
             semantic_panic = True
-        
         return p.ID
 
     @_('"(" exprC ")"')
