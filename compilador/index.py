@@ -104,10 +104,13 @@ newTemp = newTemp2()
 
 
 code = []#lista global
+symbol_table = {}
+list_aux_decl = []
 
 class VisualgParser(Parser):
     debugfile = 'parser.out' #arquivo de debugação do Parser
     tokens = VisualgLexer.tokens
+
     precedence = (#precedencia, os que ficam mais abaixo tem a maior precedencia
        ('nonassoc',NE,LE,LT,GE,GT,EQ,'E','OU'),  # Nonassociative operators
        ('left', '+', '-'),#LEVEL 0
@@ -168,28 +171,32 @@ class VisualgParser(Parser):
     
     @_("vartype ':' INTEIRO")
     def declaracao(self,p):
+        self.single_decl_semantic_final(p.vartype, p.INTEIRO)
         return
     
     @_("vartype ':' REAL")
     def declaracao(self,p):
+        self.single_decl_semantic_final(p.vartype, p.REAL)
         return
     
     @_("vartype ':' CARACTERE")
     def declaracao(self,p):
+        self.single_decl_semantic_final(p.vartype, p.CARACTERE)
         return
     
     @_("vartype ':' LOGICO")
     def declaracao(self,p):
+        self.single_decl_semantic_final(p.vartype, p.LOGICO)
         return
     
-
     @_("ID")
     def vartype(self,p):
-        return
+        return p.ID
 
     @_("ID ',' vartype")
     def vartype(self,p):
-        return
+        self.single_decl_semantic(p.vartype)
+        return p.vartype
 
     @_('cmd ";" ')
     def bloco(self,p):
@@ -579,7 +586,6 @@ class VisualgParser(Parser):
     def exprC(self,p):
         return p.CARACTERE
     
-
     def error(self, p):#só entra aqui se der algum erro de sintaxe
         if p:#se entrar aqui mostra o erro de sintaxe que deu, mostrando a linha do erro, dentre outras informações
             print("Syntax error at token", p)
@@ -587,6 +593,21 @@ class VisualgParser(Parser):
             self.restart() # descarta toda a pilha de análise e redefine o analisador para seu estado inicial.
         else:
             print("Syntax error at EOF")
+    
+    def single_decl_semantic(self, value):
+        list_aux_decl.append(value)
+
+    def single_decl_semantic_final(self, value, type):
+        for var in list_aux_decl:
+            try:
+                symbol_table[var]
+                print("Erro Semantico: Variavel " + value + " ja declarada")
+            except KeyError:
+                symbol_table[var] = type
+
+        list_aux_decl.clear()
+
+
 
 
 
@@ -612,7 +633,13 @@ if __name__ == '__main__':
     lexer = VisualgLexer()
     
     parser = VisualgParser()
+
+    '''for tok in lexer.tokenize(data):
+        print(tok.type, tok.value)'''
+
+    
     resultado = parser.parse(lexer.tokenize(data))
+
     if resultado != None: 
         pprint.pprint(resultado)
 
