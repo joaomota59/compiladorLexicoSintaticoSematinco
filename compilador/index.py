@@ -248,17 +248,38 @@ class VisualgParser(Parser):
         aux = p.idAux
         if(p.idAux.find(',')!=-1):
             k = "\t"+aux+"=[str(x) for x in input().split(',')]"
+            code.append(k)
+            auxVariaveis = p.idAux.split(',')
+            for aux in auxVariaveis:
+                if(symbol_table[aux]=="inteiro"):
+                    code.append("\t"+aux+"=int("+aux+")")
+                elif(symbol_table[aux]=="real"):
+                    code.append("\t"+aux+"=float("+aux+")")
+                elif(symbol_table[aux]=="caractere"):
+                    code.append("\t"+aux+"=str("+aux+")")
+                elif symbol_table[aux]=="logico":
+                    code.append("\t"+aux+"=bool("+aux+")")
         else:
             k = "\t"+aux+"=input()"
-        code.append(k)
+            code.append(k)
+            if(symbol_table[aux]=="inteiro"):
+                code.append("\t"+aux+"=int("+aux+")")
+            elif(symbol_table[aux]=="real"):
+                code.append("\t"+aux+"=float("+aux+")")
+            elif(symbol_table[aux]=="caractere"):
+                code.append("\t"+aux+"=str("+aux+")")
+            elif symbol_table[aux]=="logico":
+                code.append("\t"+aux+"=bool("+aux+")") 
         return 
     
     @_('ID')
     def idAux(self,p):
+        symbol_table[p.ID]#verifica se tem o elemento na tabela de simbolos
         return str(p.ID)
 
     @_('ID "," idAux')
     def idAux(self,p):
+        symbol_table[p.ID]#verifica se tem o elemento na tabela de simbolos
         return str(p.ID)+','+str(p.idAux)
 
 

@@ -3,7 +3,10 @@
 Algoritmo "Compiladores" 
 
 var
-u,x:inteiro
+x,w:inteiro
+y:CARACTERE
+z,n:real
+msm:logico
 
 inicio
 u <- 2
@@ -18,11 +21,10 @@ escreval(+2)
 escreval(5+4^2,"oi"+"s"+"joao")
 escreval(VERDADEIRO, FALSO)
 escreval(4>3, '34'>'2')
-leia(x)
-leia(y,z,w)
-escreval(x)
-escreva(y,z,w)
-
+//leia(x,y,w,z)
+leia(n,msm)
+escreval(n)
+escreval(msm)
 
 
 fimalgoritmo

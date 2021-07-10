@@ -22,8 +22,9 @@ def main():
 	print(_t11,_t13)
 	print(True,False)
 	print(4>3,'34'>'2')
-	x=input()
-	y,z,w=[str(x) for x in input().split(',')]
-	print(x)
-	print(y,z,w,end='')
+	n,msm=[str(x) for x in input().split(',')]
+	n=float(n)
+	msm=bool(msm)
+	print(n)
+	print(msm)
 main()
