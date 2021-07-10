@@ -338,7 +338,7 @@ class VisualgParser(Parser):
     def cmdattrib(self,p):
         global semantic_panic
         
-        if not p.ID in symbol_table:
+        if p.ID not in symbol_table:
             print("Erro Semantico: Variavel " + p.ID + " nao declarada!")
             semantic_panic = True
         
@@ -577,7 +577,7 @@ class VisualgParser(Parser):
     def expr(self, p):
         global semantic_panic
         
-        if not p.ID in symbol_table:
+        if p.ID not in symbol_table:
             print("Erro Semantico: Variavel " + p.ID + " nao declarada!")
             semantic_panic = True
         
@@ -621,7 +621,6 @@ class VisualgParser(Parser):
                 symbol_table[var] = type
 
         list_aux_decl.clear()
-
 
 
 
