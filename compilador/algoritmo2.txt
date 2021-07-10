@@ -9,12 +9,9 @@ z,n:real
 msm:logico
 
 inicio
-u <- 2
-x <- 3
-
-x<-z
 escreva(4%3+55/2-55)
 escreval(4\3 MOD 3%4)
+//escreval(u,z,u,o)
 escreval("oi")
 escreval(-2)
 escreval(+2)
@@ -25,6 +22,6 @@ escreval(4>3, '34'>'2')
 leia(n,msm)
 escreval(n)
 escreval(msm)
-
+leia(u,p)
 
 fimalgoritmo
