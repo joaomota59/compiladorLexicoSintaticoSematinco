@@ -234,16 +234,22 @@ class VisualgParser(Parser):
 
 
     @_('LEIA "(" idAux ")" ')
-    def cmdleitura(self,p):
-        return
+    def cmdleitura(self,p):# AJUSTAR PARA CONVERTER PARA O TIPO CORRETO
+        aux = p.idAux
+        if(p.idAux.find(',')!=-1):
+            k = "\t"+aux+"=[str(x) for x in input().split(',')]"
+        else:
+            k = "\t"+aux+"=input()"
+        code.append(k)
+        return 
     
     @_('ID')
     def idAux(self,p):
-        return
+        return str(p.ID)
 
     @_('ID "," idAux')
     def idAux(self,p):
-        return
+        return str(p.ID)+','+str(p.idAux)
 
 
     @_('SE expressaoRelacional ENTAO ";" bloco FIMSE')
@@ -284,39 +290,39 @@ class VisualgParser(Parser):
 
     @_(" '(' expressaoRelacional ')' ")
     def termoRelacional(self,p):
-        return
+        return 
 
     @_("E")
     def OP_BOOL(self,p):
-        return
+        return p.E
     
     @_("OU")
     def OP_BOOL(self,p):
-        return
+        return p.OU
 
     @_("NE")
     def OP_REL(self,p):
-        return
+        return p.NE
     
     @_("LE")
     def OP_REL(self,p):
-        return
+        return p.LE
 
     @_("LT")
     def OP_REL(self,p):
-        return
+        return p.LT
 
     @_("GE")
     def OP_REL(self,p):
-        return
+        return p.GE
 
     @_("GT")
     def OP_REL(self,p):
-        return
+        return p.GT
 
     @_("EQ")
     def OP_REL(self,p):
-        return
+        return p.EQ
 
     @_('ID ASSIGN expr')#comando atribuição
     def cmdattrib(self,p):
@@ -336,26 +342,26 @@ class VisualgParser(Parser):
 
     @_('VERDADEIRO')
     def typeArgs(self,p):
-        return
+        return "True"
 
     @_('FALSO')
     def typeArgs(self,p):
-        return
+        return "False"
 
     @_("expr OP_REL expr")
     def typeArgs(self,p):
-        return
+        return str(p.expr0) + str(p.OP_REL) + str(p.expr1)
     
     @_("exprC OP_REL exprC")
     def typeArgs(self,p):
-        return
+        return str(p.exprC0) + str(p.OP_REL) + str(p.exprC1)
     
     @_('ESCREVA "(" typeArgsEscrita ")" ')#comando escrita
     def cmdescrita(self, p):
         aux = p.typeArgsEscrita
         k = "\tprint("+aux+",end='')"
         code.append(k)
-        return k 
+        return
 
     @_('ESCREVA "(" ")" ')#comando escrita
     def cmdescrita(self, p):
@@ -372,7 +378,7 @@ class VisualgParser(Parser):
     
     @_('typeArgs')
     def typeArgsEscritaAux(self,p):
-        return
+        return p.typeArgs
 
     @_('typeArgsEscrita "," typeArgsEscritaAux')
     def typeArgsEscrita(self,p):
@@ -388,7 +394,7 @@ class VisualgParser(Parser):
         aux = p.typeArgsEscrita
         k = "\tprint("+aux+")"
         code.append(k)
-        return k 
+        return
 
     @_('ESCREVAL "(" ")" ')#comando escrita
     def cmdescrita(self, p):
@@ -543,12 +549,12 @@ class VisualgParser(Parser):
 
     @_('INTEIRO')
     def expr(self, p):
-        return int(p.INTEIRO)
+        return p.INTEIRO
         #return int(p.INTEIRO)
 
     @_('REAL')
     def expr(self, p):
-        return float(p.REAL)
+        return p.REAL
         #return float(p.REAL)
     
     @_('ID')
@@ -556,12 +562,6 @@ class VisualgParser(Parser):
         return p.ID
         #return
         #return p.ID
-    '''
-    @_('CARACTERE')
-    def expr(self, p):
-        return p.CARACTERE
-        #return str(p.CARACTERE)
-    '''
 
     @_('"(" exprC ")"')
     def expr(self, p):
@@ -569,8 +569,8 @@ class VisualgParser(Parser):
 
     @_("exprC '+' exprC ")
     def exprC(self,p):
-        a = p.expr0
-        b= p.expr1
+        a = p.exprC0
+        b= p.exprC1
         var = "_t"+str(newTemp())
         code.append('\t'+var+"="+str(a)+"+"+str(b))
         return var
@@ -621,4 +621,3 @@ if __name__ == '__main__':
     for tok in lexer.tokenize(data):
         arquivo2.write(str(tok)+"\n")
     arquivo2.close()
-

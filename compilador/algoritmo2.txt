@@ -2,13 +2,24 @@
 //arrumar soma de variavel com numero
 Algoritmo "Compiladores" 
 
+var
+x:inteiro
+x:real
+
 inicio
-escreval(4%3+55/2-55)
+escreva(4%3+55/2-55)
 escreval(4\3 MOD 3%4)
 escreval("oi")
 escreval(-2)
 escreval(+2)
-escreval(5+4^2,"oi")
+escreval(5+4^2,"oi"+"s"+"joao")
+escreval(VERDADEIRO, FALSO)
+escreval(4>3, '34'>'2')
+leia(x)
+leia(y,z,w)
+escreval(x)
+escreva(y,z,w)
+
 
 
 fimalgoritmo
