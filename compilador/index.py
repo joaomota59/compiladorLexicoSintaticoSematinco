@@ -248,10 +248,10 @@ class VisualgParser(Parser):
         if not semantic_panic:
             aux = p.idAux
             if(p.idAux.find(',')!=-1):
-                k = "\t"+aux+"=[str(x) for x in input().split(',')]"
-                code.append(k)
                 auxVariaveis = p.idAux.split(',')
                 for aux in auxVariaveis:
+                    k = "\t"+aux+"=input()"
+                    code.append(k)
                     if(symbol_table[aux]=="inteiro"):
                         code.append("\t"+aux+"=int("+aux+")")
                     elif(symbol_table[aux]=="real"):
@@ -276,22 +276,24 @@ class VisualgParser(Parser):
     @_('ID')
     def idAux(self,p):
         global semantic_panic
-        if p.ID in symbol_table:
+        try:
             symbol_table[p.ID]#verifica se tem o elemento na tabela de simbolos
             return str(p.ID)
-        print("Erro Semantico: Variavel  nao foi declarada")
-        semantic_panic = True
-        return
+        except KeyError:
+            print("Erro Semantico: Variavel "+p.ID+" não foi declarada")
+            semantic_panic = True
+            return
 
     @_('ID "," idAux')
     def idAux(self,p):
         global semantic_panic
-        if p.idAux in symbol_table:
+        try:
             symbol_table[p.ID]#verifica se tem o elemento na tabela de simbolos
             return str(p.ID)+','+str(p.idAux)
-        print("Erro Semantico: Variavel  nao foi declarada")
-        semantic_panic = True
-        return
+        except KeyError:
+            print("Erro Semantico: Variavel: "+p.ID+" não foi declarada")
+            semantic_panic = True
+            return
 
 
     @_('SE expressaoRelacional ENTAO ";" bloco FIMSE')

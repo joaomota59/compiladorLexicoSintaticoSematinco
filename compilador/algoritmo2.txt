@@ -5,7 +5,7 @@ Algoritmo "Compiladores"
 var
 x,w:inteiro
 y:CARACTERE
-z,n:real
+n:real
 msm:logico
 
 inicio
@@ -19,9 +19,9 @@ escreval(5+4^2,"oi"+"s"+"joao")
 escreval(VERDADEIRO, FALSO)
 escreval(4>3, '34'>'2')
 //leia(x,y,w,z)
-leia(n,msm)
-escreval(n)
-escreval(msm)
-leia(u,p)
+leia(n,y,k)
+//escreval(n)
+//escreval(y)
+//leia(u,p)
 
 fimalgoritmo
