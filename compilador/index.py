@@ -126,12 +126,12 @@ class VisualgParser(Parser):
 
     @_("ALGORITMO CARACTERE ; varAux INICIO ';'  blocoType FIMALGORITMO ';' ")
     def initial(self,p):
-        code.append("main()")
-        code.insert(0,"def main():")
-        code.insert(0,"@with_goto")
-        code.insert(0,"from goto import with_goto")
-    
         if not semantic_panic:
+            code.append("main()")
+            code.insert(0,"def main():")
+            code.insert(0,"@with_goto")
+            code.insert(0,"from goto import with_goto")
+    
             codigoObjeto = open("codigoObjeto.py","w")
             for i in code:
                 codigoObjeto.write(i+"\n")
@@ -194,7 +194,7 @@ class VisualgParser(Parser):
     @_("ID")
     def vartype(self,p):
         self.single_decl_semantic(p.ID)
-        return
+        return p.ID
 
     @_("ID ',' vartype")
     def vartype(self,p):
@@ -336,6 +336,12 @@ class VisualgParser(Parser):
 
     @_('ID ASSIGN expr')#comando atribuição
     def cmdattrib(self,p):
+        global semantic_panic
+        
+        if not p.ID in symbol_table:
+            print("Erro Semantico: Variavel " + p.ID + " nao declarada!")
+            semantic_panic = True
+        
         return
     
     @_('ID ASSIGN exprC')#comando atribuição
@@ -569,9 +575,13 @@ class VisualgParser(Parser):
     
     @_('ID')
     def expr(self, p):
+        global semantic_panic
+        
+        if not p.ID in symbol_table:
+            print("Erro Semantico: Variavel " + p.ID + " nao declarada!")
+            semantic_panic = True
+        
         return p.ID
-        #return
-        #return p.ID
 
     @_('"(" exprC ")"')
     def expr(self, p):
@@ -602,13 +612,12 @@ class VisualgParser(Parser):
 
     def single_decl_semantic_final(self, type):
         global semantic_panic
-        
+
         for var in list_aux_decl:
-            try:
-                symbol_table[var]
+            if var in symbol_table:
                 print("Erro Semantico: Variavel " + var + " ja declarada")
                 semantic_panic = True
-            except KeyError:
+            else:
                 symbol_table[var] = type
 
         list_aux_decl.clear()

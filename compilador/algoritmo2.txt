@@ -6,6 +6,10 @@ var
 u,x:inteiro
 
 inicio
+u <- 2
+x <- 3
+
+x<-z
 escreva(4%3+55/2-55)
 escreval(4\3 MOD 3%4)
 escreval("oi")
