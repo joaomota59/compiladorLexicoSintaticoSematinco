@@ -1,8 +1,7 @@
 from goto import with_goto
 @with_goto
 def main():
-	x=3
-	msm=43>3
+	msm=True
 	print(msm)
 	_t1=4%3
 	_t2=55/2

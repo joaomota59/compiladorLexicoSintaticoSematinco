@@ -378,8 +378,12 @@ class VisualgParser(Parser):
             if p.expr == "verdadeiro" or p.expr == "falso":#verifica se o tipo declarado é um lógico
                 print("Erro Semantico: Variavel " + p.ID + " tem o tipo incompativel na operação!")
                 semantic_panic = True
-            else:
+            elif (symbol_table[p.ID]=="inteiro" or symbol_table[p.ID]=="real"):#verifica se a variavel foi declarada como inteiro ou real
                 code.append("\t"+p.ID+"="+str(p.expr))
+            else:
+                print("Erro Semantico: Variavel " + p.ID + " tem o tipo incompativel na operação!")
+                semantic_panic = True
+                
 
         return
     
