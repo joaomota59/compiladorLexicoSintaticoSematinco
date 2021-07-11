@@ -4,13 +4,18 @@ Algoritmo "Compiladores"
 
 var
 x,w:inteiro
+ks: real
 y,a,b:CARACTERE
 n:real
 msm:logico
 
 inicio
 //x<-"sd"
-msm<-nao Falso ou 4<3
+ks<-5
+x<-4
+a<-"oi"
+
+escreval(a+"lucas")
 escreval(msm)
 escreva(4%3+55/2-55)
 escreval(4\3 MOD 3%4)

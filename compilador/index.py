@@ -103,6 +103,16 @@ def newTemp2():
 newTemp = newTemp2()
 
 
+def newLabel2():
+    info = {"count": 0}
+    def number():
+        info["count"] += 1
+        return info["count"]
+    return number
+
+newLabel = newLabel2()
+
+
 code = []#lista global
 symbol_table = {}
 list_aux_decl = []
@@ -411,13 +421,17 @@ class VisualgParser(Parser):
             if p.expr == "verdadeiro" or p.expr == "falso":#verifica se o tipo declarado é um lógico
                 print("Erro Semantico: Variavel " + p.ID + " tem o tipo incompativel na operação!")
                 semantic_panic = True
-            elif (symbol_table[p.ID]=="inteiro" or symbol_table[p.ID]=="real"):#verifica se a variavel foi declarada como inteiro ou real
-                code.append("\t"+p.ID+"="+str(p.expr))
+            elif (symbol_table[p.ID]=="inteiro"):#verifica se a variavel foi declarada como inteiro ou real
+                if(type(p.expr)==int):
+                    code.append("\t"+p.ID+"="+str(p.expr))
+                else:
+                    print("Erro Semantico: Variavel " + p.ID + " tem o tipo incompativel na operação!")
+                    semantic_panic = True
+            elif(symbol_table[p.ID]=="real"):
+                code.append("\t"+p.ID+"="+str(float(p.expr)))
             else:
                 print("Erro Semantico: Variavel " + p.ID + " tem o tipo incompativel na operação!")
                 semantic_panic = True
-                
-
         return
     
     @_('ID ASSIGN exprC')#comando atribuição para caractere
@@ -660,7 +674,7 @@ class VisualgParser(Parser):
         return p.ID
 
     @_('"(" exprC ")"')
-    def expr(self, p):
+    def exprC(self, p):
         return p.exprC
 
     @_("exprC '+' exprC ")
@@ -674,6 +688,11 @@ class VisualgParser(Parser):
     @_('CARACTERE')
     def exprC(self,p):
         return p.CARACTERE
+    
+    @_('ID')
+    def exprC(self,p):
+        return p.ID
+        
     
     def error(self, p):#só entra aqui se der algum erro de sintaxe
         if p:#se entrar aqui mostra o erro de sintaxe que deu, mostrando a linha do erro, dentre outras informações
