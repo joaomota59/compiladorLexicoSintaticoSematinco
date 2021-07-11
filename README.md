@@ -56,40 +56,35 @@ Rule 42    OP_REL -> GE  [precedence=nonassoc, level=1]
 Rule 43    OP_REL -> LT  [precedence=nonassoc, level=1]
 Rule 44    OP_REL -> LE  [precedence=nonassoc, level=1]
 Rule 45    OP_REL -> NE  [precedence=nonassoc, level=1]
-Rule 46    cmdattrib -> ID ASSIGN ( typeArgs )
-Rule 47    cmdattrib -> ID ASSIGN typeArgs
-Rule 48    cmdattrib -> ID ASSIGN exprC
-Rule 49    cmdattrib -> ID ASSIGN expr
-Rule 50    typeArgs -> exprC OP_REL exprC
-Rule 51    typeArgs -> expr OP_REL expr
-Rule 52    typeArgs -> FALSO
-Rule 53    typeArgs -> VERDADEIRO
-Rule 54    cmdescrita -> ESCREVAL ( )
-Rule 55    cmdescrita -> ESCREVAL ( typeArgsEscrita )
-Rule 56    cmdescrita -> ESCREVA ( )
-Rule 57    cmdescrita -> ESCREVA ( typeArgsEscrita )
-Rule 58    typeArgsEscritaAux -> typeArgs
-Rule 59    typeArgsEscritaAux -> exprC
-Rule 60    typeArgsEscritaAux -> expr
-Rule 61    typeArgsEscrita -> typeArgsEscritaAux
-Rule 62    typeArgsEscrita -> typeArgsEscrita , typeArgsEscritaAux
-Rule 63    expr -> ( exprC )
-Rule 64    expr -> ID
-Rule 65    expr -> REAL
-Rule 66    expr -> INTEIRO
-Rule 67    expr -> - expr  [precedence=right, level=5]
-Rule 68    expr -> + expr  [precedence=right, level=5]
-Rule 69    expr -> expr ^ expr  [precedence=right, level=4]
-Rule 70    expr -> expr MOD expr  [precedence=left, level=3]
-Rule 71    expr -> expr % expr  [precedence=left, level=3]
-Rule 72    expr -> expr \ expr  [precedence=left, level=3]
-Rule 73    expr -> expr / expr  [precedence=left, level=3]
-Rule 74    expr -> expr * expr  [precedence=left, level=3]
-Rule 75    expr -> expr - expr  [precedence=left, level=2]
-Rule 76    expr -> expr + expr  [precedence=left, level=2]
-Rule 77    expr -> ( expr )
-Rule 78    exprC -> CARACTERE
-Rule 79    exprC -> exprC + exprC  [precedence=left, level=2]
+Rule 46    cmdattrib -> ID ASSIGN expressaoRelacional
+Rule 47    cmdattrib -> ID ASSIGN exprC
+Rule 48    cmdattrib -> ID ASSIGN expr
+Rule 49    cmdescrita -> ESCREVAL ( )
+Rule 50    cmdescrita -> ESCREVAL ( typeArgsEscrita )
+Rule 51    cmdescrita -> ESCREVA ( )
+Rule 52    cmdescrita -> ESCREVA ( typeArgsEscrita )
+Rule 53    typeArgsEscritaAux -> expressaoRelacional
+Rule 54    typeArgsEscritaAux -> exprC
+Rule 55    typeArgsEscritaAux -> expr
+Rule 56    typeArgsEscrita -> typeArgsEscritaAux
+Rule 57    typeArgsEscrita -> typeArgsEscrita , typeArgsEscritaAux
+Rule 58    expr -> ( exprC )
+Rule 59    expr -> ID
+Rule 60    expr -> REAL
+Rule 61    expr -> INTEIRO
+Rule 62    expr -> - expr  [precedence=right, level=5]
+Rule 63    expr -> + expr  [precedence=right, level=5]
+Rule 64    expr -> expr ^ expr  [precedence=right, level=4]
+Rule 65    expr -> expr MOD expr  [precedence=left, level=3]
+Rule 66    expr -> expr % expr  [precedence=left, level=3]
+Rule 67    expr -> expr \ expr  [precedence=left, level=3]
+Rule 68    expr -> expr / expr  [precedence=left, level=3]
+Rule 69    expr -> expr * expr  [precedence=left, level=3]
+Rule 70    expr -> expr - expr  [precedence=left, level=2]
+Rule 71    expr -> expr + expr  [precedence=left, level=2]
+Rule 72    expr -> ( expr )
+Rule 73    exprC -> CARACTERE
+Rule 74    exprC -> exprC + exprC  [precedence=left, level=2]
 ```
 
 
