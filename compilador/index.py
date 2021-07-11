@@ -347,10 +347,13 @@ class VisualgParser(Parser):
 
     @_("NAO termoRelacional")
     def termoRelacional(self,p):
+        var = "_t"+str(newTemp())
         if p.termoRelacional == "VERDADEIRO":
-            return "not True"
+            code.append('\t'+var+"= not True")
+            return var
         elif p.termoRelacional == "False":
-            return "not False"
+            code.append('\t'+var+"= not False")
+            return var
         else:
             return "not " + p.termoRelacional
     

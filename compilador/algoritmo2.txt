@@ -10,7 +10,7 @@ msm:logico
 
 inicio
 //x<-"sd"
-msm<-nao 5>3
+msm<-nao Falso ou 4<3
 escreval(msm)
 escreva(4%3+55/2-55)
 escreval(4\3 MOD 3%4)
