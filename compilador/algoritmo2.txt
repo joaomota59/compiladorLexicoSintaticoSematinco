@@ -11,7 +11,7 @@ msm:logico
 inicio
 //x<-"sd"
 msm<-VERDADEIRO
-//msm<- 43>3
+escreval(4=3 e 5>3 ou 3<1)
 escreval(msm)
 escreva(4%3+55/2-55)
 escreval(4\3 MOD 3%4)
@@ -21,7 +21,7 @@ escreval(-2)
 escreval(+2)
 escreval(5+4^2,"oi"+"s"+"joao")
 escreval(VERDADEIRO, FALSO)
-escreval(4>3, '34'>'2')
+//escreval(4>3, '34'>'2')
 //leia(x,y,w,z)
 leia(x,a,n)
 //escreval(n)

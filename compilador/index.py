@@ -306,19 +306,44 @@ class VisualgParser(Parser):
 
     @_("expressaoRelacional OP_BOOL termoRelacional")
     def expressaoRelacional(self,p):
-        return
+        a = p.expressaoRelacional
+        b = p.termoRelacional
+        var = "_t"+str(newTemp())
+        if p.OP_BOOL == "e":
+            code.append('\t'+var+"="+str(a)+" and "+str(b))
+        elif p.OP_BOOL == "ou":
+            code.append('\t'+var+"="+str(a)+" or "+str(b))
+        return var
     
     @_("termoRelacional")
     def expressaoRelacional(self,p):
-        return
+        return p.termoRelacional
 
     @_("expr OP_REL expr")
     def termoRelacional(self,p):
-        return
+        a = p.expr0
+        b = p.expr1
+        var = "_t"+str(newTemp())
+        if p.OP_REL == '<>':
+            code.append('\t'+var+"="+str(a)+" != "+str(b))
+        elif p.OP_REL == '=':
+            code.append('\t'+var+"="+str(a)+" == "+str(b))
+        else:
+            code.append('\t'+var+"="+str(a)+" "+str(p.OP_REL)+" "+str(b))
+        return var
     
     @_("exprC OP_REL exprC")
     def termoRelacional(self,p):
-        return
+        a = p.exprC0
+        b = p.exprC1
+        var = "_t"+str(newTemp())
+        if p.OP_REL == '<>':
+            code.append('\t'+var+"="+str(a)+"!="+str(b))
+        elif p.OP_REL == '=':
+            code.append('\t'+var+"="+str(a)+"=="+str(b))
+        else:
+            code.append('\t'+var+"="+str(a)+" "+str(p.OP_REL)+" "+str(b))
+        return var
 
     @_("NAO termoRelacional")
     def termoRelacional(self,p):
@@ -326,11 +351,11 @@ class VisualgParser(Parser):
     
     @_("VERDADEIRO")
     def termoRelacional(self,p):
-        return
+        return "True"
     
     @_("FALSO")
     def termoRelacional(self,p):
-        return
+        return "False"
 
     @_(" '(' expressaoRelacional ')' ")
     def termoRelacional(self,p):
@@ -401,7 +426,7 @@ class VisualgParser(Parser):
                 semantic_panic = True
         return
     
-    @_('ID ASSIGN typeArgs')#comando atribuição para logico
+    @_('ID ASSIGN expressaoRelacional')#comando atribuição para logico
     def cmdattrib(self,p):
         global semantic_panic
         if p.ID not in symbol_table:#variavel nao foi declarada
@@ -409,42 +434,13 @@ class VisualgParser(Parser):
             semantic_panic = True
         else:#variavel declarada
             if(symbol_table[p.ID]=="logico"):#verifica se a variavel foi declarada como logico
-                code.append("\t"+p.ID+"="+p.typeArgs)
+                code.append("\t"+p.ID+"="+p.expressaoRelacional)
             else:#se foi declarada como outro tipo então é um erro
                 semantic_panic = True
                 print("Erro Semantico: Variavel "+p.ID+" recebe tipo incompativel.")
 
         return
 
-    @_('ID ASSIGN "(" typeArgs ")"')#comando atribuição
-    def cmdattrib(self,p):
-        global semantic_panic
-        if p.ID not in symbol_table:#variavel nao foi declarada
-            print("Erro Semantico: Variavel " + p.ID + " não declarada!")
-            semantic_panic = True
-        else:#variavel declarada
-            if(symbol_table[p.ID]=="logico"):#verifica se a variavel foi declarada como logico
-                code.append("\t"+p.ID+"="+p.typeArgs)
-            else:#se foi declarada como outro tipo então é um erro
-                semantic_panic = True
-                print("Erro Semantico: Variavel "+p.ID+" recebe tipo incompativel.")
-        return
-
-    @_('VERDADEIRO')
-    def typeArgs(self,p):
-        return "True"
-
-    @_('FALSO')
-    def typeArgs(self,p):
-        return "False"
-
-    @_("expr OP_REL expr")
-    def typeArgs(self,p):
-        return str(p.expr0) + str(p.OP_REL) + str(p.expr1)
-    
-    @_("exprC OP_REL exprC")
-    def typeArgs(self,p):
-        return str(p.exprC0) + str(p.OP_REL) + str(p.exprC1)
     
     @_('ESCREVA "(" typeArgsEscrita ")" ')#comando escrita
     def cmdescrita(self, p):
@@ -466,9 +462,9 @@ class VisualgParser(Parser):
     def typeArgsEscritaAux(self,p):
         return p.exprC
     
-    @_('typeArgs')
+    @_('expressaoRelacional')
     def typeArgsEscritaAux(self,p):
-        return p.typeArgs
+        return p.expressaoRelacional
 
     @_('typeArgsEscrita "," typeArgsEscritaAux')
     def typeArgsEscrita(self,p):
