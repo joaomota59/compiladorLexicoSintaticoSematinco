@@ -68,23 +68,24 @@ Rule 54    typeArgsEscritaAux -> exprC
 Rule 55    typeArgsEscritaAux -> expr
 Rule 56    typeArgsEscrita -> typeArgsEscritaAux
 Rule 57    typeArgsEscrita -> typeArgsEscrita , typeArgsEscritaAux
-Rule 58    expr -> ( exprC )
-Rule 59    expr -> ID
-Rule 60    expr -> REAL
-Rule 61    expr -> INTEIRO
-Rule 62    expr -> - expr  [precedence=right, level=5]
-Rule 63    expr -> + expr  [precedence=right, level=5]
-Rule 64    expr -> expr ^ expr  [precedence=right, level=4]
-Rule 65    expr -> expr MOD expr  [precedence=left, level=3]
-Rule 66    expr -> expr % expr  [precedence=left, level=3]
-Rule 67    expr -> expr \ expr  [precedence=left, level=3]
-Rule 68    expr -> expr / expr  [precedence=left, level=3]
-Rule 69    expr -> expr * expr  [precedence=left, level=3]
-Rule 70    expr -> expr - expr  [precedence=left, level=2]
-Rule 71    expr -> expr + expr  [precedence=left, level=2]
-Rule 72    expr -> ( expr )
+Rule 58    expr -> ID
+Rule 59    expr -> REAL
+Rule 60    expr -> INTEIRO
+Rule 61    expr -> - expr  [precedence=right, level=5]
+Rule 62    expr -> + expr  [precedence=right, level=5]
+Rule 63    expr -> expr ^ expr  [precedence=right, level=4]
+Rule 64    expr -> expr MOD expr  [precedence=left, level=3]
+Rule 65    expr -> expr % expr  [precedence=left, level=3]
+Rule 66    expr -> expr \ expr  [precedence=left, level=3]
+Rule 67    expr -> expr / expr  [precedence=left, level=3]
+Rule 68    expr -> expr * expr  [precedence=left, level=3]
+Rule 69    expr -> expr - expr  [precedence=left, level=2]
+Rule 70    expr -> expr + expr  [precedence=left, level=2]
+Rule 71    expr -> ( expr )
+Rule 72    exprC -> ID
 Rule 73    exprC -> CARACTERE
 Rule 74    exprC -> exprC + exprC  [precedence=left, level=2]
+Rule 75    exprC -> ( exprC )
 ```
 
 
