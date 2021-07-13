@@ -1,1 +1,3 @@
-/compilador/codigoObjeto.py
+compilador/codigoObjeto.py
+parser.out
+tokens.txt
