@@ -3,33 +3,49 @@
 Algoritmo "Compiladores" 
 
 var
-x,w:inteiro
+a,b:real
 ks: real
-y,a,b:CARACTERE
+y,xc:CARACTERE
 n:real
 msm:logico
 
 inicio
-//x<-"sd"
-ks<-5
-x<-4
-a<-"oi"
+xc<-"ola"
+y<-"sd"+xc + "asdasdas"
+a<-5.23 + 3.4
+b<-4.3
 
-escreval(a+"lucas")
-escreval(msm)
-escreva(4%3+55/2-55)
-escreval(4\3 MOD 3%4)
+//escreval(y)
+
+//msm<- nao (5>3)
+//msm<-(( nao 5>4 e  nao (4>2)))
+
+//escreval(5>3)
+//escreval(msm e VERDADEIRO)
+//escreva(4%3+55/2-55)
+//escreval(4\3 MOD 3%4)
 //escreval(u,z,u,o)
-escreval("oi")
-escreval(-2)
-escreval(+2)
-escreval(5+4^2,"oi"+"s"+"joao")
-escreval(VERDADEIRO, FALSO)
+//escreval("oi")
+//escreval(-2)
+//escreval(+2)
+//escreval(5+4^2,"oi"+"s"+"joao")
+//escreval(VERDADEIRO, FALSO)
 //escreval(4>3, '34'>'2')
 //leia(x,y,w,z)
-leia(x,a,n)
+//leia(x,a,n)
 //escreval(n)
 //escreval(y)
 //leia(u,p)
 
+escreval("tk")
+
+//se 5 <> 4 e 9>4  entao
+//   escreval(3+2)
+//fimse
+
 fimalgoritmo
+
+
+
+
+

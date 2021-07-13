@@ -117,6 +117,7 @@ code = []#lista global
 symbol_table = {}
 list_aux_decl = []
 semantic_panic = False
+tab = 0
 
 class VisualgParser(Parser):
     debugfile = 'parser.out' #arquivo de debugação do Parser
@@ -158,7 +159,7 @@ class VisualgParser(Parser):
 
     @_("bloco")
     def blocoType(self,p):
-        return
+        return p.bloco
         #return p.bloco
     
     @_("")
@@ -213,7 +214,7 @@ class VisualgParser(Parser):
 
     @_('cmd ";" ')
     def bloco(self,p):
-        return
+        return p.cmd
         #return p.cmd 
     
     @_('cmd ";" bloco')
@@ -223,30 +224,27 @@ class VisualgParser(Parser):
 
     @_('cmdattrib')
     def cmd(self,p):
-        return
-        #return p.cmdattrib
+        return p.cmdattrib
     
     @_('cmdescrita')
     def cmd(self,p):
-        return
-        #return p.cmdescrita
+        return p.cmdescrita
     
     @_('cmdleitura')
     def cmd(self,p):
-        return
-        # return p.cmdleitura
+        return p.cmdleitura
 
     @_('cmdCondicao')
     def cmd(self,p):
-        return
+        return p.cmdCondicao
 
     @_('LIMPATELA')
     def cmd(self,p):
-        return
+        return p.LIMPATELA
 
     @_('cmdRepeticao')
     def cmd(self,p):
-        return
+        return p.cmdRepeticao
     
     @_("ENQUANTO expressaoRelacional FACA ';' bloco FIMENQUANTO")
     def cmdRepeticao(self,p):
@@ -308,6 +306,9 @@ class VisualgParser(Parser):
 
     @_('SE expressaoRelacional ENTAO ";" bloco FIMSE')
     def cmdCondicao(self,p):
+        label = "_l"+str(newLabel())
+        code.append('\t'+"if "+p.expressaoRelacional+":")
+        #code.append('\t\t'+p.bloco)
         return
 
     @_("SE expressaoRelacional ENTAO ';' bloco SENAO ';' bloco FIMSE")
@@ -365,7 +366,18 @@ class VisualgParser(Parser):
             code.append('\t'+var+"= not False")
             return var
         else:
-            return "not " + p.termoRelacional
+            code.append('\t'+var+"= not "+p.termoRelacional)
+            return var
+
+
+
+    @_("'(' termoRelacional ')'")
+    def termoRelacional(self,p):
+        return p.termoRelacional
+
+    @_("ID")
+    def termoRelacional(self,p):
+        return p.ID
     
     @_("VERDADEIRO")
     def termoRelacional(self,p):
@@ -377,7 +389,7 @@ class VisualgParser(Parser):
 
     @_(" '(' expressaoRelacional ')' ")
     def termoRelacional(self,p):
-        return 
+        return p.expressaoRelacional
 
     @_("E")
     def OP_BOOL(self,p):
@@ -428,7 +440,7 @@ class VisualgParser(Parser):
                     print("Erro Semantico: Variavel " + p.ID + " tem o tipo incompativel na operação!")
                     semantic_panic = True
             elif(symbol_table[p.ID]=="real"):
-                code.append("\t"+p.ID+"="+str(float(p.expr)))
+                code.append("\t"+p.ID+"="+str(p.expr))
             else:
                 print("Erro Semantico: Variavel " + p.ID + " tem o tipo incompativel na operação!")
                 semantic_panic = True
@@ -456,7 +468,7 @@ class VisualgParser(Parser):
             semantic_panic = True
         else:#variavel declarada
             if(symbol_table[p.ID]=="logico"):#verifica se a variavel foi declarada como logico
-                code.append("\t"+p.ID+"="+p.expressaoRelacional)
+                code.append("\t"+str(p.ID)+"="+str(p.expressaoRelacional))
             else:#se foi declarada como outro tipo então é um erro
                 semantic_panic = True
                 print("Erro Semantico: Variavel "+p.ID+" recebe tipo incompativel.")
@@ -469,7 +481,7 @@ class VisualgParser(Parser):
         aux = p.typeArgsEscrita
         k = "\tprint("+aux+",end='')"
         code.append(k)
-        return
+        return aux
 
     @_('ESCREVA "(" ")" ')#comando escrita
     def cmdescrita(self, p):
@@ -684,14 +696,16 @@ class VisualgParser(Parser):
         var = "_t"+str(newTemp())
         code.append('\t'+var+"="+str(a)+"+"+str(b))
         return var
+
+    @_('ID')
+    def exprC(self,p):
+        return p.ID
+
+        
     
     @_('CARACTERE')
     def exprC(self,p):
         return p.CARACTERE
-    
-    @_('ID')
-    def exprC(self,p):
-        return p.ID
         
     
     def error(self, p):#só entra aqui se der algum erro de sintaxe
