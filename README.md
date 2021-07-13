@@ -45,47 +45,49 @@ Rule 31    expressaoRelacional -> expressaoRelacional OP_BOOL termoRelacional
 Rule 32    termoRelacional -> ( expressaoRelacional )
 Rule 33    termoRelacional -> FALSO
 Rule 34    termoRelacional -> VERDADEIRO
-Rule 35    termoRelacional -> NAO termoRelacional
-Rule 36    termoRelacional -> exprC OP_REL exprC
-Rule 37    termoRelacional -> expr OP_REL expr
-Rule 38    OP_BOOL -> OU  [precedence=nonassoc, level=1]
-Rule 39    OP_BOOL -> E  [precedence=nonassoc, level=1]
-Rule 40    OP_REL -> EQ  [precedence=nonassoc, level=1]
-Rule 41    OP_REL -> GT  [precedence=nonassoc, level=1]
-Rule 42    OP_REL -> GE  [precedence=nonassoc, level=1]
-Rule 43    OP_REL -> LT  [precedence=nonassoc, level=1]
-Rule 44    OP_REL -> LE  [precedence=nonassoc, level=1]
-Rule 45    OP_REL -> NE  [precedence=nonassoc, level=1]
-Rule 46    cmdattrib -> ID ASSIGN expressaoRelacional
-Rule 47    cmdattrib -> ID ASSIGN exprC
-Rule 48    cmdattrib -> ID ASSIGN expr
-Rule 49    cmdescrita -> ESCREVAL ( )
-Rule 50    cmdescrita -> ESCREVAL ( typeArgsEscrita )
-Rule 51    cmdescrita -> ESCREVA ( )
-Rule 52    cmdescrita -> ESCREVA ( typeArgsEscrita )
-Rule 53    typeArgsEscritaAux -> expressaoRelacional
-Rule 54    typeArgsEscritaAux -> exprC
-Rule 55    typeArgsEscritaAux -> expr
-Rule 56    typeArgsEscrita -> typeArgsEscritaAux
-Rule 57    typeArgsEscrita -> typeArgsEscrita , typeArgsEscritaAux
-Rule 58    expr -> ID
-Rule 59    expr -> REAL
-Rule 60    expr -> INTEIRO
-Rule 61    expr -> - expr  [precedence=right, level=5]
-Rule 62    expr -> + expr  [precedence=right, level=5]
-Rule 63    expr -> expr ^ expr  [precedence=right, level=4]
-Rule 64    expr -> expr MOD expr  [precedence=left, level=3]
-Rule 65    expr -> expr % expr  [precedence=left, level=3]
-Rule 66    expr -> expr \ expr  [precedence=left, level=3]
-Rule 67    expr -> expr / expr  [precedence=left, level=3]
-Rule 68    expr -> expr * expr  [precedence=left, level=3]
-Rule 69    expr -> expr - expr  [precedence=left, level=2]
-Rule 70    expr -> expr + expr  [precedence=left, level=2]
-Rule 71    expr -> ( expr )
-Rule 72    exprC -> ID
-Rule 73    exprC -> CARACTERE
-Rule 74    exprC -> exprC + exprC  [precedence=left, level=2]
-Rule 75    exprC -> ( exprC )
+Rule 35    termoRelacional -> ID
+Rule 36    termoRelacional -> ( termoRelacional )
+Rule 37    termoRelacional -> NAO termoRelacional
+Rule 38    termoRelacional -> exprC OP_REL exprC
+Rule 39    termoRelacional -> expr OP_REL expr
+Rule 40    OP_BOOL -> OU  [precedence=nonassoc, level=1]
+Rule 41    OP_BOOL -> E  [precedence=nonassoc, level=1]
+Rule 42    OP_REL -> EQ  [precedence=nonassoc, level=1]
+Rule 43    OP_REL -> GT  [precedence=nonassoc, level=1]
+Rule 44    OP_REL -> GE  [precedence=nonassoc, level=1]
+Rule 45    OP_REL -> LT  [precedence=nonassoc, level=1]
+Rule 46    OP_REL -> LE  [precedence=nonassoc, level=1]
+Rule 47    OP_REL -> NE  [precedence=nonassoc, level=1]
+Rule 48    cmdattrib -> ID ASSIGN expressaoRelacional
+Rule 49    cmdattrib -> ID ASSIGN exprC
+Rule 50    cmdattrib -> ID ASSIGN expr
+Rule 51    cmdescrita -> ESCREVAL ( )
+Rule 52    cmdescrita -> ESCREVAL ( typeArgsEscrita )
+Rule 53    cmdescrita -> ESCREVA ( )
+Rule 54    cmdescrita -> ESCREVA ( typeArgsEscrita )
+Rule 55    typeArgsEscritaAux -> expressaoRelacional
+Rule 56    typeArgsEscritaAux -> exprC
+Rule 57    typeArgsEscritaAux -> expr
+Rule 58    typeArgsEscrita -> typeArgsEscritaAux
+Rule 59    typeArgsEscrita -> typeArgsEscrita , typeArgsEscritaAux
+Rule 60    expr -> ID
+Rule 61    expr -> REAL
+Rule 62    expr -> INTEIRO
+Rule 63    expr -> - expr  [precedence=right, level=5]
+Rule 64    expr -> + expr  [precedence=right, level=5]
+Rule 65    expr -> expr ^ expr  [precedence=right, level=4]
+Rule 66    expr -> expr MOD expr  [precedence=left, level=3]
+Rule 67    expr -> expr % expr  [precedence=left, level=3]
+Rule 68    expr -> expr \ expr  [precedence=left, level=3]
+Rule 69    expr -> expr / expr  [precedence=left, level=3]
+Rule 70    expr -> expr * expr  [precedence=left, level=3]
+Rule 71    expr -> expr - expr  [precedence=left, level=2]
+Rule 72    expr -> expr + expr  [precedence=left, level=2]
+Rule 73    expr -> ( expr )
+Rule 74    exprC -> CARACTERE
+Rule 75    exprC -> ID
+Rule 76    exprC -> exprC + exprC  [precedence=left, level=2]
+Rule 77    exprC -> ( exprC )
 ```
 
 
