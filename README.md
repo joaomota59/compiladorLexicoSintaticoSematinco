@@ -39,19 +39,19 @@ Rule 20    cmd -> cmdCondicao
 Rule 21    cmd -> cmdleitura
 Rule 22    cmd -> cmdescrita
 Rule 23    cmd -> cmdattrib
-Rule 24    cmdRepeticao -> ENQUANTO regraVazia expressaoRelacional FACA regraVazia bloco FIMENQUANTO
+Rule 24    cmdRepeticao -> ENQUANTO regraVazia expressaoRelacional FACA regraVazia blocoType FIMENQUANTO
 Rule 25    cmdleitura -> LEIA ( idAux )
 Rule 26    idAux -> ID , idAux
 Rule 27    idAux -> ID
 Rule 28    regraVazia -> ;
-Rule 29    cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; bloco SENAO regraVazia bloco FIMSE
-Rule 30    cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; bloco FIMSE
+Rule 29    cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; blocoType SENAO regraVazia blocoType FIMSE
+Rule 30    cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; blocoType FIMSE
 Rule 31    expressaoRelacional -> termoRelacional
 Rule 32    expressaoRelacional -> expressaoRelacional OP_BOOL termoRelacional
-Rule 33    termoRelacional -> ( expressaoRelacional )
-Rule 34    termoRelacional -> FALSO
-Rule 35    termoRelacional -> VERDADEIRO
-Rule 36    termoRelacional -> ID
+Rule 33    termoRelacional -> ID
+Rule 34    termoRelacional -> ( expressaoRelacional )
+Rule 35    termoRelacional -> FALSO
+Rule 36    termoRelacional -> VERDADEIRO
 Rule 37    termoRelacional -> ( termoRelacional )
 Rule 38    termoRelacional -> NAO termoRelacional
 Rule 39    termoRelacional -> exprC OP_REL exprC
@@ -65,15 +65,15 @@ Rule 46    OP_REL -> LT  [precedence=nonassoc, level=1]
 Rule 47    OP_REL -> LE  [precedence=nonassoc, level=1]
 Rule 48    OP_REL -> NE  [precedence=nonassoc, level=1]
 Rule 49    cmdattrib -> ID ASSIGN expressaoRelacional
-Rule 50    cmdattrib -> ID ASSIGN exprC
-Rule 51    cmdattrib -> ID ASSIGN expr
+Rule 50    cmdattrib -> ID ASSIGN expr
+Rule 51    cmdattrib -> ID ASSIGN exprC
 Rule 52    cmdescrita -> ESCREVAL ( )
 Rule 53    cmdescrita -> ESCREVAL ( typeArgsEscrita )
 Rule 54    cmdescrita -> ESCREVA ( )
 Rule 55    cmdescrita -> ESCREVA ( typeArgsEscrita )
 Rule 56    typeArgsEscritaAux -> expressaoRelacional
-Rule 57    typeArgsEscritaAux -> exprC
-Rule 58    typeArgsEscritaAux -> expr
+Rule 57    typeArgsEscritaAux -> expr
+Rule 58    typeArgsEscritaAux -> exprC
 Rule 59    typeArgsEscrita -> typeArgsEscritaAux
 Rule 60    typeArgsEscrita -> typeArgsEscrita , typeArgsEscritaAux
 Rule 61    expr -> ID
