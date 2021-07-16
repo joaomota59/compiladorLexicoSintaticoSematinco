@@ -1,0 +1,13 @@
+//arrumar soma de variavel com numero
+Algoritmo "Compiladores" 
+var
+j:INTEIRO
+inicio
+j<-1
+
+escreval("entao")
+enquanto j <= 10 e 5>2 faca
+    escreval(j)
+    j <- j + 1
+fimenquanto
+fimalgoritmo

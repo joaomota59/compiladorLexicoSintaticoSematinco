@@ -42,6 +42,8 @@ se 2>3 E 5<6 entao
     escreva("ok")
 fimse
 
+escreval("entao")
+
 enquanto j <= 10 faca
     escreva (j)
     j <- 2 + 1

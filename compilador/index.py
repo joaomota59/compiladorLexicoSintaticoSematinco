@@ -246,8 +246,17 @@ class VisualgParser(Parser):
     def cmd(self,p):
         return p.cmdRepeticao
     
-    @_("ENQUANTO expressaoRelacional FACA ';' bloco FIMENQUANTO")
+    @_("ENQUANTO regraVazia expressaoRelacional FACA regraVazia bloco FIMENQUANTO")
     def cmdRepeticao(self,p):
+        global code
+        posExpRelacional = p.regraVazia0
+        posEnquanto = p.regraVazia1 #tamanho do vetor antes do entao
+        labelFalse = "_l"+str(newLabel())
+        labelInicioLaco = "_l"+str(newLabel())
+        code = code[:posExpRelacional]+['\tlabel .'+labelInicioLaco]+code[posExpRelacional:posEnquanto]+['\t'+"if "+p.expressaoRelacional+" == False: goto ."+labelFalse]+code[posEnquanto:]
+        #insere o if depois da posicao do entao e o resto do vetor após a posicao do entao
+        code.append('\tgoto .'+labelInicioLaco)
+        code.append('\t'+'label'+' .'+labelFalse)
         return
 
 
@@ -279,7 +288,7 @@ class VisualgParser(Parser):
                     code.append("\t"+aux+"=str("+aux+")")
                 elif symbol_table[aux]=="logico":
                     code.append("\t"+aux+"=bool("+aux+")") 
-        return aux
+        return
     
     @_('ID')
     def idAux(self,p):
@@ -449,17 +458,18 @@ class VisualgParser(Parser):
                 print("Erro Semantico: Variavel " + p.ID + " tem o tipo incompativel na operação!")
                 semantic_panic = True
             elif (symbol_table[p.ID]=="inteiro"):#verifica se a variavel foi declarada como inteiro ou real
-                if(type(p.expr)==int):
-                    code.append("\t"+p.ID+"="+str(p.expr))
-                else:
-                    print("Erro Semantico: Variavel " + p.ID + " tem o tipo incompativel na operação!")
-                    semantic_panic = True
+                #if(type(p.expr)==int):
+                code.append("\t"+p.ID+"="+str(p.expr))
+                #else:
+                #    print(type(p.expr))
+                #    print("Erro Semantico: Variavel " + p.ID + " tem o tipo incompativel na operação!")
+                #    semantic_panic = True
             elif(symbol_table[p.ID]=="real"):
                 code.append("\t"+p.ID+"="+str(p.expr))
             else:
                 print("Erro Semantico: Variavel " + p.ID + " tem o tipo incompativel na operação!")
                 semantic_panic = True
-        return "\t"+p.ID+"="+str(p.expr)
+        return
     
     @_('ID ASSIGN exprC')#comando atribuição para caractere
     def cmdattrib(self,p):
@@ -473,7 +483,7 @@ class VisualgParser(Parser):
             else:#se foi declarada como outro tipo então é um erro
                 print("Erro Semantico: Variavel "+p.ID+" recebe tipo incompativel.")
                 semantic_panic = True
-        return "\t"+p.ID+"="+p.exprC
+        return
     
     @_('ID ASSIGN expressaoRelacional')#comando atribuição para logico
     def cmdattrib(self,p):
@@ -488,7 +498,7 @@ class VisualgParser(Parser):
                 semantic_panic = True
                 print("Erro Semantico: Variavel "+p.ID+" recebe tipo incompativel.")
 
-        return "\t"+str(p.ID)+"="+str(p.expressaoRelacional)
+        return
 
     
     @_('ESCREVA "(" typeArgsEscrita ")" ')#comando escrita
@@ -496,7 +506,7 @@ class VisualgParser(Parser):
         aux = p.typeArgsEscrita
         k = "\tprint("+aux+",end='')"
         code.append(k)
-        return aux
+        return
 
     @_('ESCREVA "(" ")" ')#comando escrita
     def cmdescrita(self, p):
@@ -529,7 +539,7 @@ class VisualgParser(Parser):
         aux = p.typeArgsEscrita
         k = "\tprint("+aux+")"
         code.append(k)
-        return k
+        return
 
     @_('ESCREVAL "(" ")" ')#comando escrita
     def cmdescrita(self, p):
@@ -761,16 +771,22 @@ if __name__ == '__main__':
             if (i.find('//') != -1 and i.find('//')!=0):#se a linha tiver comentario coloca o ponto e virgula antes do comentario, pq o comentario será ignorado pelo regex
                 auxiliar = i[:i.find('//')].lower() + ";" + i[i.find('//'):].lower()
                 positionEntao = auxiliar.find('entao;')
+                positionEnquanto = auxiliar.find('enquanto')
                 if(positionEntao != -1):
                     data += auxiliar[:positionEntao]+';'+auxiliar[positionEntao:]
+                elif(positionEnquanto!=-1):
+                    data += auxiliar[:positionEnquanto]+';'+auxiliar[positionEnquanto:]
                 else:
                     data+=auxiliar
             elif i.lower()=='fimalgoritmo': #ultima linha do arquivo
                 data += i.lower() + ";"
             else:#é pq a linha nao tem comentário entao adiciona o ; antes do \n
                 auxiliar = i[:-1].lower() + ";" + "\n"
+                positionEnquanto = auxiliar.find('enquanto')+8
                 if(auxiliar.find('entao;\n')!=-1):
                     data += auxiliar[:-7]+" ;"+auxiliar[-7:]
+                elif(positionEnquanto!=-1 and auxiliar.find('faca;\n')!=-1 ):
+                    data += auxiliar[:positionEnquanto]+';'+auxiliar[positionEnquanto:]
                 else:
                     data+=auxiliar
         else:#entao é uma linha vazia
