@@ -50,15 +50,15 @@ Rule 46    OP_REL -> LT  [precedence=nonassoc, level=1]
 Rule 47    OP_REL -> LE  [precedence=nonassoc, level=1]
 Rule 48    OP_REL -> NE  [precedence=nonassoc, level=1]
 Rule 49    cmdattrib -> ID ASSIGN expressaoRelacional
-Rule 50    cmdattrib -> ID ASSIGN exprC
-Rule 51    cmdattrib -> ID ASSIGN expr
+Rule 50    cmdattrib -> ID ASSIGN expr
+Rule 51    cmdattrib -> ID ASSIGN exprC
 Rule 52    cmdescrita -> ESCREVAL ( )
 Rule 53    cmdescrita -> ESCREVAL ( typeArgsEscrita )
 Rule 54    cmdescrita -> ESCREVA ( )
 Rule 55    cmdescrita -> ESCREVA ( typeArgsEscrita )
 Rule 56    typeArgsEscritaAux -> expressaoRelacional
-Rule 57    typeArgsEscritaAux -> exprC
-Rule 58    typeArgsEscritaAux -> expr
+Rule 57    typeArgsEscritaAux -> expr
+Rule 58    typeArgsEscritaAux -> exprC
 Rule 59    typeArgsEscrita -> typeArgsEscritaAux
 Rule 60    typeArgsEscrita -> typeArgsEscrita , typeArgsEscritaAux
 Rule 61    expr -> ID
@@ -144,8 +144,8 @@ cmdleitura           : 21
 declaracao           : 8 9
 declaracaoType       : 2
 declaracaoTypeAux    : 7 9
-expr                 : 40 40 51 58 64 65 66 66 67 67 68 68 69 69 70 70 71 71 72 72 73 73 74
-exprC                : 39 39 50 57 77 77 78
+expr                 : 40 40 50 57 64 65 66 66 67 67 68 68 69 69 70 70 71 71 72 72 73 73 74
+exprC                : 39 39 51 58 77 77 78
 expressaoRelacional  : 24 29 30 32 33 49 56
 idAux                : 25 26
 initial              : 0
@@ -253,8 +253,8 @@ state 9
     (54) cmdescrita -> . ESCREVA ( )
     (55) cmdescrita -> . ESCREVA ( typeArgsEscrita )
     (49) cmdattrib -> . ID ASSIGN expressaoRelacional
-    (50) cmdattrib -> . ID ASSIGN exprC
-    (51) cmdattrib -> . ID ASSIGN expr
+    (50) cmdattrib -> . ID ASSIGN expr
+    (51) cmdattrib -> . ID ASSIGN exprC
     FIMALGORITMO    reduce using rule 4 (blocoType -> .)
     LIMPATELA       shift and go to state 19
     ENQUANTO        shift and go to state 24
@@ -443,8 +443,8 @@ state 28
 state 29
 
     (49) cmdattrib -> ID . ASSIGN expressaoRelacional
-    (50) cmdattrib -> ID . ASSIGN exprC
-    (51) cmdattrib -> ID . ASSIGN expr
+    (50) cmdattrib -> ID . ASSIGN expr
+    (51) cmdattrib -> ID . ASSIGN exprC
     ASSIGN          shift and go to state 54
 
 
@@ -515,8 +515,8 @@ state 34
     (54) cmdescrita -> . ESCREVA ( )
     (55) cmdescrita -> . ESCREVA ( typeArgsEscrita )
     (49) cmdattrib -> . ID ASSIGN expressaoRelacional
-    (50) cmdattrib -> . ID ASSIGN exprC
-    (51) cmdattrib -> . ID ASSIGN expr
+    (50) cmdattrib -> . ID ASSIGN expr
+    (51) cmdattrib -> . ID ASSIGN exprC
     FIMALGORITMO    reduce using rule 17 (bloco -> cmd ; .)
     FIMENQUANTO     reduce using rule 17 (bloco -> cmd ; .)
     SENAO           reduce using rule 17 (bloco -> cmd ; .)
@@ -974,14 +974,10 @@ state 52
     (59) typeArgsEscrita -> . typeArgsEscritaAux
     (60) typeArgsEscrita -> . typeArgsEscrita , typeArgsEscritaAux
     (56) typeArgsEscritaAux -> . expressaoRelacional
-    (57) typeArgsEscritaAux -> . exprC
-    (58) typeArgsEscritaAux -> . expr
+    (57) typeArgsEscritaAux -> . expr
+    (58) typeArgsEscritaAux -> . exprC
     (31) expressaoRelacional -> . termoRelacional
     (32) expressaoRelacional -> . expressaoRelacional OP_BOOL termoRelacional
-    (75) exprC -> . CARACTERE
-    (76) exprC -> . ID
-    (77) exprC -> . exprC + exprC
-    (78) exprC -> . ( exprC )
     (61) expr -> . ID
     (62) expr -> . REAL
     (63) expr -> . INTEIRO
@@ -996,6 +992,10 @@ state 52
     (72) expr -> . expr - expr
     (73) expr -> . expr + expr
     (74) expr -> . ( expr )
+    (75) exprC -> . CARACTERE
+    (76) exprC -> . ID
+    (77) exprC -> . exprC + exprC
+    (78) exprC -> . ( exprC )
     (33) termoRelacional -> . ( expressaoRelacional )
     (34) termoRelacional -> . FALSO
     (35) termoRelacional -> . VERDADEIRO
@@ -1005,13 +1005,13 @@ state 52
     (39) termoRelacional -> . exprC OP_REL exprC
     (40) termoRelacional -> . expr OP_REL expr
     )               shift and go to state 97
-    CARACTERE       shift and go to state 46
     ID              shift and go to state 103
-    (               shift and go to state 96
     REAL            shift and go to state 48
     INTEIRO         shift and go to state 49
     -               shift and go to state 50
     +               shift and go to state 47
+    (               shift and go to state 96
+    CARACTERE       shift and go to state 46
     FALSO           shift and go to state 40
     VERDADEIRO      shift and go to state 41
     NAO             shift and go to state 43
@@ -1019,8 +1019,8 @@ state 52
     typeArgsEscrita                shift and go to state 98
     typeArgsEscritaAux             shift and go to state 99
     expressaoRelacional            shift and go to state 100
-    exprC                          shift and go to state 101
-    expr                           shift and go to state 102
+    expr                           shift and go to state 101
+    exprC                          shift and go to state 102
     termoRelacional                shift and go to state 38
 
 state 53
@@ -1030,14 +1030,10 @@ state 53
     (59) typeArgsEscrita -> . typeArgsEscritaAux
     (60) typeArgsEscrita -> . typeArgsEscrita , typeArgsEscritaAux
     (56) typeArgsEscritaAux -> . expressaoRelacional
-    (57) typeArgsEscritaAux -> . exprC
-    (58) typeArgsEscritaAux -> . expr
+    (57) typeArgsEscritaAux -> . expr
+    (58) typeArgsEscritaAux -> . exprC
     (31) expressaoRelacional -> . termoRelacional
     (32) expressaoRelacional -> . expressaoRelacional OP_BOOL termoRelacional
-    (75) exprC -> . CARACTERE
-    (76) exprC -> . ID
-    (77) exprC -> . exprC + exprC
-    (78) exprC -> . ( exprC )
     (61) expr -> . ID
     (62) expr -> . REAL
     (63) expr -> . INTEIRO
@@ -1052,6 +1048,10 @@ state 53
     (72) expr -> . expr - expr
     (73) expr -> . expr + expr
     (74) expr -> . ( expr )
+    (75) exprC -> . CARACTERE
+    (76) exprC -> . ID
+    (77) exprC -> . exprC + exprC
+    (78) exprC -> . ( exprC )
     (33) termoRelacional -> . ( expressaoRelacional )
     (34) termoRelacional -> . FALSO
     (35) termoRelacional -> . VERDADEIRO
@@ -1061,13 +1061,13 @@ state 53
     (39) termoRelacional -> . exprC OP_REL exprC
     (40) termoRelacional -> . expr OP_REL expr
     )               shift and go to state 104
-    CARACTERE       shift and go to state 46
     ID              shift and go to state 103
-    (               shift and go to state 96
     REAL            shift and go to state 48
     INTEIRO         shift and go to state 49
     -               shift and go to state 50
     +               shift and go to state 47
+    (               shift and go to state 96
+    CARACTERE       shift and go to state 46
     FALSO           shift and go to state 40
     VERDADEIRO      shift and go to state 41
     NAO             shift and go to state 43
@@ -1075,21 +1075,17 @@ state 53
     typeArgsEscrita                shift and go to state 105
     typeArgsEscritaAux             shift and go to state 99
     expressaoRelacional            shift and go to state 100
-    exprC                          shift and go to state 101
-    expr                           shift and go to state 102
+    expr                           shift and go to state 101
+    exprC                          shift and go to state 102
     termoRelacional                shift and go to state 38
 
 state 54
 
     (49) cmdattrib -> ID ASSIGN . expressaoRelacional
-    (50) cmdattrib -> ID ASSIGN . exprC
-    (51) cmdattrib -> ID ASSIGN . expr
+    (50) cmdattrib -> ID ASSIGN . expr
+    (51) cmdattrib -> ID ASSIGN . exprC
     (31) expressaoRelacional -> . termoRelacional
     (32) expressaoRelacional -> . expressaoRelacional OP_BOOL termoRelacional
-    (75) exprC -> . CARACTERE
-    (76) exprC -> . ID
-    (77) exprC -> . exprC + exprC
-    (78) exprC -> . ( exprC )
     (61) expr -> . ID
     (62) expr -> . REAL
     (63) expr -> . INTEIRO
@@ -1104,6 +1100,10 @@ state 54
     (72) expr -> . expr - expr
     (73) expr -> . expr + expr
     (74) expr -> . ( expr )
+    (75) exprC -> . CARACTERE
+    (76) exprC -> . ID
+    (77) exprC -> . exprC + exprC
+    (78) exprC -> . ( exprC )
     (33) termoRelacional -> . ( expressaoRelacional )
     (34) termoRelacional -> . FALSO
     (35) termoRelacional -> . VERDADEIRO
@@ -1112,20 +1112,20 @@ state 54
     (38) termoRelacional -> . NAO termoRelacional
     (39) termoRelacional -> . exprC OP_REL exprC
     (40) termoRelacional -> . expr OP_REL expr
-    CARACTERE       shift and go to state 46
     ID              shift and go to state 103
-    (               shift and go to state 96
     REAL            shift and go to state 48
     INTEIRO         shift and go to state 49
     -               shift and go to state 50
     +               shift and go to state 47
+    (               shift and go to state 96
+    CARACTERE       shift and go to state 46
     FALSO           shift and go to state 40
     VERDADEIRO      shift and go to state 41
     NAO             shift and go to state 43
 
     expressaoRelacional            shift and go to state 106
-    exprC                          shift and go to state 107
-    expr                           shift and go to state 108
+    expr                           shift and go to state 107
+    exprC                          shift and go to state 108
     termoRelacional                shift and go to state 38
 
 state 55
@@ -1828,14 +1828,10 @@ state 95
 
 state 96
 
-    (78) exprC -> ( . exprC )
     (74) expr -> ( . expr )
+    (78) exprC -> ( . exprC )
     (33) termoRelacional -> ( . expressaoRelacional )
     (37) termoRelacional -> ( . termoRelacional )
-    (75) exprC -> . CARACTERE
-    (76) exprC -> . ID
-    (77) exprC -> . exprC + exprC
-    (78) exprC -> . ( exprC )
     (61) expr -> . ID
     (62) expr -> . REAL
     (63) expr -> . INTEIRO
@@ -1850,6 +1846,10 @@ state 96
     (72) expr -> . expr - expr
     (73) expr -> . expr + expr
     (74) expr -> . ( expr )
+    (75) exprC -> . CARACTERE
+    (76) exprC -> . ID
+    (77) exprC -> . exprC + exprC
+    (78) exprC -> . ( exprC )
     (31) expressaoRelacional -> . termoRelacional
     (32) expressaoRelacional -> . expressaoRelacional OP_BOOL termoRelacional
     (33) termoRelacional -> . ( expressaoRelacional )
@@ -1860,19 +1860,19 @@ state 96
     (38) termoRelacional -> . NAO termoRelacional
     (39) termoRelacional -> . exprC OP_REL exprC
     (40) termoRelacional -> . expr OP_REL expr
-    CARACTERE       shift and go to state 46
     ID              shift and go to state 103
-    (               shift and go to state 96
     REAL            shift and go to state 48
     INTEIRO         shift and go to state 49
     -               shift and go to state 50
     +               shift and go to state 47
+    (               shift and go to state 96
+    CARACTERE       shift and go to state 46
     FALSO           shift and go to state 40
     VERDADEIRO      shift and go to state 41
     NAO             shift and go to state 43
 
-    exprC                          shift and go to state 132
-    expr                           shift and go to state 133
+    expr                           shift and go to state 132
+    exprC                          shift and go to state 133
     expressaoRelacional            shift and go to state 68
     termoRelacional                shift and go to state 69
 
@@ -1912,30 +1912,7 @@ state 100
 
 state 101
 
-    (57) typeArgsEscritaAux -> exprC .
-    (77) exprC -> exprC . + exprC
-    (39) termoRelacional -> exprC . OP_REL exprC
-    (43) OP_REL -> . EQ
-    (44) OP_REL -> . GT
-    (45) OP_REL -> . GE
-    (46) OP_REL -> . LT
-    (47) OP_REL -> . LE
-    (48) OP_REL -> . NE
-    )               reduce using rule 57 (typeArgsEscritaAux -> exprC .)
-    ,               reduce using rule 57 (typeArgsEscritaAux -> exprC .)
-    +               shift and go to state 74
-    EQ              shift and go to state 75
-    GT              shift and go to state 76
-    GE              shift and go to state 77
-    LT              shift and go to state 78
-    LE              shift and go to state 79
-    NE              shift and go to state 80
-
-    OP_REL                         shift and go to state 73
-
-state 102
-
-    (58) typeArgsEscritaAux -> expr .
+    (57) typeArgsEscritaAux -> expr .
     (66) expr -> expr . ^ expr
     (67) expr -> expr . MOD expr
     (68) expr -> expr . % expr
@@ -1951,8 +1928,8 @@ state 102
     (46) OP_REL -> . LT
     (47) OP_REL -> . LE
     (48) OP_REL -> . NE
-    )               reduce using rule 58 (typeArgsEscritaAux -> expr .)
-    ,               reduce using rule 58 (typeArgsEscritaAux -> expr .)
+    )               reduce using rule 57 (typeArgsEscritaAux -> expr .)
+    ,               reduce using rule 57 (typeArgsEscritaAux -> expr .)
     ^               shift and go to state 82
     MOD             shift and go to state 83
     %               shift and go to state 84
@@ -1970,10 +1947,33 @@ state 102
 
     OP_REL                         shift and go to state 81
 
+state 102
+
+    (58) typeArgsEscritaAux -> exprC .
+    (77) exprC -> exprC . + exprC
+    (39) termoRelacional -> exprC . OP_REL exprC
+    (43) OP_REL -> . EQ
+    (44) OP_REL -> . GT
+    (45) OP_REL -> . GE
+    (46) OP_REL -> . LT
+    (47) OP_REL -> . LE
+    (48) OP_REL -> . NE
+    )               reduce using rule 58 (typeArgsEscritaAux -> exprC .)
+    ,               reduce using rule 58 (typeArgsEscritaAux -> exprC .)
+    +               shift and go to state 74
+    EQ              shift and go to state 75
+    GT              shift and go to state 76
+    GE              shift and go to state 77
+    LT              shift and go to state 78
+    LE              shift and go to state 79
+    NE              shift and go to state 80
+
+    OP_REL                         shift and go to state 73
+
 state 103
 
-    (76) exprC -> ID .
     (61) expr -> ID .
+    (76) exprC -> ID .
     (36) termoRelacional -> ID .
   ! reduce/reduce conflict for + resolved using rule 61 (expr -> ID .)
   ! reduce/reduce conflict for EQ resolved using rule 61 (expr -> ID .)
@@ -2037,29 +2037,7 @@ state 106
 
 state 107
 
-    (50) cmdattrib -> ID ASSIGN exprC .
-    (77) exprC -> exprC . + exprC
-    (39) termoRelacional -> exprC . OP_REL exprC
-    (43) OP_REL -> . EQ
-    (44) OP_REL -> . GT
-    (45) OP_REL -> . GE
-    (46) OP_REL -> . LT
-    (47) OP_REL -> . LE
-    (48) OP_REL -> . NE
-    ;               reduce using rule 50 (cmdattrib -> ID ASSIGN exprC .)
-    +               shift and go to state 74
-    EQ              shift and go to state 75
-    GT              shift and go to state 76
-    GE              shift and go to state 77
-    LT              shift and go to state 78
-    LE              shift and go to state 79
-    NE              shift and go to state 80
-
-    OP_REL                         shift and go to state 73
-
-state 108
-
-    (51) cmdattrib -> ID ASSIGN expr .
+    (50) cmdattrib -> ID ASSIGN expr .
     (66) expr -> expr . ^ expr
     (67) expr -> expr . MOD expr
     (68) expr -> expr . % expr
@@ -2075,7 +2053,7 @@ state 108
     (46) OP_REL -> . LT
     (47) OP_REL -> . LE
     (48) OP_REL -> . NE
-    ;               reduce using rule 51 (cmdattrib -> ID ASSIGN expr .)
+    ;               reduce using rule 50 (cmdattrib -> ID ASSIGN expr .)
     ^               shift and go to state 82
     MOD             shift and go to state 83
     %               shift and go to state 84
@@ -2092,6 +2070,28 @@ state 108
     NE              shift and go to state 80
 
     OP_REL                         shift and go to state 81
+
+state 108
+
+    (51) cmdattrib -> ID ASSIGN exprC .
+    (77) exprC -> exprC . + exprC
+    (39) termoRelacional -> exprC . OP_REL exprC
+    (43) OP_REL -> . EQ
+    (44) OP_REL -> . GT
+    (45) OP_REL -> . GE
+    (46) OP_REL -> . LT
+    (47) OP_REL -> . LE
+    (48) OP_REL -> . NE
+    ;               reduce using rule 51 (cmdattrib -> ID ASSIGN exprC .)
+    +               shift and go to state 74
+    EQ              shift and go to state 75
+    GT              shift and go to state 76
+    GE              shift and go to state 77
+    LT              shift and go to state 78
+    LE              shift and go to state 79
+    NE              shift and go to state 80
+
+    OP_REL                         shift and go to state 73
 
 state 109
 
@@ -2577,28 +2577,6 @@ state 131
 
 state 132
 
-    (78) exprC -> ( exprC . )
-    (77) exprC -> exprC . + exprC
-    (39) termoRelacional -> exprC . OP_REL exprC
-    (43) OP_REL -> . EQ
-    (44) OP_REL -> . GT
-    (45) OP_REL -> . GE
-    (46) OP_REL -> . LT
-    (47) OP_REL -> . LE
-    (48) OP_REL -> . NE
-    )               shift and go to state 114
-    +               shift and go to state 74
-    EQ              shift and go to state 75
-    GT              shift and go to state 76
-    GE              shift and go to state 77
-    LT              shift and go to state 78
-    LE              shift and go to state 79
-    NE              shift and go to state 80
-
-    OP_REL                         shift and go to state 73
-
-state 133
-
     (74) expr -> ( expr . )
     (66) expr -> expr . ^ expr
     (67) expr -> expr . MOD expr
@@ -2633,6 +2611,28 @@ state 133
 
     OP_REL                         shift and go to state 81
 
+state 133
+
+    (78) exprC -> ( exprC . )
+    (77) exprC -> exprC . + exprC
+    (39) termoRelacional -> exprC . OP_REL exprC
+    (43) OP_REL -> . EQ
+    (44) OP_REL -> . GT
+    (45) OP_REL -> . GE
+    (46) OP_REL -> . LT
+    (47) OP_REL -> . LE
+    (48) OP_REL -> . NE
+    )               shift and go to state 114
+    +               shift and go to state 74
+    EQ              shift and go to state 75
+    GT              shift and go to state 76
+    GE              shift and go to state 77
+    LT              shift and go to state 78
+    LE              shift and go to state 79
+    NE              shift and go to state 80
+
+    OP_REL                         shift and go to state 73
+
 state 134
 
     (53) cmdescrita -> ESCREVAL ( typeArgsEscrita ) .
@@ -2643,14 +2643,10 @@ state 135
 
     (60) typeArgsEscrita -> typeArgsEscrita , . typeArgsEscritaAux
     (56) typeArgsEscritaAux -> . expressaoRelacional
-    (57) typeArgsEscritaAux -> . exprC
-    (58) typeArgsEscritaAux -> . expr
+    (57) typeArgsEscritaAux -> . expr
+    (58) typeArgsEscritaAux -> . exprC
     (31) expressaoRelacional -> . termoRelacional
     (32) expressaoRelacional -> . expressaoRelacional OP_BOOL termoRelacional
-    (75) exprC -> . CARACTERE
-    (76) exprC -> . ID
-    (77) exprC -> . exprC + exprC
-    (78) exprC -> . ( exprC )
     (61) expr -> . ID
     (62) expr -> . REAL
     (63) expr -> . INTEIRO
@@ -2665,6 +2661,10 @@ state 135
     (72) expr -> . expr - expr
     (73) expr -> . expr + expr
     (74) expr -> . ( expr )
+    (75) exprC -> . CARACTERE
+    (76) exprC -> . ID
+    (77) exprC -> . exprC + exprC
+    (78) exprC -> . ( exprC )
     (33) termoRelacional -> . ( expressaoRelacional )
     (34) termoRelacional -> . FALSO
     (35) termoRelacional -> . VERDADEIRO
@@ -2673,21 +2673,21 @@ state 135
     (38) termoRelacional -> . NAO termoRelacional
     (39) termoRelacional -> . exprC OP_REL exprC
     (40) termoRelacional -> . expr OP_REL expr
-    CARACTERE       shift and go to state 46
     ID              shift and go to state 103
-    (               shift and go to state 96
     REAL            shift and go to state 48
     INTEIRO         shift and go to state 49
     -               shift and go to state 50
     +               shift and go to state 47
+    (               shift and go to state 96
+    CARACTERE       shift and go to state 46
     FALSO           shift and go to state 40
     VERDADEIRO      shift and go to state 41
     NAO             shift and go to state 43
 
     typeArgsEscritaAux             shift and go to state 141
     expressaoRelacional            shift and go to state 100
-    exprC                          shift and go to state 101
-    expr                           shift and go to state 102
+    expr                           shift and go to state 101
+    exprC                          shift and go to state 102
     termoRelacional                shift and go to state 38
 
 state 136
@@ -2716,8 +2716,8 @@ state 137
     (54) cmdescrita -> . ESCREVA ( )
     (55) cmdescrita -> . ESCREVA ( typeArgsEscrita )
     (49) cmdattrib -> . ID ASSIGN expressaoRelacional
-    (50) cmdattrib -> . ID ASSIGN exprC
-    (51) cmdattrib -> . ID ASSIGN expr
+    (50) cmdattrib -> . ID ASSIGN expr
+    (51) cmdattrib -> . ID ASSIGN exprC
     LIMPATELA       shift and go to state 19
     ENQUANTO        shift and go to state 24
     SE              shift and go to state 25
@@ -2755,8 +2755,8 @@ state 138
     (54) cmdescrita -> . ESCREVA ( )
     (55) cmdescrita -> . ESCREVA ( typeArgsEscrita )
     (49) cmdattrib -> . ID ASSIGN expressaoRelacional
-    (50) cmdattrib -> . ID ASSIGN exprC
-    (51) cmdattrib -> . ID ASSIGN expr
+    (50) cmdattrib -> . ID ASSIGN expr
+    (51) cmdattrib -> . ID ASSIGN exprC
     LIMPATELA       shift and go to state 19
     ENQUANTO        shift and go to state 24
     SE              shift and go to state 25
@@ -2848,8 +2848,8 @@ state 147
     (54) cmdescrita -> . ESCREVA ( )
     (55) cmdescrita -> . ESCREVA ( typeArgsEscrita )
     (49) cmdattrib -> . ID ASSIGN expressaoRelacional
-    (50) cmdattrib -> . ID ASSIGN exprC
-    (51) cmdattrib -> . ID ASSIGN expr
+    (50) cmdattrib -> . ID ASSIGN expr
+    (51) cmdattrib -> . ID ASSIGN exprC
     LIMPATELA       shift and go to state 19
     ENQUANTO        shift and go to state 24
     SE              shift and go to state 25
