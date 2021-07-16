@@ -1,1 +1,8 @@
+<<<<<<< HEAD
 compilador/codigoObjeto.py
+=======
+**/codigoObjeto.py
+**/parser.out
+**/tokens.txt
+
+>>>>>>> 82be301ce32c102cfd51cc2ff8e07b83a751e4b9
