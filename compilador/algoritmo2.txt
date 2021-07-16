@@ -5,22 +5,29 @@ Algoritmo "Compiladores"
 var
 a,b,x:real
 ks: real
-j: INTEIRO
+j,k,p: INTEIRO
 y,xc:CARACTERE
 n:real
 msm:logico
 
 inicio
-xc<-"ola"
-y<-"sd"+xc + "asdasdas"
-a<-5.23 + 3.4
-b<-4.3
-ks<-3
-j<-34
-j<-j+1
+//xc<-"ola"
+//y<-"sd"+xc + "asdasdas"
+//a<-5.23 + 3.4
+//b<-4.3
+//ks<-3
+//j<-34
+//y<-y+"sss"
 
 
-//escreval(y)
+
+//msm <- msm + msm
+
+j <- 9
+k <- 10
+k <-  j MOD 1.9
+
+
 
 //msm<- nao (5>3)
 //msm<-(( nao 5>4 e  nao (4>2)))
@@ -68,8 +75,8 @@ senao
 fimse
 
 enquanto j <= 10 e 5>2 faca
-    escreval(j)
-    j <- 2 + 1
+   escreval(j)
+   j <- 2 + 1
 fimenquanto
 
 

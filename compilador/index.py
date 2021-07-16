@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 from typing import Type
+from enum import Enum
 from sly import Lexer, Parser #pip install sly
 import pprint
 import sys #leitura de arquivo
@@ -115,9 +116,17 @@ newLabel = newLabel2()
 
 code = []#lista global
 symbol_table = {}
+type_t_aux = {}
 list_aux_decl = []
 semantic_panic = False
 tab = 0
+
+class Types(Enum):
+    INTEIRO = "inteiro"
+    REAL = "real"
+    Types_Exp = ["inteiro", "real"]
+    CARACTERE = "caractere"
+    LOGICO = "logico"
 
 class VisualgParser(Parser):
     debugfile = 'parser.out' #arquivo de debugação do Parser
@@ -263,54 +272,41 @@ class VisualgParser(Parser):
     @_('LEIA "(" idAux ")" ')
     def cmdleitura(self,p):# AJUSTAR PARA CONVERTER PARA O TIPO CORRETO
         if not semantic_panic:
-            aux = p.idAux
-            if(p.idAux.find(',')!=-1):
-                auxVariaveis = p.idAux.split(',')
-                for aux in auxVariaveis:
-                    k = "\t"+aux+"=input()"
-                    code.append(k)
-                    if(symbol_table[aux]=="inteiro"):
-                        code.append("\t"+aux+"=int("+aux+")")
-                    elif(symbol_table[aux]=="real"):
-                        code.append("\t"+aux+"=float("+aux+")")
-                    elif(symbol_table[aux]=="caractere"):
-                        code.append("\t"+aux+"=str("+aux+")")
-                    elif symbol_table[aux]=="logico":
-                        code.append("\t"+aux+"=bool("+aux+")")
-            else:
+            auxVariaveis = p.idAux.split(',')
+            for aux in auxVariaveis:
                 k = "\t"+aux+"=input()"
                 code.append(k)
-                if(symbol_table[aux]=="inteiro"):
+                if(symbol_table[aux]==Types.INTEIRO.value):
                     code.append("\t"+aux+"=int("+aux+")")
-                elif(symbol_table[aux]=="real"):
+                elif(symbol_table[aux]==Types.REAL.value):
                     code.append("\t"+aux+"=float("+aux+")")
-                elif(symbol_table[aux]=="caractere"):
+                elif(symbol_table[aux]==Types.CARACTERE.value):
                     code.append("\t"+aux+"=str("+aux+")")
-                elif symbol_table[aux]=="logico":
-                    code.append("\t"+aux+"=bool("+aux+")") 
-        return
+                elif symbol_table[aux]==Types.LOGICO.value:
+                    code.append("\t"+aux+"=bool("+aux+")")
+        return 
     
     @_('ID')
     def idAux(self,p):
         global semantic_panic
-        try:
-            symbol_table[p.ID]#verifica se tem o elemento na tabela de simbolos
+        
+        if p.ID in symbol_table:
             return str(p.ID)
-        except KeyError:
-            print("Erro Semantico: Variavel "+p.ID+" não foi declarada")
-            semantic_panic = True
-            return
+        
+        print("Erro Semantico: Variavel " + p.ID + " nao declarada!")
+        semantic_panic = True
+        return 
 
     @_('ID "," idAux')
     def idAux(self,p):
         global semantic_panic
-        try:
-            symbol_table[p.ID]#verifica se tem o elemento na tabela de simbolos
+        
+        if p.ID in symbol_table:
             return str(p.ID)+','+str(p.idAux)
-        except KeyError:
-            print("Erro Semantico: Variavel: "+p.ID+" não foi declarada")
-            semantic_panic = True
-            return
+        
+        print("Erro Semantico: Variavel " + p.ID + " nao declarada!")
+        semantic_panic = True
+        return 
 
     @_(";")
     def regraVazia(self,p):#retorna o tamanho atual do vetor
@@ -356,6 +352,7 @@ class VisualgParser(Parser):
 
     @_("expr OP_REL expr")
     def termoRelacional(self,p):
+        type_t_aux.clear()
         a = p.expr0
         b = p.expr1
         var = "_t"+str(newTemp())
@@ -365,10 +362,12 @@ class VisualgParser(Parser):
             code.append('\t'+var+"="+str(a)+" == "+str(b))
         else:
             code.append('\t'+var+"="+str(a)+" "+str(p.OP_REL)+" "+str(b))
-        return var
-    
+        return var 
+       
+
     @_("exprC OP_REL exprC")
     def termoRelacional(self,p):
+        type_t_aux.clear()
         a = p.exprC0
         b = p.exprC1
         var = "_t"+str(newTemp())
@@ -399,10 +398,6 @@ class VisualgParser(Parser):
     def termoRelacional(self,p):
         return p.termoRelacional
 
-    @_("ID")
-    def termoRelacional(self,p):
-        return p.ID
-    
     @_("VERDADEIRO")
     def termoRelacional(self,p):
         return "True"
@@ -446,61 +441,68 @@ class VisualgParser(Parser):
     @_("EQ")
     def OP_REL(self,p):
         return p.EQ
+    
+    @_('ID ASSIGN exprC')#comando atribuição para caractere
+    def cmdattrib(self,p): 
+        global semantic_panic
+
+        typeExprC = self.get_type(p.exprC)
+        type_t_aux.clear()
+
+        if p.ID in symbol_table:
+            typeID = self.get_type(p.ID)
+            
+            if typeID == typeExprC and typeID == Types.CARACTERE.value:
+                code.append("\t"+p.ID+"="+str(p.exprC))
+                return
+
+            print("Erro Semantico: Variavel " + p.ID + " tem o tipo incompativel na operação!")
+        else:  
+            print("Erro Semantico: Variavel " + p.ID + " nao declarda!")
+
+        semantic_panic = True
+        return
 
     @_('ID ASSIGN expr')#comando atribuição para inteiro e real
     def cmdattrib(self,p):
         global semantic_panic
-        if p.ID not in symbol_table:#variavel nao foi declada
-            print("Erro Semantico: Variavel " + p.ID + " nao declarada!")
-            semantic_panic = True
-        else:#variavel declarada
-            if p.expr == "verdadeiro" or p.expr == "falso":#verifica se o tipo declarado é um lógico
-                print("Erro Semantico: Variavel " + p.ID + " tem o tipo incompativel na operação!")
-                semantic_panic = True
-            elif (symbol_table[p.ID]=="inteiro"):#verifica se a variavel foi declarada como inteiro ou real
-                #if(type(p.expr)==int):
+
+        typeExpr = self.get_type(p.expr)
+        type_t_aux.clear()
+
+        if p.ID in symbol_table:
+            typeId = self.get_type(p.ID)
+            
+            if typeId == typeExpr or (typeId == Types.REAL.value and typeExpr == Types.INTEIRO.value):
                 code.append("\t"+p.ID+"="+str(p.expr))
-                #else:
-                #    print(type(p.expr))
-                #    print("Erro Semantico: Variavel " + p.ID + " tem o tipo incompativel na operação!")
-                #    semantic_panic = True
-            elif(symbol_table[p.ID]=="real"):
-                code.append("\t"+p.ID+"="+str(p.expr))
-            else:
-                print("Erro Semantico: Variavel " + p.ID + " tem o tipo incompativel na operação!")
-                semantic_panic = True
-        return
-    
-    @_('ID ASSIGN exprC')#comando atribuição para caractere
-    def cmdattrib(self,p):
-        global semantic_panic
-        if p.ID not in symbol_table:#variavel nao foi declarada
-            print("Erro Semantico: Variavel " + p.ID + " não declarada!")
-            semantic_panic = True
-        else:#variavel declarada
-            if(symbol_table[p.ID]=="caractere"):#verifica se a variavel foi declarada como caractere
-                code.append("\t"+p.ID+"="+p.exprC)
-            else:#se foi declarada como outro tipo então é um erro
-                print("Erro Semantico: Variavel "+p.ID+" recebe tipo incompativel.")
-                semantic_panic = True
+                return
+
+            print("Erro Semantico: Variavel " + p.ID + " tem o tipo incompativel na operação!")
+
+        else:  
+            print("Erro Semantico: Variavel " + p.ID + " nao declarda!")
+
+        semantic_panic = True
         return
     
     @_('ID ASSIGN expressaoRelacional')#comando atribuição para logico
     def cmdattrib(self,p):
         global semantic_panic
-        if p.ID not in symbol_table:#variavel nao foi declarada
-            print("Erro Semantico: Variavel " + p.ID + " não declarada!")
-            semantic_panic = True
-        else:#variavel declarada
-            if(symbol_table[p.ID]=="logico"):#verifica se a variavel foi declarada como logico
-                code.append("\t"+str(p.ID)+"="+str(p.expressaoRelacional))
-            else:#se foi declarada como outro tipo então é um erro
-                semantic_panic = True
-                print("Erro Semantico: Variavel "+p.ID+" recebe tipo incompativel.")
+        if p.ID in symbol_table:
+            type1 = self.get_type(p.ID)
+            type2 = self.get_type(p.expressaoRelacional)
 
+            if type1 == type2 and type1 == Types.LOGICO.value:
+                code.append("\t"+p.ID+"="+str(p.expressaoRelacional))
+                return
+
+            print("Erro Semantico: Variavel " + p.ID + " tem o tipo incompativel na operação!")
+        else:  
+            print("Erro Semantico: Variavel " + p.ID + " nao declarda!")
+
+        semantic_panic = True
         return
 
-    
     @_('ESCREVA "(" typeArgsEscrita ")" ')#comando escrita
     def cmdescrita(self, p):
         aux = p.typeArgsEscrita
@@ -513,18 +515,20 @@ class VisualgParser(Parser):
         code.append("\tprint(end='')")#print sem quebra de linha
         return
 
-    @_('expr')
-    def typeArgsEscritaAux(self,p):
-        return p.expr
-    
     @_('exprC')
     def typeArgsEscritaAux(self,p):
+        type_t_aux.clear()
         return p.exprC
-    
+
+    @_('expr')
+    def typeArgsEscritaAux(self,p):
+        type_t_aux.clear()
+        return p.expr
+
     @_('expressaoRelacional')
     def typeArgsEscritaAux(self,p):
         return p.expressaoRelacional
-
+    
     @_('typeArgsEscrita "," typeArgsEscritaAux')
     def typeArgsEscrita(self,p):
         return p.typeArgsEscrita + "," + p.typeArgsEscritaAux
@@ -551,146 +555,44 @@ class VisualgParser(Parser):
         return p.expr
 
     @_('expr "+" expr')
-    def expr(self, p):#tipo, valor, nome da variavel temp
-        a = p.expr0
-        b= p.expr1
-        var = "_t"+str(newTemp())
-        code.append('\t'+var+"="+str(a)+"+"+str(b))
-        return var
-        '''
-        try:
-            return p.expr0 + p.expr1
-        except Exception as e:#operadores que não são permitidos para somar cai aqui
-            print(e)
-            return
-        '''
-
+    def expr(self, p):#tipo, valor, nome da variavel temp 
+        return self.type_coercion("+", Types.REAL.value, p.expr0, p.expr1)
 
     @_('expr "-" expr')
     def expr(self, p):
-        a = p.expr0
-        b= p.expr1
-        var = "_t"+str(newTemp())
-        code.append('\t'+var+"="+str(a)+"-"+str(b))
-        return var
-        '''
-        try:
-            return p.expr0 - p.expr1
-        except Exception as e:
-            print(e)
-            return
-        '''
+        return self.type_coercion("-", Types.REAL.value, p.expr0, p.expr1)
 
     @_('expr "*" expr')
     def expr(self, p):
-        a = p.expr0
-        b= p.expr1
-        var = "_t"+str(newTemp())
-        code.append('\t'+var+"="+str(a)+"*"+str(b))
-        return var
-        '''
-        try:
-            return p.expr0 * p.expr1
-        except Exception as e:
-            print(e)
-            return
-        '''
+        return self.type_coercion("*", Types.REAL.value, p.expr0, p.expr1)
 
     @_('expr "/" expr')
     def expr(self, p):
-        a = p.expr0
-        b= p.expr1
-        var = "_t"+str(newTemp())
-        code.append('\t'+var+"="+str(a)+"/"+str(b))
-        return var
-        '''
-        try:
-            return p.expr0 / p.expr1
-        except Exception as e:
-            print(e)
-            return
-        '''
-    
+        return self.type_coercion("/", Types.REAL.value, p.expr0, p.expr1)
+        
     @_('expr "\\" expr')
     def expr(self, p):
-        a = p.expr0
-        b= p.expr1
-        var = "_t"+str(newTemp())
-        code.append('\t'+var+"="+str(a)+"//"+str(b))#divisao inteira em python
-        return var
-        '''
-        try:
-            return p.expr0//p.expr1
-        except Exception as e:
-            print(e)
-            return
-        '''
-
-    
+        return self.type_coercion("//", Types.INTEIRO.value, p.expr0, p.expr1)
+       
     @_('expr "%" expr')
     def expr(self, p):
-        a = p.expr0
-        b= p.expr1
-        var = "_t"+str(newTemp())
-        code.append('\t'+var+"="+str(a)+"%"+str(b))#resto da divisao inteira em python
-        return var
-        '''
-        try:
-            return p.expr0%p.expr1
-        except Exception as e:
-            print(e)
-            return
-        '''
+        return self.type_coercion("%", Types.INTEIRO.value, p.expr0, p.expr1)
     
     @_('expr MOD expr')
     def expr(self, p):
-        a = p.expr0
-        b= p.expr1
-        var = "_t"+str(newTemp())
-        code.append('\t'+var+"="+str(a)+"%"+str(b))#resto da divisao inteira em python
-        return var
-        '''try:
-            return p.expr0%p.expr1
-        except Exception as e:
-            print(e)
-        '''
+        return self.type_coercion("%", Types.INTEIRO.value, p.expr0, p.expr1)
     
     @_('expr "^" expr')
     def expr(self, p):
-        a = p.expr0
-        b= p.expr1
-        var = "_t"+str(newTemp())
-        code.append('\t'+var+"="+str(a)+"**"+str(b))#exponenciação no python
-        return var
-        '''try:
-            return p.expr0**p.expr1
-        except Exception as e:
-            print(e)
-        '''
+        return self.type_coercion("**", Types.REAL.value, p.expr0, p.expr1)
     
     @_('"+" expr %prec UPLUS')
     def expr(self, p):
-        a = p.expr
-        var = "_t"+str(newTemp())
-        code.append('\t'+var+"=""+"+str(a))#operação unária no python com +
-        return var
-        '''try:
-            return +p.expr
-        except Exception as e:
-            print(e)
-        '''
+        return self.type_coercion_un("+", p.expr)
 
     @_('"-" expr %prec UMINUS')
     def expr(self, p):
-        a = p.expr
-        var = "_t"+str(newTemp())
-        code.append('\t'+var+"=""-"+str(a))#operação unária no python com -
-        return var
-        '''try:
-            return -p.expr
-        except Exception as e:
-            print(e)
-        '''
+        return self.type_coercion_un("-", p.expr)
 
     @_('INTEIRO')
     def expr(self, p):
@@ -716,17 +618,23 @@ class VisualgParser(Parser):
 
     @_("exprC '+' exprC ")
     def exprC(self,p):
-        a = p.exprC0
-        b= p.exprC1
-        var = "_t"+str(newTemp())
-        code.append('\t'+var+"="+str(a)+"+"+str(b))
-        return var
-
+        return self.type_coercion_caracter(Types.CARACTERE, p.exprC0, p.exprC1)
+        
     @_('ID')
     def exprC(self,p):
+        global semantic_panic
+        if p.ID not in symbol_table:
+            print("Erro Semantico: Variavel " + p.ID + " nao declarada!")
+            semantic_panic = True
         return p.ID
-
-        
+    
+    @_("ID")
+    def termoRelacional(self,p):
+        global semantic_panic
+        if p.ID not in symbol_table:
+            print("Erro Semantico: Variavel " + p.ID + " nao declarada!")
+            semantic_panic = True
+        return p.ID
     
     @_('CARACTERE')
     def exprC(self,p):
@@ -746,7 +654,7 @@ class VisualgParser(Parser):
 
     def single_decl_semantic_final(self, type):
         global semantic_panic
-
+        
         for var in list_aux_decl:
             if var in symbol_table:
                 print("Erro Semantico: Variavel " + var + " ja declarada")
@@ -756,7 +664,68 @@ class VisualgParser(Parser):
 
         list_aux_decl.clear()
 
+    def get_type(self, input):
+        if input in symbol_table:#variavel declarada
+            return symbol_table[input]
+        else:
+            if input in type_t_aux:
+                return type_t_aux[input]
+            elif type(input) == int:
+                return Types.INTEIRO.value
+            elif type(input) == float:
+                return Types.REAL.value
+            elif input == Types.CARACTERE.value: 
+                return Types.CARACTERE.value
+            elif input == "False" or input == "True":
+                return Types.LOGICO.value
 
+    def type_coercion(self, op, typeOut, a, b):
+        global semantic_panic
+        type1 = self.get_type(a)
+        type2 = self.get_type(b)
+        
+        if (type1 == type2 and type1 != Types.LOGICO.value) or (type1 in Types.Types_Exp.value and type2 in Types.Types_Exp.value):
+            var = "_t"+str(newTemp())
+            code.append('\t'+var+"="+str(a)+ op +str(b))
+            if type1 != type2:
+                type1 = typeOut
+            type_t_aux[var] = type1
+            return var
+        else:
+            print("Erro Semantico: Operacao " + str(a) + op + str(b) + "  de tipo incompativel!")
+            semantic_panic = True
+            return
+    
+    def type_coercion_un(self, op, a):
+        global semantic_panic
+
+        type1 = self.get_type(a)
+
+        if type1 in Types.Types_Exp.value:
+            var = "_t"+str(newTemp())
+            code.append('\t'+var+"=" + op +str(a))
+            type_t_aux[var] = type1
+            return var
+        else:
+            print("Erro Semantico: Operacao " + op + str(a) + "  de tipo incompativel!")
+            semantic_panic = True
+            return
+
+    def type_coercion_caracter(self, typeOut, a, b):
+        global semantic_panic
+
+        type1 = self.get_type(a)
+        type2 = self.get_type(b)
+        
+        if type1 == type2 and type1 == typeOut:
+            var = "_t"+str(newTemp())
+            code.append('\t'+var+"="+str(a)+"+"+str(b))
+            type_t_aux[var] = type1
+            return var
+        else:
+            print("Erro Semantico: Operacao " + str(a) + "+" + str(b) + "  de tipo incompativel!")
+            semantic_panic = True
+            return
 
 
 if __name__ == '__main__':
