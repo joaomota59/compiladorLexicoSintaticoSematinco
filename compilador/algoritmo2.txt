@@ -5,7 +5,7 @@ Algoritmo "Compiladores"
 var
 a,b,x:real
 ks: real
-j,k: INTEIRO
+j,k,p: INTEIRO
 y,xc:CARACTERE
 n:real
 msm:logico
@@ -19,13 +19,15 @@ inicio
 //j<-34
 //y<-y+"sss"
 
+
+
+//msm <- msm + msm
+
 j <- 9
 k <- 10
-j <- "sss" + k
+n <- k 
 
 
-
-//escreval(y)
 
 //msm<- nao (5>3)
 //msm<-(( nao 5>4 e  nao (4>2)))
@@ -65,7 +67,7 @@ fimse
 
 se 4>2 e 5<6 entao
    escreval("Verdadeiro, deu bom")
-   msm<- Verdadeiro
+//msm<- Verdadeiro
    escreval(msm)
 senao
    escreval("Falso deu ruim")

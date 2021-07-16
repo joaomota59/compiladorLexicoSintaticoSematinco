@@ -33,10 +33,10 @@ Rule 29    cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; bloco SENAO 
 Rule 30    cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; bloco FIMSE
 Rule 31    expressaoRelacional -> termoRelacional
 Rule 32    expressaoRelacional -> expressaoRelacional OP_BOOL termoRelacional
-Rule 33    termoRelacional -> ( expressaoRelacional )
-Rule 34    termoRelacional -> FALSO
-Rule 35    termoRelacional -> VERDADEIRO
-Rule 36    termoRelacional -> ID
+Rule 33    termoRelacional -> ID
+Rule 34    termoRelacional -> ( expressaoRelacional )
+Rule 35    termoRelacional -> FALSO
+Rule 36    termoRelacional -> VERDADEIRO
 Rule 37    termoRelacional -> ( termoRelacional )
 Rule 38    termoRelacional -> NAO termoRelacional
 Rule 39    termoRelacional -> exprC OP_REL exprC
@@ -83,8 +83,8 @@ Rule 78    exprC -> ( exprC )
 Terminals, with rules where they appear:
 
 %                    : 68
-(                    : 25 33 37 52 53 54 55 74 78
-)                    : 25 33 37 52 53 54 55 74 78
+(                    : 25 34 37 52 53 54 55 74 78
+)                    : 25 34 37 52 53 54 55 74 78
 *                    : 71
 +                    : 65 73 77
 ,                    : 14 26 60
@@ -102,13 +102,13 @@ EQ                   : 43
 ESCREVA              : 54 55
 ESCREVAL             : 52 53
 FACA                 : 24
-FALSO                : 34
+FALSO                : 35
 FIMALGORITMO         : 1
 FIMENQUANTO          : 24
 FIMSE                : 29 30
 GE                   : 45
 GT                   : 44
-ID                   : 14 15 26 27 36 49 50 51 61 76
+ID                   : 14 15 26 27 33 49 50 51 61 76
 INICIO               : 1
 INTEIRO              : 13 63
 LE                   : 47
@@ -124,7 +124,7 @@ REAL                 : 12 62
 SE                   : 29 30
 SENAO                : 29
 VAR                  : 2
-VERDADEIRO           : 35
+VERDADEIRO           : 36
 \                    : 69
 ^                    : 66
 error                : 
@@ -146,7 +146,7 @@ declaracaoType       : 2
 declaracaoTypeAux    : 7 9
 expr                 : 40 40 50 57 64 65 66 66 67 67 68 68 69 69 70 70 71 71 72 72 73 73 74
 exprC                : 39 39 51 58 77 77 78
-expressaoRelacional  : 24 29 30 32 33 49 56
+expressaoRelacional  : 24 29 30 32 34 49 56
 idAux                : 25 26
 initial              : 0
 regraVazia           : 24 24 29 29 30
@@ -378,10 +378,10 @@ state 25
     (30) cmdCondicao -> SE . expressaoRelacional regraVazia ENTAO ; bloco FIMSE
     (31) expressaoRelacional -> . termoRelacional
     (32) expressaoRelacional -> . expressaoRelacional OP_BOOL termoRelacional
-    (33) termoRelacional -> . ( expressaoRelacional )
-    (34) termoRelacional -> . FALSO
-    (35) termoRelacional -> . VERDADEIRO
-    (36) termoRelacional -> . ID
+    (33) termoRelacional -> . ID
+    (34) termoRelacional -> . ( expressaoRelacional )
+    (35) termoRelacional -> . FALSO
+    (36) termoRelacional -> . VERDADEIRO
     (37) termoRelacional -> . ( termoRelacional )
     (38) termoRelacional -> . NAO termoRelacional
     (39) termoRelacional -> . exprC OP_REL exprC
@@ -404,10 +404,10 @@ state 25
     (72) expr -> . expr - expr
     (73) expr -> . expr + expr
     (74) expr -> . ( expr )
-    (               shift and go to state 39
-    FALSO           shift and go to state 40
-    VERDADEIRO      shift and go to state 41
-    ID              shift and go to state 42
+    ID              shift and go to state 39
+    (               shift and go to state 40
+    FALSO           shift and go to state 41
+    VERDADEIRO      shift and go to state 42
     NAO             shift and go to state 43
     CARACTERE       shift and go to state 46
     REAL            shift and go to state 48
@@ -542,10 +542,10 @@ state 35
     (24) cmdRepeticao -> ENQUANTO regraVazia . expressaoRelacional FACA regraVazia bloco FIMENQUANTO
     (31) expressaoRelacional -> . termoRelacional
     (32) expressaoRelacional -> . expressaoRelacional OP_BOOL termoRelacional
-    (33) termoRelacional -> . ( expressaoRelacional )
-    (34) termoRelacional -> . FALSO
-    (35) termoRelacional -> . VERDADEIRO
-    (36) termoRelacional -> . ID
+    (33) termoRelacional -> . ID
+    (34) termoRelacional -> . ( expressaoRelacional )
+    (35) termoRelacional -> . FALSO
+    (36) termoRelacional -> . VERDADEIRO
     (37) termoRelacional -> . ( termoRelacional )
     (38) termoRelacional -> . NAO termoRelacional
     (39) termoRelacional -> . exprC OP_REL exprC
@@ -568,10 +568,10 @@ state 35
     (72) expr -> . expr - expr
     (73) expr -> . expr + expr
     (74) expr -> . ( expr )
-    (               shift and go to state 39
-    FALSO           shift and go to state 40
-    VERDADEIRO      shift and go to state 41
-    ID              shift and go to state 42
+    ID              shift and go to state 39
+    (               shift and go to state 40
+    FALSO           shift and go to state 41
+    VERDADEIRO      shift and go to state 42
     NAO             shift and go to state 43
     CARACTERE       shift and go to state 46
     REAL            shift and go to state 48
@@ -587,10 +587,10 @@ state 35
 state 36
 
     (28) regraVazia -> ; .
+    ID              reduce using rule 28 (regraVazia -> ; .)
     (               reduce using rule 28 (regraVazia -> ; .)
     FALSO           reduce using rule 28 (regraVazia -> ; .)
     VERDADEIRO      reduce using rule 28 (regraVazia -> ; .)
-    ID              reduce using rule 28 (regraVazia -> ; .)
     NAO             reduce using rule 28 (regraVazia -> ; .)
     CARACTERE       reduce using rule 28 (regraVazia -> ; .)
     REAL            reduce using rule 28 (regraVazia -> ; .)
@@ -634,82 +634,10 @@ state 38
 
 state 39
 
-    (33) termoRelacional -> ( . expressaoRelacional )
-    (37) termoRelacional -> ( . termoRelacional )
-    (78) exprC -> ( . exprC )
-    (74) expr -> ( . expr )
-    (31) expressaoRelacional -> . termoRelacional
-    (32) expressaoRelacional -> . expressaoRelacional OP_BOOL termoRelacional
-    (33) termoRelacional -> . ( expressaoRelacional )
-    (34) termoRelacional -> . FALSO
-    (35) termoRelacional -> . VERDADEIRO
-    (36) termoRelacional -> . ID
-    (37) termoRelacional -> . ( termoRelacional )
-    (38) termoRelacional -> . NAO termoRelacional
-    (39) termoRelacional -> . exprC OP_REL exprC
-    (40) termoRelacional -> . expr OP_REL expr
-    (75) exprC -> . CARACTERE
-    (76) exprC -> . ID
-    (77) exprC -> . exprC + exprC
-    (78) exprC -> . ( exprC )
-    (61) expr -> . ID
-    (62) expr -> . REAL
-    (63) expr -> . INTEIRO
-    (64) expr -> . - expr
-    (65) expr -> . + expr
-    (66) expr -> . expr ^ expr
-    (67) expr -> . expr MOD expr
-    (68) expr -> . expr % expr
-    (69) expr -> . expr \ expr
-    (70) expr -> . expr / expr
-    (71) expr -> . expr * expr
-    (72) expr -> . expr - expr
-    (73) expr -> . expr + expr
-    (74) expr -> . ( expr )
-    (               shift and go to state 39
-    FALSO           shift and go to state 40
-    VERDADEIRO      shift and go to state 41
-    ID              shift and go to state 42
-    NAO             shift and go to state 43
-    CARACTERE       shift and go to state 46
-    REAL            shift and go to state 48
-    INTEIRO         shift and go to state 49
-    -               shift and go to state 50
-    +               shift and go to state 47
-
-    expressaoRelacional            shift and go to state 68
-    termoRelacional                shift and go to state 69
-    exprC                          shift and go to state 70
-    expr                           shift and go to state 71
-
-state 40
-
-    (34) termoRelacional -> FALSO .
-    ;               reduce using rule 34 (termoRelacional -> FALSO .)
-    OU              reduce using rule 34 (termoRelacional -> FALSO .)
-    E               reduce using rule 34 (termoRelacional -> FALSO .)
-    FACA            reduce using rule 34 (termoRelacional -> FALSO .)
-    )               reduce using rule 34 (termoRelacional -> FALSO .)
-    ,               reduce using rule 34 (termoRelacional -> FALSO .)
-
-
-state 41
-
-    (35) termoRelacional -> VERDADEIRO .
-    ;               reduce using rule 35 (termoRelacional -> VERDADEIRO .)
-    OU              reduce using rule 35 (termoRelacional -> VERDADEIRO .)
-    E               reduce using rule 35 (termoRelacional -> VERDADEIRO .)
-    FACA            reduce using rule 35 (termoRelacional -> VERDADEIRO .)
-    )               reduce using rule 35 (termoRelacional -> VERDADEIRO .)
-    ,               reduce using rule 35 (termoRelacional -> VERDADEIRO .)
-
-
-state 42
-
-    (36) termoRelacional -> ID .
+    (33) termoRelacional -> ID .
     (76) exprC -> ID .
     (61) expr -> ID .
-  ! reduce/reduce conflict for ) resolved using rule 36 (termoRelacional -> ID .)
+  ! reduce/reduce conflict for ) resolved using rule 76 (exprC -> ID .)
   ! reduce/reduce conflict for + resolved using rule 61 (expr -> ID .)
   ! reduce/reduce conflict for EQ resolved using rule 61 (expr -> ID .)
   ! reduce/reduce conflict for GT resolved using rule 61 (expr -> ID .)
@@ -717,13 +645,12 @@ state 42
   ! reduce/reduce conflict for LT resolved using rule 61 (expr -> ID .)
   ! reduce/reduce conflict for LE resolved using rule 61 (expr -> ID .)
   ! reduce/reduce conflict for NE resolved using rule 61 (expr -> ID .)
-  ! reduce/reduce conflict for ) resolved using rule 36 (termoRelacional -> ID .)
-    ;               reduce using rule 36 (termoRelacional -> ID .)
-    OU              reduce using rule 36 (termoRelacional -> ID .)
-    E               reduce using rule 36 (termoRelacional -> ID .)
-    FACA            reduce using rule 36 (termoRelacional -> ID .)
-    )               reduce using rule 36 (termoRelacional -> ID .)
-    ,               reduce using rule 36 (termoRelacional -> ID .)
+  ! reduce/reduce conflict for ) resolved using rule 61 (expr -> ID .)
+    ;               reduce using rule 33 (termoRelacional -> ID .)
+    OU              reduce using rule 33 (termoRelacional -> ID .)
+    E               reduce using rule 33 (termoRelacional -> ID .)
+    FACA            reduce using rule 33 (termoRelacional -> ID .)
+    ,               reduce using rule 33 (termoRelacional -> ID .)
     ^               reduce using rule 61 (expr -> ID .)
     MOD             reduce using rule 61 (expr -> ID .)
     %               reduce using rule 61 (expr -> ID .)
@@ -738,15 +665,21 @@ state 42
     LT              reduce using rule 61 (expr -> ID .)
     LE              reduce using rule 61 (expr -> ID .)
     NE              reduce using rule 61 (expr -> ID .)
+    )               reduce using rule 61 (expr -> ID .)
 
 
-state 43
+state 40
 
-    (38) termoRelacional -> NAO . termoRelacional
-    (33) termoRelacional -> . ( expressaoRelacional )
-    (34) termoRelacional -> . FALSO
-    (35) termoRelacional -> . VERDADEIRO
-    (36) termoRelacional -> . ID
+    (34) termoRelacional -> ( . expressaoRelacional )
+    (37) termoRelacional -> ( . termoRelacional )
+    (78) exprC -> ( . exprC )
+    (74) expr -> ( . expr )
+    (31) expressaoRelacional -> . termoRelacional
+    (32) expressaoRelacional -> . expressaoRelacional OP_BOOL termoRelacional
+    (33) termoRelacional -> . ID
+    (34) termoRelacional -> . ( expressaoRelacional )
+    (35) termoRelacional -> . FALSO
+    (36) termoRelacional -> . VERDADEIRO
     (37) termoRelacional -> . ( termoRelacional )
     (38) termoRelacional -> . NAO termoRelacional
     (39) termoRelacional -> . exprC OP_REL exprC
@@ -769,10 +702,77 @@ state 43
     (72) expr -> . expr - expr
     (73) expr -> . expr + expr
     (74) expr -> . ( expr )
-    (               shift and go to state 39
-    FALSO           shift and go to state 40
-    VERDADEIRO      shift and go to state 41
-    ID              shift and go to state 42
+    ID              shift and go to state 39
+    (               shift and go to state 40
+    FALSO           shift and go to state 41
+    VERDADEIRO      shift and go to state 42
+    NAO             shift and go to state 43
+    CARACTERE       shift and go to state 46
+    REAL            shift and go to state 48
+    INTEIRO         shift and go to state 49
+    -               shift and go to state 50
+    +               shift and go to state 47
+
+    expressaoRelacional            shift and go to state 68
+    termoRelacional                shift and go to state 69
+    exprC                          shift and go to state 70
+    expr                           shift and go to state 71
+
+state 41
+
+    (35) termoRelacional -> FALSO .
+    ;               reduce using rule 35 (termoRelacional -> FALSO .)
+    OU              reduce using rule 35 (termoRelacional -> FALSO .)
+    E               reduce using rule 35 (termoRelacional -> FALSO .)
+    FACA            reduce using rule 35 (termoRelacional -> FALSO .)
+    )               reduce using rule 35 (termoRelacional -> FALSO .)
+    ,               reduce using rule 35 (termoRelacional -> FALSO .)
+
+
+state 42
+
+    (36) termoRelacional -> VERDADEIRO .
+    ;               reduce using rule 36 (termoRelacional -> VERDADEIRO .)
+    OU              reduce using rule 36 (termoRelacional -> VERDADEIRO .)
+    E               reduce using rule 36 (termoRelacional -> VERDADEIRO .)
+    FACA            reduce using rule 36 (termoRelacional -> VERDADEIRO .)
+    )               reduce using rule 36 (termoRelacional -> VERDADEIRO .)
+    ,               reduce using rule 36 (termoRelacional -> VERDADEIRO .)
+
+
+state 43
+
+    (38) termoRelacional -> NAO . termoRelacional
+    (33) termoRelacional -> . ID
+    (34) termoRelacional -> . ( expressaoRelacional )
+    (35) termoRelacional -> . FALSO
+    (36) termoRelacional -> . VERDADEIRO
+    (37) termoRelacional -> . ( termoRelacional )
+    (38) termoRelacional -> . NAO termoRelacional
+    (39) termoRelacional -> . exprC OP_REL exprC
+    (40) termoRelacional -> . expr OP_REL expr
+    (75) exprC -> . CARACTERE
+    (76) exprC -> . ID
+    (77) exprC -> . exprC + exprC
+    (78) exprC -> . ( exprC )
+    (61) expr -> . ID
+    (62) expr -> . REAL
+    (63) expr -> . INTEIRO
+    (64) expr -> . - expr
+    (65) expr -> . + expr
+    (66) expr -> . expr ^ expr
+    (67) expr -> . expr MOD expr
+    (68) expr -> . expr % expr
+    (69) expr -> . expr \ expr
+    (70) expr -> . expr / expr
+    (71) expr -> . expr * expr
+    (72) expr -> . expr - expr
+    (73) expr -> . expr + expr
+    (74) expr -> . ( expr )
+    ID              shift and go to state 39
+    (               shift and go to state 40
+    FALSO           shift and go to state 41
+    VERDADEIRO      shift and go to state 42
     NAO             shift and go to state 43
     CARACTERE       shift and go to state 46
     REAL            shift and go to state 48
@@ -996,10 +996,10 @@ state 52
     (76) exprC -> . ID
     (77) exprC -> . exprC + exprC
     (78) exprC -> . ( exprC )
-    (33) termoRelacional -> . ( expressaoRelacional )
-    (34) termoRelacional -> . FALSO
-    (35) termoRelacional -> . VERDADEIRO
-    (36) termoRelacional -> . ID
+    (33) termoRelacional -> . ID
+    (34) termoRelacional -> . ( expressaoRelacional )
+    (35) termoRelacional -> . FALSO
+    (36) termoRelacional -> . VERDADEIRO
     (37) termoRelacional -> . ( termoRelacional )
     (38) termoRelacional -> . NAO termoRelacional
     (39) termoRelacional -> . exprC OP_REL exprC
@@ -1012,8 +1012,8 @@ state 52
     +               shift and go to state 47
     (               shift and go to state 96
     CARACTERE       shift and go to state 46
-    FALSO           shift and go to state 40
-    VERDADEIRO      shift and go to state 41
+    FALSO           shift and go to state 41
+    VERDADEIRO      shift and go to state 42
     NAO             shift and go to state 43
 
     typeArgsEscrita                shift and go to state 98
@@ -1052,10 +1052,10 @@ state 53
     (76) exprC -> . ID
     (77) exprC -> . exprC + exprC
     (78) exprC -> . ( exprC )
-    (33) termoRelacional -> . ( expressaoRelacional )
-    (34) termoRelacional -> . FALSO
-    (35) termoRelacional -> . VERDADEIRO
-    (36) termoRelacional -> . ID
+    (33) termoRelacional -> . ID
+    (34) termoRelacional -> . ( expressaoRelacional )
+    (35) termoRelacional -> . FALSO
+    (36) termoRelacional -> . VERDADEIRO
     (37) termoRelacional -> . ( termoRelacional )
     (38) termoRelacional -> . NAO termoRelacional
     (39) termoRelacional -> . exprC OP_REL exprC
@@ -1068,8 +1068,8 @@ state 53
     +               shift and go to state 47
     (               shift and go to state 96
     CARACTERE       shift and go to state 46
-    FALSO           shift and go to state 40
-    VERDADEIRO      shift and go to state 41
+    FALSO           shift and go to state 41
+    VERDADEIRO      shift and go to state 42
     NAO             shift and go to state 43
 
     typeArgsEscrita                shift and go to state 105
@@ -1104,10 +1104,10 @@ state 54
     (76) exprC -> . ID
     (77) exprC -> . exprC + exprC
     (78) exprC -> . ( exprC )
-    (33) termoRelacional -> . ( expressaoRelacional )
-    (34) termoRelacional -> . FALSO
-    (35) termoRelacional -> . VERDADEIRO
-    (36) termoRelacional -> . ID
+    (33) termoRelacional -> . ID
+    (34) termoRelacional -> . ( expressaoRelacional )
+    (35) termoRelacional -> . FALSO
+    (36) termoRelacional -> . VERDADEIRO
     (37) termoRelacional -> . ( termoRelacional )
     (38) termoRelacional -> . NAO termoRelacional
     (39) termoRelacional -> . exprC OP_REL exprC
@@ -1119,8 +1119,8 @@ state 54
     +               shift and go to state 47
     (               shift and go to state 96
     CARACTERE       shift and go to state 46
-    FALSO           shift and go to state 40
-    VERDADEIRO      shift and go to state 41
+    FALSO           shift and go to state 41
+    VERDADEIRO      shift and go to state 42
     NAO             shift and go to state 43
 
     expressaoRelacional            shift and go to state 106
@@ -1201,10 +1201,10 @@ state 64
 state 65
 
     (32) expressaoRelacional -> expressaoRelacional OP_BOOL . termoRelacional
-    (33) termoRelacional -> . ( expressaoRelacional )
-    (34) termoRelacional -> . FALSO
-    (35) termoRelacional -> . VERDADEIRO
-    (36) termoRelacional -> . ID
+    (33) termoRelacional -> . ID
+    (34) termoRelacional -> . ( expressaoRelacional )
+    (35) termoRelacional -> . FALSO
+    (36) termoRelacional -> . VERDADEIRO
     (37) termoRelacional -> . ( termoRelacional )
     (38) termoRelacional -> . NAO termoRelacional
     (39) termoRelacional -> . exprC OP_REL exprC
@@ -1227,10 +1227,10 @@ state 65
     (72) expr -> . expr - expr
     (73) expr -> . expr + expr
     (74) expr -> . ( expr )
-    (               shift and go to state 39
-    FALSO           shift and go to state 40
-    VERDADEIRO      shift and go to state 41
-    ID              shift and go to state 42
+    ID              shift and go to state 39
+    (               shift and go to state 40
+    FALSO           shift and go to state 41
+    VERDADEIRO      shift and go to state 42
     NAO             shift and go to state 43
     CARACTERE       shift and go to state 46
     REAL            shift and go to state 48
@@ -1245,10 +1245,10 @@ state 65
 state 66
 
     (41) OP_BOOL -> OU .
+    ID              reduce using rule 41 (OP_BOOL -> OU .)
     (               reduce using rule 41 (OP_BOOL -> OU .)
     FALSO           reduce using rule 41 (OP_BOOL -> OU .)
     VERDADEIRO      reduce using rule 41 (OP_BOOL -> OU .)
-    ID              reduce using rule 41 (OP_BOOL -> OU .)
     NAO             reduce using rule 41 (OP_BOOL -> OU .)
     CARACTERE       reduce using rule 41 (OP_BOOL -> OU .)
     REAL            reduce using rule 41 (OP_BOOL -> OU .)
@@ -1260,10 +1260,10 @@ state 66
 state 67
 
     (42) OP_BOOL -> E .
+    ID              reduce using rule 42 (OP_BOOL -> E .)
     (               reduce using rule 42 (OP_BOOL -> E .)
     FALSO           reduce using rule 42 (OP_BOOL -> E .)
     VERDADEIRO      reduce using rule 42 (OP_BOOL -> E .)
-    ID              reduce using rule 42 (OP_BOOL -> E .)
     NAO             reduce using rule 42 (OP_BOOL -> E .)
     CARACTERE       reduce using rule 42 (OP_BOOL -> E .)
     REAL            reduce using rule 42 (OP_BOOL -> E .)
@@ -1274,7 +1274,7 @@ state 67
 
 state 68
 
-    (33) termoRelacional -> ( expressaoRelacional . )
+    (34) termoRelacional -> ( expressaoRelacional . )
     (32) expressaoRelacional -> expressaoRelacional . OP_BOOL termoRelacional
     (41) OP_BOOL -> . OU
     (42) OP_BOOL -> . E
@@ -1830,7 +1830,7 @@ state 96
 
     (74) expr -> ( . expr )
     (78) exprC -> ( . exprC )
-    (33) termoRelacional -> ( . expressaoRelacional )
+    (34) termoRelacional -> ( . expressaoRelacional )
     (37) termoRelacional -> ( . termoRelacional )
     (61) expr -> . ID
     (62) expr -> . REAL
@@ -1852,10 +1852,10 @@ state 96
     (78) exprC -> . ( exprC )
     (31) expressaoRelacional -> . termoRelacional
     (32) expressaoRelacional -> . expressaoRelacional OP_BOOL termoRelacional
-    (33) termoRelacional -> . ( expressaoRelacional )
-    (34) termoRelacional -> . FALSO
-    (35) termoRelacional -> . VERDADEIRO
-    (36) termoRelacional -> . ID
+    (33) termoRelacional -> . ID
+    (34) termoRelacional -> . ( expressaoRelacional )
+    (35) termoRelacional -> . FALSO
+    (36) termoRelacional -> . VERDADEIRO
     (37) termoRelacional -> . ( termoRelacional )
     (38) termoRelacional -> . NAO termoRelacional
     (39) termoRelacional -> . exprC OP_REL exprC
@@ -1867,8 +1867,8 @@ state 96
     +               shift and go to state 47
     (               shift and go to state 96
     CARACTERE       shift and go to state 46
-    FALSO           shift and go to state 40
-    VERDADEIRO      shift and go to state 41
+    FALSO           shift and go to state 41
+    VERDADEIRO      shift and go to state 42
     NAO             shift and go to state 43
 
     expr                           shift and go to state 132
@@ -1974,7 +1974,7 @@ state 103
 
     (61) expr -> ID .
     (76) exprC -> ID .
-    (36) termoRelacional -> ID .
+    (33) termoRelacional -> ID .
   ! reduce/reduce conflict for + resolved using rule 61 (expr -> ID .)
   ! reduce/reduce conflict for EQ resolved using rule 61 (expr -> ID .)
   ! reduce/reduce conflict for GT resolved using rule 61 (expr -> ID .)
@@ -1985,9 +1985,9 @@ state 103
   ! reduce/reduce conflict for ) resolved using rule 61 (expr -> ID .)
   ! reduce/reduce conflict for , resolved using rule 61 (expr -> ID .)
   ! reduce/reduce conflict for ; resolved using rule 61 (expr -> ID .)
-  ! reduce/reduce conflict for ) resolved using rule 36 (termoRelacional -> ID .)
-  ! reduce/reduce conflict for , resolved using rule 36 (termoRelacional -> ID .)
-  ! reduce/reduce conflict for ; resolved using rule 36 (termoRelacional -> ID .)
+  ! reduce/reduce conflict for ) resolved using rule 61 (expr -> ID .)
+  ! reduce/reduce conflict for , resolved using rule 61 (expr -> ID .)
+  ! reduce/reduce conflict for ; resolved using rule 61 (expr -> ID .)
     ^               reduce using rule 61 (expr -> ID .)
     MOD             reduce using rule 61 (expr -> ID .)
     %               reduce using rule 61 (expr -> ID .)
@@ -2002,11 +2002,11 @@ state 103
     LT              reduce using rule 61 (expr -> ID .)
     LE              reduce using rule 61 (expr -> ID .)
     NE              reduce using rule 61 (expr -> ID .)
-    OU              reduce using rule 36 (termoRelacional -> ID .)
-    E               reduce using rule 36 (termoRelacional -> ID .)
-    )               reduce using rule 36 (termoRelacional -> ID .)
-    ,               reduce using rule 36 (termoRelacional -> ID .)
-    ;               reduce using rule 36 (termoRelacional -> ID .)
+    )               reduce using rule 61 (expr -> ID .)
+    ,               reduce using rule 61 (expr -> ID .)
+    ;               reduce using rule 61 (expr -> ID .)
+    OU              reduce using rule 33 (termoRelacional -> ID .)
+    E               reduce using rule 33 (termoRelacional -> ID .)
 
 
 state 104
@@ -2121,13 +2121,13 @@ state 111
 
 state 112
 
-    (33) termoRelacional -> ( expressaoRelacional ) .
-    ;               reduce using rule 33 (termoRelacional -> ( expressaoRelacional ) .)
-    OU              reduce using rule 33 (termoRelacional -> ( expressaoRelacional ) .)
-    E               reduce using rule 33 (termoRelacional -> ( expressaoRelacional ) .)
-    FACA            reduce using rule 33 (termoRelacional -> ( expressaoRelacional ) .)
-    )               reduce using rule 33 (termoRelacional -> ( expressaoRelacional ) .)
-    ,               reduce using rule 33 (termoRelacional -> ( expressaoRelacional ) .)
+    (34) termoRelacional -> ( expressaoRelacional ) .
+    ;               reduce using rule 34 (termoRelacional -> ( expressaoRelacional ) .)
+    OU              reduce using rule 34 (termoRelacional -> ( expressaoRelacional ) .)
+    E               reduce using rule 34 (termoRelacional -> ( expressaoRelacional ) .)
+    FACA            reduce using rule 34 (termoRelacional -> ( expressaoRelacional ) .)
+    )               reduce using rule 34 (termoRelacional -> ( expressaoRelacional ) .)
+    ,               reduce using rule 34 (termoRelacional -> ( expressaoRelacional ) .)
 
 
 state 113
@@ -2665,10 +2665,10 @@ state 135
     (76) exprC -> . ID
     (77) exprC -> . exprC + exprC
     (78) exprC -> . ( exprC )
-    (33) termoRelacional -> . ( expressaoRelacional )
-    (34) termoRelacional -> . FALSO
-    (35) termoRelacional -> . VERDADEIRO
-    (36) termoRelacional -> . ID
+    (33) termoRelacional -> . ID
+    (34) termoRelacional -> . ( expressaoRelacional )
+    (35) termoRelacional -> . FALSO
+    (36) termoRelacional -> . VERDADEIRO
     (37) termoRelacional -> . ( termoRelacional )
     (38) termoRelacional -> . NAO termoRelacional
     (39) termoRelacional -> . exprC OP_REL exprC
@@ -2680,8 +2680,8 @@ state 135
     +               shift and go to state 47
     (               shift and go to state 96
     CARACTERE       shift and go to state 46
-    FALSO           shift and go to state 40
-    VERDADEIRO      shift and go to state 41
+    FALSO           shift and go to state 41
+    VERDADEIRO      shift and go to state 42
     NAO             shift and go to state 43
 
     typeArgsEscritaAux             shift and go to state 141
@@ -2881,13 +2881,11 @@ state 149
 Conflicts:
 
 shift/reduce conflict for ) in state 69 resolved as shift
-reduce/reduce conflict in state 42 resolved using rule termoRelacional -> ID
-rejected rule (exprC -> ID) in state 42
-reduce/reduce conflict in state 42 resolved using rule expr -> ID
-rejected rule (exprC -> ID) in state 42
-reduce/reduce conflict in state 42 resolved using rule termoRelacional -> ID
-rejected rule (expr -> ID) in state 42
+reduce/reduce conflict in state 39 resolved using rule exprC -> ID
+rejected rule (termoRelacional -> ID) in state 39
+reduce/reduce conflict in state 39 resolved using rule expr -> ID
+rejected rule (exprC -> ID) in state 39
 reduce/reduce conflict in state 103 resolved using rule expr -> ID
 rejected rule (exprC -> ID) in state 103
-reduce/reduce conflict in state 103 resolved using rule termoRelacional -> ID
-rejected rule (expr -> ID) in state 103
+reduce/reduce conflict in state 103 resolved using rule expr -> ID
+rejected rule (termoRelacional -> ID) in state 103
