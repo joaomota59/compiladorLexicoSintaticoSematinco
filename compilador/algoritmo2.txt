@@ -3,7 +3,7 @@
 Algoritmo "Compiladores" 
 
 var
-a,b:real
+a,b,x:real
 ks: real
 y,xc:CARACTERE
 n:real
@@ -39,9 +39,29 @@ b<-4.3
 
 escreval("tk")
 
-//se 5 <> 4 e 9>4  entao
-//   escreval(3+2)
-//fimse
+se 5>4 e 5<1 entao//isso ai
+   escreval(3+2+1+3+9, "oi", 4<3)
+   escreval("nice")
+   x<-3+5
+   leia(a)
+   escreval(a)
+   se nao 5>2 entao
+      escreval("Compiladores ou Jubiladores?")
+   fimse
+   se 2<1 entao
+      escreval("ss")
+   fimse
+fimse
+
+se 4>2 e 5<6 entao
+   escreval("Verdadeiro, deu bom")
+   msm<- Verdadeiro
+   escreval(msm)
+senao
+   escreval("Falso deu ruim")
+   escreval("Falso deu ruim")
+fimse
+
 
 fimalgoritmo
 

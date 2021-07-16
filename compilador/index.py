@@ -219,7 +219,7 @@ class VisualgParser(Parser):
     
     @_('cmd ";" bloco')
     def bloco(self,p):
-        return
+        return str(p.cmd) +';'+ str(p.bloco)
         #return p.bloco
 
     @_('cmdattrib')
@@ -279,7 +279,7 @@ class VisualgParser(Parser):
                     code.append("\t"+aux+"=str("+aux+")")
                 elif symbol_table[aux]=="logico":
                     code.append("\t"+aux+"=bool("+aux+")") 
-        return 
+        return aux
     
     @_('ID')
     def idAux(self,p):
@@ -303,16 +303,31 @@ class VisualgParser(Parser):
             semantic_panic = True
             return
 
+    @_(";")
+    def regraVazia(self,p):#retorna o tamanho atual do vetor
+        return len(code)#necessário para a regra semantica quando usa if
 
-    @_('SE expressaoRelacional ENTAO ";" bloco FIMSE')
+    @_('SE expressaoRelacional regraVazia ENTAO ";" bloco FIMSE')
     def cmdCondicao(self,p):
-        label = "_l"+str(newLabel())
-        code.append('\t'+"if "+p.expressaoRelacional+":")
-        #code.append('\t\t'+p.bloco)
+        global code
+        posEntao = p.regraVazia #tamanho do vetor antes do entao
+        labelFalse = "_l"+str(newLabel())
+
+        code = code[:posEntao]+['\t'+"if "+p.expressaoRelacional+" == False: goto ."+labelFalse]+code[posEntao:]
+        #insere o if depois da posicao do entao e o resto do vetor após a posicao do entao
+
+        code.append('\t'+'label'+' .'+labelFalse)
         return
 
-    @_("SE expressaoRelacional ENTAO ';' bloco SENAO ';' bloco FIMSE")
+    @_("SE expressaoRelacional regraVazia ENTAO ';' bloco SENAO regraVazia bloco FIMSE")
     def cmdCondicao(self,p):
+        global code
+        posEntao = p.regraVazia0 #tamanho do vetor antes do entao
+        posSenao = p.regraVazia1 #tamanho do vetor depois do senao [obs: podia ser antes tb]
+        labelFalse = "_l"+str(newLabel())
+        labelTrue = "_l"+str(newLabel())
+
+        code = code[:posEntao]+['\t'+"if "+p.expressaoRelacional+" == False: goto ."+labelFalse]+code[posEntao:posSenao]+['\t'+'goto'+' .'+labelTrue]+['\t'+'label'+' .'+labelFalse]+code[posSenao:]+['\t'+'label'+' .'+labelTrue]
         return
 
     @_("expressaoRelacional OP_BOOL termoRelacional")
@@ -444,7 +459,7 @@ class VisualgParser(Parser):
             else:
                 print("Erro Semantico: Variavel " + p.ID + " tem o tipo incompativel na operação!")
                 semantic_panic = True
-        return
+        return "\t"+p.ID+"="+str(p.expr)
     
     @_('ID ASSIGN exprC')#comando atribuição para caractere
     def cmdattrib(self,p):
@@ -458,7 +473,7 @@ class VisualgParser(Parser):
             else:#se foi declarada como outro tipo então é um erro
                 print("Erro Semantico: Variavel "+p.ID+" recebe tipo incompativel.")
                 semantic_panic = True
-        return
+        return "\t"+p.ID+"="+p.exprC
     
     @_('ID ASSIGN expressaoRelacional')#comando atribuição para logico
     def cmdattrib(self,p):
@@ -473,7 +488,7 @@ class VisualgParser(Parser):
                 semantic_panic = True
                 print("Erro Semantico: Variavel "+p.ID+" recebe tipo incompativel.")
 
-        return
+        return "\t"+str(p.ID)+"="+str(p.expressaoRelacional)
 
     
     @_('ESCREVA "(" typeArgsEscrita ")" ')#comando escrita
@@ -514,7 +529,7 @@ class VisualgParser(Parser):
         aux = p.typeArgsEscrita
         k = "\tprint("+aux+")"
         code.append(k)
-        return
+        return k
 
     @_('ESCREVAL "(" ")" ')#comando escrita
     def cmdescrita(self, p):
@@ -744,13 +759,25 @@ if __name__ == '__main__':
     for i in linhas:
         if i != '\n':#se nao for uma linha vazia
             if (i.find('//') != -1 and i.find('//')!=0):#se a linha tiver comentario coloca o ponto e virgula antes do comentario, pq o comentario será ignorado pelo regex
-                data += i[:i.find('//')].lower() + ";" + i[i.find('//'):].lower()
+                auxiliar = i[:i.find('//')].lower() + ";" + i[i.find('//'):].lower()
+                positionEntao = auxiliar.find('entao;')
+                if(positionEntao != -1):
+                    data += auxiliar[:positionEntao]+';'+auxiliar[positionEntao:]
+                else:
+                    data+=auxiliar
             elif i.lower()=='fimalgoritmo': #ultima linha do arquivo
                 data += i.lower() + ";"
             else:#é pq a linha nao tem comentário entao adiciona o ; antes do \n
-                data += i[:-1].lower() + ";" + "\n"
+                auxiliar = i[:-1].lower() + ";" + "\n"
+                if(auxiliar.find('entao;\n')!=-1):
+                    data += auxiliar[:-7]+" ;"+auxiliar[-7:]
+                else:
+                    data+=auxiliar
         else:#entao é uma linha vazia
             data += i
+
+
+
     #print(data)
     arquivo.close()
     lexer = VisualgLexer()
