@@ -4,7 +4,7 @@
 ``` shell
 cd compilador
 Scripts\activate
-py index.py algoritmo.txt
+py index.py algoritmo2.txt
 ```
 * Após o processo de compilação, para executar o código objeto, no terminal, entre com os seguintes comandos:
 ``` shell
