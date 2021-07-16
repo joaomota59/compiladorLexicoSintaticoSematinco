@@ -351,7 +351,7 @@ class VisualgParser(Parser):
     @_("termoRelacional")
     def expressaoRelacional(self,p):
         return p.termoRelacional
-
+        
     @_("expr OP_REL expr")
     def termoRelacional(self,p):
         type_t_aux.clear()
@@ -386,13 +386,11 @@ class VisualgParser(Parser):
         var = "_t"+str(newTemp())
         if p.termoRelacional == "VERDADEIRO":
             code.append('\t'+var+"= not True")
-            return var
         elif p.termoRelacional == "False":
             code.append('\t'+var+"= not False")
-            return var
         else:
             code.append('\t'+var+"= not "+p.termoRelacional)
-            return var
+        return var
 
 
 
@@ -635,6 +633,9 @@ class VisualgParser(Parser):
         global semantic_panic
         if p.ID not in symbol_table:
             print("Erro Semantico: Variavel " + p.ID + " nao declarada!")
+            semantic_panic = True
+        elif self.get_type(p.ID) != Types.LOGICO.value:
+            print("Erro Semantico: Variavel " + p.ID + " tem o tipo incompativel na operação!")
             semantic_panic = True
         return p.ID
     
