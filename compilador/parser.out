@@ -24,13 +24,13 @@ Rule 20    cmd -> cmdCondicao
 Rule 21    cmd -> cmdleitura
 Rule 22    cmd -> cmdescrita
 Rule 23    cmd -> cmdattrib
-Rule 24    cmdRepeticao -> ENQUANTO regraVazia expressaoRelacional FACA regraVazia bloco FIMENQUANTO
+Rule 24    cmdRepeticao -> ENQUANTO regraVazia expressaoRelacional FACA regraVazia blocoType FIMENQUANTO
 Rule 25    cmdleitura -> LEIA ( idAux )
 Rule 26    idAux -> ID , idAux
 Rule 27    idAux -> ID
 Rule 28    regraVazia -> ;
-Rule 29    cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; bloco SENAO regraVazia bloco FIMSE
-Rule 30    cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; bloco FIMSE
+Rule 29    cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; blocoType SENAO regraVazia blocoType FIMSE
+Rule 30    cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; blocoType FIMSE
 Rule 31    expressaoRelacional -> termoRelacional
 Rule 32    expressaoRelacional -> expressaoRelacional OP_BOOL termoRelacional
 Rule 33    termoRelacional -> ID
@@ -133,8 +133,8 @@ Nonterminals, with rules where they appear:
 
 OP_BOOL              : 32
 OP_REL               : 39 40
-bloco                : 5 16 24 29 29 30
-blocoType            : 1
+bloco                : 5 16
+blocoType            : 1 24 29 29 30
 cmd                  : 16 17
 cmdCondicao          : 20
 cmdRepeticao         : 18
@@ -244,9 +244,9 @@ state 9
     (21) cmd -> . cmdleitura
     (22) cmd -> . cmdescrita
     (23) cmd -> . cmdattrib
-    (24) cmdRepeticao -> . ENQUANTO regraVazia expressaoRelacional FACA regraVazia bloco FIMENQUANTO
-    (29) cmdCondicao -> . SE expressaoRelacional regraVazia ENTAO ; bloco SENAO regraVazia bloco FIMSE
-    (30) cmdCondicao -> . SE expressaoRelacional regraVazia ENTAO ; bloco FIMSE
+    (24) cmdRepeticao -> . ENQUANTO regraVazia expressaoRelacional FACA regraVazia blocoType FIMENQUANTO
+    (29) cmdCondicao -> . SE expressaoRelacional regraVazia ENTAO ; blocoType SENAO regraVazia blocoType FIMSE
+    (30) cmdCondicao -> . SE expressaoRelacional regraVazia ENTAO ; blocoType FIMSE
     (25) cmdleitura -> . LEIA ( idAux )
     (52) cmdescrita -> . ESCREVAL ( )
     (53) cmdescrita -> . ESCREVAL ( typeArgsEscrita )
@@ -319,6 +319,9 @@ state 16
 
     (5) blocoType -> bloco .
     FIMALGORITMO    reduce using rule 5 (blocoType -> bloco .)
+    FIMENQUANTO     reduce using rule 5 (blocoType -> bloco .)
+    SENAO           reduce using rule 5 (blocoType -> bloco .)
+    FIMSE           reduce using rule 5 (blocoType -> bloco .)
 
 
 state 17
@@ -366,7 +369,7 @@ state 23
 
 state 24
 
-    (24) cmdRepeticao -> ENQUANTO . regraVazia expressaoRelacional FACA regraVazia bloco FIMENQUANTO
+    (24) cmdRepeticao -> ENQUANTO . regraVazia expressaoRelacional FACA regraVazia blocoType FIMENQUANTO
     (28) regraVazia -> . ;
     ;               shift and go to state 36
 
@@ -374,8 +377,8 @@ state 24
 
 state 25
 
-    (29) cmdCondicao -> SE . expressaoRelacional regraVazia ENTAO ; bloco SENAO regraVazia bloco FIMSE
-    (30) cmdCondicao -> SE . expressaoRelacional regraVazia ENTAO ; bloco FIMSE
+    (29) cmdCondicao -> SE . expressaoRelacional regraVazia ENTAO ; blocoType SENAO regraVazia blocoType FIMSE
+    (30) cmdCondicao -> SE . expressaoRelacional regraVazia ENTAO ; blocoType FIMSE
     (31) expressaoRelacional -> . termoRelacional
     (32) expressaoRelacional -> . expressaoRelacional OP_BOOL termoRelacional
     (33) termoRelacional -> . ID
@@ -506,9 +509,9 @@ state 34
     (21) cmd -> . cmdleitura
     (22) cmd -> . cmdescrita
     (23) cmd -> . cmdattrib
-    (24) cmdRepeticao -> . ENQUANTO regraVazia expressaoRelacional FACA regraVazia bloco FIMENQUANTO
-    (29) cmdCondicao -> . SE expressaoRelacional regraVazia ENTAO ; bloco SENAO regraVazia bloco FIMSE
-    (30) cmdCondicao -> . SE expressaoRelacional regraVazia ENTAO ; bloco FIMSE
+    (24) cmdRepeticao -> . ENQUANTO regraVazia expressaoRelacional FACA regraVazia blocoType FIMENQUANTO
+    (29) cmdCondicao -> . SE expressaoRelacional regraVazia ENTAO ; blocoType SENAO regraVazia blocoType FIMSE
+    (30) cmdCondicao -> . SE expressaoRelacional regraVazia ENTAO ; blocoType FIMSE
     (25) cmdleitura -> . LEIA ( idAux )
     (52) cmdescrita -> . ESCREVAL ( )
     (53) cmdescrita -> . ESCREVAL ( typeArgsEscrita )
@@ -539,7 +542,7 @@ state 34
 
 state 35
 
-    (24) cmdRepeticao -> ENQUANTO regraVazia . expressaoRelacional FACA regraVazia bloco FIMENQUANTO
+    (24) cmdRepeticao -> ENQUANTO regraVazia . expressaoRelacional FACA regraVazia blocoType FIMENQUANTO
     (31) expressaoRelacional -> . termoRelacional
     (32) expressaoRelacional -> . expressaoRelacional OP_BOOL termoRelacional
     (33) termoRelacional -> . ID
@@ -604,12 +607,14 @@ state 36
     LEIA            reduce using rule 28 (regraVazia -> ; .)
     ESCREVAL        reduce using rule 28 (regraVazia -> ; .)
     ESCREVA         reduce using rule 28 (regraVazia -> ; .)
+    FIMENQUANTO     reduce using rule 28 (regraVazia -> ; .)
+    FIMSE           reduce using rule 28 (regraVazia -> ; .)
 
 
 state 37
 
-    (29) cmdCondicao -> SE expressaoRelacional . regraVazia ENTAO ; bloco SENAO regraVazia bloco FIMSE
-    (30) cmdCondicao -> SE expressaoRelacional . regraVazia ENTAO ; bloco FIMSE
+    (29) cmdCondicao -> SE expressaoRelacional . regraVazia ENTAO ; blocoType SENAO regraVazia blocoType FIMSE
+    (30) cmdCondicao -> SE expressaoRelacional . regraVazia ENTAO ; blocoType FIMSE
     (32) expressaoRelacional -> expressaoRelacional . OP_BOOL termoRelacional
     (28) regraVazia -> . ;
     (41) OP_BOOL -> . OU
@@ -1181,7 +1186,7 @@ state 62
 
 state 63
 
-    (24) cmdRepeticao -> ENQUANTO regraVazia expressaoRelacional . FACA regraVazia bloco FIMENQUANTO
+    (24) cmdRepeticao -> ENQUANTO regraVazia expressaoRelacional . FACA regraVazia blocoType FIMENQUANTO
     (32) expressaoRelacional -> expressaoRelacional . OP_BOOL termoRelacional
     (41) OP_BOOL -> . OU
     (42) OP_BOOL -> . E
@@ -1193,8 +1198,8 @@ state 63
 
 state 64
 
-    (29) cmdCondicao -> SE expressaoRelacional regraVazia . ENTAO ; bloco SENAO regraVazia bloco FIMSE
-    (30) cmdCondicao -> SE expressaoRelacional regraVazia . ENTAO ; bloco FIMSE
+    (29) cmdCondicao -> SE expressaoRelacional regraVazia . ENTAO ; blocoType SENAO regraVazia blocoType FIMSE
+    (30) cmdCondicao -> SE expressaoRelacional regraVazia . ENTAO ; blocoType FIMSE
     ENTAO           shift and go to state 110
 
 
@@ -2095,7 +2100,7 @@ state 108
 
 state 109
 
-    (24) cmdRepeticao -> ENQUANTO regraVazia expressaoRelacional FACA . regraVazia bloco FIMENQUANTO
+    (24) cmdRepeticao -> ENQUANTO regraVazia expressaoRelacional FACA . regraVazia blocoType FIMENQUANTO
     (28) regraVazia -> . ;
     ;               shift and go to state 36
 
@@ -2103,8 +2108,8 @@ state 109
 
 state 110
 
-    (29) cmdCondicao -> SE expressaoRelacional regraVazia ENTAO . ; bloco SENAO regraVazia bloco FIMSE
-    (30) cmdCondicao -> SE expressaoRelacional regraVazia ENTAO . ; bloco FIMSE
+    (29) cmdCondicao -> SE expressaoRelacional regraVazia ENTAO . ; blocoType SENAO regraVazia blocoType FIMSE
+    (30) cmdCondicao -> SE expressaoRelacional regraVazia ENTAO . ; blocoType FIMSE
     ;               shift and go to state 138
 
 
@@ -2698,7 +2703,9 @@ state 136
 
 state 137
 
-    (24) cmdRepeticao -> ENQUANTO regraVazia expressaoRelacional FACA regraVazia . bloco FIMENQUANTO
+    (24) cmdRepeticao -> ENQUANTO regraVazia expressaoRelacional FACA regraVazia . blocoType FIMENQUANTO
+    (4) blocoType -> .
+    (5) blocoType -> . bloco
     (16) bloco -> . cmd ; bloco
     (17) bloco -> . cmd ;
     (18) cmd -> . cmdRepeticao
@@ -2707,9 +2714,9 @@ state 137
     (21) cmd -> . cmdleitura
     (22) cmd -> . cmdescrita
     (23) cmd -> . cmdattrib
-    (24) cmdRepeticao -> . ENQUANTO regraVazia expressaoRelacional FACA regraVazia bloco FIMENQUANTO
-    (29) cmdCondicao -> . SE expressaoRelacional regraVazia ENTAO ; bloco SENAO regraVazia bloco FIMSE
-    (30) cmdCondicao -> . SE expressaoRelacional regraVazia ENTAO ; bloco FIMSE
+    (24) cmdRepeticao -> . ENQUANTO regraVazia expressaoRelacional FACA regraVazia blocoType FIMENQUANTO
+    (29) cmdCondicao -> . SE expressaoRelacional regraVazia ENTAO ; blocoType SENAO regraVazia blocoType FIMSE
+    (30) cmdCondicao -> . SE expressaoRelacional regraVazia ENTAO ; blocoType FIMSE
     (25) cmdleitura -> . LEIA ( idAux )
     (52) cmdescrita -> . ESCREVAL ( )
     (53) cmdescrita -> . ESCREVAL ( typeArgsEscrita )
@@ -2718,6 +2725,7 @@ state 137
     (49) cmdattrib -> . ID ASSIGN expressaoRelacional
     (50) cmdattrib -> . ID ASSIGN expr
     (51) cmdattrib -> . ID ASSIGN exprC
+    FIMENQUANTO     reduce using rule 4 (blocoType -> .)
     LIMPATELA       shift and go to state 19
     ENQUANTO        shift and go to state 24
     SE              shift and go to state 25
@@ -2726,7 +2734,8 @@ state 137
     ESCREVA         shift and go to state 28
     ID              shift and go to state 29
 
-    bloco                          shift and go to state 142
+    blocoType                      shift and go to state 142
+    bloco                          shift and go to state 16
     cmd                            shift and go to state 17
     cmdRepeticao                   shift and go to state 18
     cmdCondicao                    shift and go to state 20
@@ -2736,8 +2745,10 @@ state 137
 
 state 138
 
-    (29) cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; . bloco SENAO regraVazia bloco FIMSE
-    (30) cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; . bloco FIMSE
+    (29) cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; . blocoType SENAO regraVazia blocoType FIMSE
+    (30) cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; . blocoType FIMSE
+    (4) blocoType -> .
+    (5) blocoType -> . bloco
     (16) bloco -> . cmd ; bloco
     (17) bloco -> . cmd ;
     (18) cmd -> . cmdRepeticao
@@ -2746,9 +2757,9 @@ state 138
     (21) cmd -> . cmdleitura
     (22) cmd -> . cmdescrita
     (23) cmd -> . cmdattrib
-    (24) cmdRepeticao -> . ENQUANTO regraVazia expressaoRelacional FACA regraVazia bloco FIMENQUANTO
-    (29) cmdCondicao -> . SE expressaoRelacional regraVazia ENTAO ; bloco SENAO regraVazia bloco FIMSE
-    (30) cmdCondicao -> . SE expressaoRelacional regraVazia ENTAO ; bloco FIMSE
+    (24) cmdRepeticao -> . ENQUANTO regraVazia expressaoRelacional FACA regraVazia blocoType FIMENQUANTO
+    (29) cmdCondicao -> . SE expressaoRelacional regraVazia ENTAO ; blocoType SENAO regraVazia blocoType FIMSE
+    (30) cmdCondicao -> . SE expressaoRelacional regraVazia ENTAO ; blocoType FIMSE
     (25) cmdleitura -> . LEIA ( idAux )
     (52) cmdescrita -> . ESCREVAL ( )
     (53) cmdescrita -> . ESCREVAL ( typeArgsEscrita )
@@ -2757,6 +2768,8 @@ state 138
     (49) cmdattrib -> . ID ASSIGN expressaoRelacional
     (50) cmdattrib -> . ID ASSIGN expr
     (51) cmdattrib -> . ID ASSIGN exprC
+    SENAO           reduce using rule 4 (blocoType -> .)
+    FIMSE           reduce using rule 4 (blocoType -> .)
     LIMPATELA       shift and go to state 19
     ENQUANTO        shift and go to state 24
     SE              shift and go to state 25
@@ -2765,7 +2778,8 @@ state 138
     ESCREVA         shift and go to state 28
     ID              shift and go to state 29
 
-    bloco                          shift and go to state 143
+    blocoType                      shift and go to state 143
+    bloco                          shift and go to state 16
     cmd                            shift and go to state 17
     cmdRepeticao                   shift and go to state 18
     cmdCondicao                    shift and go to state 20
@@ -2796,27 +2810,27 @@ state 141
 
 state 142
 
-    (24) cmdRepeticao -> ENQUANTO regraVazia expressaoRelacional FACA regraVazia bloco . FIMENQUANTO
+    (24) cmdRepeticao -> ENQUANTO regraVazia expressaoRelacional FACA regraVazia blocoType . FIMENQUANTO
     FIMENQUANTO     shift and go to state 144
 
 
 state 143
 
-    (29) cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; bloco . SENAO regraVazia bloco FIMSE
-    (30) cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; bloco . FIMSE
+    (29) cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; blocoType . SENAO regraVazia blocoType FIMSE
+    (30) cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; blocoType . FIMSE
     SENAO           shift and go to state 145
     FIMSE           shift and go to state 146
 
 
 state 144
 
-    (24) cmdRepeticao -> ENQUANTO regraVazia expressaoRelacional FACA regraVazia bloco FIMENQUANTO .
-    ;               reduce using rule 24 (cmdRepeticao -> ENQUANTO regraVazia expressaoRelacional FACA regraVazia bloco FIMENQUANTO .)
+    (24) cmdRepeticao -> ENQUANTO regraVazia expressaoRelacional FACA regraVazia blocoType FIMENQUANTO .
+    ;               reduce using rule 24 (cmdRepeticao -> ENQUANTO regraVazia expressaoRelacional FACA regraVazia blocoType FIMENQUANTO .)
 
 
 state 145
 
-    (29) cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; bloco SENAO . regraVazia bloco FIMSE
+    (29) cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; blocoType SENAO . regraVazia blocoType FIMSE
     (28) regraVazia -> . ;
     ;               shift and go to state 36
 
@@ -2824,13 +2838,15 @@ state 145
 
 state 146
 
-    (30) cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; bloco FIMSE .
-    ;               reduce using rule 30 (cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; bloco FIMSE .)
+    (30) cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; blocoType FIMSE .
+    ;               reduce using rule 30 (cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; blocoType FIMSE .)
 
 
 state 147
 
-    (29) cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; bloco SENAO regraVazia . bloco FIMSE
+    (29) cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; blocoType SENAO regraVazia . blocoType FIMSE
+    (4) blocoType -> .
+    (5) blocoType -> . bloco
     (16) bloco -> . cmd ; bloco
     (17) bloco -> . cmd ;
     (18) cmd -> . cmdRepeticao
@@ -2839,9 +2855,9 @@ state 147
     (21) cmd -> . cmdleitura
     (22) cmd -> . cmdescrita
     (23) cmd -> . cmdattrib
-    (24) cmdRepeticao -> . ENQUANTO regraVazia expressaoRelacional FACA regraVazia bloco FIMENQUANTO
-    (29) cmdCondicao -> . SE expressaoRelacional regraVazia ENTAO ; bloco SENAO regraVazia bloco FIMSE
-    (30) cmdCondicao -> . SE expressaoRelacional regraVazia ENTAO ; bloco FIMSE
+    (24) cmdRepeticao -> . ENQUANTO regraVazia expressaoRelacional FACA regraVazia blocoType FIMENQUANTO
+    (29) cmdCondicao -> . SE expressaoRelacional regraVazia ENTAO ; blocoType SENAO regraVazia blocoType FIMSE
+    (30) cmdCondicao -> . SE expressaoRelacional regraVazia ENTAO ; blocoType FIMSE
     (25) cmdleitura -> . LEIA ( idAux )
     (52) cmdescrita -> . ESCREVAL ( )
     (53) cmdescrita -> . ESCREVAL ( typeArgsEscrita )
@@ -2850,6 +2866,7 @@ state 147
     (49) cmdattrib -> . ID ASSIGN expressaoRelacional
     (50) cmdattrib -> . ID ASSIGN expr
     (51) cmdattrib -> . ID ASSIGN exprC
+    FIMSE           reduce using rule 4 (blocoType -> .)
     LIMPATELA       shift and go to state 19
     ENQUANTO        shift and go to state 24
     SE              shift and go to state 25
@@ -2858,7 +2875,8 @@ state 147
     ESCREVA         shift and go to state 28
     ID              shift and go to state 29
 
-    bloco                          shift and go to state 148
+    blocoType                      shift and go to state 148
+    bloco                          shift and go to state 16
     cmd                            shift and go to state 17
     cmdRepeticao                   shift and go to state 18
     cmdCondicao                    shift and go to state 20
@@ -2868,14 +2886,14 @@ state 147
 
 state 148
 
-    (29) cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; bloco SENAO regraVazia bloco . FIMSE
+    (29) cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; blocoType SENAO regraVazia blocoType . FIMSE
     FIMSE           shift and go to state 149
 
 
 state 149
 
-    (29) cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; bloco SENAO regraVazia bloco FIMSE .
-    ;               reduce using rule 29 (cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; bloco SENAO regraVazia bloco FIMSE .)
+    (29) cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; blocoType SENAO regraVazia blocoType FIMSE .
+    ;               reduce using rule 29 (cmdCondicao -> SE expressaoRelacional regraVazia ENTAO ; blocoType SENAO regraVazia blocoType FIMSE .)
 
 
 Conflicts:

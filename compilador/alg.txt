@@ -2,12 +2,26 @@
 Algoritmo "Compiladores" 
 var
 j:INTEIRO
+p:Real
+z,x:CARACTERE
+msm:logico
+
 inicio
+
 j<-1
+p<-3.3
 
 escreval("entao")
+se z+msm=j entao
+fimse
+
+
 enquanto j <= 10 e 5>2 faca
-    escreval(j)
+    se j<4 entao
+        escreval(j)
+    senao
+        escreval("outro",j)
+    fimse
     j <- j + 1
 fimenquanto
 fimalgoritmo

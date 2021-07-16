@@ -151,6 +151,8 @@ class VisualgParser(Parser):
             code.insert(0,"def main():")
             code.insert(0,"@with_goto")
             code.insert(0,"from goto import with_goto")
+            if(len(code)==4):
+                code.insert(3,"\treturn")
     
             codigoObjeto = open("codigoObjeto.py","w")
             for i in code:
@@ -255,7 +257,7 @@ class VisualgParser(Parser):
     def cmd(self,p):
         return p.cmdRepeticao
     
-    @_("ENQUANTO regraVazia expressaoRelacional FACA regraVazia bloco FIMENQUANTO")
+    @_("ENQUANTO regraVazia expressaoRelacional FACA regraVazia blocoType FIMENQUANTO")
     def cmdRepeticao(self,p):
         global code
         posExpRelacional = p.regraVazia0
@@ -312,7 +314,7 @@ class VisualgParser(Parser):
     def regraVazia(self,p):#retorna o tamanho atual do vetor
         return len(code)#necessário para a regra semantica quando usa if
 
-    @_('SE expressaoRelacional regraVazia ENTAO ";" bloco FIMSE')
+    @_('SE expressaoRelacional regraVazia ENTAO ";" blocoType FIMSE')
     def cmdCondicao(self,p):
         global code
         posEntao = p.regraVazia #tamanho do vetor antes do entao
@@ -324,7 +326,7 @@ class VisualgParser(Parser):
         code.append('\t'+'label'+' .'+labelFalse)
         return
 
-    @_("SE expressaoRelacional regraVazia ENTAO ';' bloco SENAO regraVazia bloco FIMSE")
+    @_("SE expressaoRelacional regraVazia ENTAO ';' blocoType SENAO regraVazia blocoType FIMSE")
     def cmdCondicao(self,p):
         global code
         posEntao = p.regraVazia0 #tamanho do vetor antes do entao
@@ -737,7 +739,7 @@ if __name__ == '__main__':
     #print(linhas)
     for i in linhas:
         if i != '\n':#se nao for uma linha vazia
-            if (i.find('//') != -1 and i.find('//')!=0):#se a linha tiver comentario coloca o ponto e virgula antes do comentario, pq o comentario será ignorado pelo regex
+            if (i.find('//') != -1 and i.replace(" ","").find('//')!=0):#se a linha tiver comentario coloca o ponto e virgula antes do comentario, pq o comentario será ignorado pelo regex
                 auxiliar = i[:i.find('//')].lower() + ";" + i[i.find('//'):].lower()
                 positionEntao = auxiliar.find('entao;')
                 positionEnquanto = auxiliar.find('enquanto')
