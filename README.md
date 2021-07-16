@@ -39,7 +39,7 @@ Rule 20    cmd -> cmdCondicao
 Rule 21    cmd -> cmdleitura
 Rule 22    cmd -> cmdescrita
 Rule 23    cmd -> cmdattrib
-Rule 24    cmdRepeticao -> ENQUANTO expressaoRelacional FACA ; bloco FIMENQUANTO
+Rule 24    cmdRepeticao -> ENQUANTO regraVazia expressaoRelacional FACA regraVazia bloco FIMENQUANTO
 Rule 25    cmdleitura -> LEIA ( idAux )
 Rule 26    idAux -> ID , idAux
 Rule 27    idAux -> ID
