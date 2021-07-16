@@ -676,6 +676,8 @@ class VisualgParser(Parser):
                 return Types.REAL.value
             elif input == Types.CARACTERE.value: 
                 return Types.CARACTERE.value
+            elif input == "False" or input == "True":
+                return Types.LOGICO.value
 
     def type_coercion(self, op, typeOut, a, b):
         global semantic_panic
